@@ -1,18 +1,27 @@
-// import { createContext } from "react";
-// import getOuraData from "../utilities/getOuraData";
+import { createContext, useState, useEffect } from "react";
+import getOuraData from "../utilities/getOuraData";
 
-// export const GlobalContext = createContext({});
+export const GlobalContext = createContext({});
 
-// const GlobalProvider = ({ children }) => {
-//   const { ouraUserData } = getOuraData();
+const GlobalProvider = ({ children }) => {
+  const [ouraData, setOuraData] = useState({});
 
-//   // console.log(`ouraUserData`, ouraUserData);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getOuraData();
 
-//   return (
-//     <GlobalContext.Provider value={{ ouraUserData }}>
-//       {children}
-//     </GlobalContext.Provider>
-//   );
-// };
+      setOuraData(data);
+    };
+    fetchData();
+  }, [setOuraData]);
 
-// export default GlobalProvider;
+  // console.log(`ouraData`, ouraData);
+
+  return (
+    <GlobalContext.Provider value={{ ouraData }}>
+      {children}
+    </GlobalContext.Provider>
+  );
+};
+
+export default GlobalProvider;
