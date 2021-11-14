@@ -1,17 +1,8 @@
 import "./App.scss";
-import Login from "./pages/login";
-import UserData from "./pages/userData";
-import SleepData from "./pages/sleepData";
+import routes from "./routes";
 
 function App() {
-  return (
-    <div className="App">
-      <Login />
-      <UserData />
-
-      <SleepData />
-    </div>
-  );
+  return <div className="App">{routes}</div>;
 }
 
 export default App;

@@ -2,14 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
+import { BrowserRouter as Router } from "react-router-dom";
 import GlobalProvider from "./context/Provider";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalProvider>
-      <App />
-    </GlobalProvider>
+    <Router>
+      <GlobalProvider>
+        <App />
+      </GlobalProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
