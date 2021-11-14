@@ -1,0 +1,33 @@
+@import "./styles/variables.scss";
+
+*,
+*::after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  max-width: $main-width;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 62.5%; // This equals 10px so 1 rem = 10px ( 10rem / 16px = .625%)
+
+  @media (max-height: 650px) {
+    font-size: 45%;
+  }
+}
+
+body {
+  font-family: $font-family;
+  font-weight: 100;
+  color: $font-color;
+  background-color: $site-background-color;
+  box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

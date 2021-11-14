@@ -1,14 +1,15 @@
-import React from "react";
 import "./App.scss";
-import RenderUserData from "./components/RenderUserData/RenderUserData";
-import RenderSleepData from "./components/RenderSleepData/RenderSleepData";
+import Login from "./pages/login";
+import UserData from "./pages/userData";
+import SleepData from "./pages/sleepData";
 
 function App() {
   return (
     <div className="App">
-      <RenderUserData />
+      <Login />
+      <UserData />
 
-      <RenderSleepData />
+      <SleepData />
     </div>
   );
 }
