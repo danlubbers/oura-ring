@@ -19,6 +19,11 @@ html {
   }
 }
 
+a {
+  color: $font-color;
+  text-decoration: none;
+}
+
 body {
   font-family: $font-family;
   font-weight: 100;
