@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import * as styles from "./RenderSleepData.module.scss";
 import { GlobalContext } from "../../context/Provider";
+import Container from "../Container/Container";
 
 const RenderSleepData = () => {
   const { ouraData } = useContext(GlobalContext);
@@ -31,15 +32,17 @@ const RenderSleepData = () => {
   // });
 
   return (
-    <div className={styles.renderSleepDataContainer}>
-      <h1>Last Nights Sleep Data</h1>
-      <p>{prevNightsData?.summary_date}</p>
-      <span>{bedtimeStart} - </span>
-      <span>{bedtimeEnd}</span>
-      <p>Lowest Heart Rate: {prevNightsData?.hr_lowest} bpm</p>
-      {/* {heartRateData} */}
-      {/* {hrvData} */}
-    </div>
+    <Container>
+      <div className={styles.renderSleepDataContainer}>
+        <h1>Last Nights Sleep Data</h1>
+        <p>{prevNightsData?.summary_date}</p>
+        <span>{bedtimeStart} - </span>
+        <span>{bedtimeEnd}</span>
+        <p>Lowest Heart Rate: {prevNightsData?.hr_lowest} bpm</p>
+        {/* {heartRateData} */}
+        {/* {hrvData} */}
+      </div>
+    </Container>
   );
 };
 
