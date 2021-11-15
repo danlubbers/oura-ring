@@ -5,17 +5,21 @@ import logo from "../../assets/logo/default_seo_image.png";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 
-const Login = () => {
+const Login = ({ handleUsername, handlePassword, handleSubmit }) => {
   return (
     <div className={styles.loginContainer}>
       <img className={styles.logo} src={logo} alt="logo" />
-      <div className={styles.loginWrapper}>
+      <form className={styles.formWrapper} onSubmit={handleSubmit}>
         <p className={styles.usernameText}>Enter Username</p>
-        <Input placeholder="username" />
+        <Input type="text" placeholder="username" onChange={handleUsername} />
         <p className={styles.passwordText}>Enter Password </p>
-        <Input placeholder="password" />
-        <Button btnAction={"Submit"} />
-      </div>
+        <Input
+          type="password"
+          placeholder="password"
+          onChange={handlePassword}
+        />
+        <Button btnAction={"Submit"} type={"submit"} />
+      </form>
       <div className={styles.linkWrapper}>
         <Link className={styles.link} to="user-data">
           User Profile

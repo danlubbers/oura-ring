@@ -1,10 +1,12 @@
 import React from "react";
 import * as styles from "./Button.module.scss";
 
-const Button = ({ btnAction }) => {
+const Button = ({ btnAction, btnType, onClick }) => {
   return (
     <div className={styles.buttonWrapper}>
-      <button className={styles.button}>{btnAction}</button>
+      <button type={btnType} className={styles.button} onClick={onClick}>
+        {btnAction}
+      </button>
     </div>
   );
 };

@@ -1,9 +1,15 @@
 import * as styles from "./Input.module.scss";
 
-const Input = ({ placeholder }) => {
+const Input = ({ type, placeholder, onChange }) => {
+  // console.log(`onChange`, onChange);
   return (
     <div className={styles.inputWrapper}>
-      <input className={styles.input} placeholder={placeholder} />
+      <input
+        type={type}
+        className={styles.input}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e)}
+      />
     </div>
   );
 };
