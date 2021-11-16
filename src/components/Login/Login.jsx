@@ -18,7 +18,7 @@ const Login = ({ handleUsername, handlePassword, handleSubmit }) => {
           placeholder="password"
           onChange={handlePassword}
         />
-        <Button btnAction={"Submit"} type={"submit"} />
+        <Button btnAction="Submit" type="submit" />
       </form>
       <div className={styles.linkWrapper}>
         <Link className={styles.link} to="user-data">

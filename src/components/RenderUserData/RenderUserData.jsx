@@ -1,12 +1,7 @@
-import { useContext } from "react";
 import * as styles from "./RenderUserData.module.scss";
-import { GlobalContext } from "../../context/Provider";
 import Container from "../Container/Container";
 
-const RenderUserData = () => {
-  const { ouraData } = useContext(GlobalContext);
-  // console.log(`RENDER ouraData`, ouraData?.ouraUserData?.data);
-  const userData = ouraData?.ouraUserData?.data;
+const RenderUserData = ({ userData }) => {
   return (
     <Container>
       <div className={styles.renderUserDataContainer}>
