@@ -19,15 +19,4 @@
   .passwordText {
     @extend .usernameText;
   }
-
-  .linkWrapper {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .link {
-      margin: 1rem 0;
-      font-size: 1.4rem;
-    }
-  }
 }

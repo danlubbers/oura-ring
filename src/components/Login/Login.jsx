@@ -1,6 +1,5 @@
 import React from "react";
 import * as styles from "./Login.module.scss";
-import { Link } from "react-router-dom";
 import logo from "../../assets/logo/default_seo_image.png";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
@@ -20,14 +19,6 @@ const Login = ({ handleUsername, handlePassword, handleSubmit }) => {
         />
         <Button btnAction="Submit" type="submit" />
       </form>
-      <div className={styles.linkWrapper}>
-        <Link className={styles.link} to="user-data">
-          User Profile
-        </Link>
-        <Link className={styles.link} to="sleep-data">
-          User Sleep
-        </Link>
-      </div>
     </div>
   );
 };
