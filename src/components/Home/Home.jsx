@@ -11,6 +11,9 @@ function Home({ logout }) {
         <Link className={styles.link} to="user-data">
           User Profile
         </Link>
+        <Link className={styles.link} to="readiness-data">
+          User Readiness
+        </Link>
         <Link className={styles.link} to="sleep-data">
           User Sleep
         </Link>
