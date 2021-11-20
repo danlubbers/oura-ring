@@ -12,11 +12,18 @@ const RenderSleepData = ({
     <Container>
       <div className={styles.renderSleepDataContainer}>
         <h1>Last Nights Sleep Data</h1>
-        <p>{summaryDate}</p>
-        <span>{bedtimeStart} - </span>
-        <span>{bedtimeEnd}</span>
-        <p>Lowest Heart Rate: {lowestHR} bpm</p>
-        <p>Average Sleeping Heart Rate: {Math.round(avgHRData)} bpm</p>
+        <p className={styles.summaryDate}>{summaryDate}</p>
+        <div className={styles.bedtimeDuration}>
+          <span>{bedtimeStart} - </span>
+          <span>{bedtimeEnd}</span>
+        </div>
+        <p className={styles.lowestHR}>Lowest Heart Rate: {lowestHR} bpm</p>
+        <div className={styles.averageHR}>
+          <span className={styles.averageHRText}>
+            Average Sleeping Heart Rate:
+          </span>
+          <span>{Math.round(avgHRData)}</span> <span>bpm</span>
+        </div>
         {/* {heartRateData} */}
         {/* {hrvData} */}
       </div>
