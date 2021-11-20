@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import RenderReadinessData from "../components/RenderReadinessData/RenderReadinessData";
 import { GlobalContext } from "../context/Provider";
 
@@ -8,7 +8,6 @@ function Readiness() {
   const todaysReadiness = readinessData?.[readinessData.length - 1];
   console.log(`todaysReadiness`, todaysReadiness);
   const summaryDate = todaysReadiness?.summary_date;
-  console.log(`summaryDate`, summaryDate);
 
   return (
     <div>

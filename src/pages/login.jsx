@@ -14,14 +14,20 @@ const Login = ({ setToken }) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("submit");
+    // console.log("submit");
     e.preventDefault();
-    const token = await loginUser({
-      username,
-      password,
-    });
-    await setToken(token);
+    if (
+      username === process.env.REACT_APP_USERNAME &&
+      password === process.env.REACT_APP_PASSWORD
+    ) {
+      const token = await loginUser({
+        username,
+        password,
+      });
+      await setToken(token);
+    }
   };
+
   console.log(`username`, username);
   console.log(`password`, password);
   return (
