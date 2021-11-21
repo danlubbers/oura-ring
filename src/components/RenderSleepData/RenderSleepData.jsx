@@ -7,6 +7,7 @@ const RenderSleepData = ({
   summaryDate,
   lowestHR,
   avgHRData,
+  heartRateData,
 }) => {
   return (
     <Container>

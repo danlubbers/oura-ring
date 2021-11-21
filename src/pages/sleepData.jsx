@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import NavigationHeader from "../components/NavigationHeader/NavigationHeader";
 import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import { GlobalContext } from "../context/Provider";
 
@@ -14,8 +15,6 @@ function SleepData() {
     prevNightsData?.bedtime_start
   ).toLocaleTimeString();
   const bedtimeEnd = new Date(prevNightsData?.bedtime_end).toLocaleTimeString();
-  // console.log(`bedtimeStart`, bedtimeStart);
-  // console.log(`bedtimeEnd`, bedtimeEnd);
   const lowestHR = prevNightsData?.hr_lowest;
   const heartRateData = prevNightsData?.hr_5min.map((hr, idx) => {
     return (
@@ -25,6 +24,11 @@ function SleepData() {
     );
   });
 
+  const filterOutZeros = prevNightsData?.hr_5min.filter((num) => num !== 0);
+  const minHeartRate = filterOutZeros && Math.min(...filterOutZeros);
+  const maxHeartRate = prevNightsData && Math.max(...prevNightsData?.hr_5min);
+  console.log(`minHeartRate`, minHeartRate);
+  console.log(`maxHeartRate`, maxHeartRate);
   const avgHRData = prevNightsData?.hr_5min.reduce(
     (avg, value, _, { length }) => {
       return avg + value / length;
@@ -32,7 +36,7 @@ function SleepData() {
     0
   );
 
-  console.log(Math.round(avgHRData));
+  // console.log(Math.round(avgHRData));
   // const hrvData = prevNightsData?.rmssd_5min.sort().map((hr, idx) => {
   //   return (
   //     <div key={idx}>
@@ -42,6 +46,7 @@ function SleepData() {
   // });
   return (
     <div>
+      <NavigationHeader />
       <RenderSleepData
         bedtimeStart={bedtimeStart}
         bedtimeEnd={bedtimeEnd}

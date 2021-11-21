@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import NavigationHeader from "../components/NavigationHeader/NavigationHeader";
 import RenderReadinessData from "../components/RenderReadinessData/RenderReadinessData";
 import { GlobalContext } from "../context/Provider";
 
@@ -12,6 +13,7 @@ function Readiness() {
 
   return (
     <div>
+      <NavigationHeader />
       <RenderReadinessData summaryDate={summaryDate} score={score} />
     </div>
   );

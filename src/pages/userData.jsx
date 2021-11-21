@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import NavigationHeader from "../components/NavigationHeader/NavigationHeader";
 import RenderUserData from "../components/RenderUserData/RenderUserData";
 import { GlobalContext } from "../context/Provider";
 
@@ -27,6 +28,7 @@ function UserData() {
 
   return (
     <div>
+      <NavigationHeader />
       <RenderUserData
         age={age}
         height={height}
