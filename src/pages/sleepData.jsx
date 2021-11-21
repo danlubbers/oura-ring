@@ -54,6 +54,9 @@ function SleepData() {
         lowestHR={lowestHR}
         heartRateData={heartRateData}
         avgHRData={avgHRData}
+        data={prevNightsData}
+        width={"width"}
+        height={"height"}
       />
     </div>
   );

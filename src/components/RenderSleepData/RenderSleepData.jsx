@@ -1,5 +1,6 @@
 import * as styles from "./RenderSleepData.module.scss";
 import Container from "../Container/Container";
+import Chart from "../Chart/Chart";
 
 const RenderSleepData = ({
   bedtimeStart,
@@ -8,11 +9,12 @@ const RenderSleepData = ({
   lowestHR,
   avgHRData,
   heartRateData,
+  data,
 }) => {
   return (
     <Container>
       <div className={styles.renderSleepDataContainer}>
-        <h1>Last Nights Sleep Data</h1>
+        <h2>Last Nights Sleep Data</h2>
         <p className={styles.summaryDate}>{summaryDate}</p>
         <div className={styles.bedtimeDuration}>
           <span>{bedtimeStart} - </span>
@@ -28,6 +30,7 @@ const RenderSleepData = ({
         {/* {heartRateData} */}
         {/* {hrvData} */}
       </div>
+      <Chart data={data} />
     </Container>
   );
 };
