@@ -6,7 +6,7 @@ import useToken from "./hooks/useToken";
 function App() {
   const { token, setToken } = useToken();
 
-  console.log(`token`, token);
+  // console.log(`token`, token);
 
   if (!token) {
     return <Login setToken={setToken} />;

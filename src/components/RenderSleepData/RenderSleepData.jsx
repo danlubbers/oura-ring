@@ -10,6 +10,7 @@ const RenderSleepData = ({
   avgHRData,
   heartRateData,
   data,
+  filterOutZeros,
 }) => {
   return (
     <Container>
@@ -30,7 +31,7 @@ const RenderSleepData = ({
         {/* {heartRateData} */}
         {/* {hrvData} */}
       </div>
-      <Chart data={data} />
+      <Chart data={data} filterOutZeros={filterOutZeros} />
     </Container>
   );
 };
