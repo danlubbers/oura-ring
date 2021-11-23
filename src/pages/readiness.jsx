@@ -7,7 +7,7 @@ function Readiness() {
   const { ouraData } = useContext(GlobalContext);
   const readinessData = ouraData?.ouraReadinessData?.data?.readiness;
   const todaysReadiness = readinessData?.[readinessData.length - 1];
-  console.log(`todaysReadiness`, todaysReadiness);
+  // console.log(`todaysReadiness`, todaysReadiness);
   const summaryDate = todaysReadiness?.summary_date;
   const score = todaysReadiness?.score;
 

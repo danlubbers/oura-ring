@@ -7,7 +7,6 @@ function SleepData() {
   const { ouraData } = useContext(GlobalContext);
   const sleepData = ouraData?.ouraSleepData?.data.sleep;
 
-  // console.log(`sleepData`, sleepData);
   const prevNightsData = sleepData?.[sleepData?.length - 1];
   const summaryDate = prevNightsData?.summary_date;
 
@@ -16,17 +15,10 @@ function SleepData() {
   ).toLocaleTimeString();
   const bedtimeEnd = new Date(prevNightsData?.bedtime_end).toLocaleTimeString();
   const lowestHR = prevNightsData?.hr_lowest;
-  const heartRateData = prevNightsData?.hr_5min.map((hr, idx) => {
-    return (
-      <div key={idx}>
-        <span>{hr}</span>
-      </div>
-    );
-  });
 
   const filterOutZeros = prevNightsData?.hr_5min.filter((num) => num !== 0);
-  // const minHeartRate = filterOutZeros && Math.min(...filterOutZeros);
-  // const maxHeartRate = prevNightsData && Math.max(...prevNightsData?.hr_5min);
+  const minHeartRate = filterOutZeros && Math.min(...filterOutZeros);
+  const maxHeartRate = prevNightsData && Math.max(...prevNightsData?.hr_5min);
   // console.log(`minHeartRate`, minHeartRate);
   // console.log(`maxHeartRate`, maxHeartRate);
   const avgHRData = prevNightsData?.hr_5min.reduce(
@@ -36,14 +28,20 @@ function SleepData() {
     0
   );
 
-  // console.log(Math.round(avgHRData));
-  // const hrvData = prevNightsData?.rmssd_5min.sort().map((hr, idx) => {
-  //   return (
-  //     <div key={idx}>
-  //       <span>{hr}</span>
-  //     </div>
-  //   );
-  // });
+  const heartRateDataObj = filterOutZeros?.map((heartRate, idx) => {
+    return {
+      heartRate: heartRate,
+      timeDuration: idx,
+    };
+  });
+
+  const hrvData = prevNightsData?.rmssd_5min.map((hrv, idx) => {
+    return {
+      HRV: hrv,
+      timeDuration: idx,
+    };
+  });
+
   return (
     <div>
       <NavigationHeader />
@@ -52,12 +50,15 @@ function SleepData() {
         bedtimeEnd={bedtimeEnd}
         summaryDate={summaryDate}
         lowestHR={lowestHR}
-        heartRateData={heartRateData}
         avgHRData={avgHRData}
         data={prevNightsData}
         width={"width"}
         height={"height"}
         filterOutZeros={filterOutZeros}
+        minHeartRate={minHeartRate}
+        maxHeartRate={maxHeartRate}
+        heartRateDataObj={heartRateDataObj}
+        hrvData={hrvData}
       />
     </div>
   );

@@ -8,9 +8,11 @@ const RenderSleepData = ({
   summaryDate,
   lowestHR,
   avgHRData,
-  heartRateData,
-  data,
   filterOutZeros,
+  minHeartRate,
+  maxHeartRate,
+  heartRateDataObj,
+  hrvData,
 }) => {
   return (
     <Container>
@@ -28,10 +30,24 @@ const RenderSleepData = ({
           </span>
           <span>{Math.round(avgHRData)}</span> <span>bpm</span>
         </div>
-        {/* {heartRateData} */}
-        {/* {hrvData} */}
       </div>
-      <Chart data={data} filterOutZeros={filterOutZeros} />
+      <Chart
+        data={heartRateDataObj}
+        dataKey="heartRate"
+        chartTitle={"Heart Rate"}
+        filterOutZeros={filterOutZeros}
+        min={minHeartRate}
+        max={maxHeartRate}
+        lineColor={"#33becc"}
+      />
+      <Chart
+        data={hrvData}
+        dataKey="HRV"
+        chartTitle={"Heart Rate Variability "}
+        min={10}
+        max={50}
+        lineColor={"#DC143C"}
+      />
     </Container>
   );
 };
