@@ -2,7 +2,7 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 import * as styles from "./Chart.module.scss";
 
-const Chart = ({ data, dataKey, chartTitle, min, max, lineColor }) => {
+const Chart = ({ data, dataKey, chartTitle, min, max, lineColor, legend }) => {
   console.log(`data`, data);
 
   return (
@@ -28,8 +28,8 @@ const Chart = ({ data, dataKey, chartTitle, min, max, lineColor }) => {
 
         <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
         <XAxis dataKey="timeDuration" />
-        <YAxis type="number" domain={[min - 5, max + 5]} />
-        <Legend />
+        <YAxis type="number" domain={[min - 5 || 0, max + 5]} />
+        {legend && <Legend />}
       </LineChart>
     </div>
   );

@@ -6,11 +6,11 @@ const RenderSleepData = ({
   bedtimeStart,
   bedtimeEnd,
   summaryDate,
-  lowestHR,
   avgHRData,
   filterOutZeros,
   minHeartRate,
   maxHeartRate,
+  maxHRV,
   heartRateDataObj,
   hrvData,
 }) => {
@@ -23,7 +23,7 @@ const RenderSleepData = ({
           <span>{bedtimeStart} - </span>
           <span>{bedtimeEnd}</span>
         </div>
-        <p className={styles.lowestHR}>Lowest Heart Rate: {lowestHR} bpm</p>
+        <p className={styles.lowestHR}>Lowest Heart Rate: {minHeartRate} bpm</p>
         <div className={styles.averageHR}>
           <span className={styles.averageHRText}>
             Average Sleeping Heart Rate:
@@ -39,14 +39,15 @@ const RenderSleepData = ({
         min={minHeartRate}
         max={maxHeartRate}
         lineColor={"#33becc"}
+        legend={false}
       />
       <Chart
         data={hrvData}
         dataKey="HRV"
         chartTitle={"Heart Rate Variability "}
-        min={10}
-        max={50}
+        max={maxHRV}
         lineColor={"#DC143C"}
+        legend={false}
       />
     </Container>
   );
