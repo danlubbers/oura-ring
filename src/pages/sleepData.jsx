@@ -8,16 +8,20 @@ function SleepData() {
   const sleepData = ouraData?.ouraSleepData?.data.sleep;
 
   const prevNightsData = sleepData?.[sleepData?.length - 1];
+  console.log(`prevNightsData`, prevNightsData);
   const summaryDate = prevNightsData?.summary_date;
 
   const bedtimeStart = new Date(
     prevNightsData?.bedtime_start
   ).toLocaleTimeString();
+
   const bedtimeEnd = new Date(prevNightsData?.bedtime_end).toLocaleTimeString();
 
   const filterOutZeros = prevNightsData?.hr_5min.filter((num) => num !== 0);
   const minHeartRate = prevNightsData?.hr_lowest;
   const maxHeartRate = prevNightsData && Math.max(...prevNightsData?.hr_5min);
+  const avgHRV = prevNightsData?.rmssd;
+  console.log(`avgHRV`, avgHRV);
   const maxHRV = prevNightsData && Math.max(...prevNightsData?.rmssd_5min);
 
   // console.log(`minHeartRate`, minHeartRate);
@@ -59,6 +63,7 @@ function SleepData() {
         filterOutZeros={filterOutZeros}
         minHeartRate={minHeartRate}
         maxHeartRate={maxHeartRate}
+        avgHRV={avgHRV}
         maxHRV={maxHRV}
         heartRateDataObj={heartRateDataObj}
         hrvData={hrvData}

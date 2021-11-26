@@ -9,13 +9,40 @@
   .bedtimeDuration {
     margin-top: 1rem;
   }
-  .lowestHR {
-    margin-top: 1rem;
+  .heartRateTextWrapper {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .lowestHR {
+      margin-top: 1rem;
+    }
+
+    .averageHR {
+      margin-top: 1rem;
+      .averageHRText {
+        padding-right: 0.5rem;
+      }
+      .averageHRNum {
+        font-size: 2rem;
+        font-weight: 400;
+        color: #33becc;
+      }
+    }
   }
-  .averageHR {
-    margin-top: 1rem;
-    .averageHRText {
-      padding-right: 0.5rem;
+  .hrvTextWrapper {
+    @extend .heartRateTextWrapper;
+    .averageHRV {
+      @extend .lowestHR;
+    }
+    .maxHRV {
+      @extend .averageHR;
+    }
+    .maxHRVNum {
+      font-size: 2rem;
+      font-weight: 400;
+      color: #dc143c;
     }
   }
 }

@@ -10,6 +10,7 @@ const RenderSleepData = ({
   filterOutZeros,
   minHeartRate,
   maxHeartRate,
+  avgHRV,
   maxHRV,
   heartRateDataObj,
   hrvData,
@@ -23,32 +24,51 @@ const RenderSleepData = ({
           <span>{bedtimeStart} - </span>
           <span>{bedtimeEnd}</span>
         </div>
-        <p className={styles.lowestHR}>Lowest Heart Rate: {minHeartRate} bpm</p>
-        <div className={styles.averageHR}>
-          <span className={styles.averageHRText}>
-            Average Sleeping Heart Rate:
-          </span>
-          <span>{Math.round(avgHRData)}</span> <span>bpm</span>
+
+        <div className={styles.heartRateTextWrapper}>
+          <p className={styles.lowestHR}>
+            Lowest Heart Rate: {minHeartRate} bpm
+          </p>
+          <div className={styles.averageHR}>
+            <span className={styles.averageHRText}>Average Heart Rate:</span>
+            <span className={styles.averageHRNum}>
+              {Math.round(avgHRData)}
+            </span>{" "}
+            <span>bpm</span>
+          </div>
         </div>
+
+        <Chart
+          data={heartRateDataObj}
+          dataKey="heartRate"
+          chartTitle={"Heart Rate"}
+          filterOutZeros={filterOutZeros}
+          bedtimeStart={bedtimeStart}
+          bedtimeEnd={bedtimeEnd}
+          min={minHeartRate}
+          max={maxHeartRate}
+          lineColor={"#33becc"}
+          legend={false}
+        />
+        <div className={styles.hrvTextWrapper}>
+          <p className={styles.averageHRV}>Average HRV: {avgHRV} ms</p>
+          <div className={styles.maxHRV}>
+            <span className={styles.averageHRText}>Max HRV:</span>
+            <span className={styles.maxHRVNum}>{Math.round(maxHRV)}</span>{" "}
+            <span>ms</span>
+          </div>
+        </div>
+        <Chart
+          data={hrvData}
+          dataKey="HRV"
+          chartTitle={"Heart Rate Variability "}
+          bedtimeStart={bedtimeStart}
+          bedtimeEnd={bedtimeEnd}
+          max={maxHRV}
+          lineColor={"#DC143C"}
+          legend={false}
+        />
       </div>
-      <Chart
-        data={heartRateDataObj}
-        dataKey="heartRate"
-        chartTitle={"Heart Rate"}
-        filterOutZeros={filterOutZeros}
-        min={minHeartRate}
-        max={maxHeartRate}
-        lineColor={"#33becc"}
-        legend={false}
-      />
-      <Chart
-        data={hrvData}
-        dataKey="HRV"
-        chartTitle={"Heart Rate Variability "}
-        max={maxHRV}
-        lineColor={"#DC143C"}
-        legend={false}
-      />
     </Container>
   );
 };
