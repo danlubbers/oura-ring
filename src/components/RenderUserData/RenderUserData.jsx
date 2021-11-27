@@ -21,7 +21,7 @@ const RenderUserData = ({
         <div>
           <span>HEIGHT:</span>
           <span>{height}</span>
-          {isImperial ? <span>ft</span> : <span>cm</span>}
+          {isImperial ? <span></span> : <span>cm</span>}
         </div>
         <div>
           <span>WEIGHT:</span>

@@ -10,7 +10,13 @@ function UserData() {
 
   const age = userData?.age;
   const height = isImperial
-    ? Math.round((userData?.height + Number.EPSILON) * 0.0328084 * 100) / 100
+    ? `${String(
+        Math.round((userData?.height + Number.EPSILON) * 0.0328084 * 100) / 100
+      )
+        .replace(".", "ft ")
+        .slice(0, 4)}${String(
+        Math.round((userData?.height + Number.EPSILON) * 0.0328084 * 100) / 100
+      ).slice(-2, -1)}in`
     : userData?.height;
   const weight = isImperial
     ? Math.round(userData?.weight * 2.2046)
