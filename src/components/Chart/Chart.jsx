@@ -20,7 +20,6 @@ const Chart = ({
   console.log(`!!!bedStart!!!`, bedStart);
   return (
     <div className={styles.chartContainer}>
-      <h2>{chartTitle}</h2>
       <LineChart
         width={350}
         height={200}

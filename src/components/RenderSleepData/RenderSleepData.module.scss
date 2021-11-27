@@ -3,8 +3,15 @@
   font-size: 1.6rem;
   font-weight: 200;
 
+  .sleepDateWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
   .summaryDate {
-    margin-top: 1rem;
+    margin-left: 1rem;
+    font-size: 2.2rem;
   }
   .bedtimeDuration {
     margin-top: 1rem;
@@ -15,8 +22,13 @@
     flex-direction: column;
     align-items: flex-start;
 
-    .lowestHR {
+    .lowestHRText {
       margin-top: 1rem;
+
+      .lowestHRNum {
+        font-size: 2rem;
+        color: #33becc;
+      }
     }
 
     .averageHR {
@@ -25,23 +37,20 @@
         padding-right: 0.5rem;
       }
       .averageHRNum {
-        font-size: 2rem;
-        font-weight: 400;
-        color: #33becc;
       }
     }
   }
   .hrvTextWrapper {
     @extend .heartRateTextWrapper;
     .averageHRV {
-      @extend .lowestHR;
+      @extend .lowestHRText;
     }
     .maxHRV {
       @extend .averageHR;
     }
     .maxHRVNum {
       font-size: 2rem;
-      font-weight: 400;
+
       color: #dc143c;
     }
   }
