@@ -5,8 +5,7 @@ import { GlobalContext } from "../context/Provider";
 
 function UserData() {
   const [isImperial, setIsImperial] = useState(false);
-  const { ouraData } = useContext(GlobalContext);
-  const userData = ouraData?.ouraUserData?.data;
+  const { userData } = useContext(GlobalContext);
 
   const age = userData?.age;
   const height = isImperial

@@ -4,8 +4,7 @@ import RenderReadinessData from "../components/RenderReadinessData/RenderReadine
 import { GlobalContext } from "../context/Provider";
 
 function Readiness() {
-  const { ouraData } = useContext(GlobalContext);
-  const readinessData = ouraData?.ouraReadinessData?.data?.readiness;
+  const { readinessData } = useContext(GlobalContext);
   const todaysReadiness = readinessData?.[readinessData.length - 1];
   // console.log(`todaysReadiness`, todaysReadiness);
   const summaryDate = todaysReadiness?.summary_date;

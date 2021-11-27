@@ -17,7 +17,7 @@ const Chart = ({
 
   const bedStart = bedtimeStart?.slice(0, 5);
   const bedEnd = bedtimeEnd?.slice(0, 5);
-  console.log(`!!!bedStart!!!`, bedStart);
+  // console.log(`!!!bedStart!!!`, bedStart);
   return (
     <div className={styles.chartContainer}>
       <LineChart

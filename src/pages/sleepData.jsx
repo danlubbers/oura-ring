@@ -4,11 +4,10 @@ import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import { GlobalContext } from "../context/Provider";
 
 function SleepData() {
-  const { ouraData } = useContext(GlobalContext);
-  const sleepData = ouraData?.ouraSleepData?.data.sleep;
-
+  const { sleepData } = useContext(GlobalContext);
+  console.log(`sleepData`, sleepData);
   const prevNightsData = sleepData?.[sleepData?.length - 1];
-  console.log(`prevNightsData`, prevNightsData);
+  // console.log(`prevNightsData`, prevNightsData);
   const summaryDate = prevNightsData?.summary_date;
 
   const bedtimeStart = new Date(
@@ -21,12 +20,8 @@ function SleepData() {
   const minHeartRate = prevNightsData?.hr_lowest;
   const maxHeartRate = prevNightsData && Math.max(...prevNightsData?.hr_5min);
   const avgHRV = prevNightsData?.rmssd;
-  console.log(`avgHRV`, avgHRV);
-  const maxHRV = prevNightsData && Math.max(...prevNightsData?.rmssd_5min);
 
-  // console.log(`minHeartRate`, minHeartRate);
-  // console.log(`maxHeartRate`, maxHeartRate);
-  // console.log(`maxHRV`, maxHRV);
+  const maxHRV = prevNightsData && Math.max(...prevNightsData?.rmssd_5min);
 
   const avgHRData = prevNightsData?.hr_5min.reduce(
     (avg, value, _, { length }) => {
