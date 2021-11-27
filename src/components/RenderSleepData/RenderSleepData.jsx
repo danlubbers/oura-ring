@@ -35,7 +35,7 @@ const RenderSleepData = ({
           <div className={styles.averageHR}>
             <span className={styles.averageHRText}>Avg:</span>
             <span className={styles.averageHRNum}>
-              {Math.round(avgHRData)}
+              {Math.round(avgHRData) || ""}
             </span>{" "}
             <span>bpm</span>
           </div>
@@ -56,7 +56,9 @@ const RenderSleepData = ({
         <div className={styles.hrvTextWrapper}>
           <div className={styles.maxHRV}>
             <span className={styles.averageHRText}>Max HRV:</span>
-            <span className={styles.maxHRVNum}>{Math.round(maxHRV)}</span>{" "}
+            <span className={styles.maxHRVNum}>
+              {Math.round(maxHRV) || ""}
+            </span>{" "}
             <span>ms</span>
           </div>
           <p className={styles.averageHRV}>Avg: {avgHRV} ms</p>

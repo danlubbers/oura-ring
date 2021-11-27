@@ -5,7 +5,7 @@ import { GlobalContext } from "../context/Provider";
 
 function SleepData() {
   const { sleepData } = useContext(GlobalContext);
-  console.log(`sleepData`, sleepData);
+  // console.log(`sleepData`, sleepData);
   const prevNightsData = sleepData?.[sleepData?.length - 1];
   // console.log(`prevNightsData`, prevNightsData);
   const summaryDate = prevNightsData?.summary_date;
