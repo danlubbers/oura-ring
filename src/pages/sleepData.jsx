@@ -1,69 +1,38 @@
 import React, { useContext, useState, useEffect } from "react";
-
 import NavigationHeader from "../components/NavigationHeader/NavigationHeader";
-import Button from "../components/Button/Button";
+import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import { GlobalContext } from "../context/Provider";
 
 function SleepData() {
   const { sleepData } = useContext(GlobalContext);
-  // console.log(`sleepData`, sleepData);
-  // const [date, setDate] = useState(null);
+
   const [todaysData, setTodaysData] = useState({});
 
   useEffect(() => {
     const todaysDate = sleepData?.[sleepData.length - 1]?.summary_date.slice(5);
     const todaysData = sleepData?.[sleepData.length - 1];
 
-    // setDate(todaysDate);
-    setTodaysData({ date: todaysDate, todaysData });
+    setTodaysData({ date: todaysDate, data: todaysData });
   }, [sleepData]);
 
-  console.log(`todaysData`, todaysData);
-
-  const pickSleepDate = sleepData.map((data, idx) => {
-    console.log(`date`, data);
-    const day = data.summary_date.slice(5);
-    // console.log(`day`, day);
-
-    return (
-      <div key={`btn ${day}`} style={{ width: "100%" }}>
-        <Button
-          btnAction={day}
-          onClick={() => setTodaysData({ date: day, todaysData: data })}
-        />
-      </div>
-    );
-  });
-
-  // console.log(`weekDays`, weekDays);
-
-  // console.log(`date`, date);
-
-  // const prevNightsData = sleepData?.[sleepData.length - 1];
-  // // console.log(`prevNightsData`, prevNightsData);
-  // const summaryDate = prevNightsData?.summary_date;
-
   const bedtimeStart = new Date(
-    todaysData?.todaysData?.bedtime_start
+    todaysData?.data?.bedtime_start
   ).toLocaleTimeString();
 
   const bedtimeEnd = new Date(
-    todaysData?.todaysData?.bedtime_end
+    todaysData?.data?.bedtime_end
   ).toLocaleTimeString();
 
-  const filterOutZeros = todaysData?.todaysData?.hr_5min.filter(
-    (num) => num !== 0
-  );
-  const minHeartRate = todaysData?.todaysData?.hr_lowest;
+  const filterOutZeros = todaysData?.data?.hr_5min.filter((num) => num !== 0);
+  const minHeartRate = todaysData?.data?.hr_lowest;
   const maxHeartRate =
-    todaysData?.todaysData && Math.max(...todaysData?.todaysData?.hr_5min);
-  const avgHRV = todaysData?.todaysData?.rmssd;
+    todaysData?.data && Math.max(...todaysData?.data?.hr_5min);
+  const avgHRV = todaysData?.data?.rmssd;
 
-  const maxHRV =
-    todaysData?.todaysData && Math.max(...todaysData?.todaysData?.rmssd_5min);
+  const maxHRV = todaysData?.data && Math.max(...todaysData?.data?.rmssd_5min);
 
-  const avgHRData = todaysData?.todaysData?.hr_5min.reduce(
+  const avgHRData = todaysData?.data?.hr_5min.reduce(
     (avg, value, _, { length }) => {
       return avg + value / length;
     },
@@ -77,7 +46,7 @@ function SleepData() {
     };
   });
 
-  const hrvData = todaysData?.todaysData?.rmssd_5min.map((hrv, idx) => {
+  const hrvData = todaysData?.data?.rmssd_5min.map((hrv, idx) => {
     return {
       HRV: hrv,
       timeDuration: idx,
@@ -88,23 +57,17 @@ function SleepData() {
     <div>
       <NavigationHeader />
 
-      <div
-        style={{
-          width: "100%",
-          marginTop: "2rem",
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        {pickSleepDate}
-      </div>
+      <DateRenderer
+        todaysData={todaysData.date}
+        setTodaysData={setTodaysData}
+      />
 
       <RenderSleepData
         bedtimeStart={bedtimeStart}
         bedtimeEnd={bedtimeEnd}
         summaryDate={todaysData.date}
         avgHRData={avgHRData}
-        data={todaysData.todaysData}
+        data={todaysData.data}
         width={"width"}
         height={"height"}
         filterOutZeros={filterOutZeros}
