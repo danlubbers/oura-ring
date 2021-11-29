@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import NavigationHeader from "../components/NavigationHeader/NavigationHeader";
+import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
 import RenderReadinessData from "../components/RenderReadinessData/RenderReadinessData";
 import { GlobalContext } from "../context/Provider";
 
@@ -19,12 +19,12 @@ function Readiness() {
 
   return (
     <div>
-      <NavigationHeader />
       <RenderReadinessData
         todaysDate={todaysData.date}
         setTodaysData={setTodaysData}
         score={score}
       />
+      <NavigationHeader />
     </div>
   );
 }

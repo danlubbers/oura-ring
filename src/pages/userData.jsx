@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import NavigationHeader from "../components/NavigationHeader/NavigationHeader";
+import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
 import RenderUserData from "../components/RenderUserData/RenderUserData";
 import { GlobalContext } from "../context/Provider";
 
@@ -33,7 +33,6 @@ function UserData() {
 
   return (
     <div>
-      <NavigationHeader />
       <RenderUserData
         age={age}
         height={height}
@@ -43,6 +42,7 @@ function UserData() {
         isImperial={isImperial}
         setUnits={setUnits}
       />
+      <NavigationHeader />
     </div>
   );
 }

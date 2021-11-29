@@ -76,6 +76,16 @@ const RenderSleepData = ({
           lineColor={"#DC143C"}
           legend={false}
         />
+        <Chart
+          data={hrvData}
+          dataKey="HRV"
+          chartTitle={"Heart Rate Variability"}
+          bedtimeStart={bedtimeStart}
+          bedtimeEnd={bedtimeEnd}
+          max={maxHRV}
+          lineColor={"#DC143C"}
+          legend={false}
+        />
       </div>
     </Container>
   );

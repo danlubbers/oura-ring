@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import NavigationHeader from "../components/NavigationHeader/NavigationHeader";
+import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
 import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import { GlobalContext } from "../context/Provider";
 
@@ -54,8 +54,6 @@ function SleepData() {
 
   return (
     <div>
-      <NavigationHeader />
-
       <RenderSleepData
         todaysDate={todaysData.date}
         setTodaysData={setTodaysData}
@@ -73,6 +71,7 @@ function SleepData() {
         heartRateDataObj={heartRateDataObj}
         hrvData={hrvData}
       />
+      <NavigationHeader />
     </div>
   );
 }

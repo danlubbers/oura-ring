@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./NavigationHeader.module.scss";
+import * as styles from "./NavigationFooter.module.scss";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
