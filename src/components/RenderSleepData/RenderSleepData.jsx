@@ -1,11 +1,13 @@
 import * as styles from "./RenderSleepData.module.scss";
 import Container from "../Container/Container";
 import Chart from "../Chart/Chart";
+import DateRenderer from "../DateRenderer/DateRenderer";
 
 const RenderSleepData = ({
+  todaysDate,
+  setTodaysData,
   bedtimeStart,
   bedtimeEnd,
-  summaryDate,
   avgHRData,
   filterOutZeros,
   minHeartRate,
@@ -17,10 +19,11 @@ const RenderSleepData = ({
 }) => {
   return (
     <Container>
+      <DateRenderer todaysDate={todaysDate} setTodaysData={setTodaysData} />
       <div className={styles.renderSleepDataContainer}>
         <div className={styles.sleepDateWrapper}>
           <h2>Sleep Date: </h2>
-          <p className={styles.summaryDate}>{summaryDate}</p>
+          <p className={styles.summaryDate}>{todaysDate}</p>
         </div>
         <div className={styles.bedtimeDuration}>
           <span>{bedtimeStart} - </span>

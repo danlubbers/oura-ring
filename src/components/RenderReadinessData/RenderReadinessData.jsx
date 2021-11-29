@@ -1,16 +1,20 @@
 import React from "react";
 import * as styles from "./RenderReadinessData.module.scss";
 import Container from "../Container/Container";
+import DateRenderer from "../DateRenderer/DateRenderer";
 
-const RenderReadinessData = ({ summaryDate, score }) => {
+const RenderReadinessData = ({ todaysDate, setTodaysData, score }) => {
   return (
     <Container>
+      <DateRenderer todaysDate={todaysDate} setTodaysData={setTodaysData} />
       <div className={styles.renderReadinessContainer}>
-        <h1 className={styles.readinessText}>Readiness Data:</h1>
-        <p className={styles.summaryDate}>{summaryDate}</p>
+        <div className={styles.readinessDateWrapper}>
+          <h2 className={styles.readinessText}>Readiness Date:</h2>
+          <p className={styles.summaryDate}>{todaysDate}</p>
+        </div>
         <div className={styles.scoreWrapper}>
           <span>Overall Score:</span>
-          <span>{score}</span>
+          <span>{score} %</span>
         </div>
       </div>
     </Container>
