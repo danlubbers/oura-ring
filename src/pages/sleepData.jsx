@@ -9,15 +9,24 @@ function SleepData() {
   const [todaysData, setTodaysData] = useState({});
 
   useEffect(() => {
-    const todaysDate = sleepData?.[sleepData.length - 1]?.summary_date.slice(5);
+    const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
+      5,
+      10
+    );
     const todaysData = sleepData?.[sleepData.length - 1];
 
     setTodaysData({ date: todaysDate, data: todaysData });
   }, [sleepData]);
 
+  console.log(`todaysData.data`, todaysData.date);
+
   const bedtimeStart = new Date(
     todaysData?.data?.bedtime_start
   ).toLocaleTimeString();
+  // console.log(`bedtimeStart`, bedtimeStart?.getMinutes());
+
+  // const bedtimeStartTest = bedtimeStart.slice(0, 5);
+  // console.log(`bedtimeStartTest`, bedtimeStartTest);
 
   const bedtimeEnd = new Date(
     todaysData?.data?.bedtime_end

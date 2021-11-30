@@ -7,7 +7,7 @@ const DateRenderer = ({ todaysDate, setTodaysData }) => {
   const { sleepData } = useContext(GlobalContext);
 
   const pickSleepDate = sleepData.map((data) => {
-    const date = data.summary_date.slice(5);
+    const date = data.bedtime_end.slice(5, 10);
 
     return (
       <div key={`btn: ${date}`} style={{ width: "100%" }}>
