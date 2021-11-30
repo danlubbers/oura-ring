@@ -18,8 +18,6 @@ function SleepData() {
     setTodaysData({ date: todaysDate, data: todaysData });
   }, [sleepData]);
 
-  console.log(`todaysData.data`, todaysData.date);
-
   const bedtimeStart = new Date(
     todaysData?.data?.bedtime_start
   ).toLocaleTimeString();

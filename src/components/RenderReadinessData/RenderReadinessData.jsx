@@ -1,9 +1,11 @@
 import React from "react";
 import * as styles from "./RenderReadinessData.module.scss";
 import Container from "../Container/Container";
+import Loading from "../Loading/Loading";
 import DateRenderer from "../DateRenderer/DateRenderer";
 
 const RenderReadinessData = ({ todaysDate, setTodaysData, score }) => {
+  if (!todaysDate) return <Loading />;
   return (
     <Container>
       <DateRenderer todaysDate={todaysDate} setTodaysData={setTodaysData} />

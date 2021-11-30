@@ -1,6 +1,7 @@
 import * as styles from "./RenderSleepData.module.scss";
 import Container from "../Container/Container";
 import Chart from "../Chart/Chart";
+import Loading from "../Loading/Loading";
 import DateRenderer from "../DateRenderer/DateRenderer";
 
 const RenderSleepData = ({
@@ -17,6 +18,7 @@ const RenderSleepData = ({
   heartRateDataObj,
   hrvData,
 }) => {
+  if (!todaysDate) return <Loading />;
   return (
     <Container>
       <DateRenderer todaysDate={todaysDate} setTodaysData={setTodaysData} />

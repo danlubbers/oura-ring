@@ -1,6 +1,7 @@
 import * as styles from "./RenderUserData.module.scss";
 import Container from "../Container/Container";
 import Button from "../Button/Button";
+import Loading from "../Loading/Loading";
 
 const RenderUserData = ({
   age,
@@ -11,6 +12,8 @@ const RenderUserData = ({
   isImperial,
   setUnits,
 }) => {
+  if (!age) return <Loading />;
+
   return (
     <Container>
       <div className={styles.renderUserDataContainer}>
