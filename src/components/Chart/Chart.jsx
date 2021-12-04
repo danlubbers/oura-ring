@@ -1,4 +1,5 @@
 // import React, { useEffect } from "react";
+// import moment from "moment";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 import * as styles from "./Chart.module.scss";
 
@@ -15,9 +16,13 @@ const Chart = ({
 }) => {
   // console.log(`data`, data);
 
-  const bedStart = bedtimeStart?.slice(0, 5);
-  const bedEnd = bedtimeEnd?.slice(0, 5);
-  // console.log(`!!!bedStart!!!`, bedStart);
+  // console.log(`!!!bedStart!!!`, bedtimeStart);
+  // console.log(`!!!bedEnd!!!`, bedtimeEnd);
+
+  const formatXAxis = (bedtimeStart) => {
+    return bedtimeStart;
+  };
+
   return (
     <div className={styles.chartContainer}>
       <LineChart
@@ -41,9 +46,11 @@ const Chart = ({
         <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
         <XAxis
           type="number"
+          name="Time"
           dataKey="timeDuration"
-          interval="preserveStartEnd"
-          domain={[bedStart, bedEnd]}
+          tickFormatter={formatXAxis}
+          // interval="preserveStartEnd"
+          domain={[bedtimeStart, bedtimeEnd]}
           style={{
             fontSize: "1.5rem",
           }}
