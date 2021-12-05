@@ -65,27 +65,27 @@ function SleepData() {
         hour = 0;
       }
       if (hour > 10 && minute < 10) {
-        count.push(`Less than 10 - ${hour}:0${minute}`);
+        count.push(`${hour}:0${minute}`);
       }
-      if (hour > 10 && minute > 10 && minute < 60) {
-        // todo issue with 22:60 and 22:65
-        count.push(`Greater than 10 - ${hour}:${minute}`);
+      if (hour > 10 && minute >= 10 && minute < 60) {
+        // Fixes issue with 22:60 and 22:65
+        count.push(`${hour}:${minute}`);
       }
       // These work after midnight
       if (minute > 60) {
-        count.push(`TEN ${++hour}:0${(minute = 0)}`);
+        count.push(`${++hour}:0${(minute = 0)}`);
       }
       if (hour > 10 && minute > 60) {
-        count.push(`Zero ${++hour}:0${(minute = 0)}`);
+        count.push(`${++hour}:0${(minute = 0)}`);
       }
       if (hour < 10 && minute > 60) {
-        count.push(`HOUR 0${++hour}:0${(minute = 0)}`);
+        count.push(`0${++hour}:0${(minute = 0)}`);
       }
       if (hour < 10 && minute < 10 && minute !== 0) {
-        count.push(`First 0${hour}:0${minute}`);
+        count.push(`0${hour}:0${minute}`);
       }
       if (hour < 10 && minute >= 10 && minute !== 60) {
-        count.push(`Second 0${hour}:${minute}`);
+        count.push(`0${hour}:${minute}`);
       }
     }
 
