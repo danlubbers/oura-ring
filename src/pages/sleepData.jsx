@@ -51,39 +51,42 @@ function SleepData() {
 
     //clear here more than 24 hours
     // increment = increment % (24 * 60);
-    let hour = parseInt(times[0]) + parseInt(increment / 60);
-    let minute = parseInt(times[1]) + (increment % 60);
+    let hour = parseInt(times[0]);
+    let minute = parseInt(times[1]);
 
-    console.log(`hour`, hour);
-    console.log(`minute`, minute);
+    // console.log(`hour`, hour);
+    // console.log(`OUTER minute`, minute);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 40; i++) {
+      minute = Math.ceil(minute / 5) * 5;
       minute += increment;
-      console.log(`minute`, minute);
 
-      // i += increment;
-      // count.push(i);
-      if (minute >= 60) {
-        // console.log("60 minute HIT");
-        minute = 0;
-        hour++;
-        console.log(`hour:minute`, `${hour}:${minute}`);
-      }
       if (hour >= 24) {
-        console.log("HOUR HIT");
-        count.push((hour -= 24));
+        hour = 0;
       }
-      // // //here control if less than 10 then put 0 in front of them
-      // if (hour < 10) {
-      //   console.log("HOUR < 10 HIT");
-      //   count.push((hour = "0" + hour));
-      // }
-      // if (min < 10) {
-      //   console.log(`"0" + increment`, "0" + increment);
-      //   count.push((min = "0" + increment));
-      // }
-
-      // count.push(times.join(":"));
+      if (hour > 10 && minute < 10) {
+        count.push(`Less than 10 - ${hour}:0${minute}`);
+      }
+      if (hour > 10 && minute > 10 && minute < 60) {
+        // todo issue with 22:60 and 22:65
+        count.push(`Greater than 10 - ${hour}:${minute}`);
+      }
+      // These work after midnight
+      if (minute > 60) {
+        count.push(`TEN ${++hour}:0${(minute = 0)}`);
+      }
+      if (hour > 10 && minute > 60) {
+        count.push(`Zero ${++hour}:0${(minute = 0)}`);
+      }
+      if (hour < 10 && minute > 60) {
+        count.push(`HOUR 0${++hour}:0${(minute = 0)}`);
+      }
+      if (hour < 10 && minute < 10 && minute !== 0) {
+        count.push(`First 0${hour}:0${minute}`);
+      }
+      if (hour < 10 && minute >= 10 && minute !== 60) {
+        count.push(`Second 0${hour}:${minute}`);
+      }
     }
 
     return count;
