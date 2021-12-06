@@ -19,9 +19,9 @@ const Chart = ({
   // console.log(`!!!bedStart!!!`, bedtimeStart);
   // console.log(`!!!bedEnd!!!`, bedtimeEnd);
 
-  const formatXAxis = (bedtimeStart) => {
-    return bedtimeStart;
-  };
+  // const formatXAxis = (bedtimeStart) => {
+  //   return bedtimeStart;
+  // };
 
   return (
     <div className={styles.chartContainer}>
@@ -45,12 +45,11 @@ const Chart = ({
 
         <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
         <XAxis
-          type="number"
           name="Time"
           dataKey="timeDuration"
-          tickFormatter={formatXAxis}
-          // interval="preserveStartEnd"
-          domain={[bedtimeStart, bedtimeEnd]}
+          interval="preserveStartEnd"
+          minTickGap={45}
+          // domain={[bedtimeStart, bedtimeEnd]}
           style={{
             fontSize: "1.5rem",
           }}

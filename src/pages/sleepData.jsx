@@ -22,14 +22,12 @@ function SleepData() {
   const bedtimeStart = new Date(todaysData?.data?.bedtime_start);
   // console.log(`bedtimeStart`, bedtimeStart?.getMinutes());
   const timeStart = moment(bedtimeStart).format("HH:mm");
-
-  // const bedtimeStartTest = bedtimeStart.slice(0, 5);
-  // console.log(`bedtimeStartTest`, bedtimeStartTest);
+  const sleepDuration = todaysData?.data?.duration;
 
   const bedtimeEnd = new Date(todaysData?.data?.bedtime_end);
   const timeEnd = moment(bedtimeEnd).format("HH:mm");
 
-  const filterOutZeros = todaysData?.data?.hr_5min.filter((num) => num !== 0);
+  // const filterOutZeros = todaysData?.data?.hr_5min.filter((num) => num !== 0);
   const minHeartRate = todaysData?.data?.hr_lowest;
   const maxHeartRate =
     todaysData?.data && Math.max(...todaysData?.data?.hr_5min);
@@ -44,24 +42,20 @@ function SleepData() {
     0
   );
 
-  const timeIncrement = (startTime, endTime) => {
-    let count = [];
+  const timeIncrement = (startTime, sleepDuration) => {
+    let count = [startTime];
     let increment = 5; // increase 5min
+    const endTime = Math.ceil(sleepDuration / 60 / 5); // seconds to minutes to five minute duration
     let times = startTime.split(":");
-
-    //clear here more than 24 hours
-    // increment = increment % (24 * 60);
     let hour = parseInt(times[0]);
     let minute = parseInt(times[1]);
 
-    // console.log(`hour`, hour);
-    // console.log(`OUTER minute`, minute);
-
-    for (let i = 0; i < 40; i++) {
-      minute = Math.ceil(minute / 5) * 5;
+    for (let i = 0; i <= endTime + 30; i++) {
+      minute = Math.floor(minute / 5) * 5;
       minute += increment;
 
       if (hour >= 24) {
+        // Resets to military time to 0 after midnight
         hour = 0;
       }
       if (hour > 10 && minute < 10) {
@@ -88,25 +82,24 @@ function SleepData() {
         count.push(`0${hour}:${minute}`);
       }
     }
-
     return count;
   };
 
-  console.log(`timeIncrement(timeStart)`, timeIncrement(timeStart));
+  const heartRateDataObj = todaysData?.data?.hr_5min.map((heartRate, idx) => {
+    const time = timeIncrement(timeStart, sleepDuration)[idx];
 
-  const heartRateDataObj = filterOutZeros?.map((heartRate, idx) => {
     return {
       heartRate: heartRate,
-      timeDuration: idx,
+      timeDuration: time,
     };
   });
 
-  // console.log(`heartRateDataObj`, heartRateDataObj);
-
   const hrvData = todaysData?.data?.rmssd_5min.map((hrv, idx) => {
+    const time = timeIncrement(timeStart, sleepDuration)[idx];
+
     return {
       HRV: hrv,
-      timeDuration: idx,
+      timeDuration: time,
     };
   });
 
@@ -121,7 +114,6 @@ function SleepData() {
         data={todaysData.data}
         width={"width"}
         height={"height"}
-        filterOutZeros={filterOutZeros}
         minHeartRate={minHeartRate}
         maxHeartRate={maxHeartRate}
         avgHRV={avgHRV}

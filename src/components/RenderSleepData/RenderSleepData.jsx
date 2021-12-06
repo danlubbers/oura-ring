@@ -10,7 +10,6 @@ const RenderSleepData = ({
   bedtimeStart,
   bedtimeEnd,
   avgHRData,
-  filterOutZeros,
   minHeartRate,
   maxHeartRate,
   avgHRV,
@@ -50,7 +49,6 @@ const RenderSleepData = ({
           data={heartRateDataObj}
           dataKey="heartRate"
           chartTitle={"Heart Rate"}
-          filterOutZeros={filterOutZeros}
           bedtimeStart={bedtimeStart}
           bedtimeEnd={bedtimeEnd}
           min={minHeartRate}
