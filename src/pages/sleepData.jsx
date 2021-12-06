@@ -3,6 +3,7 @@ import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
 import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import { GlobalContext } from "../context/Provider";
 import moment from "moment";
+
 function SleepData() {
   const { sleepData } = useContext(GlobalContext);
 
@@ -20,14 +21,13 @@ function SleepData() {
   }, [sleepData]);
 
   const bedtimeStart = new Date(todaysData?.data?.bedtime_start);
-  // console.log(`bedtimeStart`, bedtimeStart?.getMinutes());
+
   const timeStart = moment(bedtimeStart).format("HH:mm");
   const sleepDuration = todaysData?.data?.duration;
 
   const bedtimeEnd = new Date(todaysData?.data?.bedtime_end);
   const timeEnd = moment(bedtimeEnd).format("HH:mm");
 
-  // const filterOutZeros = todaysData?.data?.hr_5min.filter((num) => num !== 0);
   const minHeartRate = todaysData?.data?.hr_lowest;
   const maxHeartRate =
     todaysData?.data && Math.max(...todaysData?.data?.hr_5min);
@@ -40,6 +40,11 @@ function SleepData() {
       return avg + value / length;
     },
     0
+  );
+
+  const filterOutZerosHR = todaysData?.data?.hr_5min.filter((num) => num !== 0);
+  const filterOutZerosHRV = todaysData?.data?.rmssd_5min.filter(
+    (num) => num !== 0
   );
 
   const timeIncrement = (startTime, sleepDuration) => {
@@ -85,7 +90,7 @@ function SleepData() {
     return count;
   };
 
-  const heartRateDataObj = todaysData?.data?.hr_5min.map((heartRate, idx) => {
+  const heartRateData = filterOutZerosHR.map((heartRate, idx) => {
     const time = timeIncrement(timeStart, sleepDuration)[idx];
 
     return {
@@ -94,7 +99,7 @@ function SleepData() {
     };
   });
 
-  const hrvData = todaysData?.data?.rmssd_5min.map((hrv, idx) => {
+  const hrvData = filterOutZerosHRV.map((hrv, idx) => {
     const time = timeIncrement(timeStart, sleepDuration)[idx];
 
     return {
@@ -118,7 +123,7 @@ function SleepData() {
         maxHeartRate={maxHeartRate}
         avgHRV={avgHRV}
         maxHRV={maxHRV}
-        heartRateDataObj={heartRateDataObj}
+        heartRateData={heartRateData}
         hrvData={hrvData}
       />
       <NavigationHeader />

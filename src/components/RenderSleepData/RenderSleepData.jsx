@@ -14,7 +14,7 @@ const RenderSleepData = ({
   maxHeartRate,
   avgHRV,
   maxHRV,
-  heartRateDataObj,
+  heartRateData,
   hrvData,
 }) => {
   if (!todaysDate) return <Loading />;
@@ -46,7 +46,7 @@ const RenderSleepData = ({
         </div>
 
         <Chart
-          data={heartRateDataObj}
+          data={heartRateData}
           dataKey="heartRate"
           chartTitle={"Heart Rate"}
           bedtimeStart={bedtimeStart}
