@@ -3,6 +3,7 @@ import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
 import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import { GlobalContext } from "../context/Provider";
 import moment from "moment";
+import { timeIncrement } from "../utilities/incrementTime";
 
 function SleepData() {
   const { sleepData } = useContext(GlobalContext);
@@ -32,7 +33,6 @@ function SleepData() {
   const maxHeartRate =
     todaysData?.data && Math.max(...todaysData?.data?.hr_5min);
   const avgHRV = todaysData?.data?.rmssd;
-
   const maxHRV = todaysData?.data && Math.max(...todaysData?.data?.rmssd_5min);
 
   const avgHRData = todaysData?.data?.hr_5min.reduce(
@@ -42,55 +42,13 @@ function SleepData() {
     0
   );
 
+  // Filter out bad data due to ring logging 0's due to a bad connection
   const filterOutZerosHR = todaysData?.data?.hr_5min.filter((num) => num !== 0);
   const filterOutZerosHRV = todaysData?.data?.rmssd_5min.filter(
     (num) => num !== 0
   );
 
-  const timeIncrement = (startTime, sleepDuration) => {
-    let count = [startTime];
-    let increment = 5; // increase 5min
-    const endTime = Math.ceil(sleepDuration / 60 / 5); // seconds to minutes to five minute duration
-    let times = startTime.split(":");
-    let hour = parseInt(times[0]);
-    let minute = parseInt(times[1]);
-
-    for (let i = 0; i <= endTime + 30; i++) {
-      minute = Math.floor(minute / 5) * 5;
-      minute += increment;
-
-      if (hour >= 24) {
-        // Resets to military time to 0 after midnight
-        hour = 0;
-      }
-      if (hour > 10 && minute < 10) {
-        count.push(`${hour}:0${minute}`);
-      }
-      if (hour > 10 && minute >= 10 && minute < 60) {
-        // Fixes issue with 22:60 and 22:65
-        count.push(`${hour}:${minute}`);
-      }
-      // These work after midnight
-      if (minute > 60) {
-        count.push(`${++hour}:0${(minute = 0)}`);
-      }
-      if (hour > 10 && minute > 60) {
-        count.push(`${++hour}:0${(minute = 0)}`);
-      }
-      if (hour < 10 && minute > 60) {
-        count.push(`0${++hour}:0${(minute = 0)}`);
-      }
-      if (hour < 10 && minute < 10 && minute !== 0) {
-        count.push(`0${hour}:0${minute}`);
-      }
-      if (hour < 10 && minute >= 10 && minute !== 60) {
-        count.push(`0${hour}:${minute}`);
-      }
-    }
-    return count;
-  };
-
-  const heartRateData = filterOutZerosHR.map((heartRate, idx) => {
+  const heartRateData = filterOutZerosHR?.map((heartRate, idx) => {
     const time = timeIncrement(timeStart, sleepDuration)[idx];
 
     return {
@@ -99,7 +57,7 @@ function SleepData() {
     };
   });
 
-  const hrvData = filterOutZerosHRV.map((hrv, idx) => {
+  const hrvData = filterOutZerosHRV?.map((hrv, idx) => {
     const time = timeIncrement(timeStart, sleepDuration)[idx];
 
     return {
