@@ -45,7 +45,7 @@ const Chart = ({
 
         <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
         <XAxis
-          name="Time"
+          // name="Time"
           dataKey="timeDuration"
           interval="preserveStartEnd"
           minTickGap={45}

@@ -18,29 +18,32 @@ export const timeIncrement = (startTime, sleepDuration) => {
       hour = 0;
     }
     if (minute > 60) {
-      count.push(`0${++hour}:0${(minute = 0)}`);
+      ++hour;
+      minute = 0;
     }
     if (hour > 10 && minute < 10) {
+      // This accounts for top of the hour and 5min before midnight
       count.push(`${hour}:0${minute}`);
     }
     if (hour > 10 && minute >= 10 && minute < 60) {
+      // This accounts for all time between 10min - 55min before midnight
       // Fixes issue with 22:60 and 22:65
-      count.push(`Shit${hour}:${minute}`);
+      count.push(`${hour}:${minute}`);
     }
-    // These work after midnight
-    // if (hour > 10 && minute > 60) {
-    //   count.push(`Shit${++hour}:0${(minute = 0)}`);
-    // }
-    // if (hour < 10 && minute > 60) {
-    //   count.push(`HERE0${++hour}:0${(minute = 0)}`);
-    // }
+
+    /* These work after midnight */
     if (hour < 10 && minute < 10 && minute !== 0) {
+      // This accounts for five after each hour Ex. 1:05am
+      count.push(`0${hour}:0${minute}`);
+    }
+    if (hour < 10 && minute === 0) {
+      // This accounts for top of the hour after midnight: Ex. 1:00am
       count.push(`0${hour}:0${minute}`);
     }
     if (hour < 10 && minute >= 10 && minute !== 60) {
+      // This accounts for all time between 10min - 55min after midnight
       count.push(`0${hour}:${minute}`);
     }
-    // count.push(`Remainder`);
   }
   return count;
 };
