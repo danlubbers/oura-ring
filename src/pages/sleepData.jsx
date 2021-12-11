@@ -9,7 +9,7 @@ function SleepData() {
   const { sleepData } = useContext(GlobalContext);
 
   const [todaysData, setTodaysData] = useState({});
-  console.log(`todaysData.date`, todaysData.date);
+  console.log(`todaysData`, todaysData);
 
   useEffect(() => {
     const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
@@ -52,7 +52,7 @@ function SleepData() {
       };
     })
     .filter((obj) => obj.heartRate !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
-  console.log(`heartRateData`, heartRateData);
+  // console.log(`heartRateData`, heartRateData);
 
   const hrvData = todaysData?.data?.rmssd_5min
     ?.map((hrv, idx) => {

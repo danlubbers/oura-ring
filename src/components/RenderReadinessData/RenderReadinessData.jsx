@@ -16,7 +16,11 @@ const RenderReadinessData = ({
   if (!todaysDate) return <Loading />;
   return (
     <Container>
-      <DateRenderer todaysDate={todaysDate} setTodaysData={setTodaysData} />
+      <DateRenderer
+        readiness
+        todaysDate={todaysDate}
+        setTodaysData={setTodaysData}
+      />
       <div className={styles.renderReadinessContainer}>
         <div className={styles.readinessDateWrapper}>
           <h2 className={styles.readinessText}>Readiness Date:</h2>
