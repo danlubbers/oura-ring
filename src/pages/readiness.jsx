@@ -8,18 +8,25 @@ function Readiness() {
   const [todaysData, setTodaysData] = useState({});
   console.log(`todaysData`, todaysData);
 
+  const restingHR = todaysData?.data?.sleep?.hr_lowest;
+  const avgHRV = todaysData?.data?.sleep?.rmssd;
+  const bodyTemp = todaysData?.data?.sleep?.temperature_delta;
+  const respiratoryRate = todaysData?.data?.sleep?.breath_average.toFixed(1);
+
   useEffect(() => {
-    // SleepData is used because readinessData API does not have a bedtime date, only a summary date and that is for the previous day.
     const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
       5,
       10
     );
-    const todaysData = readinessData?.[readinessData.length - 1];
+    const todaysData = {
+      readiness: readinessData?.[readinessData.length - 1],
+      sleep: sleepData?.[sleepData.length - 1],
+    };
 
     setTodaysData({ date: todaysDate, data: todaysData });
   }, [readinessData, sleepData]);
 
-  const score = todaysData?.data?.score;
+  const score = todaysData?.data?.readiness?.score;
 
   return (
     <div>
@@ -27,6 +34,10 @@ function Readiness() {
         todaysDate={todaysData.date}
         setTodaysData={setTodaysData}
         score={score}
+        restingHR={restingHR}
+        avgHRV={avgHRV}
+        bodyTemp={bodyTemp}
+        respiratoryRate={respiratoryRate}
       />
       <NavigationHeader />
     </div>
