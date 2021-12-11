@@ -9,7 +9,7 @@ function SleepData() {
   const { sleepData } = useContext(GlobalContext);
 
   const [todaysData, setTodaysData] = useState({});
-  // console.log(`todaysData`, todaysData);
+  console.log(`todaysData.date`, todaysData.date);
 
   useEffect(() => {
     const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
@@ -42,12 +42,6 @@ function SleepData() {
     0
   );
 
-  // Filter out bad data due to ring logging 0's due to a bad connection
-  // const filterOutZerosHR = todaysData?.data?.hr_5min.filter((num) => num !== 0);
-  const filterOutZerosHRV = todaysData?.data?.rmssd_5min.filter(
-    (num) => num !== 0
-  );
-
   const heartRateData = todaysData?.data?.hr_5min
     ?.map((heartRate, idx) => {
       const time = timeIncrement(timeStart, sleepDuration)[idx];
@@ -57,17 +51,19 @@ function SleepData() {
         timeDuration: time,
       };
     })
-    .filter((obj) => obj.heartRate !== 0);
+    .filter((obj) => obj.heartRate !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
   console.log(`heartRateData`, heartRateData);
 
-  const hrvData = filterOutZerosHRV?.map((hrv, idx) => {
-    const time = timeIncrement(timeStart, sleepDuration)[idx];
+  const hrvData = todaysData?.data?.rmssd_5min
+    ?.map((hrv, idx) => {
+      const time = timeIncrement(timeStart, sleepDuration)[idx];
 
-    return {
-      HRV: hrv,
-      timeDuration: time,
-    };
-  });
+      return {
+        HRV: hrv,
+        timeDuration: time,
+      };
+    })
+    .filter((obj) => obj.HRV !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
   return (
     <div>

@@ -1,15 +1,16 @@
 export const timeIncrement = (startTime, sleepDuration) => {
-  // console.log(`startTime`, startTime);
-  // console.log(`sleepDuration`, sleepDuration);
   let count = [startTime];
   let increment = 5; // increase 5min
   const endTime = Math.ceil(sleepDuration / 60 / 5); // seconds to minutes to five minute duration
-  console.log(`endTime`, endTime);
+  // console.log(`endTime`, Math.ceil(endTime / 5) * 5);
+
+  const endTimeRoundedByFive = Math.ceil(endTime / 5) * 5 + 20; // Round up by 5min increments and add 20min as for loop is getting cut off. Check back and find bug as to why this is...
+
   let times = startTime.split(":");
   let hour = parseInt(times[0]);
   let minute = parseInt(times[1]);
 
-  for (let i = 0; i <= endTime; i++) {
+  for (let i = 0; i <= endTimeRoundedByFive; i++) {
     minute = Math.floor(minute / 5) * 5;
     minute += increment;
 

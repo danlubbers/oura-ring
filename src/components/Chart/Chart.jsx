@@ -45,17 +45,16 @@ const Chart = ({
 
         <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
         <XAxis
-          // name="Time"
           dataKey="timeDuration"
           interval="preserveStartEnd"
           minTickGap={45}
-          // domain={[bedtimeStart, bedtimeEnd]}
+          domain={[bedtimeStart, bedtimeEnd]}
           style={{
             fontSize: "1.5rem",
           }}
         />
         <YAxis
-          type="number"
+          // type="number"code
           interval="preserveStartEnd"
           domain={[min - 5 || 0, max + 5]}
           style={{
