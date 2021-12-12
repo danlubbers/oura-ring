@@ -9,8 +9,6 @@
     align-items: flex-end;
   }
 
-  .readinessText {
-  }
   .summaryDate {
     margin-left: 1rem;
     font-size: 2.2rem;
@@ -21,18 +19,52 @@
     span {
       padding: 0 0.5rem;
     }
+    .scoreData {
+      font-size: 2rem;
+    }
   }
 
   .readinessWrapper {
     padding: 1rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 1rem;
-    row-gap: 1rem;
     font-size: 1.4rem;
-    // background-color: cadetblue;
+
+    .restingHRWrapper {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #dfdfdf;
+      border-right: 1px solid #dfdfdf;
+    }
+    .avgHRVWrapper {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #dfdfdf;
+      border-left: 1px solid #dfdfdf;
+    }
+    .bodyTemperatureWrapper {
+      padding-top: 1rem;
+      border-top: 1px solid #dfdfdf;
+      border-right: 1px solid #dfdfdf;
+    }
+    .respiratoryRateWrapper {
+      padding-top: 1rem;
+      border-top: 1px solid #dfdfdf;
+      border-left: 1px solid #dfdfdf;
+    }
     p {
       margin-bottom: 1rem;
+    }
+    .restingHRData {
+      font-size: 2rem;
+      color: #33becc;
+    }
+    .avgHRVData {
+      @extend .restingHRData;
+    }
+    .bodyTempData {
+      @extend .restingHRData;
+    }
+    .respiratoryData {
+      @extend .restingHRData;
     }
   }
 }

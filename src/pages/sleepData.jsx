@@ -9,7 +9,7 @@ function SleepData() {
   const { sleepData } = useContext(GlobalContext);
 
   const [todaysData, setTodaysData] = useState({});
-  console.log(`todaysData`, todaysData);
+  // console.log(`todaysData`, todaysData);
 
   useEffect(() => {
     const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(

@@ -28,24 +28,30 @@ const RenderReadinessData = ({
         </div>
         <div className={styles.scoreWrapper}>
           <span>Overall Score:</span>
-          <span>{score} %</span>
+          <span className={styles.scoreData}>{score} %</span>
         </div>
         <div className={styles.readinessWrapper}>
-          <div className={styles.restingHR}>
+          <div className={styles.restingHRWrapper}>
             <p>Resting heart rate</p>
-            <p>{restingHR} bpm</p>
+            <span className={styles.restingHRData}>{restingHR}</span>
+            <span> bpm</span>
           </div>
-          <div className={styles.avgHRV}>
+          <div className={styles.avgHRVWrapper}>
             <p>Heart rate variability</p>
-            <p>{avgHRV} ms</p>
+            <span className={styles.avgHRVData}>{avgHRV}</span>
+            <span> ms</span>
           </div>
-          <div className={styles.bodyTemperature}>
+          <div className={styles.bodyTemperatureWrapper}>
             <p>Body Temperature</p>
-            <p>{bodyTemp}</p>
+            <span className={styles.bodyTempData}>{bodyTemp} °F</span>
+            <span></span>
           </div>
-          <div className={styles.respiratoryRate}>
+          <div className={styles.respiratoryRateWrapper}>
             <p>Respiratory rate</p>
-            <p>{respiratoryRate} / min</p>
+            <span className={styles.respiratoryData}>
+              {respiratoryRate}
+            </span>{" "}
+            <span>/ min</span>
           </div>
         </div>
       </div>

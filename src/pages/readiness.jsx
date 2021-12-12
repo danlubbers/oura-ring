@@ -10,7 +10,9 @@ function Readiness() {
 
   const restingHR = todaysData?.data?.sleep?.hr_lowest;
   const avgHRV = todaysData?.data?.sleep?.rmssd;
-  const bodyTemp = todaysData?.data?.sleep?.temperature_delta;
+  const bodyTempData = todaysData?.data?.sleep?.temperature_delta;
+  const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
+  const bodyTempFahrenheit = (conversionToFahrenheit - 32).toFixed(1);
   const respiratoryRate = todaysData?.data?.sleep?.breath_average.toFixed(1);
 
   useEffect(() => {
@@ -36,7 +38,7 @@ function Readiness() {
         score={score}
         restingHR={restingHR}
         avgHRV={avgHRV}
-        bodyTemp={bodyTemp}
+        bodyTemp={bodyTempFahrenheit}
         respiratoryRate={respiratoryRate}
       />
       <NavigationHeader />
