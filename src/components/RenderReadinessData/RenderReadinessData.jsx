@@ -16,36 +16,37 @@ const RenderReadinessData = ({
 }) => {
   if (!todaysDate) return <Loading />;
   return (
-    <Container>
+    <>
       <DateRenderer
         readiness
         todaysDate={todaysDate}
         setTodaysData={setTodaysData}
       />
+      <Container>
+        <div className={styles.renderReadinessContainer}>
+          <div className={styles.readinessDateWrapper}>
+            <h2 className={styles.readinessText}>Readiness Date:</h2>
+            <p className={styles.summaryDate}>{todaysDate}</p>
+          </div>
+          <div className={styles.scoreWrapper}>
+            <span>Overall Score:</span>
+            <span className={styles.scoreData}>{score} %</span>
+          </div>
 
-      <div className={styles.renderReadinessContainer}>
-        <div className={styles.readinessDateWrapper}>
-          <h2 className={styles.readinessText}>Readiness Date:</h2>
-          <p className={styles.summaryDate}>{todaysDate}</p>
+          <QuadData
+            readiness
+            quadOneText="Resting heart rate"
+            quadOneData={restingHR}
+            quadTwoText="Heart rate variability"
+            quadTwoData={avgHRV}
+            quadThreeText="Body Temperature"
+            quadThreeData={bodyTemp}
+            quadFourText="Respiratory rate"
+            quadFourData={respiratoryRate}
+          />
         </div>
-        <div className={styles.scoreWrapper}>
-          <span>Overall Score:</span>
-          <span className={styles.scoreData}>{score} %</span>
-        </div>
-
-        <QuadData
-          readiness
-          quadOneText="Resting heart rate"
-          quadOneData={restingHR}
-          quadTwoText="Heart rate variability"
-          quadTwoData={avgHRV}
-          quadThreeText="Body Temperature"
-          quadThreeData={bodyTemp}
-          quadFourText="Respiratory rate"
-          quadFourData={respiratoryRate}
-        />
-      </div>
-    </Container>
+      </Container>
+    </>
   );
 };
 
