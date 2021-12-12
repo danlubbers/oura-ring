@@ -34,6 +34,7 @@ const RenderReadinessData = ({
         </div>
 
         <QuadData
+          readiness
           quadOneText="Resting heart rate"
           quadOneData={restingHR}
           quadTwoText="Heart rate variability"

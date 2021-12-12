@@ -3,6 +3,7 @@ import Container from "../Container/Container";
 import Chart from "../Chart/Chart";
 import Loading from "../Loading/Loading";
 import DateRenderer from "../DateRenderer/DateRenderer";
+import QuadData from "../QuadData/QuadData";
 
 const RenderSleepData = ({
   todaysDate,
@@ -16,6 +17,9 @@ const RenderSleepData = ({
   maxHRV,
   heartRateData,
   hrvData,
+  totalSleep,
+  timeInBed,
+  sleepEfficiency,
 }) => {
   if (!todaysDate) return <Loading />;
   return (
@@ -30,6 +34,17 @@ const RenderSleepData = ({
           <span>{bedtimeStart} - </span>
           <span>{bedtimeEnd}</span>
         </div>
+
+        <QuadData
+          quadOneText="Total sleep"
+          quadOneData={totalSleep}
+          quadTwoText="Time in bed"
+          quadTwoData={timeInBed}
+          quadThreeText="Sleep efficiency"
+          quadThreeData={sleepEfficiency}
+          quadFourText="Resting heart rate"
+          quadFourData={minHeartRate}
+        />
 
         <div className={styles.heartRateTextWrapper}>
           <p className={styles.lowestHRText}>

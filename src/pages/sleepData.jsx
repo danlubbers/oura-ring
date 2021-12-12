@@ -4,12 +4,13 @@ import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import { GlobalContext } from "../context/Provider";
 import moment from "moment";
 import { timeIncrement } from "../utilities/incrementTime";
+import { secondsToHms } from "../utilities/convertTime";
 
 function SleepData() {
   const { sleepData } = useContext(GlobalContext);
 
   const [todaysData, setTodaysData] = useState({});
-  // console.log(`todaysData`, todaysData);
+  console.log(`todaysData`, todaysData);
 
   useEffect(() => {
     const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
@@ -28,6 +29,10 @@ function SleepData() {
 
   const bedtimeEnd = new Date(todaysData?.data?.bedtime_end);
   const timeEnd = moment(bedtimeEnd).format("HH:mm");
+
+  const totalSleep = secondsToHms(todaysData?.data?.total);
+  const timeInBed = secondsToHms(sleepDuration);
+  const sleepEfficiency = todaysData?.data?.efficiency;
 
   const minHeartRate = todaysData?.data?.hr_lowest;
   const maxHeartRate =
@@ -82,6 +87,9 @@ function SleepData() {
         maxHRV={maxHRV}
         heartRateData={heartRateData}
         hrvData={hrvData}
+        totalSleep={totalSleep}
+        timeInBed={timeInBed}
+        sleepEfficiency={sleepEfficiency}
       />
       <NavigationHeader />
     </div>

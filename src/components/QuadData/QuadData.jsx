@@ -2,6 +2,7 @@ import React from "react";
 import * as styles from "./QuadData.module.scss";
 
 const QuadData = ({
+  readiness,
   quadOneText,
   quadOneData,
   quadTwoText,
@@ -16,22 +17,22 @@ const QuadData = ({
       <div className={styles.quadOneDataWrapper}>
         <p>{quadOneText}</p>
         <span className={styles.quadOneText}>{quadOneData}</span>
-        <span> bpm</span>
+        {readiness && <span> bpm</span>}
       </div>
       <div className={styles.quadTwoDataWrapper}>
         <p>{quadTwoText}</p>
         <span className={styles.quadTwoText}>{quadTwoData}</span>
-        <span> ms</span>
+        {readiness && <span> ms</span>}
       </div>
       <div className={styles.quadThreeDataWrapper}>
         <p>{quadThreeText}</p>
-        <span className={styles.quadThreeText}>{quadThreeData} °F</span>
-        <span></span>
+        <span className={styles.quadThreeText}>{quadThreeData} </span>
+        {readiness ? <span>°F</span> : <span>%</span>}
       </div>
       <div className={styles.quadFourDataWrapper}>
         <p>{quadFourText}</p>
         <span className={styles.quadFourText}>{quadFourData}</span>{" "}
-        <span>/ min</span>
+        {readiness ? <span>/ min</span> : <span>bpm</span>}
       </div>
     </div>
   );
