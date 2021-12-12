@@ -3,6 +3,7 @@ import * as styles from "./RenderReadinessData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import DateRenderer from "../DateRenderer/DateRenderer";
+import QuadData from "../QuadData/QuadData";
 
 const RenderReadinessData = ({
   todaysDate,
@@ -21,6 +22,7 @@ const RenderReadinessData = ({
         todaysDate={todaysDate}
         setTodaysData={setTodaysData}
       />
+
       <div className={styles.renderReadinessContainer}>
         <div className={styles.readinessDateWrapper}>
           <h2 className={styles.readinessText}>Readiness Date:</h2>
@@ -30,30 +32,17 @@ const RenderReadinessData = ({
           <span>Overall Score:</span>
           <span className={styles.scoreData}>{score} %</span>
         </div>
-        <div className={styles.readinessWrapper}>
-          <div className={styles.restingHRWrapper}>
-            <p>Resting heart rate</p>
-            <span className={styles.restingHRData}>{restingHR}</span>
-            <span> bpm</span>
-          </div>
-          <div className={styles.avgHRVWrapper}>
-            <p>Heart rate variability</p>
-            <span className={styles.avgHRVData}>{avgHRV}</span>
-            <span> ms</span>
-          </div>
-          <div className={styles.bodyTemperatureWrapper}>
-            <p>Body Temperature</p>
-            <span className={styles.bodyTempData}>{bodyTemp} °F</span>
-            <span></span>
-          </div>
-          <div className={styles.respiratoryRateWrapper}>
-            <p>Respiratory rate</p>
-            <span className={styles.respiratoryData}>
-              {respiratoryRate}
-            </span>{" "}
-            <span>/ min</span>
-          </div>
-        </div>
+
+        <QuadData
+          quadOneText="Resting heart rate"
+          quadOneData={restingHR}
+          quadTwoText="Heart rate variability"
+          quadTwoData={avgHRV}
+          quadThreeText="Body Temperature"
+          quadThreeData={bodyTemp}
+          quadFourText="Respiratory rate"
+          quadFourData={respiratoryRate}
+        />
       </div>
     </Container>
   );

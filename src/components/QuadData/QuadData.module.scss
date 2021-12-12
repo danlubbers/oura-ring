@@ -1,0 +1,43 @@
+.quadDataWrapper {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: 1.4rem;
+
+  .quadOneDataWrapper {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
+  }
+  .quadTwoDataWrapper {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dfdfdf;
+    border-left: 1px solid #dfdfdf;
+  }
+  .quadThreeDataWrapper {
+    padding-top: 1rem;
+    border-top: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
+  }
+  .quadFourDataWrapper {
+    padding-top: 1rem;
+    border-top: 1px solid #dfdfdf;
+    border-left: 1px solid #dfdfdf;
+  }
+  p {
+    margin-bottom: 1rem;
+  }
+  .quadOneText {
+    font-size: 2rem;
+    color: #33becc;
+  }
+  .quadTwoText {
+    @extend .quadOneText;
+  }
+  .quadThreeText {
+    @extend .quadOneText;
+  }
+  .quadFourText {
+    @extend .quadOneText;
+  }
+}
