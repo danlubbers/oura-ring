@@ -16,7 +16,17 @@
     font-size: 1.4rem;
     margin-left: 4.8rem;
   }
+  .usernameErrorText {
+    @extend .usernameText;
+    margin-top: 1rem;
+    text-align: left;
+    font-weight: 500;
+    color: #dc143c;
+  }
   .passwordText {
     @extend .usernameText;
+  }
+  .passwordErrorText {
+    @extend .usernameErrorText;
   }
 }
