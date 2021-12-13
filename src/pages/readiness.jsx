@@ -6,7 +6,7 @@ import { GlobalContext } from "../context/Provider";
 function Readiness() {
   const { readinessData, sleepData } = useContext(GlobalContext);
   const [todaysData, setTodaysData] = useState({});
-  console.log(`todaysData`, todaysData);
+  // console.log(`todaysData`, todaysData);
 
   const restingHR = todaysData?.data?.sleep?.hr_lowest;
   const avgHRV = todaysData?.data?.sleep?.rmssd;

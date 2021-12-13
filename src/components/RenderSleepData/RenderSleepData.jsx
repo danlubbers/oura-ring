@@ -26,26 +26,26 @@ const RenderSleepData = ({
     <>
       <DateRenderer todaysDate={todaysDate} setTodaysData={setTodaysData} />
       <Container>
+        <QuadData
+          quadOneText="Total sleep"
+          quadOneData={totalSleep}
+          quadTwoText="Time in bed"
+          quadTwoData={timeInBed}
+          quadThreeText="Sleep efficiency"
+          quadThreeData={sleepEfficiency}
+          quadFourText="Resting heart rate"
+          quadFourData={minHeartRate}
+        />
         <div className={styles.renderSleepDataContainer}>
-          <div className={styles.sleepDateWrapper}>
+          {/* <div className={styles.sleepDateWrapper}>
             <h2>Sleep Date: </h2>
             <p className={styles.summaryDate}>{todaysDate}</p>
-          </div>
+          </div> */}
           <div className={styles.bedtimeDuration}>
+            <span>Sleep duration: </span>
             <span>{bedtimeStart} - </span>
             <span>{bedtimeEnd}</span>
           </div>
-
-          <QuadData
-            quadOneText="Total sleep"
-            quadOneData={totalSleep}
-            quadTwoText="Time in bed"
-            quadTwoData={timeInBed}
-            quadThreeText="Sleep efficiency"
-            quadThreeData={sleepEfficiency}
-            quadFourText="Resting heart rate"
-            quadFourData={minHeartRate}
-          />
 
           <div className={styles.heartRateTextWrapper}>
             <p className={styles.lowestHRText}>
