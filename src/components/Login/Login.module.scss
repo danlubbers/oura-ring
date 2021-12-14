@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .loginContainer {
   height: 100vh;
   padding-top: 5rem;
@@ -21,7 +23,7 @@
     margin-top: 1rem;
     text-align: left;
     font-weight: 500;
-    color: #dc143c;
+    color: $color-red;
   }
   .passwordText {
     @extend .usernameText;

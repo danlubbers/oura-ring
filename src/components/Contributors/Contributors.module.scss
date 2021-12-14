@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .contributorContainer {
   width: 100%;
   margin-top: 2rem;
@@ -19,13 +21,13 @@
       margin-top: 0.5rem;
       height: 0.7rem;
       border-radius: 1rem;
-      background-color: #33becc;
+      background-color: $color-blue;
     }
     .lineBackground {
       grid-row-start: 1;
       grid-column-start: 1;
       @extend .line;
-      background-color: grey;
+      background-color: $color-grey;
     }
   }
 }

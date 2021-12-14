@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .renderSleepDataContainer {
   text-align: center;
   font-size: 1.6rem;
@@ -27,7 +29,7 @@
 
       .lowestHRNum {
         font-size: 2rem;
-        color: #33becc;
+        color: $color-blue;
       }
     }
 
@@ -50,8 +52,7 @@
     }
     .maxHRVNum {
       font-size: 2rem;
-
-      color: #dc143c;
+      color: $color-red;
     }
   }
 }
