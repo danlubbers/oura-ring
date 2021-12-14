@@ -14,8 +14,11 @@
     font-size: 2.2rem;
   }
   .scoreWrapper {
-    margin-top: 0.5rem;
+    margin: 1rem 0;
 
+    .readinessText {
+      margin-bottom: 1rem;
+    }
     span {
       padding: 0 0.5rem;
     }

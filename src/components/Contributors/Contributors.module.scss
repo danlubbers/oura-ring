@@ -1,0 +1,31 @@
+.contributorContainer {
+  width: 100%;
+  margin-top: 2rem;
+
+  .textWrapper {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .lineWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    .line {
+      grid-row-start: 1;
+      grid-column-start: 1;
+      margin-top: 0.5rem;
+      height: 0.7rem;
+      border-radius: 1rem;
+      background-color: #33becc;
+    }
+    .lineBackground {
+      grid-row-start: 1;
+      grid-column-start: 1;
+      @extend .line;
+      background-color: grey;
+    }
+  }
+}
