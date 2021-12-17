@@ -1,4 +1,4 @@
-export const secondsToHms = (seconds) => {
+export const secondsToHm = (seconds) => {
   const hour = Math.floor(seconds / 3600);
   const minute = Math.floor((seconds % 3600) / 60);
 

@@ -1,6 +1,6 @@
 import React from "react";
 import * as styles from "./Contributors.module.scss";
-import { secondsToHms } from "../../utilities/convertTime";
+import { secondsToHm } from "../../utilities/convertTime";
 
 const Contributors = ({
   readinessContributorData,
@@ -70,17 +70,17 @@ const Contributors = ({
               )}
               {name === "REM sleep" && (
                 <span style={{ color: negativeScoreRating }}>
-                  {secondsToHms(data)}
+                  {secondsToHm(data)}
                 </span>
               )}
               {name === "Deep sleep" && (
                 <span style={{ color: negativeScoreRating }}>
-                  {secondsToHms(data)}
+                  {secondsToHm(data)}
                 </span>
               )}
               {name === "Latency" && (
                 <span style={{ color: negativeScoreRating }}>
-                  {secondsToHms(data)}
+                  {secondsToHm(data)}
                 </span>
               )}
               {name === "Timing" && (

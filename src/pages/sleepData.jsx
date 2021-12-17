@@ -4,7 +4,7 @@ import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import { GlobalContext } from "../context/Provider";
 import moment from "moment";
 import { timeIncrement } from "../utilities/incrementTime";
-import { secondsToHms } from "../utilities/convertTime";
+import { secondsToHm } from "../utilities/convertTime";
 
 function SleepData() {
   const { sleepData } = useContext(GlobalContext);
@@ -53,8 +53,8 @@ function SleepData() {
   const bedtimeEnd = new Date(todaysData?.data?.bedtime_end);
   const timeEnd = moment(bedtimeEnd).format("HH:mm");
 
-  const totalSleep = secondsToHms(todaysData?.data?.total);
-  const timeInBed = secondsToHms(sleepDuration);
+  const totalSleep = secondsToHm(todaysData?.data?.total);
+  const timeInBed = secondsToHm(sleepDuration);
   const sleepEfficiency = todaysData?.data?.efficiency;
 
   const minHeartRate = todaysData?.data?.hr_lowest;
