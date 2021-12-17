@@ -10,7 +10,7 @@ function SleepData() {
   const { sleepData } = useContext(GlobalContext);
 
   const [todaysData, setTodaysData] = useState({});
-  // console.log(`todaysData`, todaysData);
+  console.log(`todaysData`, todaysData);
 
   useEffect(() => {
     const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
@@ -21,6 +21,25 @@ function SleepData() {
 
     setTodaysData({ date: todaysDate, data: todaysData });
   }, [sleepData]);
+
+  // Contributors
+  const totalScore = todaysData?.data?.score_total;
+  const efficiencyScore = todaysData?.data?.score_efficiency;
+  const restfulnessScore = todaysData?.data?.score_disturbances;
+  const remScore = todaysData?.data?.score_rem;
+  const deepSleepScore = todaysData?.data?.score_deep;
+  const latencyScore = todaysData?.data?.score_latency;
+  const alignmentScore = todaysData?.data?.score_alignment;
+
+  const sleepContributorData = [
+    { name: "Total Sleep", score: totalScore },
+    { name: "Efficiency", score: efficiencyScore },
+    { name: "Restfulness", score: restfulnessScore },
+    { name: "REM sleep", score: remScore },
+    { name: "Deep sleep", score: deepSleepScore },
+    { name: "Latency", score: latencyScore },
+    { name: "Timing", score: alignmentScore },
+  ];
 
   const bedtimeStart = new Date(todaysData?.data?.bedtime_start);
 
@@ -90,6 +109,7 @@ function SleepData() {
         totalSleep={totalSleep}
         timeInBed={timeInBed}
         sleepEfficiency={sleepEfficiency}
+        sleepContributorData={sleepContributorData}
       />
       <NavigationHeader />
     </div>

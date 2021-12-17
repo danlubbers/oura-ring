@@ -20,6 +20,7 @@ const RenderSleepData = ({
   totalSleep,
   timeInBed,
   sleepEfficiency,
+  sleepContributorData,
 }) => {
   if (!todaysDate) return <Loading />;
   return (
@@ -37,10 +38,6 @@ const RenderSleepData = ({
           quadFourData={minHeartRate}
         />
         <div className={styles.renderSleepDataContainer}>
-          {/* <div className={styles.sleepDateWrapper}>
-            <h2>Sleep Date: </h2>
-            <p className={styles.summaryDate}>{todaysDate}</p>
-          </div> */}
           <div className={styles.bedtimeDuration}>
             <span>Sleep duration: </span>
             <span>{bedtimeStart} - </span>
