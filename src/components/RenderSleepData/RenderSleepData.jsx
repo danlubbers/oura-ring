@@ -4,6 +4,7 @@ import Chart from "../Chart/Chart";
 import Loading from "../Loading/Loading";
 import DateRenderer from "../DateRenderer/DateRenderer";
 import QuadData from "../QuadData/QuadData";
+import Contributors from "../Contributors/Contributors";
 
 const RenderSleepData = ({
   todaysDate,
@@ -23,6 +24,7 @@ const RenderSleepData = ({
   sleepContributorData,
 }) => {
   if (!todaysDate) return <Loading />;
+
   return (
     <>
       <DateRenderer todaysDate={todaysDate} setTodaysData={setTodaysData} />
@@ -43,6 +45,11 @@ const RenderSleepData = ({
             <span>{bedtimeStart} - </span>
             <span>{bedtimeEnd}</span>
           </div>
+
+          <Contributors
+            sleepContributorData={sleepContributorData}
+            totalSleep={totalSleep}
+          />
 
           <div className={styles.heartRateTextWrapper}>
             <p className={styles.lowestHRText}>

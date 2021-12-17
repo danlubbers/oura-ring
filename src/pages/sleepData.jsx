@@ -24,20 +24,24 @@ function SleepData() {
 
   // Contributors
   const totalScore = todaysData?.data?.score_total;
+  const efficiency = todaysData?.data?.efficiency;
   const efficiencyScore = todaysData?.data?.score_efficiency;
   const restfulnessScore = todaysData?.data?.score_disturbances;
+  const rem = todaysData?.data?.rem;
   const remScore = todaysData?.data?.score_rem;
+  const deepSleep = todaysData?.data?.deep;
   const deepSleepScore = todaysData?.data?.score_deep;
+  const onsetLatency = todaysData?.data?.onset_latency;
   const latencyScore = todaysData?.data?.score_latency;
   const alignmentScore = todaysData?.data?.score_alignment;
 
   const sleepContributorData = [
     { name: "Total Sleep", score: totalScore },
-    { name: "Efficiency", score: efficiencyScore },
+    { name: "Efficiency", score: efficiencyScore, data: efficiency },
     { name: "Restfulness", score: restfulnessScore },
-    { name: "REM sleep", score: remScore },
-    { name: "Deep sleep", score: deepSleepScore },
-    { name: "Latency", score: latencyScore },
+    { name: "REM sleep", score: remScore, data: rem },
+    { name: "Deep sleep", score: deepSleepScore, data: deepSleep },
+    { name: "Latency", score: latencyScore, data: onsetLatency },
     { name: "Timing", score: alignmentScore },
   ];
 
