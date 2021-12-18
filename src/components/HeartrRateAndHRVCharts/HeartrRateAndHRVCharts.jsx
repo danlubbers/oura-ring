@@ -13,7 +13,7 @@ const HeartrRateAndHRVCharts = ({
   hrvData,
 }) => {
   return (
-    <div>
+    <>
       <div className={styles.heartRateTextWrapper}>
         <p className={styles.lowestHRText}>
           Lowest Heart Rate:{" "}
@@ -59,7 +59,7 @@ const HeartrRateAndHRVCharts = ({
         lineColor={"#DC143C"}
         legend={false}
       />
-    </div>
+    </>
   );
 };
 

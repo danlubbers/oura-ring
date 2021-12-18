@@ -4,6 +4,7 @@ import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
 import Contributors from "../Contributors/Contributors";
+import HeartRateAndHRVCharts from "../HeartrRateAndHRVCharts/HeartrRateAndHRVCharts";
 
 const RenderReadinessData = ({
   todaysDate,
@@ -12,6 +13,14 @@ const RenderReadinessData = ({
   avgHRV,
   bodyTemp,
   respiratoryRate,
+  bedtimeStart,
+  bedtimeEnd,
+  avgHRData,
+  minHeartRate,
+  maxHeartRate,
+  maxHRV,
+  heartRateData,
+  hrvData,
   readinessContributorData,
 }) => {
   if (!todaysDate) return <Loading />;
@@ -38,6 +47,17 @@ const RenderReadinessData = ({
         <Contributors
           readinessContributorData={readinessContributorData}
           restingHR={restingHR}
+        />
+        <HeartRateAndHRVCharts
+          bedtimeStart={bedtimeStart}
+          bedtimeEnd={bedtimeEnd}
+          avgHRData={avgHRData}
+          minHeartRate={minHeartRate}
+          maxHeartRate={maxHeartRate}
+          avgHRV={avgHRV}
+          maxHRV={maxHRV}
+          heartRateData={heartRateData}
+          hrvData={hrvData}
         />
       </div>
     </Container>
