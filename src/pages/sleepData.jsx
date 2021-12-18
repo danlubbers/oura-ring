@@ -8,9 +8,8 @@ import { secondsToHm } from "../utilities/convertTime";
 
 function SleepData() {
   const { sleepData } = useContext(GlobalContext);
-
   const [todaysData, setTodaysData] = useState({});
-  console.log(`todaysData`, todaysData);
+  // console.log(`todaysData`, todaysData);
 
   useEffect(() => {
     const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
@@ -22,6 +21,16 @@ function SleepData() {
     setTodaysData({ date: todaysDate, data: todaysData });
   }, [sleepData]);
 
+  // Quad Data
+  const totalSleep = secondsToHm(todaysData?.data?.total);
+  const sleepDuration = todaysData?.data?.duration;
+  const timeInBed = secondsToHm(sleepDuration);
+  const sleepEfficiency = todaysData?.data?.efficiency;
+
+  // Quad and Chart Data
+  const avgHRV = todaysData?.data?.rmssd;
+  const maxHRV = todaysData?.data && Math.max(...todaysData?.data?.rmssd_5min);
+
   // Contributors
   const total = todaysData?.data?.total;
   const totalScore = todaysData?.data?.score_total;
@@ -30,6 +39,7 @@ function SleepData() {
   const restfulnessScore = todaysData?.data?.score_disturbances;
   const rem = todaysData?.data?.rem;
   const remScore = todaysData?.data?.score_rem;
+  // rem seconds - total sleep seconds divided by the total sleep seconds then convert that to the percentage and round to nearest integer
   const remPercentage = Math.round(((rem - total) / total + 1) * 100);
   const deepSleep = todaysData?.data?.deep;
   const deepSleepScore = todaysData?.data?.score_deep;
@@ -60,34 +70,18 @@ function SleepData() {
     { name: "Timing", score: alignmentScore },
   ];
 
-  const bedtimeStart = new Date(todaysData?.data?.bedtime_start);
-
-  const timeStart = moment(bedtimeStart).format("HH:mm");
-  const sleepDuration = todaysData?.data?.duration;
-
-  const bedtimeEnd = new Date(todaysData?.data?.bedtime_end);
-  const timeEnd = moment(bedtimeEnd).format("HH:mm");
-
-  const totalSleep = secondsToHm(todaysData?.data?.total);
-  const timeInBed = secondsToHm(sleepDuration);
-  const sleepEfficiency = todaysData?.data?.efficiency;
-
+  // Chart Data
+  const timeStart = new Date(todaysData?.data?.bedtime_start);
+  const bedtimeStart = moment(timeStart).format("HH:mm");
+  const timeEnd = new Date(todaysData?.data?.bedtime_end);
+  const bedtimeEnd = moment(timeEnd).format("HH:mm");
   const minHeartRate = todaysData?.data?.hr_lowest;
   const maxHeartRate =
     todaysData?.data && Math.max(...todaysData?.data?.hr_5min);
-  const avgHRV = todaysData?.data?.rmssd;
-  const maxHRV = todaysData?.data && Math.max(...todaysData?.data?.rmssd_5min);
-
-  const avgHRData = todaysData?.data?.hr_5min.reduce(
-    (avg, value, _, { length }) => {
-      return avg + value / length;
-    },
-    0
-  );
 
   const heartRateData = todaysData?.data?.hr_5min
     ?.map((heartRate, idx) => {
-      const time = timeIncrement(timeStart, sleepDuration)[idx];
+      const time = timeIncrement(bedtimeStart, sleepDuration)[idx];
 
       return {
         heartRate: heartRate,
@@ -95,11 +89,10 @@ function SleepData() {
       };
     })
     .filter((obj) => obj.heartRate !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
-  // console.log(`heartRateData`, heartRateData);
 
   const hrvData = todaysData?.data?.rmssd_5min
     ?.map((hrv, idx) => {
-      const time = timeIncrement(timeStart, sleepDuration)[idx];
+      const time = timeIncrement(bedtimeStart, sleepDuration)[idx];
 
       return {
         HRV: hrv,
@@ -108,17 +101,21 @@ function SleepData() {
     })
     .filter((obj) => obj.HRV !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
+  const avgHRData = todaysData?.data?.hr_5min.reduce(
+    (avg, value, _, { length }) => {
+      return avg + value / length;
+    },
+    0
+  );
+
   return (
     <div>
       <RenderSleepData
         todaysDate={todaysData.date}
         setTodaysData={setTodaysData}
-        bedtimeStart={timeStart}
-        bedtimeEnd={timeEnd}
+        bedtimeStart={bedtimeStart}
+        bedtimeEnd={bedtimeEnd}
         avgHRData={avgHRData}
-        data={todaysData.data}
-        width={"width"}
-        height={"height"}
         minHeartRate={minHeartRate}
         maxHeartRate={maxHeartRate}
         avgHRV={avgHRV}
