@@ -53,7 +53,7 @@ const Contributors = ({
 
   if (sleepContributorData) {
     contributionLoop = sleepContributorData.map(
-      ({ name, score, data }, idx) => {
+      ({ name, score, data, percentage }, idx) => {
         const negativeScoreRating = score < 70 && "#DC143C";
         return (
           <div key={`${name}-${idx}`}>
@@ -69,14 +69,24 @@ const Contributors = ({
                 </span>
               )}
               {name === "REM sleep" && (
-                <span style={{ color: negativeScoreRating }}>
-                  {secondsToHm(data)}
-                </span>
+                <div>
+                  <span
+                    style={{ color: negativeScoreRating, marginRight: "1rem" }}
+                  >
+                    {secondsToHm(data)},
+                  </span>
+                  <span>{percentage}%</span>
+                </div>
               )}
               {name === "Deep sleep" && (
-                <span style={{ color: negativeScoreRating }}>
-                  {secondsToHm(data)}
-                </span>
+                <div>
+                  <span
+                    style={{ color: negativeScoreRating, marginRight: "1rem" }}
+                  >
+                    {secondsToHm(data)}
+                  </span>
+                  <span>{percentage}%</span>
+                </div>
               )}
               {name === "Latency" && (
                 <span style={{ color: negativeScoreRating }}>
