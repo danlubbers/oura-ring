@@ -117,6 +117,9 @@ function SleepData() {
       />
       <RenderSleepData
         todaysDate={todaysData.date}
+        totalSleep={totalSleep}
+        timeInBed={timeInBed}
+        sleepEfficiency={sleepEfficiency}
         bedtimeStart={bedtimeStart}
         bedtimeEnd={bedtimeEnd}
         avgHRData={avgHRData}
@@ -126,9 +129,6 @@ function SleepData() {
         maxHRV={maxHRV}
         heartRateData={heartRateData}
         hrvData={hrvData}
-        totalSleep={totalSleep}
-        timeInBed={timeInBed}
-        sleepEfficiency={sleepEfficiency}
         sleepContributorData={sleepContributorData}
       />
       <NavigationFooter />

@@ -1,12 +1,15 @@
 import * as styles from "./RenderSleepData.module.scss";
 import Container from "../Container/Container";
-import Chart from "../Chart/Chart";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
 import Contributors from "../Contributors/Contributors";
+import HeartRateAndHRVCharts from "../HeartrRateAndHRVCharts/HeartrRateAndHRVCharts";
 
 const RenderSleepData = ({
   todaysDate,
+  totalSleep,
+  timeInBed,
+  sleepEfficiency,
   bedtimeStart,
   bedtimeEnd,
   avgHRData,
@@ -16,9 +19,6 @@ const RenderSleepData = ({
   maxHRV,
   heartRateData,
   hrvData,
-  totalSleep,
-  timeInBed,
-  sleepEfficiency,
   sleepContributorData,
 }) => {
   if (!todaysDate) return <Loading />;
@@ -47,50 +47,16 @@ const RenderSleepData = ({
           totalSleep={totalSleep}
         />
 
-        <div className={styles.heartRateTextWrapper}>
-          <p className={styles.lowestHRText}>
-            Lowest Heart Rate:{" "}
-            <span className={styles.lowestHRNum}>{minHeartRate}</span> bpm
-          </p>
-          <div className={styles.averageHR}>
-            <span className={styles.averageHRText}>Avg:</span>
-            <span className={styles.averageHRNum}>
-              {Math.round(avgHRData) || ""}
-            </span>{" "}
-            <span>bpm</span>
-          </div>
-        </div>
-
-        <Chart
-          data={heartRateData}
-          dataKey="heartRate"
-          chartTitle={"Heart Rate"}
+        <HeartRateAndHRVCharts
           bedtimeStart={bedtimeStart}
           bedtimeEnd={bedtimeEnd}
-          min={minHeartRate}
-          max={maxHeartRate}
-          lineColor={"#33becc"}
-          legend={false}
-        />
-        <div className={styles.hrvTextWrapper}>
-          <div className={styles.maxHRV}>
-            <span className={styles.averageHRText}>Max HRV:</span>
-            <span className={styles.maxHRVNum}>
-              {Math.round(maxHRV) || ""}
-            </span>{" "}
-            <span>ms</span>
-          </div>
-          <p className={styles.averageHRV}>Avg: {avgHRV} ms</p>
-        </div>
-        <Chart
-          data={hrvData}
-          dataKey="HRV"
-          chartTitle={"Heart Rate Variability"}
-          bedtimeStart={bedtimeStart}
-          bedtimeEnd={bedtimeEnd}
-          max={maxHRV}
-          lineColor={"#DC143C"}
-          legend={false}
+          avgHRData={avgHRData}
+          minHeartRate={minHeartRate}
+          maxHeartRate={maxHeartRate}
+          avgHRV={avgHRV}
+          maxHRV={maxHRV}
+          heartRateData={heartRateData}
+          hrvData={hrvData}
         />
       </div>
     </Container>
