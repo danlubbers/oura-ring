@@ -83,7 +83,7 @@ const Contributors = ({
                   <span
                     style={{ color: negativeScoreRating, marginRight: "1rem" }}
                   >
-                    {secondsToHm(data)}
+                    {secondsToHm(data)},
                   </span>
                   <span>{percentage}%</span>
                 </div>
