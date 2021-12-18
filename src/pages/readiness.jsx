@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderReadinessData from "../components/RenderReadinessData/RenderReadinessData";
-import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
+import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
 
 function Readiness() {
@@ -72,7 +72,7 @@ function Readiness() {
         respiratoryRate={respiratoryRate}
         readinessContributorData={readinessContributorData}
       />
-      <NavigationHeader />
+      <NavigationFooter />
     </div>
   );
 }

@@ -2,7 +2,6 @@ import React from "react";
 import * as styles from "./RenderReadinessData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
-// import DateRenderer from "../DateRenderer/DateRenderer";
 import QuadData from "../QuadData/QuadData";
 import Contributors from "../Contributors/Contributors";
 
