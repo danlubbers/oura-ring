@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
+import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
+import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
 import moment from "moment";
 import { timeIncrement } from "../utilities/incrementTime";
@@ -110,6 +111,10 @@ function SleepData() {
 
   return (
     <div>
+      <DateRenderer
+        todaysDate={todaysData.date}
+        setTodaysData={setTodaysData}
+      />
       <RenderSleepData
         todaysDate={todaysData.date}
         setTodaysData={setTodaysData}

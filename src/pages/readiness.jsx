@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
+import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderReadinessData from "../components/RenderReadinessData/RenderReadinessData";
+import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
 
 function Readiness() {
@@ -8,12 +9,29 @@ function Readiness() {
   const [todaysData, setTodaysData] = useState({});
   // console.log(`todaysData`, todaysData);
 
+  useEffect(() => {
+    const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
+      5,
+      10
+    );
+    const todaysData = {
+      readiness: readinessData?.[readinessData.length - 1],
+      sleep: sleepData?.[sleepData.length - 1],
+    };
+
+    setTodaysData({ date: todaysDate, data: todaysData });
+  }, [readinessData, sleepData]);
+
+  // Quad Data
   const restingHR = todaysData?.data?.sleep?.hr_lowest;
   const avgHRV = todaysData?.data?.sleep?.rmssd;
   const bodyTempData = todaysData?.data?.sleep?.temperature_delta;
   const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
   const bodyTempFahrenheit = (conversionToFahrenheit - 32).toFixed(1);
   const respiratoryRate = todaysData?.data?.sleep?.breath_average.toFixed(1);
+
+  // Overall Score
+  const score = todaysData?.data?.readiness?.score;
 
   // Contributors
   const restingHRScore = todaysData?.data?.readiness?.score_resting_hr;
@@ -38,26 +56,15 @@ function Readiness() {
     { name: "Activity balance", score: activityBalanceScore },
   ];
 
-  useEffect(() => {
-    const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
-      5,
-      10
-    );
-    const todaysData = {
-      readiness: readinessData?.[readinessData.length - 1],
-      sleep: sleepData?.[sleepData.length - 1],
-    };
-
-    setTodaysData({ date: todaysDate, data: todaysData });
-  }, [readinessData, sleepData]);
-
-  const score = todaysData?.data?.readiness?.score;
-
   return (
     <div>
-      <RenderReadinessData
+      <DateRenderer
+        readiness
         todaysDate={todaysData.date}
         setTodaysData={setTodaysData}
+      />
+      <RenderReadinessData
+        todaysDate={todaysData.date}
         score={score}
         restingHR={restingHR}
         avgHRV={avgHRV}
