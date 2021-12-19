@@ -1,6 +1,7 @@
 import React from "react";
 import * as styles from "./Contributors.module.scss";
 import { secondsToHm } from "../../utilities/convertTime";
+import { scoring } from "../../utilities/scoring";
 
 const Contributors = ({
   readinessContributorData,
@@ -9,14 +10,6 @@ const Contributors = ({
   totalSleep,
 }) => {
   let contributionLoop;
-
-  const scoring = (score) => {
-    if (score <= 100 && score >= 85) {
-      return "Optimal";
-    } else if (score < 85 && score >= 70) {
-      return "Good";
-    } else return "Pay Attention";
-  };
 
   if (readinessContributorData) {
     contributionLoop = readinessContributorData.map(({ name, score }, idx) => {

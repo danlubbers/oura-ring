@@ -1,5 +1,5 @@
-import React from "react";
 import * as styles from "./DailyScore.module.scss";
+import { scoring } from "../../utilities/scoring";
 
 const DailyScore = ({ readiness, score }) => {
   return (
@@ -10,7 +10,7 @@ const DailyScore = ({ readiness, score }) => {
         <p className={styles.text}>SLEEP</p>
       )}
       <span className={styles.scoreData}>{score} </span>
-      <span>TEST</span>
+      <span>{scoring(score)}</span>
     </div>
   );
 };
