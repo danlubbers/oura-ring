@@ -35,11 +35,18 @@ const RenderSleepData = ({
         quadFourText="Resting heart rate"
         quadFourData={minHeartRate}
       />
-      <div className={styles.renderSleepDataContainer}>
+      {/* <div className={styles.renderSleepDataContainer}>
         <div className={styles.bedtimeDuration}>
           <span>Sleep duration: </span>
           <span>{bedtimeStart} - </span>
           <span>{bedtimeEnd}</span>
+        </div> */}
+
+      <div className={styles.renderSleepDataContainer}>
+        <div className={styles.scoreWrapper}>
+          <p className={styles.sleepText}>SLEEP</p>
+          <span className={styles.scoreData}>86 </span>
+          <span>Good</span>
         </div>
 
         <Contributors

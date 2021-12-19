@@ -5,17 +5,30 @@
   font-size: 1.6rem;
   font-weight: 200;
 
-  .sleepDateWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
+  // .sleepDateWrapper {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: flex-end;
+  // }
 
-  .summaryDate {
-    margin-left: 1rem;
-    font-size: 2.2rem;
+  // .summaryDate {
+  //   margin-left: 1rem;
+  //   font-size: 2.2rem;
+  // }
+  .scoreWrapper {
+    margin: 1rem 0;
+
+    .sleepText {
+      margin-bottom: 1rem;
+    }
+    span {
+      padding: 0 0.5rem;
+    }
+    .scoreData {
+      font-size: 2rem;
+    }
   }
-  .bedtimeDuration {
-    margin-top: 1rem;
-  }
+  // .bedtimeDuration {
+  //   margin-top: 1rem;
+  // }
 }
