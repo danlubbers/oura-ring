@@ -2,10 +2,12 @@ import * as styles from "./RenderSleepData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
+import DailyScore from "../DailyScore/DailyScore";
 import Contributors from "../Contributors/Contributors";
 import HeartRateAndHRVCharts from "../HeartrRateAndHRVCharts/HeartrRateAndHRVCharts";
 
 const RenderSleepData = ({
+  score,
   todaysDate,
   totalSleep,
   timeInBed,
@@ -43,11 +45,7 @@ const RenderSleepData = ({
         </div> */}
 
       <div className={styles.renderSleepDataContainer}>
-        <div className={styles.scoreWrapper}>
-          <p className={styles.sleepText}>SLEEP</p>
-          <span className={styles.scoreData}>86 </span>
-          <span>Good</span>
-        </div>
+        <DailyScore sleep score={score} />
 
         <Contributors
           sleepContributorData={sleepContributorData}

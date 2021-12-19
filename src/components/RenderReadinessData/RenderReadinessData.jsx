@@ -3,6 +3,7 @@ import * as styles from "./RenderReadinessData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
+import DailyScore from "../DailyScore/DailyScore";
 import Contributors from "../Contributors/Contributors";
 import HeartRateAndHRVCharts from "../HeartrRateAndHRVCharts/HeartrRateAndHRVCharts";
 
@@ -39,11 +40,8 @@ const RenderReadinessData = ({
         quadFourData={respiratoryRate}
       />
       <div className={styles.renderReadinessContainer}>
-        <div className={styles.scoreWrapper}>
-          <p className={styles.readinessText}>READINESS</p>
-          <span className={styles.scoreData}>{score} </span>
-          <span>Good</span>
-        </div>
+        <DailyScore readiness score={score} />
+
         <Contributors
           readinessContributorData={readinessContributorData}
           restingHR={restingHR}

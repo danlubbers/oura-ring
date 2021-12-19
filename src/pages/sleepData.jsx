@@ -10,7 +10,7 @@ import { secondsToHm } from "../utilities/convertTime";
 function SleepData() {
   const { sleepData } = useContext(GlobalContext);
   const [todaysData, setTodaysData] = useState({});
-  // console.log(`todaysData`, todaysData);
+  console.log(`todaysData`, todaysData);
 
   useEffect(() => {
     const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
@@ -21,6 +21,8 @@ function SleepData() {
 
     setTodaysData({ date: todaysDate, data: todaysData });
   }, [sleepData]);
+
+  const score = todaysData?.data?.score;
 
   // Quad Data
   const totalSleep = secondsToHm(todaysData?.data?.total);
@@ -116,6 +118,7 @@ function SleepData() {
         setTodaysData={setTodaysData}
       />
       <RenderSleepData
+        score={score}
         todaysDate={todaysData.date}
         totalSleep={totalSleep}
         timeInBed={timeInBed}
