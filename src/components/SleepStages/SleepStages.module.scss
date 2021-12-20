@@ -1,0 +1,30 @@
+@import "../../styles/variables.scss";
+
+.sleepStagesContainer {
+  width: 100%;
+  margin: 2rem 0;
+  .sleepStagesWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 500;
+
+    .sleepStagesWrapper {
+      width: 25%;
+      .line {
+        margin-top: 0.5rem;
+        height: 2.5rem;
+        border-radius: 1rem;
+        background-color: $color-blue;
+      }
+    }
+    .sleepStageText {
+      margin-left: -2rem;
+      margin-right: 1rem;
+    }
+    .sleepStageTime {
+      margin-right: 0.5rem;
+      color: $color-blue;
+    }
+  }
+}

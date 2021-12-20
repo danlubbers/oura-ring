@@ -79,7 +79,7 @@ function SleepData() {
   const timeEnd = new Date(todaysData?.data?.bedtime_end);
   const bedtimeEnd = moment(timeEnd).format("HH:mm");
 
-  // Sleep Stages
+  // Sleep Stages/Percentages that aren't already declared
   const awakeSleep = todaysData?.data?.awake;
   const awakePercentage = Math.round(((awakeSleep - total) / total + 1) * 100);
   const lightSleep = todaysData?.data?.light;

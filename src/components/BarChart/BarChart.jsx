@@ -1,7 +1,7 @@
 import React from "react";
 import * as styles from "./BarChart.module.scss";
 import { AreaChart, Area, XAxis, YAxis } from "recharts";
-import { secondsToHm } from "../../utilities/convertTime";
+import SleepStages from "../SleepStages/SleepStages";
 
 const BarChartComponent = ({
   totalSleep,
@@ -13,27 +13,6 @@ const BarChartComponent = ({
 }) => {
   console.log(`sleepStagesData`, sleepStagesData);
 
-  const sleepStages = sleepStagesData.map(
-    ({ stage, sleepSeconds, percentage }, idx) => {
-      return (
-        <div className={styles.sleepStagesWrapper} key={`${stage}-${idx}`}>
-          <div className={styles.sleepStagesWrapper}>
-            <div
-              style={{
-                width: `${percentage}%`,
-              }}
-              className={[styles.line]}
-            />
-          </div>
-          <span className={styles.sleepStageText}>{stage}</span>
-          <span className={styles.sleepStageTime}>
-            {secondsToHm(sleepSeconds)}
-          </span>
-          <span className={styles.sleepStagePercentage}>{percentage}%</span>
-        </div>
-      );
-    }
-  );
   return (
     <div className={styles.barChartContainer}>
       <div className={styles.sleepTextWrapper}>
@@ -75,7 +54,8 @@ const BarChartComponent = ({
           fill="#8884d8"
         />
       </AreaChart>
-      <div className={styles.sleepStagesContainer}>{sleepStages}</div>
+
+      <SleepStages sleepStagesData={sleepStagesData} />
     </div>
   );
 };
