@@ -40,12 +40,6 @@ const RenderSleepData = ({
         quadFourText="Resting heart rate"
         quadFourData={minHeartRate}
       />
-      {/* <div className={styles.renderSleepDataContainer}>
-        <div className={styles.bedtimeDuration}>
-          <span>Sleep duration: </span>
-          <span>{bedtimeStart} - </span>
-          <span>{bedtimeEnd}</span>
-        </div> */}
 
       <div className={styles.renderSleepDataContainer}>
         <DailyScore sleep score={score} />
@@ -56,9 +50,11 @@ const RenderSleepData = ({
         />
 
         <BarChart
-          data={hypnogramData}
+          totalSleep={totalSleep}
+          timeInBed={timeInBed}
           bedtimeStart={bedtimeStart}
           bedtimeEnd={bedtimeEnd}
+          data={hypnogramData}
         />
 
         <HeartRateAndHRVCharts

@@ -85,50 +85,24 @@ function SleepData() {
     ?.map((sleepLevel, idx) => {
       const time = timeIncrement(bedtimeStart, sleepDuration)[idx];
       sleepLevel = Number(sleepLevel);
+      let sleepStage;
+      if (sleepLevel === 1) {
+        sleepStage = "Deep";
+      }
+      if (sleepLevel === 2) {
+        sleepStage = "Light";
+      }
+      if (sleepLevel === 3) {
+        sleepStage = "REM";
+      }
+      if (sleepLevel === 4) {
+        sleepStage = "Awake";
+      }
 
       return {
-        sleepLevel: sleepLevel,
-        sleep: ["Deep", "Light", "REM", "AWAKE"],
+        sleepData: { sleepStage, sleepLevel },
         timeDuration: time,
       };
-
-      // if (sleepLevel === 1) {
-      //   console.log("hit");
-      //   return {
-      //     one: sleepLevel,
-      //     two: null,
-      //     three: null,
-      //     four: null,
-      //     timeDuration: time,
-      //   };
-      // }
-      // if (sleepLevel === 2) {
-      //   return {
-      //     one: null,
-      //     two: sleepLevel,
-      //     three: null,
-      //     four: null,
-      //     timeDuration: time,
-      //   };
-      // }
-      // if (sleepLevel === 3) {
-      //   return {
-      //     one: null,
-      //     two: null,
-      //     three: sleepLevel,
-      //     four: null,
-      //     timeDuration: time,
-      //   };
-      // }
-      // if (sleepLevel === 4) {
-      //   return {
-      //     one: null,
-      //     two: null,
-      //     three: null,
-      //     four: sleepLevel,
-      //     timeDuration: time,
-      //   };
-      // } else return null;
     });
 
   console.log(`hypnogramData`, hypnogramData);

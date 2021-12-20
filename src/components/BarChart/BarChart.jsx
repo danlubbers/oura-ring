@@ -2,9 +2,26 @@ import React from "react";
 import * as styles from "./BarChart.module.scss";
 import { AreaChart, Area, XAxis, YAxis } from "recharts";
 
-const BarChartComponent = ({ data, legend, bedtimeStart, bedtimeEnd }) => {
+const BarChartComponent = ({
+  totalSleep,
+  timeInBed,
+  bedtimeStart,
+  bedtimeEnd,
+  data,
+}) => {
   return (
     <div className={styles.barChartContainer}>
+      <div className={styles.sleepTextWrapper}>
+        <p className={styles.timeAsleepText}>
+          Time asleep:
+          <span className={styles.timeAsleepNum}>{totalSleep}</span>
+        </p>
+        <div className={styles.totalDurationWrapper}>
+          <span className={styles.totalDurationText}>Total duration:</span>
+          <span className={styles.totalDurationRNum}>{timeInBed}</span>
+        </div>
+      </div>
+
       <AreaChart
         width={350}
         height={200}
@@ -28,13 +45,13 @@ const BarChartComponent = ({ data, legend, bedtimeStart, bedtimeEnd }) => {
         <YAxis tickCount="4" domain={[1, 4]} />
         <Area
           type="monotone"
-          dataKey="sleepLevel"
+          dataKey="sleepData.sleepLevel"
           stroke="#8884d8"
           fill="#8884d8"
         />
         {/* <Area
           type="monotone"
-          dataKey="sleepLevel"
+          dataKey="sleepLevel.sleepLevel"
           stroke="#dc143c"
           fill="#dc143c"
         /> */}
