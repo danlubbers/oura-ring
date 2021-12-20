@@ -30,7 +30,7 @@ function SleepData() {
   const timeInBed = secondsToHm(sleepDuration);
   const sleepEfficiency = todaysData?.data?.efficiency;
 
-  // Quad and Chart Data
+  // Quad and Heartrate/HRV Chart Data
   const avgHRV = todaysData?.data?.rmssd;
   const maxHRV = todaysData?.data && Math.max(...todaysData?.data?.rmssd_5min);
 
@@ -73,11 +73,67 @@ function SleepData() {
     { name: "Timing", score: alignmentScore },
   ];
 
-  // Chart Data
+  // Time Data for multiple charts
   const timeStart = new Date(todaysData?.data?.bedtime_start);
   const bedtimeStart = moment(timeStart).format("HH:mm");
   const timeEnd = new Date(todaysData?.data?.bedtime_end);
   const bedtimeEnd = moment(timeEnd).format("HH:mm");
+
+  // Sleep Chart Data
+  const hypnogramData = todaysData?.data?.hypnogram_5min
+    .split("")
+    ?.map((sleepLevel, idx) => {
+      const time = timeIncrement(bedtimeStart, sleepDuration)[idx];
+      sleepLevel = Number(sleepLevel);
+
+      return {
+        sleepLevel: sleepLevel,
+        sleep: ["Deep", "Light", "REM", "AWAKE"],
+        timeDuration: time,
+      };
+
+      // if (sleepLevel === 1) {
+      //   console.log("hit");
+      //   return {
+      //     one: sleepLevel,
+      //     two: null,
+      //     three: null,
+      //     four: null,
+      //     timeDuration: time,
+      //   };
+      // }
+      // if (sleepLevel === 2) {
+      //   return {
+      //     one: null,
+      //     two: sleepLevel,
+      //     three: null,
+      //     four: null,
+      //     timeDuration: time,
+      //   };
+      // }
+      // if (sleepLevel === 3) {
+      //   return {
+      //     one: null,
+      //     two: null,
+      //     three: sleepLevel,
+      //     four: null,
+      //     timeDuration: time,
+      //   };
+      // }
+      // if (sleepLevel === 4) {
+      //   return {
+      //     one: null,
+      //     two: null,
+      //     three: null,
+      //     four: sleepLevel,
+      //     timeDuration: time,
+      //   };
+      // } else return null;
+    });
+
+  console.log(`hypnogramData`, hypnogramData);
+
+  // Heartrate/HRV Chart Data
   const minHeartRate = todaysData?.data?.hr_lowest;
   const maxHeartRate =
     todaysData?.data && Math.max(...todaysData?.data?.hr_5min);
@@ -130,6 +186,7 @@ function SleepData() {
         maxHeartRate={maxHeartRate}
         avgHRV={avgHRV}
         maxHRV={maxHRV}
+        hypnogramData={hypnogramData}
         heartRateData={heartRateData}
         hrvData={hrvData}
         sleepContributorData={sleepContributorData}

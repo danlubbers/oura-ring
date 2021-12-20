@@ -4,6 +4,8 @@ import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
 import DailyScore from "../DailyScore/DailyScore";
 import Contributors from "../Contributors/Contributors";
+import BarChart from "../BarChart/BarChart";
+
 import HeartRateAndHRVCharts from "../HeartrRateAndHRVCharts/HeartrRateAndHRVCharts";
 
 const RenderSleepData = ({
@@ -19,6 +21,7 @@ const RenderSleepData = ({
   maxHeartRate,
   avgHRV,
   maxHRV,
+  hypnogramData,
   heartRateData,
   hrvData,
   sleepContributorData,
@@ -50,6 +53,12 @@ const RenderSleepData = ({
         <Contributors
           sleepContributorData={sleepContributorData}
           totalSleep={totalSleep}
+        />
+
+        <BarChart
+          data={hypnogramData}
+          bedtimeStart={bedtimeStart}
+          bedtimeEnd={bedtimeEnd}
         />
 
         <HeartRateAndHRVCharts
