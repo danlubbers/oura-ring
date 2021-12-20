@@ -22,6 +22,7 @@ const RenderSleepData = ({
   avgHRV,
   maxHRV,
   hypnogramData,
+  sleepStagesData,
   heartRateData,
   hrvData,
   sleepContributorData,
@@ -55,6 +56,7 @@ const RenderSleepData = ({
           bedtimeStart={bedtimeStart}
           bedtimeEnd={bedtimeEnd}
           data={hypnogramData}
+          sleepStagesData={sleepStagesData}
         />
 
         <HeartRateAndHRVCharts

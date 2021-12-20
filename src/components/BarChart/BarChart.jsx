@@ -1,6 +1,7 @@
 import React from "react";
 import * as styles from "./BarChart.module.scss";
 import { AreaChart, Area, XAxis, YAxis } from "recharts";
+import { secondsToHm } from "../../utilities/convertTime";
 
 const BarChartComponent = ({
   totalSleep,
@@ -8,7 +9,31 @@ const BarChartComponent = ({
   bedtimeStart,
   bedtimeEnd,
   data,
+  sleepStagesData,
 }) => {
+  console.log(`sleepStagesData`, sleepStagesData);
+
+  const sleepStages = sleepStagesData.map(
+    ({ stage, sleepSeconds, percentage }, idx) => {
+      return (
+        <div className={styles.sleepStagesWrapper} key={`${stage}-${idx}`}>
+          <div className={styles.sleepStagesWrapper}>
+            <div
+              style={{
+                width: `${percentage}%`,
+              }}
+              className={[styles.line]}
+            />
+          </div>
+          <span className={styles.sleepStageText}>{stage}</span>
+          <span className={styles.sleepStageTime}>
+            {secondsToHm(sleepSeconds)}
+          </span>
+          <span className={styles.sleepStagePercentage}>{percentage}%</span>
+        </div>
+      );
+    }
+  );
   return (
     <div className={styles.barChartContainer}>
       <div className={styles.sleepTextWrapper}>
@@ -49,27 +74,8 @@ const BarChartComponent = ({
           stroke="#8884d8"
           fill="#8884d8"
         />
-        {/* <Area
-          type="monotone"
-          dataKey="sleepLevel.sleepLevel"
-          stroke="#dc143c"
-          fill="#dc143c"
-        /> */}
-        {/* <Area
-          type="monotone"
-          dataKey="three"
-          stackId="1"
-          stroke="#82ca9d"
-          fill="#82ca9d"
-        />
-        <Area
-          type="monotone"
-          dataKey="four"
-          stackId="1"
-          stroke="#33becc"
-          fill="#33becc"
-        /> */}
       </AreaChart>
+      <div className={styles.sleepStagesContainer}>{sleepStages}</div>
     </div>
   );
 };

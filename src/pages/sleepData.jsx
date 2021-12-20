@@ -40,10 +40,10 @@ function SleepData() {
   const efficiency = todaysData?.data?.efficiency;
   const efficiencyScore = todaysData?.data?.score_efficiency;
   const restfulnessScore = todaysData?.data?.score_disturbances;
-  const rem = todaysData?.data?.rem;
+  const remSleep = todaysData?.data?.rem;
   const remScore = todaysData?.data?.score_rem;
   // rem seconds - total sleep seconds divided by the total sleep seconds then convert that to the percentage and round to nearest integer
-  const remPercentage = Math.round(((rem - total) / total + 1) * 100);
+  const remPercentage = Math.round(((remSleep - total) / total + 1) * 100);
   const deepSleep = todaysData?.data?.deep;
   const deepSleepScore = todaysData?.data?.score_deep;
   const deepSleepPercentage = Math.round(
@@ -60,7 +60,7 @@ function SleepData() {
     {
       name: "REM sleep",
       score: remScore,
-      data: rem,
+      data: remSleep,
       percentage: remPercentage,
     },
     {
@@ -78,6 +78,19 @@ function SleepData() {
   const bedtimeStart = moment(timeStart).format("HH:mm");
   const timeEnd = new Date(todaysData?.data?.bedtime_end);
   const bedtimeEnd = moment(timeEnd).format("HH:mm");
+
+  // Sleep Stages
+  const awakeSleep = todaysData?.data?.awake;
+  const awakePercentage = Math.round(((awakeSleep - total) / total + 1) * 100);
+  const lightSleep = todaysData?.data?.light;
+  const lightPercentage = Math.round(((lightSleep - total) / total + 1) * 100);
+
+  const sleepStagesData = [
+    { stage: "awake", sleepSeconds: awakeSleep, percentage: awakePercentage },
+    { stage: "rem", sleepSeconds: remSleep, percentage: remPercentage },
+    { stage: "light", sleepSeconds: lightSleep, percentage: lightPercentage },
+    { stage: "deep", sleepSeconds: deepSleep, percentage: deepSleepPercentage },
+  ];
 
   // Sleep Chart Data
   const hypnogramData = todaysData?.data?.hypnogram_5min
@@ -105,7 +118,7 @@ function SleepData() {
       };
     });
 
-  console.log(`hypnogramData`, hypnogramData);
+  // console.log(`hypnogramData`, hypnogramData);
 
   // Heartrate/HRV Chart Data
   const minHeartRate = todaysData?.data?.hr_lowest;
@@ -161,6 +174,7 @@ function SleepData() {
         avgHRV={avgHRV}
         maxHRV={maxHRV}
         hypnogramData={hypnogramData}
+        sleepStagesData={sleepStagesData}
         heartRateData={heartRateData}
         hrvData={hrvData}
         sleepContributorData={sleepContributorData}
