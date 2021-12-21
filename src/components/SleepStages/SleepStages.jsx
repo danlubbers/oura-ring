@@ -4,7 +4,7 @@ import { secondsToHm } from "../../utilities/convertTime";
 
 const SleepStages = ({ sleepStagesData }) => {
   const sleepStages = sleepStagesData.map(
-    ({ stage, sleepSeconds, percentage, color }, idx) => {
+    ({ stage, sleepSeconds, percentage, showPercentage, color }, idx) => {
       return (
         <div className={styles.sleepStagesWrapper} key={`${stage}-${idx}`}>
           <div className={styles.sleepStagesWrapper}>
@@ -20,7 +20,7 @@ const SleepStages = ({ sleepStagesData }) => {
           <span className={styles.sleepStageTime}>
             {secondsToHm(sleepSeconds)}
           </span>
-          {percentage && (
+          {showPercentage && (
             <span className={styles.sleepStagePercentage}>{percentage}%</span>
           )}
         </div>

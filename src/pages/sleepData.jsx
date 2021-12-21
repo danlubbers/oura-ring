@@ -81,6 +81,7 @@ function SleepData() {
 
   // Sleep Stages/Percentages that aren't already declared
   const awakeSleep = todaysData?.data?.awake;
+  const awakePercentage = Math.round(((awakeSleep - total) / total + 1) * 100);
   const lightSleep = todaysData?.data?.light;
   const lightPercentage = Math.round(((lightSleep - total) / total + 1) * 100);
 
@@ -88,25 +89,29 @@ function SleepData() {
     {
       stage: "Awake",
       sleepSeconds: awakeSleep,
-      percentage: null,
+      percentage: awakePercentage,
+      showPercentage: false,
       color: "#3DCEB7",
     },
     {
       stage: "REM",
       sleepSeconds: remSleep,
       percentage: remPercentage,
+      showPercentage: true,
       color: "#37A3B3",
     },
     {
       stage: "Light",
       sleepSeconds: lightSleep,
       percentage: lightPercentage,
+      showPercentage: true,
       color: "#3C50D5",
     },
     {
       stage: "Deep",
       sleepSeconds: deepSleep,
       percentage: deepSleepPercentage,
+      showPercentage: true,
       color: "#303EA0",
     },
   ];
