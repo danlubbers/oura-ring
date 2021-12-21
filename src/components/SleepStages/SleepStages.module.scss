@@ -10,7 +10,7 @@
     font-weight: 500;
 
     .sleepStagesWrapper {
-      width: 25%;
+      width: 50%;
       .line {
         margin-top: 0.5rem;
         height: 2.5rem;
@@ -19,12 +19,16 @@
       }
     }
     .sleepStageText {
-      margin-left: -2rem;
+      margin-left: -5rem;
       margin-right: 1rem;
     }
     .sleepStageTime {
+      font-size: 1.4rem;
       margin-right: 0.5rem;
       color: $color-blue;
+    }
+    .sleepStagePercentage {
+      font-size: 1.4rem;
     }
   }
 }
