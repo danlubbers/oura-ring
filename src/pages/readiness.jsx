@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderReadinessData from "../components/RenderReadinessData/RenderReadinessData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
@@ -7,22 +7,8 @@ import moment from "moment";
 import { timeIncrement } from "../utilities/incrementTime";
 
 function Readiness() {
-  const { readinessData, sleepData } = useContext(GlobalContext);
-  const [todaysData, setTodaysData] = useState({});
-  // console.log(`todaysData`, todaysData);
-
-  useEffect(() => {
-    const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
-      5,
-      10
-    );
-    const todaysData = {
-      readiness: readinessData?.[readinessData.length - 1],
-      sleep: sleepData?.[sleepData.length - 1],
-    };
-
-    setTodaysData({ date: todaysDate, data: todaysData });
-  }, [readinessData, sleepData]);
+  const { todaysData } = useContext(GlobalContext);
+  // console.log(`Readiness: todaysData`, todaysData);
 
   const sleepDuration = todaysData?.data?.sleep?.duration;
 
@@ -104,11 +90,7 @@ function Readiness() {
 
   return (
     <div>
-      <DateRenderer
-        readiness
-        todaysDate={todaysData.date}
-        setTodaysData={setTodaysData}
-      />
+      <DateRenderer />
       <RenderReadinessData
         score={score}
         todaysDate={todaysData.date}
