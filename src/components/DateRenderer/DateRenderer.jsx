@@ -3,17 +3,20 @@ import * as styles from "./DateRenderer.module.scss";
 import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
 
-const DateRenderer = ({ todaysDate, setTodaysData, readiness }) => {
-  const { readinessData, sleepData } = useContext(GlobalContext);
+const DateRenderer = ({ readiness }) => {
+  const { readinessData, sleepData, todaysData, setTodaysData } =
+    useContext(GlobalContext);
+  
+  const todaysDate = todaysData?.date;
 
-  const pickSleepDate = sleepData.map((todaysData, idx) => {
+  const pickSleepDate = sleepData.map((sleepData, idx) => {
     // Added because Readiness uses "both" readinessData and sleepData
     const combinedData = {
       readiness: readinessData[idx],
       sleep: sleepData[idx],
     };
 
-    const date = todaysData.bedtime_end.slice(5, 10);
+    const date = sleepData.bedtime_end.slice(5, 10);
 
     return (
       <div key={`btn: ${date}`} style={{ width: "100%" }}>
@@ -23,7 +26,7 @@ const DateRenderer = ({ todaysDate, setTodaysData, readiness }) => {
             setTodaysData(
               readiness
                 ? { date, data: combinedData }
-                : { date, data: todaysData }
+                : { date, data: sleepData }
             )
           }
           style={{

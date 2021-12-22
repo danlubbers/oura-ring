@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
@@ -8,20 +8,8 @@ import { timeIncrement } from "../utilities/incrementTime";
 import { secondsToHm } from "../utilities/convertTime";
 
 function SleepData() {
-  const { sleepData } = useContext(GlobalContext);
-  const [todaysData, setTodaysData] = useState({});
+  const { todaysData } = useContext(GlobalContext);
   console.log(`todaysData`, todaysData);
-
-  useEffect(() => {
-    const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
-      5,
-      10
-    );
-    const todaysData = sleepData?.[sleepData.length - 1];
-
-    setTodaysData({ date: todaysDate, data: todaysData });
-  }, [sleepData]);
-
   const score = todaysData?.data?.score;
 
   // Quad Data
@@ -180,10 +168,7 @@ function SleepData() {
 
   return (
     <div>
-      <DateRenderer
-        todaysDate={todaysData.date}
-        setTodaysData={setTodaysData}
-      />
+      <DateRenderer />
       <RenderSleepData
         score={score}
         todaysDate={todaysData.date}

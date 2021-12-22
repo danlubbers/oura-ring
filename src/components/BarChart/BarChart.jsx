@@ -11,8 +11,6 @@ const BarChartComponent = ({
   data,
   sleepStagesData,
 }) => {
-  console.log(`sleepStagesData`, sleepStagesData);
-
   return (
     <div className={styles.barChartContainer}>
       <div className={styles.sleepTextWrapper}>
