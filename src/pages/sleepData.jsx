@@ -9,8 +9,7 @@ import { secondsToHm } from "../utilities/convertTime";
 
 function SleepData() {
   const { todaysData } = useContext(GlobalContext);
-  console.log(`Sleep: todaysData`, todaysData);
-  const score = todaysData?.data?.sleep?.score;
+  // console.log(`Sleep: todaysData`, todaysData);
 
   // Quad Data
   const totalSleep = secondsToHm(todaysData?.data?.sleep?.total);
@@ -22,6 +21,9 @@ function SleepData() {
   const avgHRV = todaysData?.data?.sleep?.rmssd;
   const maxHRV =
     todaysData?.data?.sleep && Math.max(...todaysData?.data?.sleep?.rmssd_5min);
+
+  // Overall Score
+  const score = todaysData?.data?.sleep?.score;
 
   // Contributors
   const total = todaysData?.data?.sleep?.total;
