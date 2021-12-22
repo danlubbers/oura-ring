@@ -27,6 +27,7 @@ const RenderSleepData = ({
   hrvData,
   sleepContributorData,
 }) => {
+  // console.log(`Render: totalSleep`, totalSleep);
   if (!todaysDate) return <Loading />;
 
   return (

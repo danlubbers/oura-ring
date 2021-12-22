@@ -17,21 +17,25 @@ const GlobalProvider = ({ children }) => {
       const readinessData = data.ouraReadinessData.data.readiness;
       const sleepData = data.ouraSleepData.data.sleep;
 
-      const todaysDate = sleepData[sleepData.length - 1].bedtime_end.slice(
+      const todaysSleepDate = sleepData[sleepData.length - 1].bedtime_end.slice(
         5,
         10
       );
-      const todaysData = sleepData[sleepData.length - 1];
+
+      const todaysSleepData = sleepData[sleepData.length - 1];
+      const todaysReadinessData = readinessData[readinessData.length - 1];
 
       setUserData(userData);
       setReadinessData(readinessData);
       setSleepData(sleepData);
-      setTodaysData({ date: todaysDate, data: todaysData });
-      // todo when going from readiness back to sleep data show's {readiness: with data, sleep: undefined!!!}
+      setTodaysData({
+        date: todaysSleepDate,
+        data: { readiness: todaysReadinessData, sleep: todaysSleepData },
+      });
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  console.log(`todaysData`, todaysData);
+  console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider

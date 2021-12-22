@@ -9,7 +9,7 @@ import { timeIncrement } from "../utilities/incrementTime";
 function Readiness() {
   const { readinessData, sleepData } = useContext(GlobalContext);
   const [todaysData, setTodaysData] = useState({});
-  // console.log(`todaysData`, todaysData);
+  console.log(`Readiness: todaysData`, todaysData);
 
   useEffect(() => {
     const todaysDate = sleepData?.[sleepData.length - 1]?.bedtime_end.slice(
