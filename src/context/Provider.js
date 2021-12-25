@@ -26,6 +26,7 @@ const GlobalProvider = ({ children }) => {
 
       const todaysSleepData = sleepData[sleepData.length - 1];
       const todaysReadinessData = readinessData[readinessData.length - 1];
+      const todaysActivityData = activityData[activityData.length - 1];
 
       setUserData(userData);
       setReadinessData(readinessData);
@@ -36,7 +37,7 @@ const GlobalProvider = ({ children }) => {
         data: {
           readiness: todaysReadinessData,
           sleep: todaysSleepData,
-          activity: activityData,
+          activity: todaysActivityData,
         },
       });
     };
