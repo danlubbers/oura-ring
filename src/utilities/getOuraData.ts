@@ -5,12 +5,14 @@ const getOuraData = async () => {
   const ouraUserInfoAPI = `https://api.ouraring.com/v1/userinfo?access_token=${ouraToken}`;
   const ouraReadinessAPI = `https://api.ouraring.com/v1/readiness?access_token=${ouraToken}`;
   const ouraSleepAPI = `https://api.ouraring.com/v1/sleep?access_token=${ouraToken}`;
+  const ouraActivityAPI = `https://api.ouraring.com/v1/activity?access_token=${ouraToken}`;
   try {
     const ouraUserData = await axios.get(ouraUserInfoAPI);
     const ouraReadinessData = await axios.get(ouraReadinessAPI);
     const ouraSleepData = await axios.get(ouraSleepAPI);
+    const ouraActivityData = await axios.get(ouraActivityAPI);
 
-    return { ouraUserData, ouraReadinessData, ouraSleepData };
+    return { ouraUserData, ouraReadinessData, ouraSleepData, ouraActivityData };
   } catch (error) {
     console.error(error);
   }
