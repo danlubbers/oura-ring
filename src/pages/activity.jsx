@@ -22,6 +22,7 @@ function Activity() {
   // Quad and Chart Data
 
   // Overall Score
+  const score = todaysData.data?.activity.score;
 
   // Contributors
 
@@ -31,6 +32,7 @@ function Activity() {
     <div>
       <DateRenderer />
       <RenderActivityData
+        score={score}
         todaysDate={todaysData.date}
         calActive={calActive}
         calTotal={calTotal}

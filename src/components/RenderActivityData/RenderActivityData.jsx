@@ -1,9 +1,11 @@
-// import * as styles from "./RenderActivityData.module.scss";
+import * as styles from "./RenderActivityData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
+import DailyScore from "../DailyScore/DailyScore";
 
 const RenderActivityData = ({
+  score,
   todaysDate,
   calActive,
   calTotal,
@@ -26,6 +28,14 @@ const RenderActivityData = ({
         quadFourText="Steps"
         quadFourData={steps}
       />
+      <div className={styles.renderActivityContainer}>
+        <DailyScore activity score={score} />
+
+        {/* <Contributors
+          readinessContributorData={readinessContributorData}
+          restingHR={restingHR}
+        /> */}
+      </div>
     </Container>
   );
 };
