@@ -33,6 +33,7 @@ const RenderSleepData = ({
   return (
     <Container>
       <QuadData
+        sleep
         quadOneText="Total sleep"
         quadOneData={totalSleep}
         quadTwoText="Time in bed"

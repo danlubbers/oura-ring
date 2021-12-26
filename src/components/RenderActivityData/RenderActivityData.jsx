@@ -3,22 +3,28 @@ import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
 
-const RenderActivityData = ({ todaysDate }) => {
+const RenderActivityData = ({
+  todaysDate,
+  calActive,
+  calTotal,
+  walkingEquivalency,
+  steps,
+}) => {
   // console.log(`Render: totalSleep`, totalSleep);
   if (!todaysDate) return <Loading />;
 
   return (
     <Container>
-      ACTIVITY TEST
       <QuadData
-      // quadOneText="Total sleep"
-      // quadOneData={totalSleep}
-      // quadTwoText="Time in bed"
-      // quadTwoData={timeInBed}
-      // quadThreeText="Sleep efficiency"
-      // quadThreeData={sleepEfficiency}
-      // quadFourText="Resting heart rate"
-      // quadFourData={minHeartRate}
+        activity
+        quadOneText="Active calories"
+        quadOneData={calActive}
+        quadTwoText="Total burn"
+        quadTwoData={calTotal}
+        quadThreeText="Walking equivalency"
+        quadThreeData={walkingEquivalency}
+        quadFourText="Steps"
+        quadFourData={steps}
       />
     </Container>
   );

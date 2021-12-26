@@ -8,9 +8,16 @@ import { GlobalContext } from "../context/Provider";
 
 function Activity() {
   const { todaysData } = useContext(GlobalContext);
-  // console.log(`Readiness: todaysData`, todaysData);
+  console.log(`Activity: todaysData`, todaysData.data?.activity);
 
   // Quad Data
+  const calActive =
+    todaysData.data?.activity.cal_active.toLocaleString("en-US");
+  const calTotal = todaysData.data?.activity.cal_total.toLocaleString("en-US");
+  const walkingEquivalency = (
+    todaysData.data?.activity.daily_movement / 1609.344
+  ).toFixed(1); // convert meters to miles
+  const steps = todaysData.data?.activity.steps.toLocaleString("en-US");
 
   // Quad and Chart Data
 
@@ -23,7 +30,13 @@ function Activity() {
   return (
     <div>
       <DateRenderer />
-      <RenderActivityData todaysDate={todaysData.date} />
+      <RenderActivityData
+        todaysDate={todaysData.date}
+        calActive={calActive}
+        calTotal={calTotal}
+        walkingEquivalency={walkingEquivalency}
+        steps={steps}
+      />
       <NavigationFooter />
     </div>
   );
