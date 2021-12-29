@@ -1,15 +1,15 @@
 @import "../../styles/variables.scss";
 
-.sleepStagesContainer {
+.stagesContainer {
   width: 100%;
   margin: 2rem 0;
-  .sleepStagesWrapper {
+  .stagesWrapper {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-weight: 500;
 
-    .sleepStagesWrapper {
+    .stagesWrapper {
       width: 50%;
       .line {
         margin-top: 0.5rem;
@@ -18,16 +18,16 @@
         background-color: $color-blue;
       }
     }
-    .sleepStageText {
-      margin-left: -5rem;
+    .stageText {
+      margin-left: 1rem;
       margin-right: 1rem;
     }
-    .sleepStageTime {
+    .stageTime {
       font-size: 1.4rem;
       margin-right: 0.5rem;
       color: $color-blue;
     }
-    .sleepStagePercentage {
+    .stagePercentage {
       font-size: 1.4rem;
     }
   }

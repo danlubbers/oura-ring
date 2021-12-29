@@ -79,28 +79,28 @@ function SleepData() {
   const sleepStagesData = [
     {
       stage: "Awake",
-      sleepSeconds: awakeSleep,
+      seconds: awakeSleep,
       percentage: awakePercentage,
       showPercentage: false,
       color: "#3DCEB7",
     },
     {
       stage: "REM",
-      sleepSeconds: remSleep,
+      seconds: remSleep,
       percentage: remPercentage,
       showPercentage: true,
       color: "#37A3B3",
     },
     {
       stage: "Light",
-      sleepSeconds: lightSleep,
+      seconds: lightSleep,
       percentage: lightPercentage,
       showPercentage: true,
       color: "#3C50D5",
     },
     {
       stage: "Deep",
-      sleepSeconds: deepSleep,
+      seconds: deepSleep,
       percentage: deepSleepPercentage,
       showPercentage: true,
       color: "#303EA0",

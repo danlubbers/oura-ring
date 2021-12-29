@@ -56,8 +56,43 @@ function Activity() {
         index: idx, // need to convert to 4am - 4am
       };
     })
-    .filter((e) => e.met < 5);
-  console.log(`metFiveMinArray`, metFiveMinArray);
+    .filter((e) => e.met < 5 || e.met !== 0);
+  // console.log(`metFiveMinArray`, metFiveMinArray);
+
+  // Move Stages
+  const total = todaysData?.data?.activity?.total;
+  const highSeconds = todaysData?.data?.activity?.high * 60;
+  const highPercentage = Math.round(((highSeconds - total) / total + 1) * 100);
+  const mediumSeconds = todaysData?.data?.activity?.medium * 60;
+  const mediumPercentage = Math.round(
+    ((mediumSeconds - total) / total + 1) * 100
+  );
+  const lowSeconds = todaysData?.data?.activity?.low * 60;
+  const lowPercentage = Math.round(((lowSeconds - total) / total + 1) * 100);
+
+  const activityStagesData = [
+    {
+      stage: "High",
+      seconds: highSeconds,
+      percentage: highPercentage,
+      showPercentage: false,
+      color: "#3DCEB7",
+    },
+    {
+      stage: "Medium",
+      seconds: mediumSeconds,
+      percentage: mediumPercentage,
+      showPercentage: false,
+      color: "#37A3B3",
+    },
+    {
+      stage: "Low",
+      seconds: lowSeconds,
+      percentage: lowPercentage,
+      showPercentage: false,
+      color: "#3C50D5",
+    },
+  ];
 
   return (
     <div>
@@ -71,6 +106,7 @@ function Activity() {
         steps={steps}
         activityContributorData={activityContributorData}
         metFiveMinArray={metFiveMinArray}
+        activityStagesData={activityStagesData}
       />
       <NavigationFooter />
     </div>

@@ -15,6 +15,7 @@ const RenderActivityData = ({
   steps,
   activityContributorData,
   metFiveMinArray,
+  activityStagesData,
 }) => {
   // console.log(`Render: totalSleep`, totalSleep);
   if (!todaysDate) return <Loading />;
@@ -40,12 +41,14 @@ const RenderActivityData = ({
       <div className={styles.dailyMovementContainer}>
         <p>Daily movement</p>
         <BarChart
+          activity
           bedtimeStart={null}
           bedtimeEnd={null}
           data={metFiveMinArray}
           dataKey="met"
           XAxisDataKey={"index"}
           domain={[0, 4]}
+          activityStagesData={activityStagesData}
         />
       </div>
     </Container>

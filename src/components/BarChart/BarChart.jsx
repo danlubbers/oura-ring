@@ -1,10 +1,11 @@
 import React from "react";
 import * as styles from "./BarChart.module.scss";
 import { AreaChart, Area, XAxis, YAxis } from "recharts";
-import SleepStages from "../SleepStages/SleepStages";
+import SleepStages from "../Stages/Stages";
 
 const BarChartComponent = ({
   sleep,
+  activity,
   totalSleep,
   timeInBed,
   bedtimeStart,
@@ -14,8 +15,8 @@ const BarChartComponent = ({
   XAxisDataKey,
   domain,
   sleepStagesData,
+  activityStagesData,
 }) => {
-  console.log(`data`, data);
   return (
     <div className={styles.barChartContainer}>
       {sleep && (
@@ -60,7 +61,8 @@ const BarChartComponent = ({
         />
       </AreaChart>
 
-      {sleep && <SleepStages sleepStagesData={sleepStagesData} />}
+      {sleep && <SleepStages stagesData={sleepStagesData} />}
+      {activity && <SleepStages stagesData={activityStagesData} />}
     </div>
   );
 };
