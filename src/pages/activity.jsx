@@ -34,8 +34,6 @@ function Activity() {
   const trainingVolumeScore = todaysData.data?.activity.score_training_volume;
   const recoveryTimeScore = todaysData.data?.activity.score_recovery_time;
 
-  console.log(`meetDailyGoalsScore`, meetDailyGoalsScore);
-
   const activityContributorData = [
     { name: "Stay active", score: stayActiveScore, data: inactive },
     {
@@ -49,6 +47,18 @@ function Activity() {
     { name: "Recovery Time", score: recoveryTimeScore },
   ];
 
+  const metFiveMinArray = todaysData.data?.activity.class_5min
+    .split("")
+    .map((met, idx) => {
+      // start at 4am and add 5min to each index
+      return {
+        met: met,
+        index: idx, // need to convert to 4am - 4am
+      };
+    })
+    .filter((e) => e.met < 5);
+  console.log(`metFiveMinArray`, metFiveMinArray);
+
   return (
     <div>
       <DateRenderer />
@@ -60,6 +70,7 @@ function Activity() {
         walkingEquivalency={walkingEquivalency}
         steps={steps}
         activityContributorData={activityContributorData}
+        metFiveMinArray={metFiveMinArray}
       />
       <NavigationFooter />
     </div>

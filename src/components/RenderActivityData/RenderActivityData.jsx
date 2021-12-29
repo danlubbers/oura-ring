@@ -4,6 +4,7 @@ import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
 import DailyScore from "../DailyScore/DailyScore";
 import Contributors from "../Contributors/Contributors";
+import BarChart from "../BarChart/BarChart";
 
 const RenderActivityData = ({
   score,
@@ -13,6 +14,7 @@ const RenderActivityData = ({
   walkingEquivalency,
   steps,
   activityContributorData,
+  metFiveMinArray,
 }) => {
   // console.log(`Render: totalSleep`, totalSleep);
   if (!todaysDate) return <Loading />;
@@ -34,6 +36,17 @@ const RenderActivityData = ({
         <DailyScore activity score={score} />
 
         <Contributors activityContributorData={activityContributorData} />
+      </div>
+      <div className={styles.dailyMovementContainer}>
+        <p>Daily movement</p>
+        <BarChart
+          bedtimeStart={null}
+          bedtimeEnd={null}
+          data={metFiveMinArray}
+          dataKey="met"
+          XAxisDataKey={"index"}
+          domain={[0, 4]}
+        />
       </div>
     </Container>
   );

@@ -113,7 +113,6 @@ const Contributors = ({
   if (activityContributorData) {
     contributionLoop = activityContributorData.map(
       ({ name, score, data }, idx) => {
-        console.log(`name: score`, name, score, data);
         const negativeScoreRating = score < 70 && "#DC143C";
         return (
           <div key={`${name}-${idx}`}>
