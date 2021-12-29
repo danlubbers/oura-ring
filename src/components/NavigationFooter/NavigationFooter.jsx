@@ -3,8 +3,9 @@ import * as styles from "./NavigationFooter.module.scss";
 import { Link, useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
-import { GiNightSleep } from "react-icons/gi";
 import { RiHealthBookFill } from "react-icons/ri";
+import { GiNightSleep } from "react-icons/gi";
+import { GoFlame } from "react-icons/go";
 
 const NavigationHeader = () => {
   const { pathname } = useLocation();
@@ -30,6 +31,12 @@ const NavigationHeader = () => {
         <GiNightSleep
           size={35}
           color={pathname === "/sleep-data" ? "#66becc" : null}
+        />
+      </Link>
+      <Link className={styles.link} to="/activity-data">
+        <GoFlame
+          size={35}
+          color={pathname === "/activity-data" ? "#66becc" : null}
         />
       </Link>
     </div>

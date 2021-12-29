@@ -8,6 +8,7 @@ const Contributors = ({
   restingHR,
   sleepContributorData,
   totalSleep,
+  activityContributorData,
 }) => {
   let contributionLoop;
 
@@ -109,13 +110,65 @@ const Contributors = ({
     );
   }
 
+  if (activityContributorData) {
+    contributionLoop = activityContributorData.map(
+      ({ name, score, data }, idx) => {
+        const negativeScoreRating = score < 70 && "#DC143C";
+        return (
+          <div key={`${name}-${idx}`}>
+            <div className={styles.textWrapper}>
+              <span>{name}</span>
+              {name === "Stay active" && (
+                <div>
+                  <span
+                    style={{ color: negativeScoreRating, marginRight: "1rem" }}
+                  >
+                    {data},
+                  </span>
+                  <span style={{ color: negativeScoreRating }}>inactivity</span>
+                </div>
+              )}
+              {name === "Move every hour" && (
+                <div>
+                  <span
+                    style={{ color: negativeScoreRating, marginRight: "1rem" }}
+                  >
+                    {data},
+                  </span>
+                  <span>alerts</span>
+                </div>
+              )}
+              {name !== "Stay active" && name !== "Move every hour" && (
+                <>
+                  <span>{data}</span>
+                  <span style={{ color: negativeScoreRating }}>
+                    {scoring(score)}
+                  </span>
+                </>
+              )}
+            </div>
+
+            <div className={styles.lineWrapper}>
+              <div className={[styles.lineBackground]} />
+              <div
+                style={{
+                  width: `${score}%`,
+                  backgroundColor: negativeScoreRating,
+                }}
+                className={[styles.line]}
+              />
+            </div>
+          </div>
+        );
+      }
+    );
+  }
+
   return (
     <div className={styles.contributorContainer}>
-      {readinessContributorData ? (
-        <p>Readiness Contributors</p>
-      ) : (
-        <p>Sleep Contributors</p>
-      )}
+      {readinessContributorData && <p>Readiness Contributors</p>}
+      {sleepContributorData && <p>Sleep Contributors</p>}
+      {activityContributorData && <p>Activity Contributors</p>}
       {contributionLoop}
     </div>
   );

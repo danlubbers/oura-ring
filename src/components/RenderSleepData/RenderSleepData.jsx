@@ -33,6 +33,7 @@ const RenderSleepData = ({
   return (
     <Container>
       <QuadData
+        sleep
         quadOneText="Total sleep"
         quadOneData={totalSleep}
         quadTwoText="Time in bed"
@@ -52,11 +53,15 @@ const RenderSleepData = ({
         />
 
         <BarChart
+          sleep
           totalSleep={totalSleep}
           timeInBed={timeInBed}
           bedtimeStart={bedtimeStart}
           bedtimeEnd={bedtimeEnd}
           data={hypnogramData}
+          XAxisDataKey="timeDuration"
+          dataKey={"sleepData.sleepLevel"}
+          domain={[1, 4]}
           sleepStagesData={sleepStagesData}
         />
 

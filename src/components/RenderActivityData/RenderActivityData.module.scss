@@ -1,0 +1,10 @@
+.renderActivityContainer {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 200;
+}
+
+.dailyMovementContainer {
+  @extend .renderActivityContainer;
+  margin-top: 2rem;
+}

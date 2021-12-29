@@ -4,15 +4,18 @@ import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
 
 const DateRenderer = () => {
-  const { readinessData, sleepData, todaysData, setTodaysData } =
+  const { readinessData, sleepData, activityData, todaysData, setTodaysData } =
     useContext(GlobalContext);
 
   const todaysDate = todaysData?.date;
 
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
+    // console.log(`sleepData[idx]`, sleepData[idx]);
+    // console.log(`activityData[idx]`, activityData[idx]);
     const combinedData = {
       readiness: readinessData[idx],
       sleep: sleepData[idx],
+      activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
     };
 
     const date = sleepObj.bedtime_end.slice(5, 10);
