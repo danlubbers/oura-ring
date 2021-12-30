@@ -9,6 +9,7 @@ function Index() {
   const { logout } = useToken();
   const [parsedCsvData, setParsedCsvData] = useState([]);
   const [bedroomTemp, setBedroomTemp] = useState(null);
+  const [bedroomHumidity, setBedroomHumidity] = useState(null);
 
   useEffect(() => {
     const parseFile = (file) => {
@@ -23,26 +24,26 @@ function Index() {
 
     if (parsedCsvData.length) {
       const tempAvg =
-        parsedCsvData
-          .map((obj) => {
-            return Object.keys(obj)
-              .filter((key) => key.includes("Temperature_Fahrenheit"))
-              .reduce(
-                (cur, key) => Object.assign(cur, { [key]: obj[key] }),
-                {}
-              );
-          })
-          .reduce((acc, curr) => acc + Number(curr.Temperature_Fahrenheit), 0) /
-        parsedCsvData.length;
-
+        parsedCsvData.reduce(
+          (acc, curr) => (acc += Number(curr.Temperature_Fahrenheit)),
+          0
+        ) / parsedCsvData.length;
       setBedroomTemp(Number(tempAvg.toFixed(2)));
+
+      const humidityAvg =
+        parsedCsvData.reduce(
+          (acc, curr) => (acc += Number(curr.Relative_Humidity)),
+          0
+        ) / parsedCsvData.length;
+      setBedroomHumidity(Number(humidityAvg.toFixed(2)));
     }
   }, []);
   // console.log(`parsedCsvData`, parsedCsvData);
   console.log(`bedroomTemp`, bedroomTemp);
+  console.log(`bedroomHumidity`, bedroomHumidity);
   return (
     <div>
-      <Home logout={logout} />
+      <Home bedroomTemp={bedroomTemp} logout={logout} />
       <NavigationHeader />
     </div>
   );
