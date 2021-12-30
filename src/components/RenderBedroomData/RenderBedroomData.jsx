@@ -1,14 +1,23 @@
 import React from "react";
-import * as styles from "/RenderBedroomData.module.scss";
+import * as styles from "./RenderBedroomData.module.scss";
+// import Loading from "../Loading/Loading";
+import Container from "../Container/Container";
 
-const RenderBedroomData = ({ bedroomTemp }) => {
+const RenderBedroomData = ({ bedroomTemp, bedroomHumidity }) => {
+  // if (!bedroomTemp) return <Loading />;
   return (
-    <div className={styles.renderBedroomContainer}>
-      <h1>
-        <span>Temperature: </span>
-        <span>{bedroomTemp}</span>
-      </h1>
-    </div>
+    <Container>
+      <div className={styles.renderBedroomContainer}>
+        <div className={styles.tempWrapper}>
+          <span>Temperature: </span>
+          <span>{bedroomTemp}° F</span>
+        </div>
+        <div className={styles.humidityWrapper}>
+          <span>Humidity: </span>
+          <span>{bedroomHumidity}%</span>
+        </div>
+      </div>
+    </Container>
   );
 };
 

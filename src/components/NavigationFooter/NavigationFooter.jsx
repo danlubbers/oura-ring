@@ -2,7 +2,7 @@ import React from "react";
 import * as styles from "./NavigationFooter.module.scss";
 import { Link, useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
-import { FaUser, FaThermometerThreeQuarters } from "react-icons/fa";
+import { FaThermometerThreeQuarters } from "react-icons/fa";
 import { RiHealthBookFill } from "react-icons/ri";
 import { GiNightSleep } from "react-icons/gi";
 import { GoFlame } from "react-icons/go";
