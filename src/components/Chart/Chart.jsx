@@ -6,11 +6,15 @@ import * as styles from "./Chart.module.scss";
 const Chart = ({
   data,
   dataKey,
+  tempDataKey,
+  humidityDataKey,
   bedtimeStart,
   bedtimeEnd,
+  yAxisDomain,
   chartTitle,
   min,
   max,
+
   lineColor,
   legend,
 }) => {
@@ -38,10 +42,16 @@ const Chart = ({
       >
         <Line
           type="monotone"
-          dataKey={dataKey}
+          dataKey={dataKey || tempDataKey}
           stroke={lineColor}
           dot={false}
         />
+        {/* <Line
+          type="monotone"
+          dataKey={dataKey || humidityDataKey}
+          stroke={lineColor}
+          dot={false}
+        /> */}
 
         <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
         <XAxis
@@ -56,7 +66,7 @@ const Chart = ({
         <YAxis
           // type="number"code
           interval="preserveStartEnd"
-          domain={[min - 5 || 0, max + 5]}
+          domain={yAxisDomain}
           style={{
             fontSize: "1.5rem",
           }}

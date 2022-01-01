@@ -7,10 +7,15 @@ import Papa from "papaparse";
 import { thermoStr } from "../utilities/sampleTempData";
 
 const BedroomData = () => {
-  const { todaysData } = useContext(GlobalContext);
+  const {
+    todaysData: { date, data },
+  } = useContext(GlobalContext);
+
   const [parsedCsvData, setParsedCsvData] = useState([]);
+  console.log(`Bedroom: `, data);
 
   useEffect(() => {
+    // Converts CSV into JSON
     const parseFile = (file) => {
       Papa.parse(file, {
         header: true,
@@ -22,7 +27,7 @@ const BedroomData = () => {
     parseFile(thermoStr);
   }, []);
 
-  const todaysDate = todaysData.date;
+  const todaysDate = date;
 
   /*** Filtered to get tonights data and hours between midnight and 10am */
   const filteredData = parsedCsvData.filter((obj) => {
@@ -49,12 +54,44 @@ const BedroomData = () => {
 
   const bedroomHumidityAvg = Number(humidityAvg.toFixed(0));
 
+  console.log(`filteredData`, filteredData);
+
+  const tempArray = filteredData.map((obj) => {
+    return Number(obj.Temperature_Fahrenheit);
+  });
+
+  const minTemp = Math.min(...tempArray);
+  const maxTemp = Math.max(...tempArray);
+
+  const humidityArray = filteredData.map((obj) => {
+    return Number(obj.Relative_Humidity);
+  });
+
+  const minHumidity = Math.min(...humidityArray);
+  const maxhumidity = Math.max(...humidityArray);
+
+  const chartData = filteredData.map(
+    ({ Relative_Humidity, Temperature_Fahrenheit, Timestamp }, idx) => {
+      const hour = Timestamp.slice(11, 13);
+      return {
+        humidity: Relative_Humidity,
+        temp: Temperature_Fahrenheit,
+        time: hour,
+      };
+    }
+  );
+
   return (
     <div>
       <DateRenderer />
       <RenderBedroomData
         bedroomTempAvg={bedroomTempAvg}
         bedroomHumidityAvg={bedroomHumidityAvg}
+        minTemp={minTemp}
+        maxTemp={maxTemp}
+        minHumidity={minHumidity}
+        maxHumidity={maxhumidity}
+        chartData={chartData}
       />
       <NavigationFooter />
     </div>
