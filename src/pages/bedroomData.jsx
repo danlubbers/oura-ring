@@ -12,7 +12,7 @@ const BedroomData = () => {
   } = useContext(GlobalContext);
 
   const [parsedCsvData, setParsedCsvData] = useState([]);
-  console.log(`Bedroom: `, data);
+  // console.log(`Bedroom: `, data);
 
   useEffect(() => {
     // Converts CSV into JSON
@@ -34,7 +34,7 @@ const BedroomData = () => {
     const date = obj.Timestamp.slice(5, 10);
     const hour = obj.Timestamp.slice(11, 13);
 
-    return date === todaysDate && hour < 10;
+    return date === todaysDate && hour <= 10;
   });
 
   /*** Average Filtered Temp Data */
@@ -44,17 +44,21 @@ const BedroomData = () => {
       0
     ) / filteredData.length;
 
-  const bedroomTempAvg = Number(nightlyTempAvg.toFixed(2));
-
   const humidityAvg =
     filteredData.reduce(
       (acc, curr) => (acc += Number(curr.Relative_Humidity)),
       0
     ) / filteredData.length;
 
+  // Quad Data
+  const bedroomTempAvg = Number(nightlyTempAvg.toFixed(2));
   const bedroomHumidityAvg = Number(humidityAvg.toFixed(0));
+  const bodyTempData = data?.sleep?.temperature_delta;
+  const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
+  const bodyTempFahrenheit = (conversionToFahrenheit - 32).toFixed(1);
+  const avgHRV = data?.sleep?.rmssd;
 
-  console.log(`filteredData`, filteredData);
+  // console.log(`filteredData`, filteredData);
 
   const tempArray = filteredData.map((obj) => {
     return Number(obj.Temperature_Fahrenheit);
@@ -72,7 +76,7 @@ const BedroomData = () => {
 
   const chartData = filteredData.map(
     ({ Relative_Humidity, Temperature_Fahrenheit, Timestamp }, idx) => {
-      const hour = Timestamp.slice(11, 13);
+      const hour = Timestamp.slice(11, 16);
       return {
         humidity: Relative_Humidity,
         temp: Temperature_Fahrenheit,
@@ -80,6 +84,7 @@ const BedroomData = () => {
       };
     }
   );
+  console.log(`chartData`, chartData);
 
   return (
     <div>
@@ -87,6 +92,8 @@ const BedroomData = () => {
       <RenderBedroomData
         bedroomTempAvg={bedroomTempAvg}
         bedroomHumidityAvg={bedroomHumidityAvg}
+        bodyTempData={bodyTempFahrenheit}
+        avgHRV={avgHRV}
         minTemp={minTemp}
         maxTemp={maxTemp}
         minHumidity={minHumidity}

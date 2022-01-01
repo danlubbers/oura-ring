@@ -6,7 +6,7 @@ import * as styles from "./Chart.module.scss";
 const Chart = ({
   data,
   lineDataKey,
-  XAxisDataKey,
+  xAxisDataKey,
   bedtimeStart,
   bedtimeEnd,
   yAxisDomain,
@@ -48,7 +48,7 @@ const Chart = ({
 
         <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
         <XAxis
-          dataKey={XAxisDataKey}
+          dataKey={xAxisDataKey}
           interval="preserveStartEnd"
           minTickGap={45}
           // domain={[bedtimeStart, bedtimeEnd]}

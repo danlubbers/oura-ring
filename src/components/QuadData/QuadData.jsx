@@ -5,6 +5,7 @@ const QuadData = ({
   readiness,
   sleep,
   activity,
+  bedroom,
   quadOneText,
   quadOneData,
   quadTwoText,
@@ -18,7 +19,9 @@ const QuadData = ({
     <div className={styles.quadDataWrapper}>
       <div className={styles.quadOneDataWrapper}>
         <p>{quadOneText}</p>
-        <span className={styles.quadOneText}>{quadOneData}</span>
+        <span className={styles.quadOneText}>
+          {quadOneData} {bedroom && "°F"}
+        </span>
         {readiness && <span> bpm</span>}
         {activity && <span> Cal</span>}
       </div>
@@ -27,11 +30,12 @@ const QuadData = ({
         <span className={styles.quadTwoText}>{quadTwoData}</span>
         {readiness && <span> ms</span>}
         {activity && <span> Cal</span>}
+        {bedroom && <span> %</span>}
       </div>
       <div className={styles.quadThreeDataWrapper}>
         <p>{quadThreeText}</p>
         <span className={styles.quadThreeText}>{quadThreeData} </span>
-        {readiness && <span>°F</span>}
+        {(readiness || bedroom) && <span>°F</span>}
         {sleep && <span>%</span>}
         {activity && <span> mi</span>}
       </div>
@@ -40,6 +44,7 @@ const QuadData = ({
         <span className={styles.quadFourText}>{quadFourData}</span>{" "}
         {readiness && <span>/ min</span>}
         {sleep && <span>bpm</span>}
+        {bedroom && <span>ms</span>}
       </div>
     </div>
   );
