@@ -30,7 +30,8 @@ const HeartrRateAndHRVCharts = ({
 
       <Chart
         data={heartRateData}
-        dataKey="heartRate"
+        lineDataKey="heartRate"
+        XAxisDataKey="timeDuration"
         chartTitle={"Heart Rate"}
         bedtimeStart={bedtimeStart}
         bedtimeEnd={bedtimeEnd}
@@ -50,7 +51,8 @@ const HeartrRateAndHRVCharts = ({
       </div>
       <Chart
         data={hrvData}
-        dataKey="HRV"
+        lineDataKey="HRV"
+        XAxisDataKey="timeDuration"
         chartTitle={"Heart Rate Variability"}
         bedtimeStart={bedtimeStart}
         bedtimeEnd={bedtimeEnd}

@@ -30,11 +30,15 @@ const RenderBedroomData = ({
       </div>
       <Chart
         data={chartData}
-        tempDataKey={"temp"}
-        // humidityDataKey={"humidity"}
-        // min={minTemp.toFixed(0)}
-        // max={maxTemp.toFixed(0)}
-        yAxisDomain={[minTemp, maxTemp]}
+        lineDataKey={"temp"}
+        XAxisDataKey={"time"}
+        yAxisDomain={[Math.round(minTemp) - 1, Math.round(maxTemp) + 1]}
+      />
+      <Chart
+        data={chartData}
+        lineDataKey={"humidity"}
+        XAxisDataKey={"time"}
+        yAxisDomain={[Math.round(minHumidity) - 1, Math.round(maxHumidity) + 1]}
       />
     </Container>
   );
