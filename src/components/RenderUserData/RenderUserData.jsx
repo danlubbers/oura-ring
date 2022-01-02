@@ -16,6 +16,7 @@ const RenderUserData = ({
 
   return (
     <Container>
+      <p className={styles.userProfileText}>User Profile</p>
       <div className={styles.renderUserDataContainer}>
         <div>
           <span>AGE:</span>
