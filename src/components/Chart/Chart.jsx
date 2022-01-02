@@ -57,12 +57,12 @@ const Chart = ({
           }}
         />
         <YAxis
-          type="number"
+          // type="number"
           // minTickGap={5}
           // interval="preserveStartEnd"
           domain={yAxisDomain}
           style={{
-            fontSize: "1.5rem",
+            fontSize: "1.3rem",
           }}
         />
         {legend && <Legend />}
