@@ -5,12 +5,15 @@ import * as styles from "./Chart.module.scss";
 
 const Chart = ({
   data,
-  dataKey,
+  lineDataKey,
+  xAxisDataKey,
   bedtimeStart,
   bedtimeEnd,
+  yAxisDomain,
   chartTitle,
   min,
   max,
+
   lineColor,
   legend,
 }) => {
@@ -38,27 +41,28 @@ const Chart = ({
       >
         <Line
           type="monotone"
-          dataKey={dataKey}
+          dataKey={lineDataKey}
           stroke={lineColor}
           dot={false}
         />
 
         <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
         <XAxis
-          dataKey="timeDuration"
+          dataKey={xAxisDataKey}
           interval="preserveStartEnd"
           minTickGap={45}
-          domain={[bedtimeStart, bedtimeEnd]}
+          // domain={[bedtimeStart, bedtimeEnd]}
           style={{
             fontSize: "1.5rem",
           }}
         />
         <YAxis
-          // type="number"code
-          interval="preserveStartEnd"
-          domain={[min - 5 || 0, max + 5]}
+          // type="number"
+          // minTickGap={5}
+          // interval="preserveStartEnd"
+          domain={yAxisDomain}
           style={{
-            fontSize: "1.5rem",
+            fontSize: "1.3rem",
           }}
         />
         {legend && <Legend />}

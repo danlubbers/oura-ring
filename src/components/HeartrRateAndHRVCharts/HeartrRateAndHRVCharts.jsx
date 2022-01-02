@@ -30,12 +30,12 @@ const HeartrRateAndHRVCharts = ({
 
       <Chart
         data={heartRateData}
-        dataKey="heartRate"
+        lineDataKey="heartRate"
+        xAxisDataKey="timeDuration"
         chartTitle={"Heart Rate"}
         bedtimeStart={bedtimeStart}
         bedtimeEnd={bedtimeEnd}
-        min={minHeartRate}
-        max={maxHeartRate}
+        yAxisDomain={[minHeartRate - 5, maxHeartRate + 5]}
         lineColor={"#33becc"}
         legend={false}
       />
@@ -51,10 +51,12 @@ const HeartrRateAndHRVCharts = ({
       </div>
       <Chart
         data={hrvData}
-        dataKey="HRV"
+        lineDataKey="HRV"
+        xAxisDataKey="timeDuration"
         chartTitle={"Heart Rate Variability"}
         bedtimeStart={bedtimeStart}
         bedtimeEnd={bedtimeEnd}
+        yAxisDomain={[0, maxHRV + 5]}
         max={maxHRV}
         lineColor={"#DC143C"}
         legend={false}

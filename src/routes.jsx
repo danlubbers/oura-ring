@@ -5,6 +5,7 @@ import UserData from "./pages/userData";
 import Readiness from "./pages/readiness";
 import SleepData from "./pages/sleepData";
 import Activity from "./pages/activity";
+import BedroomData from "./pages/bedroomData";
 
 export default (
   <Routes>
@@ -14,5 +15,6 @@ export default (
     <Route path="/readiness-data" element={<Readiness />} />
     <Route path="/sleep-data" element={<SleepData />} />
     <Route path="/activity-data" element={<Activity />} />
+    <Route path="/bedroom-data" element={<BedroomData />} />
   </Routes>
 );
