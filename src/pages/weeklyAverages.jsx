@@ -6,7 +6,7 @@ import { thermoStr } from "../utilities/sampleTempData";
 
 const WeeklyAverages = () => {
   const { sleepData } = useContext(GlobalContext);
-  // console.log(`sleepData`, sleepData);
+  console.log(`sleepData`, sleepData);
   const [parsedCsvData, setParsedCsvData] = useState([]);
 
   useEffect(() => {
@@ -15,15 +15,8 @@ const WeeklyAverages = () => {
 
   // console.log(`parsedCsvData`, parsedCsvData);
 
-  // const filteredHumidity = parsedCsvData
-  //   .filter((e) => {
-  //     return date === e.Timestamp.slice(5, 10);
-  //   })
-  //   .map((e) => e.Relative_Humidity);
-
   const weeklyAverages = sleepData.map((obj, idx) => {
-    // todo: date might be wrong by one day
-    const date = obj.summary_date.slice(5);
+    const date = obj.bedtime_end.slice(5, 10);
 
     const getAverage = (arr) => {
       const reducer = (acc, val) => acc + Number(val);
@@ -39,7 +32,7 @@ const WeeklyAverages = () => {
       .map((e) => e.Temperature_Fahrenheit);
 
     const avgTemp = Number(getAverage(filteredTempAvg).toFixed(1));
-    console.log(`avgTemp`, avgTemp);
+    // console.log(`avgTemp`, avgTemp);
 
     const filteredHumidityAvg = parsedCsvData
       .filter((e) => {
@@ -49,7 +42,7 @@ const WeeklyAverages = () => {
       .map((e) => e.Relative_Humidity);
 
     const avgHumidity = Number(getAverage(filteredHumidityAvg).toFixed(1));
-    console.log(`avgHumidity`, avgHumidity);
+    // console.log(`avgHumidity`, avgHumidity);
 
     return {
       restingHR: obj.hr_lowest,
