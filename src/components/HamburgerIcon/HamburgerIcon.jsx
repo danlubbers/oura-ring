@@ -3,13 +3,14 @@ import * as styles from "./HamburgerIcon.module.scss";
 
 const HamburgerIcon = ({ handleClickMobileDisplay, isMobileDisplay }) => {
   return (
-    <nav className={styles.menubarWrapper} onClick={handleClickMobileDisplay}>
+    <nav className={styles.menubarWrapper}>
       <div
         className={
           !isMobileDisplay
             ? `${styles.menuIcon}`
             : `${styles.menuIcon} ${styles.active}`
         }
+        onClick={handleClickMobileDisplay}
       >
         <span className={styles.menubar1} />
         <span className={styles.menubar2} />

@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import * as styles from "./Home.module.scss";
 import Container from "../Container/Container";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
-import Button from "../Button/Button";
-import { Link } from "react-router-dom";
+import SideMenu from "../SideMenu/SideMenu";
 
 function Home({ logout }) {
   const [isMobileDisplay, setIsMobileDisplay] = useState(false);
@@ -32,23 +31,11 @@ function Home({ logout }) {
             : `${styles.sidebarContainer} ${styles.active}`
         }
       >
-        <Container>
-          <HamburgerIcon
-            handleClickMobileDisplay={handleClickMobileDisplay}
-            isMobileDisplay={isMobileDisplay}
-          />
-          <div className={styles.userProfileText}>
-            <Link className={styles.link} to="/user-data">
-              User Profile
-            </Link>
-          </div>
-
-          <Button
-            btnAction="Logout"
-            onClick={logout}
-            style={{ marginTop: "2rem" }}
-          />
-        </Container>
+        <SideMenu
+          handleClickMobileDisplay={handleClickMobileDisplay}
+          isMobileDisplay={isMobileDisplay}
+          logout={logout}
+        />
       </div>
     </>
   );
