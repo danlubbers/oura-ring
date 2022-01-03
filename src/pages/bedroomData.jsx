@@ -65,10 +65,12 @@ const BedroomData = () => {
   // Quad Data
   const bedroomTempAvg = Number(nightlyTempAvg.toFixed(1));
   const bedroomHumidityAvg = Number(humidityAvg.toFixed(0));
-  const bodyTempData = data?.sleep?.temperature_delta;
-  const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
-  const bodyTempFahrenheit = (conversionToFahrenheit - 32).toFixed(1);
+  const restingHR = data?.sleep?.hr_lowest;
   const avgHRV = data?.sleep?.rmssd;
+  // Not using Body Temp now - Keep in case for future usage
+  // const bodyTempData = data?.sleep?.temperature_delta;
+  // const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
+  // const bodyTempFahrenheit = (conversionToFahrenheit - 32).toFixed(1);
 
   const tempArray = filteredData.map((obj) => {
     return Number(obj.Temperature_Fahrenheit);
@@ -103,7 +105,7 @@ const BedroomData = () => {
       <RenderBedroomData
         bedroomTempAvg={bedroomTempAvg}
         bedroomHumidityAvg={bedroomHumidityAvg}
-        bodyTempData={bodyTempFahrenheit}
+        restingHR={restingHR}
         avgHRV={avgHRV}
         minTemp={minTemp}
         maxTemp={maxTemp}

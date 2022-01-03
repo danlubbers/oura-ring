@@ -8,7 +8,7 @@ import Chart from "../Chart/Chart";
 const RenderBedroomData = ({
   bedroomTempAvg,
   bedroomHumidityAvg,
-  bodyTempData,
+  restingHR,
   avgHRV,
   minTemp,
   maxTemp,
@@ -19,27 +19,14 @@ const RenderBedroomData = ({
   if (!bedroomTempAvg) return <Loading />;
   return (
     <Container>
-      {/* <div className={styles.renderBedroomContainer}>
-        <p className={styles.bedroomText}>Ambient Bedroom Stats</p>
-        <p className={styles.durationText}>Midnight to 10am</p>
-        <div className={styles.avgTempWrapper}>
-          <span>Avg Temperature: </span>
-          <span>{bedroomTempAvg}° F</span>
-        </div>
-        <div className={styles.avgHumidityWrapper}>
-          <span>Avg Humidity: </span>
-          <span>{bedroomHumidityAvg}%</span>
-        </div>
-      </div> */}
-
       <QuadData
         bedroom
         quadOneText="Avg temperature"
         quadOneData={bedroomTempAvg}
         quadTwoText="Avg humidity"
         quadTwoData={bedroomHumidityAvg}
-        quadThreeText="Body Temperature"
-        quadThreeData={bodyTempData}
+        quadThreeText="Resting heart rate"
+        quadThreeData={restingHR}
         quadFourText="Heart rate variability"
         quadFourData={avgHRV}
       />

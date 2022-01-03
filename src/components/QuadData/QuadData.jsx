@@ -35,9 +35,10 @@ const QuadData = ({
       <div className={styles.quadThreeDataWrapper}>
         <p>{quadThreeText}</p>
         <span className={styles.quadThreeText}>{quadThreeData} </span>
-        {(readiness || bedroom) && <span>°F</span>}
+        {readiness && <span>°F</span>}
         {sleep && <span>%</span>}
         {activity && <span> mi</span>}
+        {bedroom && <span>bpm</span>}
       </div>
       <div className={styles.quadFourDataWrapper}>
         <p>{quadFourText}</p>
