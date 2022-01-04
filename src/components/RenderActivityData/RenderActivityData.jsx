@@ -21,7 +21,7 @@ const RenderActivityData = ({
   if (!todaysDate) return <Loading />;
 
   return (
-    <Container>
+    <Container isFooter={true}>
       <QuadData
         activity
         quadOneText="Active calories"

@@ -18,7 +18,7 @@ const RenderBedroomData = ({
 }) => {
   if (!bedroomTempAvg) return <Loading />;
   return (
-    <Container>
+    <Container isFooter={true}>
       <QuadData
         bedroom
         quadOneText="Avg temperature"

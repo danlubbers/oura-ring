@@ -15,7 +15,7 @@ const RenderUserData = ({
   if (!age) return <Loading />;
 
   return (
-    <Container>
+    <Container isFooter={true}>
       <p className={styles.userProfileText}>User Profile</p>
       <div className={styles.renderUserDataContainer}>
         <div>

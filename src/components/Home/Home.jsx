@@ -17,7 +17,7 @@ function Home({ logout }) {
 
   return (
     <>
-      <Container>
+      <Container isFooter={true}>
         <HamburgerIcon
           handleClickMobileDisplay={handleClickMobileDisplay}
           isMobileDisplay={isMobileDisplay}

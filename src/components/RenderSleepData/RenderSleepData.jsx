@@ -31,7 +31,7 @@ const RenderSleepData = ({
   if (!todaysDate) return <Loading />;
 
   return (
-    <Container>
+    <Container isFooter={true}>
       <QuadData
         sleep
         quadOneText="Total sleep"
