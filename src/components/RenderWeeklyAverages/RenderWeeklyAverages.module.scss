@@ -1,0 +1,29 @@
+.weeklyAveragesText {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.weeklyAveragesContainer {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  font-size: 1.4rem;
+  font-weight: 200;
+
+  .dateText {
+    text-align: left;
+    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  .averagesWrapper {
+    margin: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    .renderedData {
+      font-size: 1.6rem;
+    }
+  }
+}

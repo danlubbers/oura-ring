@@ -6,7 +6,7 @@ import { thermoStr } from "../utilities/sampleTempData";
 
 const WeeklyAverages = () => {
   const { sleepData } = useContext(GlobalContext);
-  console.log(`sleepData`, sleepData);
+  // console.log(`sleepData`, sleepData);
   const [parsedCsvData, setParsedCsvData] = useState([]);
 
   useEffect(() => {
