@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/Provider";
 import RenderWeeklyAverages from "../components/RenderWeeklyAverages/RenderWeeklyAverages";
+import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { parseFile } from "../utilities/parseFile";
 import { thermoStr } from "../utilities/sampleTempData";
 
@@ -58,6 +59,7 @@ const WeeklyAverages = () => {
   return (
     <div>
       <RenderWeeklyAverages weeklyAverages={weeklyAverages} />
+      <NavigationFooter />
     </div>
   );
 };

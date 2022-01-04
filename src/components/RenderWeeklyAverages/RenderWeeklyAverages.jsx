@@ -56,7 +56,7 @@ const RenderWeeklyAverages = ({ weeklyAverages }) => {
 
   return (
     <>
-      <Container isFooter={false}>
+      <Container isFooter={true}>
         <HamburgerIcon
           handleClickMobileDisplay={handleClickMobileDisplay}
           isMobileDisplay={isMobileDisplay}
@@ -116,8 +116,8 @@ const RenderWeeklyAverages = ({ weeklyAverages }) => {
             <Legend
               wrapperStyle={{
                 position: "relative",
-
-                marginLeft: "40px",
+                fontSize: "1.2rem",
+                marginLeft: "34px",
               }}
             />
           </LineChart>

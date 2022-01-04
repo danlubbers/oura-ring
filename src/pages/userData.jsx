@@ -1,11 +1,20 @@
-import React, { useContext, useState } from "react";
-import NavigationHeader from "../components/NavigationFooter/NavigationFooter";
+import React, { useContext, useState, useEffect } from "react";
+import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import RenderUserData from "../components/RenderUserData/RenderUserData";
 import { GlobalContext } from "../context/Provider";
 
 function UserData() {
   const [isImperial, setIsImperial] = useState(false);
-  const { userData } = useContext(GlobalContext);
+  const { userData, isMobileDisplay, setIsMobileDisplay } =
+    useContext(GlobalContext);
+
+  useEffect(() => {
+    setIsMobileDisplay(false);
+  }, [setIsMobileDisplay]);
+
+  const handleClickMobileDisplay = () => {
+    setIsMobileDisplay(!isMobileDisplay);
+  };
 
   const age = userData?.age;
   const height = isImperial
@@ -41,8 +50,11 @@ function UserData() {
         email={email}
         isImperial={isImperial}
         setUnits={setUnits}
+        isMobileDisplay={isMobileDisplay}
+        setIsMobileDisplay={setIsMobileDisplay}
+        handleClickMobileDisplay={handleClickMobileDisplay}
       />
-      <NavigationHeader />
+      <NavigationFooter />
     </div>
   );
 }
