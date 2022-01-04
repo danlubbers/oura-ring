@@ -7,28 +7,36 @@ import { Link } from "react-router-dom";
 
 const SideMenu = ({ handleClickMobileDisplay, isMobileDisplay, logout }) => {
   return (
-    <Container>
-      <HamburgerIcon
-        handleClickMobileDisplay={handleClickMobileDisplay}
-        isMobileDisplay={isMobileDisplay}
-      />
-      <div className={styles.userProfileText}>
-        <Link className={styles.link} to="/user-data">
-          User Profile
-        </Link>
-      </div>
-      <div className={styles.weeklyAverageText}>
-        <Link className={styles.link} to="/weekly-average-data">
-          Weekly Averages
-        </Link>
-      </div>
+    <div
+      className={
+        !isMobileDisplay
+          ? `${styles.sidebarContainer}`
+          : `${styles.sidebarContainer} ${styles.active}`
+      }
+    >
+      <Container>
+        <HamburgerIcon
+          handleClickMobileDisplay={handleClickMobileDisplay}
+          isMobileDisplay={isMobileDisplay}
+        />
+        <div className={styles.userProfileText}>
+          <Link className={styles.link} to="/user-data">
+            User Profile
+          </Link>
+        </div>
+        <div className={styles.weeklyAverageText}>
+          <Link className={styles.link} to="/weekly-average-data">
+            Weekly Averages
+          </Link>
+        </div>
 
-      <Button
-        btnAction="Logout"
-        onClick={logout}
-        style={{ marginTop: "2rem" }}
-      />
-    </Container>
+        <Button
+          btnAction="Logout"
+          onClick={logout}
+          style={{ marginTop: "2rem" }}
+        />
+      </Container>
+    </div>
   );
 };
 

@@ -23,8 +23,21 @@
     margin: 0.3rem;
     display: flex;
     justify-content: space-between;
+
     .renderedData {
       font-size: 1.6rem;
+    }
+    .restingHRData {
+      color: #dc143c;
+    }
+    .maxHRVData {
+      color: #808080;
+    }
+    .avgTempData {
+      color: #303ead;
+    }
+    .avgHumidityHRData {
+      color: #33becc;
     }
   }
 }
