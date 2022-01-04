@@ -2,6 +2,8 @@ import React from "react";
 import * as styles from "./RenderWeeklyAverages.module.scss";
 import Container from "../Container/Container";
 
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
+
 const RenderWeeklyAverages = ({ weeklyAverages }) => {
   const renderWeeklyAverages = weeklyAverages.map((obj, idx) => {
     console.log(`obj`, obj);
@@ -31,6 +33,56 @@ const RenderWeeklyAverages = ({ weeklyAverages }) => {
   return (
     <Container isFooter={false}>
       <p className={styles.weeklyAveragesText}>Weekly Averages</p>
+      <div className={styles.chartContainer}>
+        <LineChart
+          width={340}
+          height={350}
+          data={weeklyAverages}
+          margin={{
+            top: 5,
+            right: 20,
+            left: -35,
+            bottom: 5,
+          }}
+        >
+          <Line
+            type="monotone"
+            dataKey="restingHR"
+            stroke="#dc143c"
+            dot={false}
+          />
+          <Line type="monotone" dataKey="maxHRV" stroke="#808080" dot={false} />
+          <Line type="monotone" dataKey="avgTemp" dot={false} />
+          <Line
+            type="monotone"
+            dataKey="avgHumidity"
+            stroke="#33becc"
+            dot={false}
+          />
+
+          <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
+          <XAxis
+            dataKey="date"
+            interval="preserveStartEnd"
+            style={{
+              fontSize: "1.5rem",
+            }}
+          />
+          <YAxis
+            style={{
+              fontSize: "1.1rem",
+            }}
+          />
+
+          <Legend
+            wrapperStyle={{
+              position: "relative",
+
+              marginLeft: "40px",
+            }}
+          />
+        </LineChart>
+      </div>
       {renderWeeklyAverages}
     </Container>
   );

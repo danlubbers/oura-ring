@@ -1,3 +1,8 @@
 .userProfileText {
+  margin: 1rem;
   font-size: 1.8rem;
+}
+
+.weeklyAverageText {
+  @extend .userProfileText;
 }

@@ -17,6 +17,11 @@ const SideMenu = ({ handleClickMobileDisplay, isMobileDisplay, logout }) => {
           User Profile
         </Link>
       </div>
+      <div className={styles.weeklyAverageText}>
+        <Link className={styles.link} to="/weekly-average-data">
+          Weekly Averages
+        </Link>
+      </div>
 
       <Button
         btnAction="Logout"
