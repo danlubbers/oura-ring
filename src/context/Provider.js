@@ -45,7 +45,7 @@ const GlobalProvider = ({ children }) => {
     fetchData();
   }, [setUserData, setSleepData]);
   // console.log(`Provider: todaysData`, todaysData);
-  console.log(`PROVIDER: isMobileDisplay`, isMobileDisplay);
+
   return (
     <GlobalContext.Provider
       value={{

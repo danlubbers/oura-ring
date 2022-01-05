@@ -6,13 +6,19 @@ import { parseFile } from "../utilities/parseFile";
 import { thermoStr } from "../utilities/sampleTempData";
 
 const WeeklyAverages = () => {
-  const { sleepData } = useContext(GlobalContext);
+  const { sleepData, isMobileDisplay, setIsMobileDisplay } =
+    useContext(GlobalContext);
   // console.log(`sleepData`, sleepData);
   const [parsedCsvData, setParsedCsvData] = useState([]);
 
   useEffect(() => {
     parseFile(thermoStr, setParsedCsvData);
-  }, []);
+    setIsMobileDisplay(false);
+  }, [setIsMobileDisplay]);
+
+  const handleClickMobileDisplay = () => {
+    setIsMobileDisplay(!isMobileDisplay);
+  };
 
   // console.log(`parsedCsvData`, parsedCsvData);
 
@@ -54,11 +60,16 @@ const WeeklyAverages = () => {
     };
   });
 
-  console.log(`weeklyAverages`, weeklyAverages);
+  // console.log(`weeklyAverages`, weeklyAverages);
 
   return (
     <div>
-      <RenderWeeklyAverages weeklyAverages={weeklyAverages} />
+      <RenderWeeklyAverages
+        weeklyAverages={weeklyAverages}
+        isMobileDisplay={isMobileDisplay}
+        setIsMobileDisplay={setIsMobileDisplay}
+        handleClickMobileDisplay={handleClickMobileDisplay}
+      />
       <NavigationFooter />
     </div>
   );

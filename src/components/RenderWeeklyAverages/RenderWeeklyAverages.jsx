@@ -1,23 +1,18 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import * as styles from "./RenderWeeklyAverages.module.scss";
-import { GlobalContext } from "../../context/Provider";
+import Loading from "../Loading/Loading";
 import Container from "../Container/Container";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
 
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 
-const RenderWeeklyAverages = ({ weeklyAverages }) => {
-  const { isMobileDisplay, setIsMobileDisplay } = useContext(GlobalContext);
-
-  useEffect(() => {
-    setIsMobileDisplay(false);
-  }, [setIsMobileDisplay]);
-
-  const handleClickMobileDisplay = () => {
-    console.log("hit");
-    setIsMobileDisplay(!isMobileDisplay);
-  };
+const RenderWeeklyAverages = ({
+  weeklyAverages,
+  isMobileDisplay,
+  handleClickMobileDisplay,
+}) => {
+  if (!weeklyAverages[0]) return <Loading />;
 
   const renderWeeklyAverages = weeklyAverages.map((obj, idx) => {
     // console.log(`obj`, obj);

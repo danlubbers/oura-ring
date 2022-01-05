@@ -14,7 +14,6 @@ const RenderUserData = ({
   isImperial,
   setUnits,
   isMobileDisplay,
-  setIsMobileDisplay,
   handleClickMobileDisplay,
 }) => {
   if (!age) return <Loading />;
