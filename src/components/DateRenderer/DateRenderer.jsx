@@ -10,8 +10,6 @@ const DateRenderer = () => {
   const todaysDate = todaysData?.date;
 
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
-    // console.log(`sleepData[idx]`, sleepData[idx]);
-    // console.log(`activityData[idx]`, activityData[idx]);
     const combinedData = {
       readiness: readinessData[idx],
       sleep: sleepData[idx],
@@ -33,6 +31,7 @@ const DateRenderer = () => {
           style={{
             width: "3.5rem",
             height: "3.5rem",
+            margin: "0 1rem",
             borderRadius: "50%",
             backgroundColor: todaysDate === date && "#66becc",
           }}
