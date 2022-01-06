@@ -27,7 +27,7 @@ const RenderReadinessData = ({
   if (!todaysDate) return <Loading />;
 
   return (
-    <Container>
+    <Container isFooter={true}>
       <QuadData
         readiness
         quadOneText="Resting heart rate"

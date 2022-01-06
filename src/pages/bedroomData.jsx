@@ -3,7 +3,8 @@ import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderBedroomData from "../components/RenderBedroomData/RenderBedroomData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
-import Papa from "papaparse";
+// import Papa from "papaparse";
+import { parseFile } from "../utilities/parseFile";
 import moment from "moment";
 import { thermoStr } from "../utilities/sampleTempData";
 
@@ -16,16 +17,7 @@ const BedroomData = () => {
   // console.log(`Bedroom: `, data);
 
   useEffect(() => {
-    // Converts CSV into JSON
-    const parseFile = (file) => {
-      Papa.parse(file, {
-        header: true,
-        complete: (results) => {
-          setParsedCsvData(results.data);
-        },
-      });
-    };
-    parseFile(thermoStr);
+    parseFile(thermoStr, setParsedCsvData);
   }, []);
 
   const todaysDate = date;

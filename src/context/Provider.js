@@ -9,6 +9,7 @@ const GlobalProvider = ({ children }) => {
   const [sleepData, setSleepData] = useState([]);
   const [activityData, setActivityData] = useState([]);
   const [todaysData, setTodaysData] = useState({});
+  const [isMobileDisplay, setIsMobileDisplay] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,6 +55,8 @@ const GlobalProvider = ({ children }) => {
         activityData,
         todaysData,
         setTodaysData,
+        isMobileDisplay,
+        setIsMobileDisplay,
       }}
     >
       {children}
