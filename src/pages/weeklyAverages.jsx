@@ -10,6 +10,12 @@ const WeeklyAverages = () => {
     useContext(GlobalContext);
   // console.log(`sleepData`, sleepData);
   const [parsedCsvData, setParsedCsvData] = useState([]);
+  const [showChartData, setShowChartData] = useState({
+    restingHR: true,
+    maxHRV: true,
+    avgTemp: true,
+    avgHumidity: true,
+  });
 
   useEffect(() => {
     parseFile(thermoStr, setParsedCsvData);
@@ -19,6 +25,42 @@ const WeeklyAverages = () => {
   const handleClickMobileDisplay = () => {
     setIsMobileDisplay(!isMobileDisplay);
   };
+
+  const handleShowChartData = (chosenData) => {
+    if ("restingHR" === chosenData) {
+      setShowChartData({
+        restingHR: !showChartData.restingHR,
+        maxHRV: showChartData.maxHRV,
+        avgTemp: showChartData.avgTemp,
+        avgHumidity: showChartData.avgHumidity,
+      });
+    }
+    if ("maxHRV" === chosenData) {
+      setShowChartData({
+        restingHR: showChartData.restingHR,
+        maxHRV: !showChartData.maxHRV,
+        avgTemp: showChartData.avgTemp,
+        avgHumidity: showChartData.avgHumidity,
+      });
+    }
+    if ("avgTemp" === chosenData) {
+      setShowChartData({
+        restingHR: showChartData.restingHR,
+        maxHRV: showChartData.maxHRV,
+        avgTemp: !showChartData.avgTemp,
+        avgHumidity: showChartData.avgHumidity,
+      });
+    }
+    if ("avgHumidity" === chosenData) {
+      setShowChartData({
+        restingHR: showChartData.restingHR,
+        maxHRV: showChartData.maxHRV,
+        avgTemp: showChartData.avgTemp,
+        avgHumidity: !showChartData.avgHumidity,
+      });
+    }
+  };
+  // console.log(`showChartData`, showChartData);
 
   // console.log(`parsedCsvData`, parsedCsvData);
 
@@ -65,6 +107,8 @@ const WeeklyAverages = () => {
   return (
     <div>
       <RenderWeeklyAverages
+        showChartData={showChartData}
+        handleShowChartData={handleShowChartData}
         weeklyAverages={weeklyAverages}
         isMobileDisplay={isMobileDisplay}
         setIsMobileDisplay={setIsMobileDisplay}

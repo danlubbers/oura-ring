@@ -7,6 +7,8 @@ import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
 
 const RenderWeeklyAverages = ({
+  showChartData,
+  handleShowChartData,
   weeklyAverages,
   isMobileDisplay,
   handleClickMobileDisplay,
@@ -57,7 +59,37 @@ const RenderWeeklyAverages = ({
 
         <p className={styles.weeklyAveragesText}>Weekly Averages</p>
 
-        <WeeklyAveragesChart data={weeklyAverages} />
+        <div className={styles.pickData}>
+          <button
+            className={`${styles.xAxisData} ${styles.restingHRBtn}`}
+            onClick={() => handleShowChartData("restingHR")}
+          >
+            Resting HR
+          </button>
+          <button
+            className={`${styles.xAxisData} ${styles.maxHRVBtn}`}
+            onClick={() => handleShowChartData("maxHRV")}
+          >
+            Max HRV
+          </button>
+          <button
+            className={`${styles.xAxisData} ${styles.avgTempBtn}`}
+            onClick={() => handleShowChartData("avgTemp")}
+          >
+            Room temp
+          </button>
+          <button
+            className={`${styles.xAxisData} ${styles.avgHumidityBtn}`}
+            onClick={() => handleShowChartData("avgHumidity")}
+          >
+            Humidity
+          </button>
+        </div>
+
+        <WeeklyAveragesChart
+          data={weeklyAverages}
+          showChartData={showChartData}
+        />
         {renderWeeklyAverages}
       </Container>
 
