@@ -61,25 +61,41 @@ const RenderWeeklyAverages = ({
 
         <div className={styles.pickData}>
           <button
-            className={`${styles.xAxisData} ${styles.restingHRBtn}`}
+            className={
+              showChartData.restingHR
+                ? `${styles.xAxisData} ${styles.restingHRBtnActive}`
+                : `${styles.xAxisData} ${styles.restingHRBtnInactive}`
+            }
             onClick={() => handleShowChartData("restingHR")}
           >
             Resting HR
           </button>
           <button
-            className={`${styles.xAxisData} ${styles.maxHRVBtn}`}
+            className={
+              showChartData.maxHRV
+                ? `${styles.xAxisData} ${styles.maxHRVBtnActive}`
+                : `${styles.xAxisData} ${styles.maxHRVBtnInactive}`
+            }
             onClick={() => handleShowChartData("maxHRV")}
           >
             Max HRV
           </button>
           <button
-            className={`${styles.xAxisData} ${styles.avgTempBtn}`}
+            className={
+              showChartData.avgTemp
+                ? `${styles.xAxisData} ${styles.avgTempBtnActive}`
+                : `${styles.xAxisData} ${styles.avgTempBtnInactive}`
+            }
             onClick={() => handleShowChartData("avgTemp")}
           >
             Room temp
           </button>
           <button
-            className={`${styles.xAxisData} ${styles.avgHumidityBtn}`}
+            className={
+              showChartData.avgHumidity
+                ? `${styles.xAxisData} ${styles.avgHumidityBtnActive}`
+                : `${styles.xAxisData} ${styles.avgHumidityBtnInactive}`
+            }
             onClick={() => handleShowChartData("avgHumidity")}
           >
             Humidity

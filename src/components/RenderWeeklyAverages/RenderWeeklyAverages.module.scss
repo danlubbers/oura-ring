@@ -21,24 +21,40 @@
     background-color: $site-background-color;
   }
 
-  .restingHRBtn {
+  .restingHRBtnActive {
     color: #dc143c;
-    border: 1px solid #dc143c;
+    border: 2px solid #dc143c;
+  }
+  .restingHRBtnInactive {
+    color: #dc143c;
+    border: 0.5px solid #dc143c;
   }
 
-  .maxHRVBtn {
+  .maxHRVBtnActive {
     color: #808080;
-    border: 1px solid #808080;
+    border: 2px solid #808080;
+  }
+  .maxHRVBtnInactive {
+    color: #808080;
+    border: 0.5px solid #808080;
   }
 
-  .avgTempBtn {
+  .avgTempBtnActive {
     color: #303ead;
-    border: 1px solid #303ead;
+    border: 2px solid #303ead;
+  }
+  .avgTempBtnInactive {
+    color: #303ead;
+    border: 0.5px solid #303ead;
   }
 
-  .avgHumidityBtn {
+  .avgHumidityBtnActive {
     color: #33becc;
-    border: 1px solid #33becc;
+    border: 2px solid #33becc;
+  }
+  .avgHumidityBtnInactive {
+    color: #33becc;
+    border: 0.5px solid #33becc;
   }
 }
 
