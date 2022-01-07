@@ -88,7 +88,7 @@ const RenderWeeklyAverages = ({
             }
             onClick={() => handleShowChartData("avgTemp")}
           >
-            Room temp
+            Room Temp
           </button>
           <button
             className={
