@@ -32,9 +32,17 @@ const RenderWeeklyAverages = ({
           </span>
         </div>
         <div className={styles.averagesWrapper}>
+          <span>Body Temp Deviation: </span>
+          <span className={`${styles.renderedData} ${styles.bodyTempData}`}>
+            {obj.bodyTemp} °F
+          </span>
+        </div>
+        <div className={styles.averagesWrapper}>
           <span>Ambient Bedroom Temp: </span>
-          <span className={`${styles.renderedData} ${styles.avgTempData}`}>
-            {obj.avgTemp} °F
+          <span
+            className={`${styles.renderedData} ${styles.avgBedroomTempData}`}
+          >
+            {obj.avgBedroomTemp} °F
           </span>
         </div>
         <div className={styles.averagesWrapper}>
@@ -82,11 +90,11 @@ const RenderWeeklyAverages = ({
           </button>
           <button
             className={
-              showChartData.avgTemp
-                ? `${styles.xAxisData} ${styles.avgTempBtnActive}`
-                : `${styles.xAxisData} ${styles.avgTempBtnInactive}`
+              showChartData.avgBedroomTemp
+                ? `${styles.xAxisData} ${styles.avgBedroomTempBtnActive}`
+                : `${styles.xAxisData} ${styles.avgBedroomTempBtnInactive}`
             }
-            onClick={() => handleShowChartData("avgTemp")}
+            onClick={() => handleShowChartData("avgBedroomTemp")}
           >
             Room Temp
           </button>

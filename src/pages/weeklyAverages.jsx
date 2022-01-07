@@ -13,7 +13,7 @@ const WeeklyAverages = () => {
   const [showChartData, setShowChartData] = useState({
     restingHR: true,
     maxHRV: true,
-    avgTemp: true,
+    avgBedroomTemp: true,
     avgHumidity: true,
   });
 
@@ -31,7 +31,7 @@ const WeeklyAverages = () => {
       setShowChartData({
         restingHR: !showChartData.restingHR,
         maxHRV: showChartData.maxHRV,
-        avgTemp: showChartData.avgTemp,
+        avgBedroomTemp: showChartData.avgBedroomTemp,
         avgHumidity: showChartData.avgHumidity,
       });
     }
@@ -39,15 +39,15 @@ const WeeklyAverages = () => {
       setShowChartData({
         restingHR: showChartData.restingHR,
         maxHRV: !showChartData.maxHRV,
-        avgTemp: showChartData.avgTemp,
+        avgBedroomTemp: showChartData.avgBedroomTemp,
         avgHumidity: showChartData.avgHumidity,
       });
     }
-    if ("avgTemp" === chosenData) {
+    if ("avgBedroomTemp" === chosenData) {
       setShowChartData({
         restingHR: showChartData.restingHR,
         maxHRV: showChartData.maxHRV,
-        avgTemp: !showChartData.avgTemp,
+        avgBedroomTemp: !showChartData.avgBedroomTemp,
         avgHumidity: showChartData.avgHumidity,
       });
     }
@@ -55,7 +55,7 @@ const WeeklyAverages = () => {
       setShowChartData({
         restingHR: showChartData.restingHR,
         maxHRV: showChartData.maxHRV,
-        avgTemp: showChartData.avgTemp,
+        avgBedroomTemp: showChartData.avgBedroomTemp,
         avgHumidity: !showChartData.avgHumidity,
       });
     }
@@ -66,6 +66,14 @@ const WeeklyAverages = () => {
 
   const weeklyAverages = sleepData.map((obj, idx) => {
     const date = obj.bedtime_end.slice(5, 10);
+
+    const bodyTempData = obj.temperature_delta;
+    const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
+    let bodyTempFahrenheit = (conversionToFahrenheit - 32).toFixed(1);
+    // Add a '+' to indicate higher temp since there is a '-' natively in the api
+    bodyTempFahrenheit = !bodyTempFahrenheit.includes("-")
+      ? `+${bodyTempFahrenheit}`
+      : bodyTempFahrenheit;
 
     const getAverage = (arr) => {
       const reducer = (acc, val) => acc + Number(val);
@@ -96,7 +104,8 @@ const WeeklyAverages = () => {
     return {
       restingHR: obj.hr_lowest,
       maxHRV: obj.rmssd,
-      avgTemp: avgTemp,
+      bodyTemp: bodyTempFahrenheit,
+      avgBedroomTemp: avgTemp,
       avgHumidity: avgHumidity,
       date: date,
     };

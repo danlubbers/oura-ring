@@ -28,10 +28,10 @@ const WeeklyAveragesChart = ({ data, showChartData }) => {
           <Line type="monotone" dataKey="maxHRV" stroke="#808080" dot={false} />
         )}
 
-        {showChartData.avgTemp && (
+        {showChartData.avgBedroomTemp && (
           <Line
             type="monotone"
-            dataKey="avgTemp"
+            dataKey="avgBedroomTemp"
             stroke="#303ead"
             dot={false}
           />
