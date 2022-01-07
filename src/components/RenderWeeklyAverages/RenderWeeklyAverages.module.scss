@@ -1,7 +1,61 @@
+@import "../../styles/variables.scss";
+
 .weeklyAveragesText {
   margin-bottom: 2rem;
   font-size: 1.8rem;
   font-weight: 300;
+}
+
+.pickData {
+  display: flex;
+  flex-direction: row;
+
+  .xAxisData {
+    width: 8rem;
+    height: 3.5rem;
+    margin: 0 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5rem;
+    background-color: $site-background-color;
+  }
+
+  .restingHRBtnActive {
+    color: #dc143c;
+    border: 2px solid #dc143c;
+  }
+  .restingHRBtnInactive {
+    color: #dc143c;
+    border: 0.5px solid #dc143c;
+  }
+
+  .maxHRVBtnActive {
+    color: #808080;
+    border: 2px solid #808080;
+  }
+  .maxHRVBtnInactive {
+    color: #808080;
+    border: 0.5px solid #808080;
+  }
+
+  .avgBedroomTempBtnActive {
+    color: #303ead;
+    border: 2px solid #303ead;
+  }
+  .avgBedroomTempBtnInactive {
+    color: #303ead;
+    border: 0.5px solid #303ead;
+  }
+
+  .avgHumidityBtnActive {
+    color: #33becc;
+    border: 2px solid #33becc;
+  }
+  .avgHumidityBtnInactive {
+    color: #33becc;
+    border: 0.5px solid #33becc;
+  }
 }
 
 .weeklyAveragesContainer {
@@ -33,7 +87,7 @@
     .maxHRVData {
       color: #808080;
     }
-    .avgTempData {
+    .avgBedroomTempData {
       color: #303ead;
     }
     .avgHumidityHRData {
