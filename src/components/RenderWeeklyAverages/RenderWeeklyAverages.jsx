@@ -7,6 +7,8 @@ import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
 
 const RenderWeeklyAverages = ({
+  showChartData,
+  handleShowChartData,
   weeklyAverages,
   isMobileDisplay,
   handleClickMobileDisplay,
@@ -30,9 +32,17 @@ const RenderWeeklyAverages = ({
           </span>
         </div>
         <div className={styles.averagesWrapper}>
+          <span>Body Temp Deviation: </span>
+          <span className={`${styles.renderedData} ${styles.bodyTempData}`}>
+            {obj.bodyTemp} °F
+          </span>
+        </div>
+        <div className={styles.averagesWrapper}>
           <span>Ambient Bedroom Temp: </span>
-          <span className={`${styles.renderedData} ${styles.avgTempData}`}>
-            {obj.avgTemp} °F
+          <span
+            className={`${styles.renderedData} ${styles.avgBedroomTempData}`}
+          >
+            {obj.avgBedroomTemp} °F
           </span>
         </div>
         <div className={styles.averagesWrapper}>
@@ -57,7 +67,53 @@ const RenderWeeklyAverages = ({
 
         <p className={styles.weeklyAveragesText}>Weekly Averages</p>
 
-        <WeeklyAveragesChart data={weeklyAverages} />
+        <div className={styles.pickData}>
+          <button
+            className={
+              showChartData.restingHR
+                ? `${styles.xAxisData} ${styles.restingHRBtnActive}`
+                : `${styles.xAxisData} ${styles.restingHRBtnInactive}`
+            }
+            onClick={() => handleShowChartData("restingHR")}
+          >
+            Resting HR
+          </button>
+          <button
+            className={
+              showChartData.maxHRV
+                ? `${styles.xAxisData} ${styles.maxHRVBtnActive}`
+                : `${styles.xAxisData} ${styles.maxHRVBtnInactive}`
+            }
+            onClick={() => handleShowChartData("maxHRV")}
+          >
+            Max HRV
+          </button>
+          <button
+            className={
+              showChartData.avgBedroomTemp
+                ? `${styles.xAxisData} ${styles.avgBedroomTempBtnActive}`
+                : `${styles.xAxisData} ${styles.avgBedroomTempBtnInactive}`
+            }
+            onClick={() => handleShowChartData("avgBedroomTemp")}
+          >
+            Room Temp
+          </button>
+          <button
+            className={
+              showChartData.avgHumidity
+                ? `${styles.xAxisData} ${styles.avgHumidityBtnActive}`
+                : `${styles.xAxisData} ${styles.avgHumidityBtnInactive}`
+            }
+            onClick={() => handleShowChartData("avgHumidity")}
+          >
+            Humidity
+          </button>
+        </div>
+
+        <WeeklyAveragesChart
+          data={weeklyAverages}
+          showChartData={showChartData}
+        />
         {renderWeeklyAverages}
       </Container>
 

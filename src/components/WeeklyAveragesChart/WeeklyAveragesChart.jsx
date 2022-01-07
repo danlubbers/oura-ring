@@ -1,7 +1,7 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 import * as styles from "./WeeklyAveragesChart.module.scss";
 
-const WeeklyAveragesChart = ({ data }) => {
+const WeeklyAveragesChart = ({ data, showChartData }) => {
   return (
     <div className={styles.chartContainer}>
       <LineChart
@@ -15,20 +15,36 @@ const WeeklyAveragesChart = ({ data }) => {
           bottom: 5,
         }}
       >
-        <Line
-          type="monotone"
-          dataKey="restingHR"
-          stroke="#dc143c"
-          dot={false}
-        />
-        <Line type="monotone" dataKey="maxHRV" stroke="#808080" dot={false} />
-        <Line type="monotone" dataKey="avgTemp" stroke="#303ead" dot={false} />
-        <Line
-          type="monotone"
-          dataKey="avgHumidity"
-          stroke="#33becc"
-          dot={false}
-        />
+        {showChartData.restingHR && (
+          <Line
+            type="monotone"
+            dataKey="restingHR"
+            stroke="#dc143c"
+            dot={false}
+          />
+        )}
+
+        {showChartData.maxHRV && (
+          <Line type="monotone" dataKey="maxHRV" stroke="#808080" dot={false} />
+        )}
+
+        {showChartData.avgBedroomTemp && (
+          <Line
+            type="monotone"
+            dataKey="avgBedroomTemp"
+            stroke="#303ead"
+            dot={false}
+          />
+        )}
+
+        {showChartData.avgHumidity && (
+          <Line
+            type="monotone"
+            dataKey="avgHumidity"
+            stroke="#33becc"
+            dot={false}
+          />
+        )}
 
         <CartesianGrid stroke="#ccc" strokeDasharray="2 2" />
         <XAxis
