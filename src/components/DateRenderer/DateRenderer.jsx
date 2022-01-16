@@ -1,5 +1,5 @@
 import React, {
-  useState,
+  // useState,
   useContext,
   useRef,
   createRef,
@@ -10,10 +10,20 @@ import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
 
 const DateRenderer = () => {
-  const { readinessData, sleepData, activityData, todaysData, setTodaysData } =
-    useContext(GlobalContext);
+  const {
+    readinessData,
+    sleepData,
+    activityData,
+    todaysData,
+    setTodaysData,
+    btnOffsetLeft,
+    setBtnOffsetLeft,
+    isBtnPosition,
+    setIsBtnPosition,
+  } = useContext(GlobalContext);
 
-  const testRef = useRef();
+  const dateRendererRef = useRef();
+  const lastBtnRef = useRef();
 
   // https://stackoverflow.com/questions/65350114/useref-for-element-in-loop-in-react
   let btnRefs = useRef([]);
@@ -21,31 +31,15 @@ const DateRenderer = () => {
     return btnRefs.current[idx] ?? createRef();
   });
 
-  const [btnPosition, setBtnPosition] = useState(undefined);
-  const [isBtnPosition, setIsBtnPosition] = useState(true);
-
   const todaysDate = todaysData?.date;
 
-  // console.log(
-  //   `btnRefs.current`,
-  //   btnRefs?.current[btnRefs?.current.length - 1]?.current?.offsetLeft
-  // );
-
   useEffect(() => {
-    // console.log(`btnRef?.current`, btnRefs?.current[6]?.current?.offsetLeft);
-    // setBtnPosition(
-    //   btnRefs?.current[btnRefs?.current.length - 1]?.current?.offsetLeft
-    // );
-    // window.scrollTo({
-    //   top: 0,
-    //   left: 800,
-    //   behavior: "smooth",
-    // });
-    console.log(`btnPosition`, btnPosition?.current?.offsetLeft);
-    console.log(`!btnPosition`, btnPosition);
+    console.log(`btnOffsetLeft`, btnOffsetLeft);
     console.log(`isBtnPosition`, isBtnPosition);
-    if (isBtnPosition) testRef?.current?.scrollIntoView();
-  }, [todaysDate, btnPosition, isBtnPosition]); // this triggers to go to most recent date on load, but creates another bug when user selects different date. Right now it always scrolls no matter what to the end. Need to target the specific date instead.
+    if (isBtnPosition) lastBtnRef?.current?.scrollIntoView();
+    if (!isBtnPosition)
+      dateRendererRef?.current?.scrollTo({ left: btnOffsetLeft });
+  }, [todaysDate, btnOffsetLeft, isBtnPosition]);
 
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
     const combinedData = {
@@ -56,19 +50,17 @@ const DateRenderer = () => {
 
     const date = sleepObj.bedtime_end.slice(5, 10);
 
-    // console.log(`btnRef?.current?.offsetLeft`, btnRef?.current?.offsetLeft);
     const handleBtnClick = () => {
       setTodaysData({
         date,
         data: combinedData,
       });
-      setBtnPosition(btnRefs?.current[idx]);
+      setBtnOffsetLeft(btnRefs?.current[idx]?.current.offsetLeft - 167.5);
       setIsBtnPosition(false);
     };
-    // console.log(`btnPosition`, btnPosition?.current.offsetLeft);
 
     return (
-      <div key={`btn: ${date}`} style={{ width: "100%" }} ref={testRef}>
+      <div key={`btn: ${date}`} style={{ width: "100%" }} ref={lastBtnRef}>
         <Button
           btnAction={date}
           onClick={handleBtnClick}
@@ -85,7 +77,11 @@ const DateRenderer = () => {
     );
   });
 
-  return <div className={styles.dateRendererContainer}>{pickSleepDate}</div>;
+  return (
+    <div className={styles.dateRendererContainer} ref={dateRendererRef}>
+      {pickSleepDate}
+    </div>
+  );
 };
 
 export default DateRenderer;
