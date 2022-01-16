@@ -1,9 +1,10 @@
-// import React, { useRef, useEffect } from "react";
+import { forwardRef } from "react";
 import * as styles from "./Button.module.scss";
 
-const Button = ({ btnAction, btnType, onClick, style }) => {
+const Button = forwardRef(({ btnAction, btnType, onClick, style }, ref) => {
+  console.log(`ref`, ref);
   return (
-    <div className={styles.buttonWrapper}>
+    <div className={styles.buttonWrapper} ref={ref}>
       <button
         type={btnType}
         style={style}
@@ -14,6 +15,6 @@ const Button = ({ btnAction, btnType, onClick, style }) => {
       </button>
     </div>
   );
-};
+});
 
 export default Button;

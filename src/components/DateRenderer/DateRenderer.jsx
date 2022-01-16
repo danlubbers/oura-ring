@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useRef, useEffect } from "react";
+import React, { useContext, useRef, createRef, useEffect } from "react";
 import * as styles from "./DateRenderer.module.scss";
 import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
@@ -9,10 +9,15 @@ const DateRenderer = () => {
 
   const todaysDate = todaysData?.date;
 
-  const scrollRef = useRef();
+  let btnRefs = useRef([]);
+  btnRefs.current = sleepData.map((_, idx) => {
+    return btnRefs.current[idx] ?? createRef();
+  });
+  // console.log(`btnRefs.current`, btnRefs.current);
 
   useEffect(() => {
-    scrollRef?.current?.scrollIntoView();
+    // console.log(`btnRef?.current`, btnRefs.current[6].current.offsetLeft);
+    // btnRefs?.current?.scrollIntoView({ behavior: "smooth" });
   }, [todaysDate]); // this triggers to go to most recent date on load, but creates another bug when user selects different date. Right now it always scrolls no matter what to the end. Need to target the specific date instead.
 
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
@@ -24,25 +29,20 @@ const DateRenderer = () => {
 
     const date = sleepObj.bedtime_end.slice(5, 10);
 
-    // const scrollDate = scrollRef?.current?.outerText;
-    // console.log(`scrollDate`, scrollDate);
-    // const scrollWidth = scrollRef?.current?.offsetLeft;
-    // console.log(`scrollWidth`, scrollWidth);
-    // window.scrollTo({
-    //   left: scrollWidth,
-    //   behavior: "smooth",
-    // });
+    // console.log(`btnRef?.current?.offsetLeft`, btnRef?.current?.offsetLeft);
+    const handleBtnClick = () => {
+      setTodaysData({
+        date,
+        data: combinedData,
+      });
+      // btnRef?.current?.scrollIntoView({ behavior: "smooth" });
+    };
 
     return (
-      <div key={`btn: ${date}`} style={{ width: "100%" }} ref={scrollRef}>
+      <div key={`btn: ${date}`} style={{ width: "100%" }}>
         <Button
           btnAction={date}
-          onClick={() =>
-            setTodaysData({
-              date,
-              data: combinedData,
-            })
-          }
+          onClick={handleBtnClick}
           style={{
             width: "3.5rem",
             height: "3.5rem",
@@ -50,6 +50,7 @@ const DateRenderer = () => {
             borderRadius: "50%",
             backgroundColor: todaysDate === date && "#66becc",
           }}
+          ref={btnRefs.current[idx]}
         />
       </div>
     );
