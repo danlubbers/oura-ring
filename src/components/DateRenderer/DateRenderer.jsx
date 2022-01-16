@@ -1,10 +1,4 @@
-import React, {
-  // useState,
-  useContext,
-  useRef,
-  createRef,
-  useEffect,
-} from "react";
+import { useContext, useRef, createRef, useEffect } from "react";
 import * as styles from "./DateRenderer.module.scss";
 import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
@@ -49,6 +43,7 @@ const DateRenderer = () => {
     };
 
     const date = sleepObj.bedtime_end.slice(5, 10);
+    console.log(`btnRefs?.current[idx]`, btnRefs?.current[idx]);
 
     const handleBtnClick = () => {
       setTodaysData({
@@ -56,7 +51,7 @@ const DateRenderer = () => {
         data: combinedData,
       });
       setBtnOffsetLeft(btnRefs?.current[idx]?.current.offsetLeft - 167.5);
-      setIsBtnPosition(false);
+      setIsBtnPosition(btnRefs?.current[idx] ? false : true); // conditional added because the last btn is always undefined
     };
 
     return (
