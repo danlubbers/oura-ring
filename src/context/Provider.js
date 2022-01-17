@@ -10,6 +10,8 @@ const GlobalProvider = ({ children }) => {
   const [activityData, setActivityData] = useState([]);
   const [todaysData, setTodaysData] = useState({});
   const [isMobileDisplay, setIsMobileDisplay] = useState(false);
+  const [btnOffsetLeft, setBtnOffsetLeft] = useState();
+  const [isBtnPosition, setIsBtnPosition] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,6 +59,10 @@ const GlobalProvider = ({ children }) => {
         setTodaysData,
         isMobileDisplay,
         setIsMobileDisplay,
+        btnOffsetLeft,
+        setBtnOffsetLeft,
+        isBtnPosition,
+        setIsBtnPosition,
       }}
     >
       {children}
