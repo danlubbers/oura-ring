@@ -60,13 +60,16 @@ function Activity() {
   // console.log(`metFiveMinArray`, metFiveMinArray);
 
   // Move Stages
-  const total = todaysData?.data?.activity?.total;
+  const total = todaysData?.data?.activity?.total * 60; // Convert to seconds from minutes
+  console.log(`total`, total);
   const highSeconds = todaysData?.data?.activity?.high * 60;
   const highPercentage = Math.round(((highSeconds - total) / total + 1) * 100);
   const mediumSeconds = todaysData?.data?.activity?.medium * 60;
+  console.log(`mediumSeconds`, mediumSeconds);
   const mediumPercentage = Math.round(
     ((mediumSeconds - total) / total + 1) * 100
   );
+  console.log(`mediumPercentage`, mediumPercentage);
   const lowSeconds = todaysData?.data?.activity?.low * 60;
   const lowPercentage = Math.round(((lowSeconds - total) / total + 1) * 100);
 
