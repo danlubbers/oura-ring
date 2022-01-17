@@ -28,11 +28,12 @@ const DateRenderer = () => {
   const todaysDate = todaysData?.date;
 
   useEffect(() => {
-    console.log(`btnOffsetLeft`, btnOffsetLeft);
-    console.log(`isBtnPosition`, isBtnPosition);
-    if (isBtnPosition) lastBtnRef?.current?.scrollIntoView();
-    if (!isBtnPosition)
+    if (isBtnPosition) {
+      lastBtnRef?.current?.scrollIntoView();
+    }
+    if (!isBtnPosition) {
       dateRendererRef?.current?.scrollTo({ left: btnOffsetLeft });
+    }
   }, [todaysDate, btnOffsetLeft, isBtnPosition]);
 
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
@@ -43,7 +44,6 @@ const DateRenderer = () => {
     };
 
     const date = sleepObj.bedtime_end.slice(5, 10);
-    console.log(`btnRefs?.current[idx]`, btnRefs?.current[idx]);
 
     const handleBtnClick = () => {
       setTodaysData({
