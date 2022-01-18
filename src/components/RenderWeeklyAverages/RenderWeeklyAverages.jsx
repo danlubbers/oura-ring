@@ -2,6 +2,7 @@ import React from "react";
 import * as styles from "./RenderWeeklyAverages.module.scss";
 import Loading from "../Loading/Loading";
 import Container from "../Container/Container";
+import PickDateRange from "../PickDateRange/PickDateRange";
 import WeeklyAveragesChart from "../WeeklyAveragesChart/WeeklyAveragesChart";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
@@ -14,6 +15,7 @@ const RenderWeeklyAverages = ({
   handleClickMobileDisplay,
 }) => {
   if (!weeklyAverages[0]) return <Loading />;
+  // console.log(`weeklyAverages`, weeklyAverages);
 
   const renderWeeklyAverages = weeklyAverages.map((obj, idx) => {
     return (
@@ -65,7 +67,8 @@ const RenderWeeklyAverages = ({
           isMobileDisplay={isMobileDisplay}
         />
 
-        <p className={styles.weeklyAveragesText}>Weekly Averages</p>
+        {/* <p className={styles.weeklyAveragesText}>Weekly Averages</p> */}
+        <PickDateRange weeklyAverages={weeklyAverages} />
 
         <div className={styles.pickData}>
           <button

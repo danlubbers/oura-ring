@@ -1,0 +1,29 @@
+.pickDateRangeContainer {
+  width: 100%;
+  margin-bottom: 2rem;
+
+  .pickDateRangeWrapper {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0 5rem;
+    display: flex;
+    justify-content: space-around;
+
+    .startDateWrapper {
+      .startDateText {
+        margin-bottom: 0.5rem;
+      }
+      .selectStartDates {
+      }
+    }
+    .endDateWrapper {
+      @extend .startDateWrapper;
+      .endDateText {
+        @extend .startDateText;
+      }
+      .selectEndDates {
+        @extend .selectStartDates;
+      }
+    }
+  }
+}
