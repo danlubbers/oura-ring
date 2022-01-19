@@ -15,13 +15,14 @@ const RenderWeeklyAverages = ({
   showChartData,
   handleShowChartData,
   weeklyAverages,
+  chosenDateRange,
   isMobileDisplay,
   handleClickMobileDisplay,
 }) => {
   if (!weeklyAverages[0]) return <Loading />;
   // console.log(`weeklyAverages`, weeklyAverages);
 
-  const renderWeeklyAverages = weeklyAverages.map((obj, idx) => {
+  const renderWeeklyAverages = chosenDateRange.map((obj, idx) => {
     return (
       <div key={`${idx}`} className={styles.weeklyAveragesContainer}>
         <p className={styles.dateText}>{obj.fullDate}</p>
@@ -124,7 +125,7 @@ const RenderWeeklyAverages = ({
         </div>
 
         <WeeklyAveragesChart
-          data={weeklyAverages}
+          data={chosenDateRange}
           showChartData={showChartData}
         />
         {renderWeeklyAverages}
