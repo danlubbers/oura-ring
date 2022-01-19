@@ -9,6 +9,8 @@ const WeeklyAverages = () => {
   const { sleepData, isMobileDisplay, setIsMobileDisplay } =
     useContext(GlobalContext);
   // console.log(`sleepData`, sleepData);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [parsedCsvData, setParsedCsvData] = useState([]);
   const [showChartData, setShowChartData] = useState({
     restingHR: true,
@@ -16,6 +18,9 @@ const WeeklyAverages = () => {
     avgBedroomTemp: true,
     avgHumidity: true,
   });
+
+  console.log(`startDate`, startDate);
+  console.log(`endDate`, endDate);
 
   useEffect(() => {
     parseFile(thermoStr, setParsedCsvData);
@@ -116,6 +121,10 @@ const WeeklyAverages = () => {
   return (
     <div>
       <RenderWeeklyAverages
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
         showChartData={showChartData}
         handleShowChartData={handleShowChartData}
         weeklyAverages={weeklyAverages}

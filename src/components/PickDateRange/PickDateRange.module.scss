@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .pickDateRangeContainer {
   width: 100%;
   margin-bottom: 2rem;
@@ -11,9 +13,17 @@
 
     .startDateWrapper {
       .startDateText {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        font-size: 1.6rem;
+        font-weight: 500;
       }
       .selectStartDates {
+        width: 8rem;
+        height: 3rem;
+        font-size: 1.4rem;
+        color: $color-grey;
+        border-radius: 10px;
+        text-align-last: center;
       }
     }
     .endDateWrapper {

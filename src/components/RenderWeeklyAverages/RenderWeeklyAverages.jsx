@@ -8,6 +8,10 @@ import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
 
 const RenderWeeklyAverages = ({
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
   showChartData,
   handleShowChartData,
   weeklyAverages,
@@ -68,7 +72,13 @@ const RenderWeeklyAverages = ({
         />
 
         {/* <p className={styles.weeklyAveragesText}>Weekly Averages</p> */}
-        <PickDateRange weeklyAverages={weeklyAverages} />
+        <PickDateRange
+          weeklyAverages={weeklyAverages}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+        />
 
         <div className={styles.pickData}>
           <button
