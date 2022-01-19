@@ -1,17 +1,11 @@
 import React from "react";
 import * as styles from "./PickDateRange.module.scss";
 
-const PickDateRange = ({
-  weeklyAverages,
-  // startDate,
-  setStartDate,
-  // endDate,
-  setEndDate,
-}) => {
+const PickDateRange = ({ weeklyAverages, setStartDate, setEndDate }) => {
   const dates = weeklyAverages.map((obj, idx) => {
     return (
-      <option value={obj.date} key={`${obj.date} #${idx}`}>
-        {obj.date}
+      <option value={obj.fullDate} key={`${obj.date} #${idx}`}>
+        {obj.fullDate}
       </option>
     );
   });
@@ -19,8 +13,8 @@ const PickDateRange = ({
   const datesReversed = weeklyAverages
     .map((obj, idx) => {
       return (
-        <option value={obj.date} key={`${obj.date} #${idx}`}>
-          {obj.date}
+        <option value={obj.fullDate} key={`${obj.date} #${idx}`}>
+          {obj.fullDate}
         </option>
       );
     })

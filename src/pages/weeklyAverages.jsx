@@ -19,8 +19,8 @@ const WeeklyAverages = () => {
     avgHumidity: true,
   });
 
-  console.log(`startDate`, startDate);
-  console.log(`endDate`, endDate);
+  // console.log(`startDate`, startDate);
+  // console.log(`endDate`, endDate);
 
   useEffect(() => {
     parseFile(thermoStr, setParsedCsvData);
@@ -70,7 +70,9 @@ const WeeklyAverages = () => {
   // console.log(`parsedCsvData`, parsedCsvData);
 
   const weeklyAverages = sleepData.map((obj, idx) => {
-    const date = obj.bedtime_end.slice(5, 10);
+    // console.log(`obj.bedtime_end`, obj.bedtime_end);
+    const date = String(new Date(obj.bedtime_end)).slice(0, 15);
+    const monthDayDate = obj.bedtime_end.slice(5, 10);
 
     const bodyTempData = obj.temperature_delta;
     const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
@@ -89,7 +91,9 @@ const WeeklyAverages = () => {
     const filteredTempAvg = parsedCsvData
       .filter((e) => {
         const hour = Number(e.Timestamp.slice(11, 13));
-        return date === e.Timestamp.slice(5, 10) && hour <= 10;
+        return (
+          date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
+        );
       })
       .map((e) => e.Temperature_Fahrenheit);
 
@@ -99,7 +103,9 @@ const WeeklyAverages = () => {
     const filteredHumidityAvg = parsedCsvData
       .filter((e) => {
         const hour = Number(e.Timestamp.slice(11, 13));
-        return date === e.Timestamp.slice(5, 10) && hour <= 10;
+        return (
+          date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
+        );
       })
       .map((e) => e.Relative_Humidity);
 
@@ -112,11 +118,22 @@ const WeeklyAverages = () => {
       bodyTemp: bodyTempFahrenheit,
       avgBedroomTemp: avgTemp,
       avgHumidity: avgHumidity,
-      date: date,
+      fullDate: date,
+      date: monthDayDate,
     };
   });
 
   // console.log(`weeklyAverages`, weeklyAverages);
+  const chosenDateRange = weeklyAverages.filter((obj, idx) => {
+    // const start = startDate === obj.date && idx;
+    // // console.log(`start`, startDate === obj.date && idx);
+    // const end = endDate === obj.date && idx;
+    // // console.log(`End`, endDate === obj.date && idx);
+
+    return startDate >= obj.date && endDate <= obj.date;
+  });
+
+  // console.log(`chosenDateRange`, chosenDateRange);
 
   return (
     <div>

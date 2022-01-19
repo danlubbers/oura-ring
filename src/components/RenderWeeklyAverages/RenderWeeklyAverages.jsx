@@ -24,7 +24,7 @@ const RenderWeeklyAverages = ({
   const renderWeeklyAverages = weeklyAverages.map((obj, idx) => {
     return (
       <div key={`${idx}`} className={styles.weeklyAveragesContainer}>
-        <p className={styles.dateText}>Date: {obj.date}</p>
+        <p className={styles.dateText}>{obj.fullDate}</p>
         <div className={styles.averagesWrapper}>
           <span>Lowest heart rate: </span>
           <span className={`${styles.renderedData} ${styles.restingHRData}`}>
