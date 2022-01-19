@@ -72,6 +72,8 @@ const WeeklyAverages = () => {
   const weeklyAverages = sleepData.map((obj, idx) => {
     // console.log(`obj.bedtime_end`, obj.bedtime_end);
     const date = String(new Date(obj.bedtime_end)).slice(0, 15);
+    // const dateObj = new Date(obj.bedtime_end);
+    // console.log(`dateObj`, dateObj);
     const monthDayDate = obj.bedtime_end.slice(5, 10);
 
     const bodyTempData = obj.temperature_delta;
@@ -124,16 +126,19 @@ const WeeklyAverages = () => {
   });
 
   // console.log(`weeklyAverages`, weeklyAverages);
-  const chosenDateRange = weeklyAverages.filter((obj, idx) => {
-    // const start = startDate === obj.date && idx;
-    // // console.log(`start`, startDate === obj.date && idx);
-    // const end = endDate === obj.date && idx;
-    // // console.log(`End`, endDate === obj.date && idx);
 
-    return startDate >= obj.date && endDate <= obj.date;
+  const chosenDateRange = weeklyAverages.filter((obj, idx) => {
+    // Had to convert the dates to ISO standards for filtering range
+    const ISOStartDate =
+      startDate && new Date(startDate).toISOString().slice(0, 10);
+    const ISOEndDate = endDate && new Date(endDate).toISOString().slice(0, 10);
+
+    const ISODate = new Date(obj.fullDate).toISOString().slice(0, 10);
+
+    return ISODate >= ISOStartDate && ISODate <= ISOEndDate;
   });
 
-  // console.log(`chosenDateRange`, chosenDateRange);
+  console.log(`chosenDateRange`, chosenDateRange);
 
   return (
     <div>
