@@ -6,9 +6,17 @@ import { parseFile } from "../utilities/parseFile";
 import { thermoStr } from "../utilities/sampleTempData";
 
 const WeeklyAverages = () => {
-  const { sleepData, isMobileDisplay, setIsMobileDisplay } =
-    useContext(GlobalContext);
+  const {
+    sleepData,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    isMobileDisplay,
+    setIsMobileDisplay,
+  } = useContext(GlobalContext);
   // console.log(`sleepData`, sleepData);
+
   const [parsedCsvData, setParsedCsvData] = useState([]);
   const [showChartData, setShowChartData] = useState({
     restingHR: true,
@@ -65,7 +73,9 @@ const WeeklyAverages = () => {
   // console.log(`parsedCsvData`, parsedCsvData);
 
   const weeklyAverages = sleepData.map((obj, idx) => {
-    const date = obj.bedtime_end.slice(5, 10);
+    const date = String(new Date(obj.bedtime_end)).slice(0, 15);
+
+    const monthDayDate = obj.bedtime_end.slice(5, 10);
 
     const bodyTempData = obj.temperature_delta;
     const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
@@ -84,7 +94,9 @@ const WeeklyAverages = () => {
     const filteredTempAvg = parsedCsvData
       .filter((e) => {
         const hour = Number(e.Timestamp.slice(11, 13));
-        return date === e.Timestamp.slice(5, 10) && hour <= 10;
+        return (
+          date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
+        );
       })
       .map((e) => e.Temperature_Fahrenheit);
 
@@ -94,7 +106,9 @@ const WeeklyAverages = () => {
     const filteredHumidityAvg = parsedCsvData
       .filter((e) => {
         const hour = Number(e.Timestamp.slice(11, 13));
-        return date === e.Timestamp.slice(5, 10) && hour <= 10;
+        return (
+          date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
+        );
       })
       .map((e) => e.Relative_Humidity);
 
@@ -107,18 +121,37 @@ const WeeklyAverages = () => {
       bodyTemp: bodyTempFahrenheit,
       avgBedroomTemp: avgTemp,
       avgHumidity: avgHumidity,
-      date: date,
+      fullDate: date,
+      date: monthDayDate,
     };
   });
 
   // console.log(`weeklyAverages`, weeklyAverages);
 
+  const chosenDateRange = weeklyAverages.filter((obj, idx) => {
+    // Had to convert the dates to ISO standards for filtering range
+    const ISOStartDate =
+      startDate && new Date(startDate).toISOString().slice(0, 10);
+    const ISOEndDate = endDate && new Date(endDate).toISOString().slice(0, 10);
+
+    const ISODate = new Date(obj.fullDate).toISOString().slice(0, 10);
+
+    return ISODate >= ISOStartDate && ISODate <= ISOEndDate;
+  });
+
+  console.log(`chosenDateRange`, chosenDateRange);
+
   return (
     <div>
       <RenderWeeklyAverages
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
         showChartData={showChartData}
         handleShowChartData={handleShowChartData}
         weeklyAverages={weeklyAverages}
+        chosenDateRange={chosenDateRange}
         isMobileDisplay={isMobileDisplay}
         setIsMobileDisplay={setIsMobileDisplay}
         handleClickMobileDisplay={handleClickMobileDisplay}

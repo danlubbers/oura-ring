@@ -8,6 +8,8 @@ const GlobalProvider = ({ children }) => {
   const [readinessData, setReadinessData] = useState([]);
   const [sleepData, setSleepData] = useState([]);
   const [activityData, setActivityData] = useState([]);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [todaysData, setTodaysData] = useState({});
   const [isMobileDisplay, setIsMobileDisplay] = useState(false);
   const [btnOffsetLeft, setBtnOffsetLeft] = useState();
@@ -22,6 +24,11 @@ const GlobalProvider = ({ children }) => {
       const sleepData = data.ouraSleepData.data.sleep;
       const activityData = data.ouraActivityData.data.activity;
 
+      const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
+      const endDate = String(
+        new Date(sleepData[sleepData.length - 1].bedtime_end)
+      ).slice(0, 15);
+
       const todaysSleepDate = sleepData[sleepData.length - 1].bedtime_end.slice(
         5,
         10
@@ -35,6 +42,10 @@ const GlobalProvider = ({ children }) => {
       setReadinessData(readinessData);
       setSleepData(sleepData);
       setActivityData(activityData);
+
+      setStartDate(startDate);
+      setEndDate(endDate);
+
       setTodaysData({
         date: todaysSleepDate,
         data: {
@@ -55,6 +66,10 @@ const GlobalProvider = ({ children }) => {
         readinessData,
         sleepData,
         activityData,
+        startDate,
+        setStartDate,
+        endDate,
+        setEndDate,
         todaysData,
         setTodaysData,
         isMobileDisplay,

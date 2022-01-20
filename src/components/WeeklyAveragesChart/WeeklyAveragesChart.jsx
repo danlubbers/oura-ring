@@ -2,6 +2,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 import * as styles from "./WeeklyAveragesChart.module.scss";
 
 const WeeklyAveragesChart = ({ data, showChartData }) => {
+  // console.log(`data`, data);
   return (
     <div className={styles.chartContainer}>
       <LineChart
@@ -49,6 +50,7 @@ const WeeklyAveragesChart = ({ data, showChartData }) => {
         <CartesianGrid stroke="#ccc" strokeDasharray="2 2" />
         <XAxis
           dataKey="date"
+          minTickGap={25}
           interval="preserveStartEnd"
           style={{
             fontSize: "1.5rem",

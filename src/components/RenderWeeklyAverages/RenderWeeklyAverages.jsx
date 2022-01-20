@@ -2,23 +2,30 @@ import React from "react";
 import * as styles from "./RenderWeeklyAverages.module.scss";
 import Loading from "../Loading/Loading";
 import Container from "../Container/Container";
+import PickDateRange from "../PickDateRange/PickDateRange";
 import WeeklyAveragesChart from "../WeeklyAveragesChart/WeeklyAveragesChart";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
 
 const RenderWeeklyAverages = ({
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
   showChartData,
   handleShowChartData,
   weeklyAverages,
+  chosenDateRange,
   isMobileDisplay,
   handleClickMobileDisplay,
 }) => {
   if (!weeklyAverages[0]) return <Loading />;
+  // console.log(`weeklyAverages`, weeklyAverages);
 
-  const renderWeeklyAverages = weeklyAverages.map((obj, idx) => {
+  const renderWeeklyAverages = chosenDateRange.map((obj, idx) => {
     return (
       <div key={`${idx}`} className={styles.weeklyAveragesContainer}>
-        <p className={styles.dateText}>Date: {obj.date}</p>
+        <p className={styles.dateText}>{obj.fullDate}</p>
         <div className={styles.averagesWrapper}>
           <span>Lowest heart rate: </span>
           <span className={`${styles.renderedData} ${styles.restingHRData}`}>
@@ -65,7 +72,14 @@ const RenderWeeklyAverages = ({
           isMobileDisplay={isMobileDisplay}
         />
 
-        <p className={styles.weeklyAveragesText}>Weekly Averages</p>
+        {/* <p className={styles.weeklyAveragesText}>Weekly Averages</p> */}
+        <PickDateRange
+          weeklyAverages={weeklyAverages}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+        />
 
         <div className={styles.pickData}>
           <button
@@ -111,7 +125,7 @@ const RenderWeeklyAverages = ({
         </div>
 
         <WeeklyAveragesChart
-          data={weeklyAverages}
+          data={chosenDateRange}
           showChartData={showChartData}
         />
         {renderWeeklyAverages}
