@@ -21,9 +21,12 @@ const BedroomData = () => {
   }, []);
 
   const todaysDate = date;
+  console.log("todaysDate", todaysDate);
   // Time Data
-  // const timeStart = new Date(data?.sleep?.bedtime_start);
-  // const bedtimeStart = moment(timeStart).format("HH:mm");
+  const timeStart = new Date(data?.sleep?.bedtime_start);
+  console.log("timeStart", timeStart);
+  const bedtimeStart = moment(timeStart).format("HH:mm");
+  console.log("bedtimeStart", bedtimeStart);
   const timeEnd = new Date(data?.sleep?.bedtime_end);
   const bedtimeEnd = moment(timeEnd).format("HH:mm");
   // const bedtimeStartRoundedDown = bedtimeStart.split(":")[0] + ":00";

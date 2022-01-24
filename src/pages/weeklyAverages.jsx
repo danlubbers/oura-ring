@@ -139,7 +139,7 @@ const WeeklyAverages = () => {
     return ISODate >= ISOStartDate && ISODate <= ISOEndDate;
   });
 
-  console.log(`chosenDateRange`, chosenDateRange);
+  // console.log(`chosenDateRange`, chosenDateRange);
 
   return (
     <div>
