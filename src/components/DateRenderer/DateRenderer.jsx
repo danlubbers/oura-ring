@@ -46,12 +46,14 @@ const DateRenderer = () => {
 
     const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
     const bedtimeStart = sleepObj.bedtime_start;
+    const bedtimeEnd = sleepObj.bedtime_end;
     // console.log("DATE bedtimeStart:", bedtimeStart);
 
     const handleBtnClick = () => {
       setTodaysData({
         date,
         bedtimeStart,
+        bedtimeEnd,
         data: combinedData,
       });
       setBtnOffsetLeft(btnRefs?.current[idx]?.current.offsetLeft - 167.5);

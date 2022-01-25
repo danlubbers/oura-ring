@@ -4,12 +4,11 @@ import RenderBedroomData from "../components/RenderBedroomData/RenderBedroomData
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
 import { parseFile } from "../utilities/parseFile";
-import moment from "moment";
 import { thermoStr } from "../utilities/sampleTempData";
 
 const BedroomData = () => {
   const {
-    todaysData: { date, bedtimeStart, data },
+    todaysData: { date, bedtimeStart, bedtimeEnd, data },
   } = useContext(GlobalContext);
 
   const [parsedCsvData, setParsedCsvData] = useState([]);
@@ -20,44 +19,26 @@ const BedroomData = () => {
   }, []);
 
   const todaysDate = date;
-  // console.log("todaysDate", todaysDate);
-  // Time Data
 
-  console.log("bedtimeStart", bedtimeStart);
-  const timeEnd = new Date(data?.sleep?.bedtime_end);
-  // console.log("timeEnd", timeEnd);
-  const bedtimeEnd = moment(timeEnd).format("HH:mm");
-  // const bedtimeStartRoundedDown = bedtimeStart.split(":")[0] + ":00";
-  // console.log(`bedtimeStartRoundedDown`, bedtimeStartRoundedDown);
-  const bedtimeEndRoundedUp = ++bedtimeEnd.split(":")[0]; // Round up one hour by incrementing by 1
-  // console.log(`bedtimeEndRoundedUp`, bedtimeEndRoundedUp);
+  // Time Data
+  let bedtimeHour = bedtimeEnd?.slice(11, 16).split(":")[0];
+  const incrementedBedtimeHour = ++bedtimeHour;
 
   /*** Filtered to get tonights data and hours between midnight and 10am */
   const filteredData = parsedCsvData.filter((obj) => {
-    // console.log("obj.Timestamp", obj.Timestamp);
     const date = obj.Timestamp.slice(0, 10);
-
     const hour = obj.Timestamp.slice(11, 13);
-    // console.log("hour", hour);
 
-    // console.log(
-    //   "date",
-    //   date >= bedtimeStart &&
-    //     hour > bedtimeStart.slice(11, 13) &&
-    //     bedtimeStart
-    // );
-    // if (date === bedtimeStart?.slice(0, 10)) {
-    //   // console.log("date", bedtimeStart.slice(0, 10));
-    //   // console.log("hour", bedtimeStart.slice(11, 13));
-    // }
-    // return date === todaysDate && hour <= bedtimeEndRoundedUp;
+    const bedtimeStartDate = bedtimeStart?.slice(0, 10);
+    const bedtimeStartTime = bedtimeStart?.slice(11, 13);
+
     return (
-      (date === todaysDate && hour <= bedtimeEndRoundedUp) ||
-      (date === bedtimeStart.slice(0, 10) && hour >= bedtimeStart.slice(11, 13))
+      (date === bedtimeStartDate && hour >= bedtimeStartTime) ||
+      (date === todaysDate && hour <= incrementedBedtimeHour)
     );
   });
 
-  console.log(`filteredData`, filteredData);
+  // console.log(`filteredData`, filteredData);
 
   /*** Average Filtered Temp Data */
   const nightlyTempAvg =

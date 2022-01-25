@@ -38,7 +38,8 @@ const GlobalProvider = ({ children }) => {
       const todaysReadinessData = readinessData[readinessData.length - 1];
       const todaysActivityData = activityData[activityData.length - 1];
       const bedtimeStart = todaysSleepData.bedtime_start;
-      console.log("PROVIDER: ", bedtimeStart);
+      const bedtimeEnd = todaysSleepData.bedtime_end;
+      // console.log("PROVIDER: ", bedtimeEnd);
 
       setUserData(userData);
       setReadinessData(readinessData);
@@ -50,7 +51,8 @@ const GlobalProvider = ({ children }) => {
 
       setTodaysData({
         date: todaysSleepDate,
-        bedtimeStart: bedtimeStart,
+        bedtimeStart,
+        bedtimeEnd,
 
         data: {
           readiness: todaysReadinessData,
