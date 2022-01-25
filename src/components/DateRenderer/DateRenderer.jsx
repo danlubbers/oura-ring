@@ -26,6 +26,7 @@ const DateRenderer = () => {
   });
 
   const todaysDate = todaysData?.date;
+  console.log("todaysDate", todaysDate);
 
   useEffect(() => {
     if (isBtnPosition) {
@@ -43,7 +44,7 @@ const DateRenderer = () => {
       activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
     };
 
-    const date = sleepObj.bedtime_end.slice(5, 10);
+    const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
 
     const handleBtnClick = () => {
       setTodaysData({
@@ -57,7 +58,7 @@ const DateRenderer = () => {
     return (
       <div key={`btn: ${date}`} style={{ width: "100%" }} ref={lastBtnRef}>
         <Button
-          btnAction={date}
+          btnAction={date.slice(5, 10)} // month, day
           onClick={handleBtnClick}
           style={{
             width: "3.5rem",

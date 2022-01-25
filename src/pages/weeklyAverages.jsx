@@ -130,11 +130,15 @@ const WeeklyAverages = () => {
 
   const chosenDateRange = weeklyAverages.filter((obj, idx) => {
     // Had to convert the dates to ISO standards for filtering range
+
+    // console.log("obj.fullDate", obj.fullDate);
     const ISOStartDate =
       startDate && new Date(startDate).toISOString().slice(0, 10);
-    const ISOEndDate = endDate && new Date(endDate).toISOString().slice(0, 10);
-
+    // console.log("ISOStartDate", ISOStartDate);
+    const ISOEndDate = endDate && new Date(endDate).toISOString();
+    // console.log("ISOEndDate", ISOEndDate);
     const ISODate = new Date(obj.fullDate).toISOString().slice(0, 10);
+    // console.log("ISODate", ISODate);
 
     return ISODate >= ISOStartDate && ISODate <= ISOEndDate;
   });

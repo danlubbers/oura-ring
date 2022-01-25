@@ -27,10 +27,10 @@ const GlobalProvider = ({ children }) => {
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
         new Date(sleepData[sleepData.length - 1].bedtime_end)
-      ).slice(0, 15);
+      ).slice(4, 15);
 
       const todaysSleepDate = sleepData[sleepData.length - 1].bedtime_end.slice(
-        5,
+        0,
         10
       );
 
@@ -57,7 +57,7 @@ const GlobalProvider = ({ children }) => {
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  // console.log(`Provider: todaysData`, todaysData);
+  console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider
