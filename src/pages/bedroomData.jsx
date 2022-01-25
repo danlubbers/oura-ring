@@ -3,14 +3,13 @@ import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderBedroomData from "../components/RenderBedroomData/RenderBedroomData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
-// import Papa from "papaparse";
 import { parseFile } from "../utilities/parseFile";
 import moment from "moment";
 import { thermoStr } from "../utilities/sampleTempData";
 
 const BedroomData = () => {
   const {
-    todaysData: { date, data },
+    todaysData: { date, bedtimeStart, data },
   } = useContext(GlobalContext);
 
   const [parsedCsvData, setParsedCsvData] = useState([]);
@@ -23,11 +22,10 @@ const BedroomData = () => {
   const todaysDate = date;
   // console.log("todaysDate", todaysDate);
   // Time Data
-  const timeStart = new Date(data?.sleep?.bedtime_start);
-  console.log("timeStart", timeStart);
-  // const bedtimeStart = moment(timeStart).format("HH:mm");
-  // console.log("bedtimeStart", bedtimeStart);
+
+  console.log("bedtimeStart", bedtimeStart);
   const timeEnd = new Date(data?.sleep?.bedtime_end);
+  // console.log("timeEnd", timeEnd);
   const bedtimeEnd = moment(timeEnd).format("HH:mm");
   // const bedtimeStartRoundedDown = bedtimeStart.split(":")[0] + ":00";
   // console.log(`bedtimeStartRoundedDown`, bedtimeStartRoundedDown);
@@ -38,12 +36,28 @@ const BedroomData = () => {
   const filteredData = parsedCsvData.filter((obj) => {
     // console.log("obj.Timestamp", obj.Timestamp);
     const date = obj.Timestamp.slice(0, 10);
-    const hour = obj.Timestamp.slice(11, 13);
 
-    return date === todaysDate && hour <= bedtimeEndRoundedUp;
+    const hour = obj.Timestamp.slice(11, 13);
+    // console.log("hour", hour);
+
+    // console.log(
+    //   "date",
+    //   date >= bedtimeStart &&
+    //     hour > bedtimeStart.slice(11, 13) &&
+    //     bedtimeStart
+    // );
+    // if (date === bedtimeStart?.slice(0, 10)) {
+    //   // console.log("date", bedtimeStart.slice(0, 10));
+    //   // console.log("hour", bedtimeStart.slice(11, 13));
+    // }
+    // return date === todaysDate && hour <= bedtimeEndRoundedUp;
+    return (
+      (date === todaysDate && hour <= bedtimeEndRoundedUp) ||
+      (date === bedtimeStart.slice(0, 10) && hour >= bedtimeStart.slice(11, 13))
+    );
   });
 
-  // console.log(`filteredData`, filteredData);
+  console.log(`filteredData`, filteredData);
 
   /*** Average Filtered Temp Data */
   const nightlyTempAvg =
@@ -87,15 +101,11 @@ const BedroomData = () => {
       // console.log("Timestamp", Timestamp);
       const hour = Timestamp.slice(11, 16);
       // console.log("hour", hour);
-
-      // let sleepDuration = bedtimeStartRoundedDown;
-
-      for (let i = 0; i <= 10; i++) {}
-      // console.log("sleepDuration", sleepDuration);
-
       return {
         humidity: Relative_Humidity,
         temp: Temperature_Fahrenheit,
+        // bedtimeStart: bedtimeStart,
+        // bedtimeEnd: null,
         time: hour, // right now hour starts at midnight and goes to bedtimeEndRoundedUp
       };
     }

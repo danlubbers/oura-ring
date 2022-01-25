@@ -37,6 +37,8 @@ const GlobalProvider = ({ children }) => {
       const todaysSleepData = sleepData[sleepData.length - 1];
       const todaysReadinessData = readinessData[readinessData.length - 1];
       const todaysActivityData = activityData[activityData.length - 1];
+      const bedtimeStart = todaysSleepData.bedtime_start;
+      console.log("PROVIDER: ", bedtimeStart);
 
       setUserData(userData);
       setReadinessData(readinessData);
@@ -48,6 +50,8 @@ const GlobalProvider = ({ children }) => {
 
       setTodaysData({
         date: todaysSleepDate,
+        bedtimeStart: bedtimeStart,
+
         data: {
           readiness: todaysReadinessData,
           sleep: todaysSleepData,
@@ -57,7 +61,7 @@ const GlobalProvider = ({ children }) => {
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  console.log(`Provider: todaysData`, todaysData);
+  // console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider

@@ -26,7 +26,7 @@ const DateRenderer = () => {
   });
 
   const todaysDate = todaysData?.date;
-  console.log("todaysDate", todaysDate);
+  // console.log("todaysDate", todaysDate);
 
   useEffect(() => {
     if (isBtnPosition) {
@@ -45,10 +45,13 @@ const DateRenderer = () => {
     };
 
     const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
+    const bedtimeStart = sleepObj.bedtime_start;
+    // console.log("DATE bedtimeStart:", bedtimeStart);
 
     const handleBtnClick = () => {
       setTodaysData({
         date,
+        bedtimeStart,
         data: combinedData,
       });
       setBtnOffsetLeft(btnRefs?.current[idx]?.current.offsetLeft - 167.5);
