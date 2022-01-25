@@ -8,7 +8,7 @@ import { thermoStr } from "../utilities/sampleTempData";
 
 const BedroomData = () => {
   const {
-    todaysData: { date, bedtimeStart, bedtimeEnd, data },
+    todaysData: { bedtimeStart, bedtimeEnd, data },
   } = useContext(GlobalContext);
 
   const [parsedCsvData, setParsedCsvData] = useState([]);
@@ -18,11 +18,7 @@ const BedroomData = () => {
     parseFile(thermoStr, setParsedCsvData);
   }, []);
 
-  const todaysDate = date;
-
   // Time Data
-  let bedtimeHour = bedtimeEnd?.slice(11, 16).split(":")[0];
-  const incrementedBedtimeHour = ++bedtimeHour;
 
   /*** Filtered to get tonights data and hours between midnight and 10am */
   const filteredData = parsedCsvData.filter((obj) => {
@@ -31,11 +27,16 @@ const BedroomData = () => {
 
     const bedtimeStartDate = bedtimeStart?.slice(0, 10);
     const bedtimeStartTime = bedtimeStart?.slice(11, 13);
+    const bedtimeEndDate = bedtimeEnd?.slice(0, 10);
+    const bedtimeEndTime = bedtimeEnd?.slice(11, 13);
 
-    return (
-      (date === bedtimeStartDate && hour >= bedtimeStartTime) ||
-      (date === todaysDate && hour <= incrementedBedtimeHour)
-    );
+    if (bedtimeStartDate !== bedtimeEndDate) {
+      return (
+        (date === bedtimeStartDate && hour >= bedtimeStartTime) ||
+        (date === bedtimeEndDate && hour <= bedtimeEndTime)
+      );
+    }
+    return date === bedtimeEndDate && hour <= bedtimeEndTime;
   });
 
   // console.log(`filteredData`, filteredData);
@@ -79,15 +80,12 @@ const BedroomData = () => {
 
   const chartData = filteredData.map(
     ({ Relative_Humidity, Temperature_Fahrenheit, Timestamp }) => {
-      // console.log("Timestamp", Timestamp);
       const hour = Timestamp.slice(11, 16);
-      // console.log("hour", hour);
+
       return {
         humidity: Relative_Humidity,
         temp: Temperature_Fahrenheit,
-        // bedtimeStart: bedtimeStart,
-        // bedtimeEnd: null,
-        time: hour, // right now hour starts at midnight and goes to bedtimeEndRoundedUp
+        time: hour,
       };
     }
   );
