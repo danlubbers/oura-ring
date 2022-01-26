@@ -20,7 +20,7 @@ const BedroomData = () => {
 
   // Time Data
 
-  /*** Filtered to get tonights data and hours between midnight and 10am */
+  /*** Filtered to get last nights data between sleeping hours */
   const filteredData = parsedCsvData.filter((obj) => {
     const date = obj.Timestamp.slice(0, 10);
     const hour = obj.Timestamp.slice(11, 13);
