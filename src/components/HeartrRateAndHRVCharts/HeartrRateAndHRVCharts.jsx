@@ -2,8 +2,8 @@ import * as styles from "./HeartrRateAndHRVCharts.module.scss";
 import Chart from "../Chart/Chart";
 
 const HeartrRateAndHRVCharts = ({
-  bedtimeStart,
-  bedtimeEnd,
+  // bedtimeStart,
+  // bedtimeEnd,
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -33,8 +33,8 @@ const HeartrRateAndHRVCharts = ({
         lineDataKey="heartRate"
         xAxisDataKey="timeDuration"
         chartTitle={"Heart Rate"}
-        bedtimeStart={bedtimeStart}
-        bedtimeEnd={bedtimeEnd}
+        // bedtimeStart={bedtimeStart}
+        // bedtimeEnd={bedtimeEnd}
         yAxisDomain={[minHeartRate - 5, maxHeartRate + 5]}
         lineColor={"#33becc"}
         legend={false}
@@ -54,8 +54,8 @@ const HeartrRateAndHRVCharts = ({
         lineDataKey="HRV"
         xAxisDataKey="timeDuration"
         chartTitle={"Heart Rate Variability"}
-        bedtimeStart={bedtimeStart}
-        bedtimeEnd={bedtimeEnd}
+        // bedtimeStart={bedtimeStart}
+        // bedtimeEnd={bedtimeEnd}
         yAxisDomain={[0, maxHRV + 5]}
         max={maxHRV}
         lineColor={"#DC143C"}

@@ -1,5 +1,3 @@
-// import React, { useEffect } from "react";
-// import moment from "moment";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 import * as styles from "./Chart.module.scss";
 

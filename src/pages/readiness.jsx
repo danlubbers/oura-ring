@@ -3,41 +3,41 @@ import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderReadinessData from "../components/RenderReadinessData/RenderReadinessData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
-import moment from "moment";
 import { timeIncrement } from "../utilities/incrementTime";
 
 function Readiness() {
-  const { todaysData } = useContext(GlobalContext);
+  const {
+    todaysData: { date, bedtimeStart, bedtimeEnd, data },
+  } = useContext(GlobalContext);
   // console.log(`Readiness: todaysData`, todaysData);
 
-  const sleepDuration = todaysData?.data?.sleep?.duration;
+  const sleepDuration = data?.sleep?.duration;
+  const bedtimeStartHourAndMin = bedtimeStart && bedtimeStart.slice(11, 16);
+  // const bedtimeEndHourAndMin = bedtimeEnd && bedtimeEnd.slice(11, 16);
 
   // Quad Data
-  const restingHR = todaysData?.data?.sleep?.hr_lowest;
-  const bodyTempData = todaysData?.data?.sleep?.temperature_delta;
+  const restingHR = data?.sleep?.hr_lowest;
+  const bodyTempData = data?.sleep?.temperature_delta;
   const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
   const bodyTempFahrenheit = (conversionToFahrenheit - 32).toFixed(1);
-  const respiratoryRate = todaysData?.data?.sleep?.breath_average.toFixed(1);
+  const respiratoryRate = data?.sleep?.breath_average.toFixed(1);
 
   // Quad and Chart Data
-  const avgHRV = todaysData?.data?.sleep?.rmssd;
-  const maxHRV =
-    todaysData?.data?.sleep && Math.max(...todaysData?.data?.sleep?.rmssd_5min);
+  const avgHRV = data?.sleep?.rmssd;
+  const maxHRV = data?.sleep && Math.max(...data?.sleep?.rmssd_5min);
 
   // Overall Score
-  const score = todaysData?.data?.readiness?.score;
+  const score = data?.readiness?.score;
 
   // Contributors
-  const restingHRScore = todaysData?.data?.readiness?.score_resting_hr;
-  const HRVScore = todaysData?.data?.readiness?.score_hrv_balance;
-  const bodyTempScore = todaysData?.data?.readiness?.score_temperature;
-  const recoveryScore = todaysData?.data?.readiness?.score_recovery_index;
-  const sleepScore = todaysData?.data?.readiness?.score_previous_night;
-  const sleepBalanceScore = todaysData?.data?.readiness?.score_sleep_balance;
-  const previousDayActivityScore =
-    todaysData?.data?.readiness?.score_previous_day;
-  const activityBalanceScore =
-    todaysData?.data?.readiness?.score_activity_balance;
+  const restingHRScore = data?.readiness?.score_resting_hr;
+  const HRVScore = data?.readiness?.score_hrv_balance;
+  const bodyTempScore = data?.readiness?.score_temperature;
+  const recoveryScore = data?.readiness?.score_recovery_index;
+  const sleepScore = data?.readiness?.score_previous_night;
+  const sleepBalanceScore = data?.readiness?.score_sleep_balance;
+  const previousDayActivityScore = data?.readiness?.score_previous_day;
+  const activityBalanceScore = data?.readiness?.score_activity_balance;
 
   const readinessContributorData = [
     { name: "Resting heart rate", score: restingHRScore },
@@ -50,18 +50,12 @@ function Readiness() {
     { name: "Activity balance", score: activityBalanceScore },
   ];
 
-  // Chart Data
-  const timeStart = new Date(todaysData?.data?.sleep?.bedtime_start);
-  const bedtimeStart = moment(timeStart).format("HH:mm");
-  const timeEnd = new Date(todaysData?.data?.sleep?.bedtime_end);
-  const bedtimeEnd = moment(timeEnd).format("HH:mm");
-  const minHeartRate = todaysData?.data?.sleep?.hr_lowest;
-  const maxHeartRate =
-    todaysData?.data?.sleep && Math.max(...todaysData?.data?.sleep?.hr_5min);
+  const minHeartRate = data?.sleep?.hr_lowest;
+  const maxHeartRate = data?.sleep && Math.max(...data?.sleep?.hr_5min);
 
-  const heartRateData = todaysData?.data?.sleep?.hr_5min
+  const heartRateData = data?.sleep?.hr_5min
     ?.map((heartRate, idx) => {
-      const time = timeIncrement(bedtimeStart, sleepDuration)[idx];
+      const time = timeIncrement(bedtimeStartHourAndMin, sleepDuration)[idx];
 
       return {
         heartRate: heartRate,
@@ -70,9 +64,9 @@ function Readiness() {
     })
     .filter((obj) => obj.heartRate !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
-  const hrvData = todaysData?.data?.sleep?.rmssd_5min
+  const hrvData = data?.sleep?.rmssd_5min
     ?.map((hrv, idx) => {
-      const time = timeIncrement(bedtimeStart, sleepDuration)[idx];
+      const time = timeIncrement(bedtimeStartHourAndMin, sleepDuration)[idx];
 
       return {
         HRV: hrv,
@@ -81,23 +75,20 @@ function Readiness() {
     })
     .filter((obj) => obj.HRV !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
-  const avgHRData = todaysData?.data?.sleep?.hr_5min.reduce(
-    (avg, value, _, { length }) => {
-      return avg + value / length;
-    },
-    0
-  );
+  const avgHRData = data?.sleep?.hr_5min.reduce((avg, value, _, { length }) => {
+    return avg + value / length;
+  }, 0);
 
   return (
     <div>
       <DateRenderer />
       <RenderReadinessData
         score={score}
-        todaysDate={todaysData.date}
+        todaysDate={date}
         bodyTemp={bodyTempFahrenheit}
         respiratoryRate={respiratoryRate}
-        bedtimeStart={bedtimeStart}
-        bedtimeEnd={bedtimeEnd}
+        // bedtimeStart={bedtimeStartHourAndMin}
+        // bedtimeEnd={bedtimeEndHourAndMin}
         avgHRData={avgHRData}
         restingHR={restingHR}
         minHeartRate={minHeartRate}
