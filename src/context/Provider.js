@@ -27,16 +27,19 @@ const GlobalProvider = ({ children }) => {
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
         new Date(sleepData[sleepData.length - 1].bedtime_end)
-      ).slice(0, 15);
+      ).slice(4, 15);
 
       const todaysSleepDate = sleepData[sleepData.length - 1].bedtime_end.slice(
-        5,
+        0,
         10
       );
 
       const todaysSleepData = sleepData[sleepData.length - 1];
       const todaysReadinessData = readinessData[readinessData.length - 1];
       const todaysActivityData = activityData[activityData.length - 1];
+      const bedtimeStart = todaysSleepData.bedtime_start;
+      const bedtimeEnd = todaysSleepData.bedtime_end;
+      // console.log("PROVIDER: ", bedtimeEnd);
 
       setUserData(userData);
       setReadinessData(readinessData);
@@ -48,6 +51,9 @@ const GlobalProvider = ({ children }) => {
 
       setTodaysData({
         date: todaysSleepDate,
+        bedtimeStart,
+        bedtimeEnd,
+
         data: {
           readiness: todaysReadinessData,
           sleep: todaysSleepData,

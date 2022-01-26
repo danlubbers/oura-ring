@@ -3,14 +3,12 @@ import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderBedroomData from "../components/RenderBedroomData/RenderBedroomData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
-// import Papa from "papaparse";
 import { parseFile } from "../utilities/parseFile";
-import moment from "moment";
 import { thermoStr } from "../utilities/sampleTempData";
 
 const BedroomData = () => {
   const {
-    todaysData: { date, data },
+    todaysData: { bedtimeStart, bedtimeEnd, data },
   } = useContext(GlobalContext);
 
   const [parsedCsvData, setParsedCsvData] = useState([]);
@@ -20,26 +18,25 @@ const BedroomData = () => {
     parseFile(thermoStr, setParsedCsvData);
   }, []);
 
-  const todaysDate = date;
-  console.log("todaysDate", todaysDate);
   // Time Data
-  const timeStart = new Date(data?.sleep?.bedtime_start);
-  console.log("timeStart", timeStart);
-  const bedtimeStart = moment(timeStart).format("HH:mm");
-  console.log("bedtimeStart", bedtimeStart);
-  const timeEnd = new Date(data?.sleep?.bedtime_end);
-  const bedtimeEnd = moment(timeEnd).format("HH:mm");
-  // const bedtimeStartRoundedDown = bedtimeStart.split(":")[0] + ":00";
-  // console.log(`bedtimeStartRoundedDown`, bedtimeStartRoundedDown);
-  const bedtimeEndRoundedUp = ++bedtimeEnd.split(":")[0]; // Round up one hour by incrementing by 1
-  // console.log(`bedtimeEndRoundedUp`, bedtimeEndRoundedUp);
 
-  /*** Filtered to get tonights data and hours between midnight and 10am */
+  /*** Filtered to get last nights data between sleeping hours */
   const filteredData = parsedCsvData.filter((obj) => {
-    const date = obj.Timestamp.slice(5, 10);
+    const date = obj.Timestamp.slice(0, 10);
     const hour = obj.Timestamp.slice(11, 13);
 
-    return date === todaysDate && hour <= bedtimeEndRoundedUp;
+    const bedtimeStartDate = bedtimeStart?.slice(0, 10);
+    const bedtimeStartTime = bedtimeStart?.slice(11, 13);
+    const bedtimeEndDate = bedtimeEnd?.slice(0, 10);
+    const bedtimeEndTime = bedtimeEnd?.slice(11, 13);
+
+    if (bedtimeStartDate !== bedtimeEndDate) {
+      return (
+        (date === bedtimeStartDate && hour >= bedtimeStartTime) ||
+        (date === bedtimeEndDate && hour <= bedtimeEndTime)
+      );
+    }
+    return date === bedtimeEndDate && hour <= bedtimeEndTime;
   });
 
   // console.log(`filteredData`, filteredData);
@@ -82,13 +79,13 @@ const BedroomData = () => {
   const maxhumidity = Math.max(...humidityArray);
 
   const chartData = filteredData.map(
-    ({ Relative_Humidity, Temperature_Fahrenheit, Timestamp }, idx) => {
+    ({ Relative_Humidity, Temperature_Fahrenheit, Timestamp }) => {
       const hour = Timestamp.slice(11, 16);
 
       return {
         humidity: Relative_Humidity,
         temp: Temperature_Fahrenheit,
-        time: hour, // right now hour starts at midnight and goes to bedtimeEndRoundedUp
+        time: hour,
       };
     }
   );
