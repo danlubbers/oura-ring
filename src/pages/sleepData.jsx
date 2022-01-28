@@ -3,46 +3,49 @@ import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
-import moment from "moment";
 import { timeIncrement } from "../utilities/incrementTime";
 import { secondsToHm } from "../utilities/convertTime";
 
 function SleepData() {
-  const { todaysData } = useContext(GlobalContext);
+  const {
+    todaysData: { date, bedtimeStart, data },
+  } = useContext(GlobalContext);
   // console.log(`Sleep: todaysData`, todaysData);
 
+  // Time Data
+  const bedtimeStartHourAndMin = bedtimeStart && bedtimeStart.slice(11, 16);
+
   // Quad Data
-  const totalSleep = secondsToHm(todaysData?.data?.sleep?.total);
-  const sleepDuration = todaysData?.data?.sleep?.duration;
+  const totalSleep = secondsToHm(data?.sleep?.total);
+  const sleepDuration = data?.sleep?.duration;
   const timeInBed = secondsToHm(sleepDuration);
-  const sleepEfficiency = todaysData?.data?.sleep?.efficiency;
+  const sleepEfficiency = data?.sleep?.efficiency;
 
   // Quad and Heartrate/HRV Chart Data
-  const avgHRV = todaysData?.data?.sleep?.rmssd;
-  const maxHRV =
-    todaysData?.data?.sleep && Math.max(...todaysData?.data?.sleep?.rmssd_5min);
+  const avgHRV = data?.sleep?.rmssd;
+  const maxHRV = data?.sleep && Math.max(...data?.sleep?.rmssd_5min);
 
   // Overall Score
-  const score = todaysData?.data?.sleep?.score;
+  const score = data?.sleep?.score;
 
   // Contributors
-  const total = todaysData?.data?.sleep?.total;
-  const totalScore = todaysData?.data?.sleep?.score_total;
-  const efficiency = todaysData?.data?.sleep?.efficiency;
-  const efficiencyScore = todaysData?.data?.sleep?.score_efficiency;
-  const restfulnessScore = todaysData?.data?.sleep?.score_disturbances;
-  const remSleep = todaysData?.data?.sleep?.rem;
-  const remScore = todaysData?.data?.sleep?.score_rem;
+  const total = data?.sleep?.total;
+  const totalScore = data?.sleep?.score_total;
+  const efficiency = data?.sleep?.efficiency;
+  const efficiencyScore = data?.sleep?.score_efficiency;
+  const restfulnessScore = data?.sleep?.score_disturbances;
+  const remSleep = data?.sleep?.rem;
+  const remScore = data?.sleep?.score_rem;
   // rem seconds - total sleep seconds divided by the total sleep seconds then convert that to the percentage and round to nearest integer
   const remPercentage = Math.round(((remSleep - total) / total + 1) * 100);
-  const deepSleep = todaysData?.data?.sleep?.deep;
-  const deepSleepScore = todaysData?.data?.sleep?.score_deep;
+  const deepSleep = data?.sleep?.deep;
+  const deepSleepScore = data?.sleep?.score_deep;
   const deepSleepPercentage = Math.round(
     ((deepSleep - total) / total + 1) * 100
   );
-  const onsetLatency = todaysData?.data?.sleep?.onset_latency;
-  const latencyScore = todaysData?.data?.sleep?.score_latency;
-  const alignmentScore = todaysData?.data?.sleep?.score_alignment;
+  const onsetLatency = data?.sleep?.onset_latency;
+  const latencyScore = data?.sleep?.score_latency;
+  const alignmentScore = data?.sleep?.score_alignment;
 
   const sleepContributorData = [
     { name: "Total Sleep", score: totalScore },
@@ -64,16 +67,10 @@ function SleepData() {
     { name: "Timing", score: alignmentScore },
   ];
 
-  // Time Data for multiple charts
-  const timeStart = new Date(todaysData?.data?.sleep?.bedtime_start);
-  const bedtimeStart = moment(timeStart).format("HH:mm");
-  const timeEnd = new Date(todaysData?.data?.sleep?.bedtime_end);
-  const bedtimeEnd = moment(timeEnd).format("HH:mm");
-
   // Sleep Stages/Percentages that aren't already declared
-  const awakeSleep = todaysData?.data?.sleep?.awake;
+  const awakeSleep = data?.sleep?.awake;
   const awakePercentage = Math.round(((awakeSleep - total) / total + 1) * 100);
-  const lightSleep = todaysData?.data?.sleep?.light;
+  const lightSleep = data?.sleep?.light;
   const lightPercentage = Math.round(((lightSleep - total) / total + 1) * 100);
 
   const sleepStagesData = [
@@ -108,10 +105,10 @@ function SleepData() {
   ];
 
   // Sleep Chart Data
-  const hypnogramData = todaysData?.data?.sleep?.hypnogram_5min
+  const hypnogramData = data?.sleep?.hypnogram_5min
     .split("")
     ?.map((sleepLevel, idx) => {
-      const time = timeIncrement(bedtimeStart, sleepDuration)[idx];
+      const time = timeIncrement(bedtimeStartHourAndMin, sleepDuration)[idx];
       sleepLevel = Number(sleepLevel);
       let sleepStage;
       if (sleepLevel === 1) {
@@ -136,13 +133,12 @@ function SleepData() {
   // console.log(`hypnogramData`, hypnogramData);
 
   // Heartrate/HRV Chart Data
-  const minHeartRate = todaysData?.data?.sleep?.hr_lowest;
-  const maxHeartRate =
-    todaysData?.data?.sleep && Math.max(...todaysData?.data?.sleep?.hr_5min);
+  const minHeartRate = data?.sleep?.hr_lowest;
+  const maxHeartRate = data?.sleep && Math.max(...data?.sleep?.hr_5min);
 
-  const heartRateData = todaysData?.data?.sleep?.hr_5min
+  const heartRateData = data?.sleep?.hr_5min
     ?.map((heartRate, idx) => {
-      const time = timeIncrement(bedtimeStart, sleepDuration)[idx];
+      const time = timeIncrement(bedtimeStartHourAndMin, sleepDuration)[idx];
 
       return {
         heartRate: heartRate,
@@ -151,9 +147,9 @@ function SleepData() {
     })
     .filter((obj) => obj.heartRate !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
-  const hrvData = todaysData?.data?.sleep?.rmssd_5min
+  const hrvData = data?.sleep?.rmssd_5min
     ?.map((hrv, idx) => {
-      const time = timeIncrement(bedtimeStart, sleepDuration)[idx];
+      const time = timeIncrement(bedtimeStartHourAndMin, sleepDuration)[idx];
 
       return {
         HRV: hrv,
@@ -162,24 +158,21 @@ function SleepData() {
     })
     .filter((obj) => obj.HRV !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
-  const avgHRData = todaysData?.data?.sleep?.hr_5min.reduce(
-    (avg, value, _, { length }) => {
-      return avg + value / length;
-    },
-    0
-  );
+  const avgHRData = data?.sleep?.hr_5min.reduce((avg, value, _, { length }) => {
+    return avg + value / length;
+  }, 0);
 
   return (
     <div>
       <DateRenderer />
       <RenderSleepData
         score={score}
-        todaysDate={todaysData.date}
+        todaysDate={date}
         totalSleep={totalSleep}
         timeInBed={timeInBed}
         sleepEfficiency={sleepEfficiency}
-        bedtimeStart={bedtimeStart}
-        bedtimeEnd={bedtimeEnd}
+        // bedtimeStart={bedtimeStart}
+        // bedtimeEnd={bedtimeEnd}
         avgHRData={avgHRData}
         minHeartRate={minHeartRate}
         maxHeartRate={maxHeartRate}

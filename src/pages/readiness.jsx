@@ -7,10 +7,11 @@ import { timeIncrement } from "../utilities/incrementTime";
 
 function Readiness() {
   const {
-    todaysData: { date, bedtimeStart, bedtimeEnd, data },
+    todaysData: { date, bedtimeStart, data },
   } = useContext(GlobalContext);
   // console.log(`Readiness: todaysData`, todaysData);
 
+  // Time Data
   const sleepDuration = data?.sleep?.duration;
   const bedtimeStartHourAndMin = bedtimeStart && bedtimeStart.slice(11, 16);
   // const bedtimeEndHourAndMin = bedtimeEnd && bedtimeEnd.slice(11, 16);
