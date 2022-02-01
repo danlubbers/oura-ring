@@ -8,8 +8,8 @@ const BarChartComponent = ({
   activity,
   totalSleep,
   timeInBed,
-  bedtimeStart,
-  bedtimeEnd,
+  // bedtimeStart,
+  // bedtimeEnd,
   data,
   dataKey,
   XAxisDataKey,
@@ -47,7 +47,7 @@ const BarChartComponent = ({
           dataKey={XAxisDataKey}
           interval="preserveStartEnd"
           minTickGap={45}
-          domain={[bedtimeStart, bedtimeEnd]}
+          // domain={[bedtimeStart, bedtimeEnd]}
           style={{
             fontSize: "1.5rem",
           }}

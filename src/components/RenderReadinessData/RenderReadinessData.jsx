@@ -14,8 +14,8 @@ const RenderReadinessData = ({
   avgHRV,
   bodyTemp,
   respiratoryRate,
-  bedtimeStart,
-  bedtimeEnd,
+  // bedtimeStart,
+  // bedtimeEnd,
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -47,8 +47,8 @@ const RenderReadinessData = ({
           restingHR={restingHR}
         />
         <HeartRateAndHRVCharts
-          bedtimeStart={bedtimeStart}
-          bedtimeEnd={bedtimeEnd}
+          // bedtimeStart={bedtimeStart}
+          // bedtimeEnd={bedtimeEnd}
           avgHRData={avgHRData}
           minHeartRate={minHeartRate}
           maxHeartRate={maxHeartRate}

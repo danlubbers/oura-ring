@@ -14,8 +14,8 @@ const RenderSleepData = ({
   totalSleep,
   timeInBed,
   sleepEfficiency,
-  bedtimeStart,
-  bedtimeEnd,
+  // bedtimeStart,
+  // bedtimeEnd,
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -56,8 +56,8 @@ const RenderSleepData = ({
           sleep
           totalSleep={totalSleep}
           timeInBed={timeInBed}
-          bedtimeStart={bedtimeStart}
-          bedtimeEnd={bedtimeEnd}
+          // bedtimeStart={bedtimeStart}
+          // bedtimeEnd={bedtimeEnd}
           data={hypnogramData}
           XAxisDataKey="timeDuration"
           dataKey={"sleepData.sleepLevel"}
@@ -66,8 +66,8 @@ const RenderSleepData = ({
         />
 
         <HeartRateAndHRVCharts
-          bedtimeStart={bedtimeStart}
-          bedtimeEnd={bedtimeEnd}
+          // bedtimeStart={bedtimeStart}
+          // bedtimeEnd={bedtimeEnd}
           avgHRData={avgHRData}
           minHeartRate={minHeartRate}
           maxHeartRate={maxHeartRate}
