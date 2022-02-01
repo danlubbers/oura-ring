@@ -17,9 +17,6 @@ const Chart = ({
 }) => {
   // console.log(`data`, data);
 
-  // console.log(`!!!bedStart!!!`, bedtimeStart);
-  // console.log(`!!!bedEnd!!!`, bedtimeEnd);
-
   // const formatXAxis = (bedtimeStart) => {
   //   return bedtimeStart;
   // };
