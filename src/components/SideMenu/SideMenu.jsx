@@ -32,6 +32,7 @@ const SideMenu = ({ handleClickMobileDisplay, isMobileDisplay, logout }) => {
 
         <Button
           btnAction="Logout"
+          type="button"
           onClick={logout}
           style={{ marginTop: "2rem" }}
         />

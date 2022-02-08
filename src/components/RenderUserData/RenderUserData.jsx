@@ -53,13 +53,13 @@ const RenderUserData = ({
         <div className={styles.unitsBtnWrapper}>
           <Button
             btnAction="Imperial"
-            type="text"
+            type="button"
             onClick={() => setUnits("imperial")}
           />
 
           <Button
             btnAction="Metric"
-            type="text"
+            type="button"
             onClick={() => setUnits("metric")}
           />
         </div>
