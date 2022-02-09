@@ -16,8 +16,6 @@ const Button = forwardRef(
     },
     ref
   ) => {
-    console.log("style", style);
-    console.log(`ref`, ref);
     return (
       // @ts-ignore
       <div className={styles.buttonWrapper} ref={ref}>
