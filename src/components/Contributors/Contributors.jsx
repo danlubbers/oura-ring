@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./Contributors.module.scss";
+import styles from "./Contributors.module.scss";
 import { secondsToHm } from "../../utilities/convertTime";
 import { scoring } from "../../utilities/scoring";
 

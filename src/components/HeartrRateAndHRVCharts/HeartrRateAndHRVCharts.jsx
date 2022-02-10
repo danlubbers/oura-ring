@@ -1,4 +1,4 @@
-import * as styles from "./HeartrRateAndHRVCharts.module.scss";
+import styles from "./HeartrRateAndHRVCharts.module.scss";
 import Chart from "../Chart/Chart";
 
 const HeartrRateAndHRVCharts = ({

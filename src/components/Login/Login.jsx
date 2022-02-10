@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./Login.module.scss";
+import styles from "./Login.module.scss";
 import logo from "../../assets/logo/default_seo_image.png";
 import Input from "../Input/Input";
 import Button from "../Button/Button";

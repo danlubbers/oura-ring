@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./HamburgerIcon.module.scss";
+import styles from "./HamburgerIcon.module.scss";
 
 const HamburgerIcon = ({ handleClickMobileDisplay, isMobileDisplay }) => {
   return (

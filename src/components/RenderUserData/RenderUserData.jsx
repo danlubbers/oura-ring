@@ -1,4 +1,4 @@
-import * as styles from "./RenderUserData.module.scss";
+import styles from "./RenderUserData.module.scss";
 import Container from "../Container/Container";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";

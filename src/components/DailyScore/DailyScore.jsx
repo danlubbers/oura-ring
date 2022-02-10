@@ -1,4 +1,4 @@
-import * as styles from "./DailyScore.module.scss";
+import styles from "./DailyScore.module.scss";
 import { scoring } from "../../utilities/scoring";
 
 const DailyScore = ({ readiness, sleep, activity, score }) => {

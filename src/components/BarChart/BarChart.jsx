@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./BarChart.module.scss";
+import styles from "./BarChart.module.scss";
 import { AreaChart, Area, XAxis, YAxis } from "recharts";
 import SleepStages from "../Stages/Stages";
 

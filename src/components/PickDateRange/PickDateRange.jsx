@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./PickDateRange.module.scss";
+import styles from "./PickDateRange.module.scss";
 
 const PickDateRange = ({ weeklyAverages, setStartDate, setEndDate }) => {
   const dates = weeklyAverages.map((obj, idx) => {

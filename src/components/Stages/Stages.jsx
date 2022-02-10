@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./Stages.module.scss";
+import styles from "./Stages.module.scss";
 import { secondsToHm } from "../../utilities/convertTime";
 
 const Stages = ({ stagesData }) => {

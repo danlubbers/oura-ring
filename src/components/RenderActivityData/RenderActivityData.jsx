@@ -1,4 +1,4 @@
-import * as styles from "./RenderActivityData.module.scss";
+import styles from "./RenderActivityData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";

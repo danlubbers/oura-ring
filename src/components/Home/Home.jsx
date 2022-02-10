@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-// import * as styles from "./Home.module.scss";
+// import styles from "./Home.module.scss";
 import { GlobalContext } from "../../context/Provider";
 import Container from "../Container/Container";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";

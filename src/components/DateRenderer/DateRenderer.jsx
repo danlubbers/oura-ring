@@ -1,5 +1,5 @@
 import { useContext, useRef, createRef, useEffect } from "react";
-import * as styles from "./DateRenderer.module.scss";
+import styles from "./DateRenderer.module.scss";
 import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
 

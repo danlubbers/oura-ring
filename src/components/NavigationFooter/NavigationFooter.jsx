@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./NavigationFooter.module.scss";
+import styles from "./NavigationFooter.module.scss";
 import { Link, useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { FaThermometerThreeQuarters } from "react-icons/fa";

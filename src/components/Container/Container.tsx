@@ -1,7 +1,7 @@
-import React from "react";
-import * as styles from "./Container.module.scss";
+import styles from "./Container.module.scss";
 
-const Container = ({ children, isFooter }) => {
+// Figure out the fix for TS children so it's not set to "any"
+const Container = ({ children }: any, isFooter: boolean) => {
   return (
     <div
       className={

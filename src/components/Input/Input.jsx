@@ -1,4 +1,4 @@
-import * as styles from "./Input.module.scss";
+import styles from "./Input.module.scss";
 
 const Input = ({ type, placeholder, onChange }) => {
   // console.log(`onChange`, onChange);

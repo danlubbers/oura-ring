@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./RenderReadinessData.module.scss";
+import styles from "./RenderReadinessData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";

@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./QuadData.module.scss";
+import styles from "./QuadData.module.scss";
 
 const QuadData = ({
   readiness,

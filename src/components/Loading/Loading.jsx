@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./Loading.module.scss";
+import styles from "./Loading.module.scss";
 const Loading = ({ bedroom }) => {
   return (
     <div className={styles.loadingContainer}>
