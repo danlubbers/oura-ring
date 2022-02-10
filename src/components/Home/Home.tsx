@@ -6,7 +6,6 @@ import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
 
 function Home({ logout }: { logout: () => void }) {
-  console.log("logout", logout);
   const { isMobileDisplay, setIsMobileDisplay } = useContext(GlobalContext);
 
   useEffect(() => {
