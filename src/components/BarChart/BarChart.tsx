@@ -42,7 +42,6 @@ const BarChartComponent = ({
     color: string;
   };
 }) => {
-  console.log("BarChart data", data);
   return (
     <div className={styles.barChartContainer}>
       {isSleep && (

@@ -5,22 +5,24 @@ const Chart = ({
   data,
   lineDataKey,
   xAxisDataKey,
-  bedtimeStart,
-  bedtimeEnd,
   yAxisDomain,
-  chartTitle,
-  min,
-  max,
-
   lineColor,
   legend,
+}: {
+  data:
+    | { heartRate: number; timeDuration: number }[]
+    | {
+        HRV: number;
+        timeDuration: number;
+      }[]
+    | { humidity: string; temp: string; time: string }[];
+  lineDataKey: string;
+  xAxisDataKey: string;
+  yAxisDomain: number[];
+  lineColor: string;
+  legend: boolean;
 }) => {
-  // console.log(`data`, data);
-
-  // const formatXAxis = (bedtimeStart) => {
-  //   return bedtimeStart;
-  // };
-
+  console.log("yAxisDomain", yAxisDomain);
   return (
     <div className={styles.chartContainer}>
       <LineChart
@@ -46,15 +48,11 @@ const Chart = ({
           dataKey={xAxisDataKey}
           interval="preserveStartEnd"
           minTickGap={45}
-          // domain={[bedtimeStart, bedtimeEnd]}
           style={{
             fontSize: "1.5rem",
           }}
         />
         <YAxis
-          // type="number"
-          // minTickGap={5}
-          // interval="preserveStartEnd"
           domain={yAxisDomain}
           style={{
             fontSize: "1.3rem",

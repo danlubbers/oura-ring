@@ -89,7 +89,7 @@ const BedroomData = () => {
       };
     }
   );
-  // console.log(`chartData`, chartData);
+  console.log(`chartData`, chartData);
 
   return (
     <div>
