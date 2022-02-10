@@ -6,7 +6,7 @@ import DailyScore from "../DailyScore/DailyScore";
 import Contributors from "../Contributors/Contributors";
 import BarChart from "../BarChart/BarChart";
 
-import HeartRateAndHRVCharts from "../HeartrRateAndHRVCharts/HeartrRateAndHRVCharts";
+import HeartRateAndHRVCharts from "../HeartRateAndHRVCharts/HeartRateAndHRVCharts";
 
 const RenderSleepData = ({
   score,

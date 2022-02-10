@@ -1,7 +1,7 @@
-import styles from "./HeartrRateAndHRVCharts.module.scss";
+import styles from "./HeartRateAndHRVCharts.module.scss";
 import Chart from "../Chart/Chart";
 
-const HeartrRateAndHRVCharts = ({
+const HeartRateAndHRVCharts = ({
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -66,4 +66,4 @@ const HeartrRateAndHRVCharts = ({
   );
 };
 
-export default HeartrRateAndHRVCharts;
+export default HeartRateAndHRVCharts;
