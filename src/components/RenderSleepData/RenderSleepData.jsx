@@ -14,8 +14,6 @@ const RenderSleepData = ({
   totalSleep,
   timeInBed,
   sleepEfficiency,
-  // bedtimeStart,
-  // bedtimeEnd,
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -53,21 +51,17 @@ const RenderSleepData = ({
         />
 
         <BarChart
-          sleep
+          isSleep
           totalSleep={totalSleep}
           timeInBed={timeInBed}
-          // bedtimeStart={bedtimeStart}
-          // bedtimeEnd={bedtimeEnd}
           data={hypnogramData}
-          XAxisDataKey="timeDuration"
           dataKey={"sleepData.sleepLevel"}
+          XAxisDataKey="timeDuration"
           domain={[1, 4]}
           sleepStagesData={sleepStagesData}
         />
 
         <HeartRateAndHRVCharts
-          // bedtimeStart={bedtimeStart}
-          // bedtimeEnd={bedtimeEnd}
           avgHRData={avgHRData}
           minHeartRate={minHeartRate}
           maxHeartRate={maxHeartRate}

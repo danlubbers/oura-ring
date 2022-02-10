@@ -41,9 +41,7 @@ const RenderActivityData = ({
       <div className={styles.dailyMovementContainer}>
         <p>Daily movement</p>
         <BarChart
-          activity
-          bedtimeStart={null}
-          bedtimeEnd={null}
+          isActivity
           data={metFiveMinArray}
           dataKey="met"
           XAxisDataKey={"index"}
