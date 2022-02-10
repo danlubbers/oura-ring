@@ -1,7 +1,17 @@
 import styles from "./DailyScore.module.scss";
 import { scoring } from "../../utilities/scoring";
 
-const DailyScore = ({ readiness, sleep, activity, score }) => {
+const DailyScore = ({
+  readiness,
+  sleep,
+  activity,
+  score,
+}: {
+  readiness: boolean;
+  sleep: boolean;
+  activity: boolean;
+  score: number;
+}) => {
   return (
     <div className={styles.scoreWrapper}>
       {readiness && <p className={styles.text}>READINESS</p>}
