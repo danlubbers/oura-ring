@@ -2,6 +2,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 import styles from "./Chart.module.scss";
 
 const Chart = ({
+  chartTitle,
   data,
   lineDataKey,
   xAxisDataKey,
@@ -9,6 +10,7 @@ const Chart = ({
   lineColor,
   legend,
 }: {
+  chartTitle?: string;
   data:
     | { heartRate: number; timeDuration: number }[]
     | {
@@ -22,7 +24,6 @@ const Chart = ({
   lineColor: string;
   legend: boolean;
 }) => {
-  console.log("yAxisDomain", yAxisDomain);
   return (
     <div className={styles.chartContainer}>
       <LineChart
