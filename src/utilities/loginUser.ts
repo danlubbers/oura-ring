@@ -1,4 +1,9 @@
-export const loginUser = async (credentials) => {
+interface LoginUserProps  {
+  username: string,
+  password: string
+}
+
+export const loginUser = async (credentials: LoginUserProps) => {
   return fetch(`http://localhost:8080/login`, {
     method: `POST`,
     headers: {

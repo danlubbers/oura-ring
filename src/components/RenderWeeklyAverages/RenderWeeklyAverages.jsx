@@ -88,6 +88,7 @@ const RenderWeeklyAverages = ({
                 ? `${styles.xAxisData} ${styles.restingHRBtnActive}`
                 : `${styles.xAxisData} ${styles.restingHRBtnInactive}`
             }
+            type="button"
             onClick={() => handleShowChartData("restingHR")}
           >
             Resting HR
@@ -98,6 +99,7 @@ const RenderWeeklyAverages = ({
                 ? `${styles.xAxisData} ${styles.maxHRVBtnActive}`
                 : `${styles.xAxisData} ${styles.maxHRVBtnInactive}`
             }
+            type="button"
             onClick={() => handleShowChartData("maxHRV")}
           >
             Max HRV
@@ -108,6 +110,7 @@ const RenderWeeklyAverages = ({
                 ? `${styles.xAxisData} ${styles.avgBedroomTempBtnActive}`
                 : `${styles.xAxisData} ${styles.avgBedroomTempBtnInactive}`
             }
+            type="button"
             onClick={() => handleShowChartData("avgBedroomTemp")}
           >
             Room Temp
@@ -118,6 +121,7 @@ const RenderWeeklyAverages = ({
                 ? `${styles.xAxisData} ${styles.avgHumidityBtnActive}`
                 : `${styles.xAxisData} ${styles.avgHumidityBtnInactive}`
             }
+            type="button"
             onClick={() => handleShowChartData("avgHumidity")}
           >
             Humidity

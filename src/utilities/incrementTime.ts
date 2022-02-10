@@ -1,4 +1,4 @@
-export const timeIncrement = (startTime, sleepDuration) => {
+export const timeIncrement = (startTime: string, sleepDuration: number) => {
   let count = [startTime];
   let increment = 5; // increase 5min
   const endTime = Math.ceil(sleepDuration / 60 / 5); // seconds to minutes to five minute duration
