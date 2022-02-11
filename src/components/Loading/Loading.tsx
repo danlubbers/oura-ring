@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./Loading.module.scss";
-const Loading = ({ bedroom }) => {
+const Loading = (isBedroom: boolean) => {
   return (
     <div className={styles.loadingContainer}>
-      {bedroom ? (
+      {isBedroom ? (
         <p className={styles.bedroomDataMissingText}>
           Bedroom data appears to be missing...
         </p>

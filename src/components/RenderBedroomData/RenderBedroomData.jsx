@@ -16,7 +16,7 @@ const RenderBedroomData = ({
   maxHumidity,
   chartData,
 }) => {
-  if (!bedroomTempAvg) return <Loading bedroom={true} />;
+  if (!bedroomTempAvg) return <Loading isBedroom />;
 
   return (
     <Container isFooter={true}>
