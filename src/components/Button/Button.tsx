@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import * as styles from "./Button.module.scss";
+import styles from "./Button.module.scss";
 
 const Button = forwardRef(
   (
@@ -11,12 +11,13 @@ const Button = forwardRef(
     }: {
       btnAction: string;
       type: "button" | "submit" | "reset" | undefined;
-      onClick: () => void;
-      style: {};
+      onClick?: () => void;
+      style?: {};
     },
     ref
   ) => {
     return (
+      // Figure out typescript for refs and forwardRef
       // @ts-ignore
       <div className={styles.buttonWrapper} ref={ref}>
         <button

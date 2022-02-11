@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderSleepData from "../components/RenderSleepData/RenderSleepData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
@@ -171,8 +171,6 @@ function SleepData() {
         totalSleep={totalSleep}
         timeInBed={timeInBed}
         sleepEfficiency={sleepEfficiency}
-        // bedtimeStart={bedtimeStart}
-        // bedtimeEnd={bedtimeEnd}
         avgHRData={avgHRData}
         minHeartRate={minHeartRate}
         maxHeartRate={maxHeartRate}

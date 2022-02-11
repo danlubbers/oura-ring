@@ -1,5 +1,4 @@
-import React from "react";
-import * as styles from "./Contributors.module.scss";
+import styles from "./Contributors.module.scss";
 import { secondsToHm } from "../../utilities/convertTime";
 import { scoring } from "../../utilities/scoring";
 
@@ -9,12 +8,23 @@ const Contributors = ({
   sleepContributorData,
   totalSleep,
   activityContributorData,
+}: {
+  readinessContributorData: { name: string; score: number }[];
+  restingHR: number;
+  sleepContributorData: {
+    name: string;
+    score: number;
+    data: number;
+    percentage: number;
+  }[];
+  totalSleep: string;
+  activityContributorData: { name: string; score: number; data: number }[];
 }) => {
   let contributionLoop;
 
   if (readinessContributorData) {
     contributionLoop = readinessContributorData.map(({ name, score }, idx) => {
-      const negativeScoreRating = score < 70 && "#DC143C";
+      const negativeScoreRating = score < 70 ? "#DC143C" : "";
       return (
         <div key={`${name}-${idx}`}>
           <div className={styles.textWrapper}>
@@ -31,13 +41,13 @@ const Contributors = ({
           </div>
 
           <div className={styles.lineWrapper}>
-            <div className={[styles.lineBackground]} />
+            <div className={styles.lineBackground} />
             <div
               style={{
                 width: `${score}%`,
                 backgroundColor: negativeScoreRating,
               }}
-              className={[styles.line]}
+              className={styles.line}
             />
           </div>
         </div>
@@ -48,7 +58,7 @@ const Contributors = ({
   if (sleepContributorData) {
     contributionLoop = sleepContributorData.map(
       ({ name, score, data, percentage }, idx) => {
-        const negativeScoreRating = score < 70 && "#DC143C";
+        const negativeScoreRating = score < 70 ? "#DC143C" : "";
         return (
           <div key={`${name}-${idx}`}>
             <div className={styles.textWrapper}>
@@ -95,13 +105,13 @@ const Contributors = ({
             </div>
 
             <div className={styles.lineWrapper}>
-              <div className={[styles.lineBackground]} />
+              <div className={styles.lineBackground} />
               <div
                 style={{
                   width: `${score}%`,
                   backgroundColor: negativeScoreRating,
                 }}
-                className={[styles.line]}
+                className={styles.line}
               />
             </div>
           </div>
@@ -113,7 +123,7 @@ const Contributors = ({
   if (activityContributorData) {
     contributionLoop = activityContributorData.map(
       ({ name, score, data }, idx) => {
-        const negativeScoreRating = score < 70 && "#DC143C";
+        const negativeScoreRating = score < 70 ? "#DC143C" : "";
         return (
           <div key={`${name}-${idx}`}>
             <div className={styles.textWrapper}>
@@ -149,13 +159,13 @@ const Contributors = ({
             </div>
 
             <div className={styles.lineWrapper}>
-              <div className={[styles.lineBackground]} />
+              <div className={styles.lineBackground} />
               <div
                 style={{
                   width: `${score}%`,
                   backgroundColor: negativeScoreRating,
                 }}
-                className={[styles.line]}
+                className={styles.line}
               />
             </div>
           </div>

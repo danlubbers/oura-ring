@@ -1,4 +1,4 @@
-import * as styles from "./RenderSleepData.module.scss";
+import styles from "./RenderSleepData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
@@ -6,7 +6,7 @@ import DailyScore from "../DailyScore/DailyScore";
 import Contributors from "../Contributors/Contributors";
 import BarChart from "../BarChart/BarChart";
 
-import HeartRateAndHRVCharts from "../HeartrRateAndHRVCharts/HeartrRateAndHRVCharts";
+import HeartRateAndHRVCharts from "../HeartRateAndHRVCharts/HeartRateAndHRVCharts";
 
 const RenderSleepData = ({
   score,
@@ -14,8 +14,6 @@ const RenderSleepData = ({
   totalSleep,
   timeInBed,
   sleepEfficiency,
-  // bedtimeStart,
-  // bedtimeEnd,
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -53,21 +51,17 @@ const RenderSleepData = ({
         />
 
         <BarChart
-          sleep
+          isSleep
           totalSleep={totalSleep}
           timeInBed={timeInBed}
-          // bedtimeStart={bedtimeStart}
-          // bedtimeEnd={bedtimeEnd}
           data={hypnogramData}
-          XAxisDataKey="timeDuration"
           dataKey={"sleepData.sleepLevel"}
+          XAxisDataKey="timeDuration"
           domain={[1, 4]}
           sleepStagesData={sleepStagesData}
         />
 
         <HeartRateAndHRVCharts
-          // bedtimeStart={bedtimeStart}
-          // bedtimeEnd={bedtimeEnd}
           avgHRData={avgHRData}
           minHeartRate={minHeartRate}
           maxHeartRate={maxHeartRate}

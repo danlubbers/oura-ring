@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./RenderBedroomData.module.scss";
+import styles from "./RenderBedroomData.module.scss";
 import Loading from "../Loading/Loading";
 import Container from "../Container/Container";
 import QuadData from "../QuadData/QuadData";
@@ -16,7 +16,7 @@ const RenderBedroomData = ({
   maxHumidity,
   chartData,
 }) => {
-  if (!bedroomTempAvg) return <Loading bedroom={true} />;
+  if (!bedroomTempAvg) return <Loading isBedroom />;
 
   return (
     <Container isFooter={true}>

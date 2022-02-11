@@ -1,9 +1,7 @@
-import * as styles from "./HeartrRateAndHRVCharts.module.scss";
+import styles from "./HeartRateAndHRVCharts.module.scss";
 import Chart from "../Chart/Chart";
 
-const HeartrRateAndHRVCharts = ({
-  // bedtimeStart,
-  // bedtimeEnd,
+const HeartRateAndHRVCharts = ({
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -11,6 +9,14 @@ const HeartrRateAndHRVCharts = ({
   maxHRV,
   heartRateData,
   hrvData,
+}: {
+  avgHRData: number;
+  minHeartRate: number;
+  maxHeartRate: number;
+  avgHRV: number;
+  maxHRV: number;
+  heartRateData: { heartRate: number; timeDuration: number }[];
+  hrvData: { HRV: number; timeDuration: number }[];
 }) => {
   return (
     <>
@@ -29,12 +35,10 @@ const HeartrRateAndHRVCharts = ({
       </div>
 
       <Chart
+        chartTitle={"Heart Rate"}
         data={heartRateData}
         lineDataKey="heartRate"
         xAxisDataKey="timeDuration"
-        chartTitle={"Heart Rate"}
-        // bedtimeStart={bedtimeStart}
-        // bedtimeEnd={bedtimeEnd}
         yAxisDomain={[minHeartRate - 5, maxHeartRate + 5]}
         lineColor={"#33becc"}
         legend={false}
@@ -50,14 +54,11 @@ const HeartrRateAndHRVCharts = ({
         <p className={styles.averageHRV}>Avg: {avgHRV} ms</p>
       </div>
       <Chart
+        chartTitle={"Heart Rate Variability"}
         data={hrvData}
         lineDataKey="HRV"
         xAxisDataKey="timeDuration"
-        chartTitle={"Heart Rate Variability"}
-        // bedtimeStart={bedtimeStart}
-        // bedtimeEnd={bedtimeEnd}
         yAxisDomain={[0, maxHRV + 5]}
-        max={maxHRV}
         lineColor={"#DC143C"}
         legend={false}
       />
@@ -65,4 +66,4 @@ const HeartrRateAndHRVCharts = ({
   );
 };
 
-export default HeartrRateAndHRVCharts;
+export default HeartRateAndHRVCharts;

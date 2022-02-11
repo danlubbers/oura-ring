@@ -1,5 +1,5 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
-import * as styles from "./WeeklyAveragesChart.module.scss";
+import styles from "./WeeklyAveragesChart.module.scss";
 
 const WeeklyAveragesChart = ({ data, showChartData }) => {
   // console.log(`data`, data);

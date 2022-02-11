@@ -1,11 +1,19 @@
-import React from "react";
-import * as styles from "./Login.module.scss";
+import styles from "./Login.module.scss";
 import logo from "../../assets/logo/default_seo_image.png";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 
-const Login = ({ handleUsername, handlePassword, handleSubmit, error }) => {
-  console.log(`error`, error);
+const Login = ({
+  handleUsername,
+  handlePassword,
+  handleSubmit,
+  error,
+}: {
+  handleUsername: (e: React.FormEvent<HTMLInputElement>) => void;
+  handlePassword: (e: React.FormEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.SyntheticEvent) => void;
+  error: { usernameError: string; passwordError: string };
+}) => {
   const { usernameError, passwordError } = error;
 
   return (

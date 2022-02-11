@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./SideMenu.module.scss";
+import styles from "./SideMenu.module.scss";
 import Container from "../Container/Container";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import Button from "../Button/Button";

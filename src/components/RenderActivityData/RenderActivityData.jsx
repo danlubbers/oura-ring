@@ -1,4 +1,4 @@
-import * as styles from "./RenderActivityData.module.scss";
+import styles from "./RenderActivityData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import QuadData from "../QuadData/QuadData";
@@ -41,9 +41,7 @@ const RenderActivityData = ({
       <div className={styles.dailyMovementContainer}>
         <p>Daily movement</p>
         <BarChart
-          activity
-          bedtimeStart={null}
-          bedtimeEnd={null}
+          isActivity
           data={metFiveMinArray}
           dataKey="met"
           XAxisDataKey={"index"}

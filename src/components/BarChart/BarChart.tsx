@@ -1,25 +1,50 @@
-import React from "react";
-import * as styles from "./BarChart.module.scss";
+import styles from "./BarChart.module.scss";
 import { AreaChart, Area, XAxis, YAxis } from "recharts";
 import SleepStages from "../Stages/Stages";
 
 const BarChartComponent = ({
-  sleep,
-  activity,
+  isSleep,
+  isActivity,
   totalSleep,
   timeInBed,
-  // bedtimeStart,
-  // bedtimeEnd,
   data,
   dataKey,
   XAxisDataKey,
   domain,
   sleepStagesData,
   activityStagesData,
+}: {
+  isSleep: boolean;
+  isActivity: boolean;
+  totalSleep: number;
+  timeInBed: number;
+  data:
+    | {
+        sleepData: { sleepStage: string; sleepLevel: number };
+        timeDuration: string;
+      }[]
+    | { met: string; index: number }[];
+  dataKey: string;
+  XAxisDataKey: string;
+  domain: number[];
+  sleepStagesData: {
+    stage: string;
+    seconds: number;
+    percentage: number;
+    showPercentage: boolean;
+    color: string;
+  };
+  activityStagesData: {
+    stage: string;
+    seconds: number;
+    percentage: number;
+    showPercentage: boolean;
+    color: string;
+  };
 }) => {
   return (
     <div className={styles.barChartContainer}>
-      {sleep && (
+      {isSleep && (
         <div className={styles.sleepTextWrapper}>
           <p className={styles.timeAsleepText}>
             Time asleep:
@@ -47,12 +72,12 @@ const BarChartComponent = ({
           dataKey={XAxisDataKey}
           interval="preserveStartEnd"
           minTickGap={45}
-          // domain={[bedtimeStart, bedtimeEnd]}
+          domain={domain}
           style={{
             fontSize: "1.5rem",
           }}
         />
-        <YAxis tickCount="4" domain={domain} />
+        <YAxis tickCount={4} domain={domain} />
         <Area
           type="monotone"
           dataKey={dataKey}
@@ -61,8 +86,8 @@ const BarChartComponent = ({
         />
       </AreaChart>
 
-      {sleep && <SleepStages stagesData={sleepStagesData} />}
-      {activity && <SleepStages stagesData={activityStagesData} />}
+      {isSleep && <SleepStages stagesData={sleepStagesData} />}
+      {isActivity && <SleepStages stagesData={activityStagesData} />}
     </div>
   );
 };

@@ -1,26 +1,29 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
-import * as styles from "./Chart.module.scss";
+import styles from "./Chart.module.scss";
 
 const Chart = ({
+  chartTitle,
   data,
   lineDataKey,
   xAxisDataKey,
-  bedtimeStart,
-  bedtimeEnd,
   yAxisDomain,
-  chartTitle,
-  min,
-  max,
-
   lineColor,
   legend,
+}: {
+  chartTitle?: string;
+  data:
+    | { heartRate: number; timeDuration: number }[]
+    | {
+        HRV: number;
+        timeDuration: number;
+      }[]
+    | { humidity: string; temp: string; time: string }[];
+  lineDataKey: string;
+  xAxisDataKey: string;
+  yAxisDomain: number[];
+  lineColor: string;
+  legend: boolean;
 }) => {
-  // console.log(`data`, data);
-
-  // const formatXAxis = (bedtimeStart) => {
-  //   return bedtimeStart;
-  // };
-
   return (
     <div className={styles.chartContainer}>
       <LineChart
@@ -46,15 +49,11 @@ const Chart = ({
           dataKey={xAxisDataKey}
           interval="preserveStartEnd"
           minTickGap={45}
-          // domain={[bedtimeStart, bedtimeEnd]}
           style={{
             fontSize: "1.5rem",
           }}
         />
         <YAxis
-          // type="number"
-          // minTickGap={5}
-          // interval="preserveStartEnd"
           domain={yAxisDomain}
           style={{
             fontSize: "1.3rem",
