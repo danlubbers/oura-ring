@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LoginComponent from "../components/Login/Login";
 import { loginUser } from "../utilities/loginUser";
 
@@ -18,7 +18,6 @@ const Login = ({ setToken }) => {
   };
 
   const handleSubmit = async (e) => {
-    // console.log("submit");
     e.preventDefault();
     if (
       username === process.env.REACT_APP_USERNAME &&
@@ -49,8 +48,6 @@ const Login = ({ setToken }) => {
     }
   };
 
-  console.log(`username`, username);
-  console.log(`password`, password);
   return (
     <>
       <LoginComponent

@@ -11,8 +11,8 @@ const Button = forwardRef(
     }: {
       btnAction: string;
       type: "button" | "submit" | "reset" | undefined;
-      onClick: () => void;
-      style: {};
+      onClick?: () => void;
+      style?: {};
     },
     ref
   ) => {
