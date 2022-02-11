@@ -67,7 +67,6 @@ const RenderUserData = ({
       <SideMenu
         handleClickMobileDisplay={handleClickMobileDisplay}
         isMobileDisplay={isMobileDisplay}
-        // logout={logout}
       />
     </>
   );
