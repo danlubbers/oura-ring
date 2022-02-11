@@ -21,7 +21,7 @@ const RenderBedroomData = ({
   return (
     <Container isFooter={true}>
       <QuadData
-        bedroom
+        isBedroom
         quadOneText="Avg temperature"
         quadOneData={bedroomTempAvg}
         quadTwoText="Avg humidity"

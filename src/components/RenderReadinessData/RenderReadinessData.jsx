@@ -14,8 +14,6 @@ const RenderReadinessData = ({
   avgHRV,
   bodyTemp,
   respiratoryRate,
-  // bedtimeStart,
-  // bedtimeEnd,
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -29,7 +27,7 @@ const RenderReadinessData = ({
   return (
     <Container isFooter={true}>
       <QuadData
-        readiness
+        isReadiness
         quadOneText="Resting heart rate"
         quadOneData={restingHR}
         quadTwoText="Heart rate variability"
@@ -47,8 +45,6 @@ const RenderReadinessData = ({
           restingHR={restingHR}
         />
         <HeartRateAndHRVCharts
-          // bedtimeStart={bedtimeStart}
-          // bedtimeEnd={bedtimeEnd}
           avgHRData={avgHRData}
           minHeartRate={minHeartRate}
           maxHeartRate={maxHeartRate}

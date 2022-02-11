@@ -23,7 +23,7 @@ const RenderActivityData = ({
   return (
     <Container isFooter={true}>
       <QuadData
-        activity
+        isActivity
         quadOneText="Active calories"
         quadOneData={calActive}
         quadTwoText="Total burn"

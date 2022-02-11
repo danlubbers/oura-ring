@@ -25,13 +25,12 @@ const RenderSleepData = ({
   hrvData,
   sleepContributorData,
 }) => {
-  // console.log(`Render: totalSleep`, totalSleep);
   if (!todaysDate) return <Loading />;
 
   return (
     <Container isFooter={true}>
       <QuadData
-        sleep
+        isSleep
         quadOneText="Total sleep"
         quadOneData={totalSleep}
         quadTwoText="Time in bed"
