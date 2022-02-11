@@ -1,8 +1,26 @@
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 import styles from "./WeeklyAveragesChart.module.scss";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 
-const WeeklyAveragesChart = ({ data, showChartData }) => {
-  // console.log(`data`, data);
+const WeeklyAveragesChart = ({
+  data,
+  showChartData,
+}: {
+  data: {
+    restingHR: number;
+    maxHRV: number;
+    bodyTemp: string;
+    avgBedroomTemp: number;
+    avgHumidity: number;
+    fullDate: string;
+    date: string;
+  }[];
+  showChartData: {
+    restingHR: boolean;
+    maxHRV: boolean;
+    avgBedroomTemp: boolean;
+    avgHumidity: boolean;
+  };
+}) => {
   return (
     <div className={styles.chartContainer}>
       <LineChart
