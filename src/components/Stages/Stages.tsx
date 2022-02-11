@@ -1,10 +1,19 @@
-import React from "react";
 import styles from "./Stages.module.scss";
 import { secondsToHm } from "../../utilities/convertTime";
 
-const Stages = ({ stagesData }) => {
+const Stages = ({
+  stagesData,
+}: {
+  stagesData: {
+    stage: string;
+    seconds: number;
+    percentage: number;
+    showPercentage: boolean;
+    color: string;
+  }[];
+}) => {
   const stages = stagesData.map(
-    ({ stage, seconds, percentage, showPercentage, color }, idx) => {
+    ({ stage, seconds, percentage, showPercentage, color }, idx: number) => {
       return (
         <div className={styles.stagesWrapper} key={`${stage}-${idx}`}>
           <div className={styles.stagesWrapper}>
@@ -13,7 +22,7 @@ const Stages = ({ stagesData }) => {
                 width: `${percentage}%`,
                 backgroundColor: `${color}`,
               }}
-              className={[styles.line]}
+              className={styles.line}
             />
           </div>
           <span className={styles.stageText}>{stage}</span>

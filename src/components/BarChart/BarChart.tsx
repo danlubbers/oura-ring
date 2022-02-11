@@ -1,6 +1,6 @@
 import styles from "./BarChart.module.scss";
 import { AreaChart, Area, XAxis, YAxis } from "recharts";
-import SleepStages from "../Stages/Stages";
+import Stages from "../Stages/Stages";
 
 const BarChartComponent = ({
   isSleep,
@@ -33,14 +33,14 @@ const BarChartComponent = ({
     percentage: number;
     showPercentage: boolean;
     color: string;
-  };
+  }[];
   activityStagesData: {
     stage: string;
     seconds: number;
     percentage: number;
     showPercentage: boolean;
     color: string;
-  };
+  }[];
 }) => {
   return (
     <div className={styles.barChartContainer}>
@@ -86,8 +86,8 @@ const BarChartComponent = ({
         />
       </AreaChart>
 
-      {isSleep && <SleepStages stagesData={sleepStagesData} />}
-      {isActivity && <SleepStages stagesData={activityStagesData} />}
+      {isSleep && <Stages stagesData={sleepStagesData} />}
+      {isActivity && <Stages stagesData={activityStagesData} />}
     </div>
   );
 };
