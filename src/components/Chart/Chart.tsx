@@ -21,8 +21,8 @@ const Chart = ({
   lineDataKey: string;
   xAxisDataKey: string;
   yAxisDomain: number[];
-  lineColor: string;
-  legend: boolean;
+  lineColor?: string;
+  legend?: boolean;
 }) => {
   return (
     <div className={styles.chartContainer}>
