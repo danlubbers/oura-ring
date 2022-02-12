@@ -15,6 +15,16 @@ const RenderUserData = ({
   setUnits,
   isMobileDisplay,
   handleClickMobileDisplay,
+}: {
+  age: number;
+  height: number;
+  weight: number;
+  gender: string;
+  email: string;
+  isImperial: boolean;
+  setUnits: (unit: string) => void;
+  isMobileDisplay: boolean;
+  handleClickMobileDisplay: () => void;
 }) => {
   if (!age) return <Loading />;
 
@@ -67,7 +77,6 @@ const RenderUserData = ({
       <SideMenu
         handleClickMobileDisplay={handleClickMobileDisplay}
         isMobileDisplay={isMobileDisplay}
-        // logout={logout}
       />
     </>
   );

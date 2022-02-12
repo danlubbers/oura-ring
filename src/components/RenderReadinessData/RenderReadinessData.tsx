@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./RenderReadinessData.module.scss";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
@@ -14,8 +13,6 @@ const RenderReadinessData = ({
   avgHRV,
   bodyTemp,
   respiratoryRate,
-  // bedtimeStart,
-  // bedtimeEnd,
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -23,13 +20,30 @@ const RenderReadinessData = ({
   heartRateData,
   hrvData,
   readinessContributorData,
+}: {
+  todaysDate: string;
+  score: number;
+  restingHR: number;
+  avgHRV: number;
+  bodyTemp: number;
+  respiratoryRate: number;
+  avgHRData: number;
+  minHeartRate: number;
+  maxHeartRate: number;
+  maxHRV: number;
+  heartRateData: { heartRate: number; timeDuration: number }[];
+  hrvData: { HRV: number; timeDuration: number }[];
+  readinessContributorData: {
+    name: string;
+    score: number;
+  }[];
 }) => {
   if (!todaysDate) return <Loading />;
 
   return (
     <Container isFooter={true}>
       <QuadData
-        readiness
+        isReadiness
         quadOneText="Resting heart rate"
         quadOneData={restingHR}
         quadTwoText="Heart rate variability"
@@ -40,15 +54,13 @@ const RenderReadinessData = ({
         quadFourData={respiratoryRate}
       />
       <div className={styles.renderReadinessContainer}>
-        <DailyScore readiness score={score} />
+        <DailyScore isReadiness score={score} />
 
         <Contributors
           readinessContributorData={readinessContributorData}
           restingHR={restingHR}
         />
         <HeartRateAndHRVCharts
-          // bedtimeStart={bedtimeStart}
-          // bedtimeEnd={bedtimeEnd}
           avgHRData={avgHRData}
           minHeartRate={minHeartRate}
           maxHeartRate={maxHeartRate}

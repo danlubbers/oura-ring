@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./RenderBedroomData.module.scss";
 import Loading from "../Loading/Loading";
 import Container from "../Container/Container";
@@ -15,13 +14,27 @@ const RenderBedroomData = ({
   minHumidity,
   maxHumidity,
   chartData,
+}: {
+  bedroomTempAvg: number;
+  bedroomHumidityAvg: number;
+  restingHR: number;
+  avgHRV: number;
+  minTemp: number;
+  maxTemp: number;
+  minHumidity: number;
+  maxHumidity: number;
+  chartData: {
+    humidity: string;
+    temp: string;
+    time: string;
+  }[];
 }) => {
   if (!bedroomTempAvg) return <Loading isBedroom />;
 
   return (
     <Container isFooter={true}>
       <QuadData
-        bedroom
+        isBedroom
         quadOneText="Avg temperature"
         quadOneData={bedroomTempAvg}
         quadTwoText="Avg humidity"

@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./RenderWeeklyAverages.module.scss";
 import Loading from "../Loading/Loading";
 import Container from "../Container/Container";
@@ -8,9 +7,7 @@ import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
 
 const RenderWeeklyAverages = ({
-  startDate,
   setStartDate,
-  endDate,
   setEndDate,
   showChartData,
   handleShowChartData,
@@ -18,9 +15,38 @@ const RenderWeeklyAverages = ({
   chosenDateRange,
   isMobileDisplay,
   handleClickMobileDisplay,
+}: {
+  setStartDate: (startDate: string) => void;
+  setEndDate: (emndDate: string) => void;
+  showChartData: {
+    restingHR: boolean;
+    maxHRV: boolean;
+    avgBedroomTemp: boolean;
+    avgHumidity: boolean;
+  };
+  handleShowChartData: (chosenDate: string) => void;
+  weeklyAverages: {
+    restingHR: number;
+    maxHRV: number;
+    bodyTemp: string;
+    avgBedroomTemp: number;
+    avgHumidity: number;
+    fullDate: string;
+    date: string;
+  }[];
+  chosenDateRange: {
+    avgBedroomTemp: number;
+    avgHumidity: number;
+    bodyTemp: string;
+    date: string;
+    fullDate: string;
+    maxHRV: number;
+    restingHR: number;
+  }[];
+  isMobileDisplay: boolean;
+  handleClickMobileDisplay: () => void;
 }) => {
   if (!weeklyAverages[0]) return <Loading />;
-  // console.log(`weeklyAverages`, weeklyAverages);
 
   const renderWeeklyAverages = chosenDateRange.map((obj, idx) => {
     return (
@@ -72,12 +98,9 @@ const RenderWeeklyAverages = ({
           isMobileDisplay={isMobileDisplay}
         />
 
-        {/* <p className={styles.weeklyAveragesText}>Weekly Averages</p> */}
         <PickDateRange
           weeklyAverages={weeklyAverages}
-          startDate={startDate}
           setStartDate={setStartDate}
-          endDate={endDate}
           setEndDate={setEndDate}
         />
 

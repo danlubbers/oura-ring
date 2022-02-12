@@ -1,11 +1,10 @@
-import React from "react";
 import styles from "./QuadData.module.scss";
 
 const QuadData = ({
-  readiness,
-  sleep,
-  activity,
-  bedroom,
+  isReadiness,
+  isSleep,
+  isActivity,
+  isBedroom,
   quadOneText,
   quadOneData,
   quadTwoText,
@@ -14,38 +13,51 @@ const QuadData = ({
   quadThreeData,
   quadFourText,
   quadFourData,
+}: {
+  isReadiness?: boolean;
+  isSleep?: boolean;
+  isActivity?: boolean;
+  isBedroom?: boolean;
+  quadOneText: string;
+  quadOneData: string | number;
+  quadTwoText: string;
+  quadTwoData: string | number;
+  quadThreeText: string;
+  quadThreeData: string | number;
+  quadFourText: string;
+  quadFourData: string | number;
 }) => {
   return (
     <div className={styles.quadDataWrapper}>
       <div className={styles.quadOneDataWrapper}>
         <p>{quadOneText}</p>
         <span className={styles.quadOneText}>
-          {quadOneData} {bedroom && "°F"}
+          {quadOneData} {isBedroom && "°F"}
         </span>
-        {readiness && <span> bpm</span>}
-        {activity && <span> Cal</span>}
+        {isReadiness && <span> bpm</span>}
+        {isActivity && <span> Cal</span>}
       </div>
       <div className={styles.quadTwoDataWrapper}>
         <p>{quadTwoText}</p>
         <span className={styles.quadTwoText}>{quadTwoData}</span>
-        {readiness && <span> ms</span>}
-        {activity && <span> Cal</span>}
-        {bedroom && <span> %</span>}
+        {isReadiness && <span> ms</span>}
+        {isActivity && <span> Cal</span>}
+        {isBedroom && <span> %</span>}
       </div>
       <div className={styles.quadThreeDataWrapper}>
         <p>{quadThreeText}</p>
         <span className={styles.quadThreeText}>{quadThreeData} </span>
-        {readiness && <span>°F</span>}
-        {sleep && <span>%</span>}
-        {activity && <span> mi</span>}
-        {bedroom && <span>bpm</span>}
+        {isReadiness && <span>°F</span>}
+        {isSleep && <span>%</span>}
+        {isActivity && <span> mi</span>}
+        {isBedroom && <span>bpm</span>}
       </div>
       <div className={styles.quadFourDataWrapper}>
         <p>{quadFourText}</p>
         <span className={styles.quadFourText}>{quadFourData}</span>{" "}
-        {readiness && <span>/ min</span>}
-        {sleep && <span>bpm</span>}
-        {bedroom && <span>ms</span>}
+        {isReadiness && <span>/ min</span>}
+        {isSleep && <span>bpm</span>}
+        {isBedroom && <span>ms</span>}
       </div>
     </div>
   );

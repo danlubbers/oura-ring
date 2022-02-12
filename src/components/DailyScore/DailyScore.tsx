@@ -2,21 +2,21 @@ import styles from "./DailyScore.module.scss";
 import { scoring } from "../../utilities/scoring";
 
 const DailyScore = ({
-  readiness,
-  sleep,
-  activity,
+  isReadiness,
+  isSleep,
+  isActivity,
   score,
 }: {
-  readiness: boolean;
-  sleep: boolean;
-  activity: boolean;
+  isReadiness?: boolean;
+  isSleep?: boolean;
+  isActivity?: boolean;
   score: number;
 }) => {
   return (
     <div className={styles.scoreWrapper}>
-      {readiness && <p className={styles.text}>READINESS</p>}
-      {sleep && <p className={styles.text}>SLEEP</p>}
-      {activity && <p className={styles.text}>ACTIVITY</p>}
+      {isReadiness && <p className={styles.text}>READINESS</p>}
+      {isSleep && <p className={styles.text}>SLEEP</p>}
+      {isActivity && <p className={styles.text}>ACTIVITY</p>}
       <span className={styles.scoreData}>{score} </span>
       <span>{scoring(score)}</span>
     </div>

@@ -1,7 +1,22 @@
-import React from "react";
 import styles from "./PickDateRange.module.scss";
 
-const PickDateRange = ({ weeklyAverages, setStartDate, setEndDate }) => {
+const PickDateRange = ({
+  weeklyAverages,
+  setStartDate,
+  setEndDate,
+}: {
+  weeklyAverages: {
+    restingHR: number;
+    maxHRV: number;
+    bodyTemp: string;
+    avgBedroomTemp: number;
+    avgHumidity: number;
+    fullDate: string;
+    date: string;
+  }[];
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
+}) => {
   const dates = weeklyAverages.map((obj, idx) => {
     return (
       <option value={obj.fullDate} key={`${obj.date} #${idx}`}>

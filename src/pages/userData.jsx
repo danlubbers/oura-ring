@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import RenderUserData from "../components/RenderUserData/RenderUserData";
 import { GlobalContext } from "../context/Provider";

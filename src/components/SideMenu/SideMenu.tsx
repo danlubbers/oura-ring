@@ -1,11 +1,18 @@
-import React from "react";
 import styles from "./SideMenu.module.scss";
 import Container from "../Container/Container";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 
-const SideMenu = ({ handleClickMobileDisplay, isMobileDisplay, logout }) => {
+const SideMenu = ({
+  handleClickMobileDisplay,
+  isMobileDisplay,
+  logout,
+}: {
+  handleClickMobileDisplay: () => void;
+  isMobileDisplay: boolean;
+  logout?: () => void;
+}) => {
   return (
     <div
       className={

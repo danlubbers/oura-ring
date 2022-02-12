@@ -72,7 +72,7 @@ const WeeklyAverages = () => {
 
   // console.log(`parsedCsvData`, parsedCsvData);
 
-  const weeklyAverages = sleepData.map((obj, idx) => {
+  const weeklyAverages = sleepData.map((obj) => {
     const date = String(new Date(obj.bedtime_end)).slice(0, 15);
 
     const monthDayDate = obj.bedtime_end.slice(5, 10);
@@ -128,7 +128,7 @@ const WeeklyAverages = () => {
 
   // console.log(`weeklyAverages`, weeklyAverages);
 
-  const chosenDateRange = weeklyAverages.filter((obj, idx) => {
+  const chosenDateRange = weeklyAverages.filter((obj) => {
     // Had to convert the dates to ISO standards for filtering range
 
     // console.log("obj.fullDate", obj.fullDate);
