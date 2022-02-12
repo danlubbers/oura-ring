@@ -9,16 +9,20 @@ const Contributors = ({
   totalSleep,
   activityContributorData,
 }: {
-  readinessContributorData?: { name: string; score: number }[];
+  readinessContributorData?: { name: string; score: number }[] | undefined;
   restingHR?: number;
-  sleepContributorData?: {
-    name: string;
-    score: number;
-    data: number;
-    percentage: number;
-  }[];
-  totalSleep?: string;
-  activityContributorData?: { name: string; score: number; data: number }[];
+  sleepContributorData?:
+    | {
+        name: string;
+        score: number;
+        data: number;
+        percentage: number;
+      }[]
+    | undefined;
+  totalSleep?: string | undefined;
+  activityContributorData?:
+    | { name: string; score: number; data: number }[]
+    | undefined;
 }) => {
   let contributionLoop;
 
