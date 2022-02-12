@@ -42,7 +42,7 @@ const RenderSleepData = ({
       />
 
       <div className={styles.renderSleepDataContainer}>
-        <DailyScore sleep score={score} />
+        <DailyScore isSleep score={score} />
 
         <Contributors
           sleepContributorData={sleepContributorData}

@@ -38,7 +38,7 @@ const RenderReadinessData = ({
         quadFourData={respiratoryRate}
       />
       <div className={styles.renderReadinessContainer}>
-        <DailyScore readiness score={score} />
+        <DailyScore isReadiness score={score} />
 
         <Contributors
           readinessContributorData={readinessContributorData}

@@ -14,10 +14,10 @@ const QuadData = ({
   quadFourText,
   quadFourData,
 }: {
-  isReadiness: boolean;
-  isSleep: boolean;
-  isActivity: boolean;
-  isBedroom: boolean;
+  isReadiness?: boolean;
+  isSleep?: boolean;
+  isActivity?: boolean;
+  isBedroom?: boolean;
   quadOneText: string;
   quadOneData: string | number;
   quadTwoText: string;

@@ -16,8 +16,17 @@ const RenderActivityData = ({
   activityContributorData,
   metFiveMinArray,
   activityStagesData,
+}: {
+  score: any;
+  todaysDate: any;
+  calActive: any;
+  calTotal: any;
+  walkingEquivalency: any;
+  steps: any;
+  activityContributorData: any;
+  metFiveMinArray: any;
+  activityStagesData: any;
 }) => {
-  // console.log(`Render: totalSleep`, totalSleep);
   if (!todaysDate) return <Loading />;
 
   return (
@@ -34,7 +43,7 @@ const RenderActivityData = ({
         quadFourData={steps}
       />
       <div className={styles.renderActivityContainer}>
-        <DailyScore activity score={score} />
+        <DailyScore isActivity score={score} />
 
         <Contributors activityContributorData={activityContributorData} />
       </div>

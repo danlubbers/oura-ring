@@ -14,10 +14,10 @@ const BarChartComponent = ({
   sleepStagesData,
   activityStagesData,
 }: {
-  isSleep: boolean;
-  isActivity: boolean;
-  totalSleep: number;
-  timeInBed: number;
+  isSleep?: boolean;
+  isActivity?: boolean;
+  totalSleep?: number;
+  timeInBed?: number;
   data:
     | {
         sleepData: { sleepStage: string; sleepLevel: number };
@@ -27,14 +27,14 @@ const BarChartComponent = ({
   dataKey: string;
   XAxisDataKey: string;
   domain: number[];
-  sleepStagesData: {
+  sleepStagesData?: {
     stage: string;
     seconds: number;
     percentage: number;
     showPercentage: boolean;
     color: string;
   }[];
-  activityStagesData: {
+  activityStagesData?: {
     stage: string;
     seconds: number;
     percentage: number;

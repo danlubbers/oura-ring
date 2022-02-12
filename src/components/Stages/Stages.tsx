@@ -4,7 +4,7 @@ import { secondsToHm } from "../../utilities/convertTime";
 const Stages = ({
   stagesData,
 }: {
-  stagesData: {
+  stagesData?: {
     stage: string;
     seconds: number;
     percentage: number;
@@ -12,7 +12,7 @@ const Stages = ({
     color: string;
   }[];
 }) => {
-  const stages = stagesData.map(
+  const stages = stagesData?.map(
     ({ stage, seconds, percentage, showPercentage, color }, idx: number) => {
       return (
         <div className={styles.stagesWrapper} key={`${stage}-${idx}`}>
