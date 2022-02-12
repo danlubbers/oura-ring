@@ -24,6 +24,36 @@ const RenderSleepData = ({
   heartRateData,
   hrvData,
   sleepContributorData,
+}: {
+  score: number;
+  todaysDate: string;
+  totalSleep: number;
+  timeInBed: string;
+  sleepEfficiency: number;
+  avgHRData: number;
+  minHeartRate: number;
+  maxHeartRate: number;
+  avgHRV: number;
+  maxHRV: number;
+  hypnogramData: {
+    sleepData: { sleepStage: string; sleepLevel: number };
+    timeDuration: string;
+  }[];
+  sleepStagesData: {
+    stage: string;
+    seconds: number;
+    percentage: number;
+    showPercentage: boolean;
+    color: string;
+  }[];
+  heartRateData: { heartRate: number; timeDuration: number }[];
+  hrvData: { HRV: number; timeDuration: number }[];
+  sleepContributorData: {
+    name: string;
+    score: number;
+    data: number;
+    percentage: number;
+  }[];
 }) => {
   if (!todaysDate) return <Loading />;
 

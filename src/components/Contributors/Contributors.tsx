@@ -19,7 +19,7 @@ const Contributors = ({
         percentage: number;
       }[]
     | undefined;
-  totalSleep?: string | undefined;
+  totalSleep?: number | undefined;
   activityContributorData?:
     | { name: string; score: number; data: number }[]
     | undefined;

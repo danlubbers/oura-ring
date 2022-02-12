@@ -17,7 +17,7 @@ const BarChartComponent = ({
   isSleep?: boolean;
   isActivity?: boolean;
   totalSleep?: number;
-  timeInBed?: number;
+  timeInBed?: string;
   data:
     | {
         sleepData: { sleepStage: string; sleepLevel: number };
