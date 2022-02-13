@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import DateRenderer from "../components/DateRenderer/DateRenderer";
 import RenderActivityData from "../components/RenderActivityData/RenderActivityData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
@@ -55,7 +55,7 @@ function Activity() {
         index: idx, // need to convert to 4am - 4am
       };
     })
-    .filter((e) => e.met < 5 || e.met !== 0);
+    .filter((e) => parseInt(e.met) < 5 || parseInt(e.met) !== 0);
   // console.log(`metFiveMinArray`, metFiveMinArray);
 
   // Move Stages
