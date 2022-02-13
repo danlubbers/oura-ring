@@ -9,10 +9,10 @@ const Login = ({
   handleSubmit,
   error,
 }: {
-  handleUsername: (e: React.FormEvent<HTMLInputElement>) => void;
-  handlePassword: (e: React.FormEvent<HTMLInputElement>) => void;
+  handleUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.SyntheticEvent) => void;
-  error: { usernameError: string; passwordError: string };
+  error: { usernameError: string | null; passwordError: string | null };
 }) => {
   const { usernameError, passwordError } = error;
 

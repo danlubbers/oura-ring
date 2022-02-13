@@ -7,7 +7,7 @@ const Input = ({
 }: {
   type: string;
   placeholder: string;
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
     <div className={styles.inputWrapper}>

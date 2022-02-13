@@ -2,22 +2,26 @@ import { useState } from "react";
 import LoginComponent from "../components/Login/Login";
 import { loginUser } from "../utilities/loginUser";
 
-const Login = ({ setToken }) => {
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [error, setError] = useState({
+// Fix setToken which is currently set to "any"
+const Login = ({ setToken }: any) => {
+  const [username, setUsername] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+  const [error, setError] = useState<{
+    usernameError: string | null;
+    passwordError: string | null;
+  }>({
     usernameError: null,
     passwordError: null,
   });
 
-  const handleUsername = (e) => {
+  const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
-  const handlePassword = (e) => {
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (
       username === process.env.REACT_APP_USERNAME &&
@@ -40,9 +44,11 @@ const Login = ({ setToken }) => {
     } else if (username !== process.env.REACT_APP_USERNAME) {
       setError({
         usernameError: "The username you have submitted is incorrect!",
+        passwordError: null,
       });
     } else if (password !== process.env.REACT_APP_PASSWORD) {
       setError({
+        usernameError: null,
         passwordError: "The password you have submitted is incorrect!",
       });
     }
