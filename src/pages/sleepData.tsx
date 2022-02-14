@@ -16,7 +16,7 @@ function SleepData() {
   const bedtimeStartHourAndMin = bedtimeStart && bedtimeStart.slice(11, 16);
 
   // Quad Data
-  const totalSleep = secondsToHm(data?.sleep?.total);
+  const totalSleep = parseInt(secondsToHm(data?.sleep?.total));
   const sleepDuration = data?.sleep?.duration;
   const timeInBed = secondsToHm(sleepDuration);
   const sleepEfficiency = data?.sleep?.efficiency;
@@ -109,24 +109,24 @@ function SleepData() {
     .split("")
     ?.map((sleepLevel, idx) => {
       const time = timeIncrement(bedtimeStartHourAndMin, sleepDuration)[idx];
-      sleepLevel = Number(sleepLevel);
-      let sleepStage;
-      if (sleepLevel === 1) {
+
+      let sleepStage = "";
+      if (parseInt(sleepLevel) === 1) {
         sleepStage = "Deep";
       }
-      if (sleepLevel === 2) {
+      if (parseInt(sleepLevel) === 2) {
         sleepStage = "Light";
       }
-      if (sleepLevel === 3) {
+      if (parseInt(sleepLevel) === 3) {
         sleepStage = "REM";
       }
-      if (sleepLevel === 4) {
+      if (parseInt(sleepLevel) === 4) {
         sleepStage = "Awake";
       }
 
       return {
         sleepData: { sleepStage, sleepLevel },
-        timeDuration: time,
+        timeDuration: parseInt(time),
       };
     });
 
@@ -142,7 +142,7 @@ function SleepData() {
 
       return {
         heartRate: heartRate,
-        timeDuration: time,
+        timeDuration: parseInt(time),
       };
     })
     .filter((obj) => obj.heartRate !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
@@ -153,7 +153,7 @@ function SleepData() {
 
       return {
         HRV: hrv,
-        timeDuration: time,
+        timeDuration: parseInt(time),
       };
     })
     .filter((obj) => obj.HRV !== 0); // Filter out bad data due to ring logging 0's due to a bad connection

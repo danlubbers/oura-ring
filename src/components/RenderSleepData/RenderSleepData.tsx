@@ -36,8 +36,8 @@ const RenderSleepData = ({
   avgHRV: number;
   maxHRV: number;
   hypnogramData: {
-    sleepData: { sleepStage: string; sleepLevel: number };
-    timeDuration: string;
+    sleepData: { sleepStage: string; sleepLevel: string };
+    timeDuration: number;
   }[];
   sleepStagesData: {
     stage: string;
@@ -51,8 +51,8 @@ const RenderSleepData = ({
   sleepContributorData: {
     name: string;
     score: number;
-    data: number;
-    percentage: number;
+    data?: number;
+    percentage?: number;
   }[];
 }) => {
   if (!todaysDate) return <Loading />;
