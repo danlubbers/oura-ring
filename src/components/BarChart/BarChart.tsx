@@ -20,8 +20,8 @@ const BarChartComponent = ({
   timeInBed?: string;
   data:
     | {
-        sleepData: { sleepStage: string; sleepLevel: number };
-        timeDuration: string;
+        sleepData: { sleepStage: string; sleepLevel: string };
+        timeDuration: number;
       }[]
     | { met: string; index: number }[];
   dataKey: string;

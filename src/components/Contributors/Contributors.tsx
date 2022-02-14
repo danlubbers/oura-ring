@@ -9,20 +9,17 @@ const Contributors = ({
   totalSleep,
   activityContributorData,
 }: {
-  readinessContributorData?: { name: string; score: number }[] | undefined;
+  readinessContributorData?: { name: string; score: number }[];
   restingHR?: number;
   sleepContributorData?:
     | {
         name: string;
         score: number;
-        data: number;
-        percentage: number;
-      }[]
-    | undefined;
-  totalSleep?: number | undefined;
-  activityContributorData?:
-    | { name: string; score: number; data: number }[]
-    | undefined;
+        data?: number;
+        percentage?: number;
+      }[];
+  totalSleep?: number;
+  activityContributorData?: { name: string; score: number; data: number }[];
 }) => {
   let contributionLoop;
 
@@ -81,7 +78,7 @@ const Contributors = ({
                   <span
                     style={{ color: negativeScoreRating, marginRight: "1rem" }}
                   >
-                    {secondsToHm(data)},
+                    {data && secondsToHm(data)},
                   </span>
                   <span>{percentage}%</span>
                 </div>
@@ -91,14 +88,14 @@ const Contributors = ({
                   <span
                     style={{ color: negativeScoreRating, marginRight: "1rem" }}
                   >
-                    {secondsToHm(data)},
+                    {data && secondsToHm(data)},
                   </span>
                   <span>{percentage}%</span>
                 </div>
               )}
               {name === "Latency" && (
                 <span style={{ color: negativeScoreRating }}>
-                  {secondsToHm(data)}
+                  {data && secondsToHm(data)}
                 </span>
               )}
               {name === "Timing" && (
