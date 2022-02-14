@@ -1,11 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import getOuraData from "../utilities/getOuraData";
-import { ActivityProps } from "../types/activityTypes";
+import { ReadinessProps, SleepProps, ActivityProps } from "../types/dataTypes";
 
 interface GlobalContextProps {
   userData: {};
-  readinessData: any;
-  sleepData: any;
+  readinessData: ReadinessProps[];
+  sleepData: SleepProps[];
   activityData: ActivityProps[];
   startDate: string;
   setStartDate: (date: string) => void;
@@ -17,8 +17,8 @@ interface GlobalContextProps {
     bedtimeEnd: string;
 
     data: {
-      readiness: any;
-      sleep: any;
+      readiness: ReadinessProps;
+      sleep: SleepProps;
       activity: ActivityProps;
     };
   };
@@ -28,8 +28,8 @@ interface GlobalContextProps {
     bedtimeEnd: string,
 
     data: {
-      readiness: any;
-      sleep: any;
+      readiness: ReadinessProps;
+      sleep: SleepProps;
       activity: ActivityProps;
     }
   ) => void;
@@ -55,8 +55,59 @@ export const GlobalContext = createContext<GlobalContextProps>({
     bedtimeStart: "",
     bedtimeEnd: "",
     data: {
-      readiness: {},
-      sleep: {},
+      readiness: {
+        period_id: 0,
+        rest_mode_state: 0,
+        score: 0,
+        score_activity_balance: 0,
+        score_hrv_balance: 0,
+        score_previous_day: 0,
+        score_previous_night: 0,
+        score_recovery_index: 0,
+        score_resting_hr: 0,
+        score_sleep_balance: 0,
+        score_temperature: 0,
+        summary_date: "",
+      },
+      sleep: {
+        awake: 0,
+        bedtime_end: "",
+        bedtime_end_delta: 0,
+        bedtime_start: "",
+        bedtime_start_delta: 0,
+        breath_average: 0,
+        deep: 0,
+        duration: 0,
+        efficiency: 0,
+        hr_5min: [],
+        hr_average: 0,
+        hr_lowest: 0,
+        hypnogram_5min: "",
+        is_longest: 0,
+        light: 0,
+        midpoint_at_delta: 0,
+        midpoint_time: 0,
+        onset_latency: 0,
+        period_id: 0,
+        rem: 0,
+        restless: 0,
+        rmssd: 0,
+        rmssd_5min: [],
+        score: 0,
+        score_alignment: 0,
+        score_deep: 0,
+        score_disturbances: 0,
+        score_efficiency: 0,
+        score_latency: 0,
+        score_rem: 0,
+        score_total: 0,
+        summary_date: "",
+        temperature_delta: 0,
+        temperature_deviation: 0,
+        temperature_trend_deviation: 0,
+        timezone: 0,
+        total: 0,
+      },
       activity: {
         average_met: 0,
         cal_active: 0,
@@ -119,8 +170,59 @@ const GlobalProvider = ({ children }: any) => {
     bedtimeStart: "",
     bedtimeEnd: "",
     data: {
-      readiness: {},
-      sleep: {},
+      readiness: {
+        period_id: 0,
+        rest_mode_state: 0,
+        score: 0,
+        score_activity_balance: 0,
+        score_hrv_balance: 0,
+        score_previous_day: 0,
+        score_previous_night: 0,
+        score_recovery_index: 0,
+        score_resting_hr: 0,
+        score_sleep_balance: 0,
+        score_temperature: 0,
+        summary_date: "",
+      },
+      sleep: {
+        awake: 0,
+        bedtime_end: "",
+        bedtime_end_delta: 0,
+        bedtime_start: "",
+        bedtime_start_delta: 0,
+        breath_average: 0,
+        deep: 0,
+        duration: 0,
+        efficiency: 0,
+        hr_5min: [],
+        hr_average: 0,
+        hr_lowest: 0,
+        hypnogram_5min: "",
+        is_longest: 0,
+        light: 0,
+        midpoint_at_delta: 0,
+        midpoint_time: 0,
+        onset_latency: 0,
+        period_id: 0,
+        rem: 0,
+        restless: 0,
+        rmssd: 0,
+        rmssd_5min: [],
+        score: 0,
+        score_alignment: 0,
+        score_deep: 0,
+        score_disturbances: 0,
+        score_efficiency: 0,
+        score_latency: 0,
+        score_rem: 0,
+        score_total: 0,
+        summary_date: "",
+        temperature_delta: 0,
+        temperature_deviation: 0,
+        temperature_trend_deviation: 0,
+        timezone: 0,
+        total: 0,
+      },
       activity: {
         average_met: 0,
         cal_active: 0,
@@ -188,7 +290,7 @@ const GlobalProvider = ({ children }: any) => {
       const todaysReadinessData = readinessData[readinessData.length - 1];
       const todaysActivityData = activityData[activityData.length - 1];
 
-      console.log("todaysActivityData", activityData[activityData.length - 1]);
+      console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
       const bedtimeEnd = todaysSleepData.bedtime_end;
       // console.log("PROVIDER: ", bedtimeEnd);
