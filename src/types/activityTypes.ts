@@ -1,4 +1,4 @@
-export type activityProps = {
+export type ActivityProps = {
   average_met: number;
   cal_active: number;
   cal_total: number;

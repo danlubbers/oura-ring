@@ -1,12 +1,12 @@
 import { createContext, useState, useEffect } from "react";
 import getOuraData from "../utilities/getOuraData";
-import { activityProps } from "../types/activityTypes";
+import { ActivityProps } from "../types/activityTypes";
 
 interface GlobalContextProps {
   userData: {};
   readinessData: any;
   sleepData: any;
-  activityData: any;
+  activityData: ActivityProps[];
   startDate: string;
   setStartDate: (date: string) => void;
   endDate: string;
@@ -19,7 +19,7 @@ interface GlobalContextProps {
     data: {
       readiness: any;
       sleep: any;
-      activity: activityProps;
+      activity: ActivityProps;
     };
   };
   setTodaysData: (
@@ -30,7 +30,7 @@ interface GlobalContextProps {
     data: {
       readiness: any;
       sleep: any;
-      activity: activityProps;
+      activity: ActivityProps;
     }
   ) => void;
   isMobileDisplay: boolean;
