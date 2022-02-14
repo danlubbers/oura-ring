@@ -20,8 +20,8 @@ function Readiness() {
   const restingHR = data?.sleep?.hr_lowest;
   const bodyTempData = data?.sleep?.temperature_delta;
   const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
-  const bodyTempFahrenheit = (conversionToFahrenheit - 32).toFixed(1);
-  const respiratoryRate = data?.sleep?.breath_average.toFixed(1);
+  const bodyTempFahrenheit = parseInt((conversionToFahrenheit - 32).toFixed(1));
+  const respiratoryRate = parseInt(data?.sleep?.breath_average.toFixed(1));
 
   // Quad and Chart Data
   const avgHRV = data?.sleep?.rmssd;
@@ -60,7 +60,7 @@ function Readiness() {
 
       return {
         heartRate: heartRate,
-        timeDuration: time,
+        timeDuration: parseInt(time),
       };
     })
     .filter((obj) => obj.heartRate !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
@@ -71,7 +71,7 @@ function Readiness() {
 
       return {
         HRV: hrv,
-        timeDuration: time,
+        timeDuration: parseInt(time),
       };
     })
     .filter((obj) => obj.HRV !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
