@@ -290,7 +290,7 @@ const GlobalProvider = ({ children }: any) => {
       const todaysReadinessData = readinessData[readinessData.length - 1];
       const todaysActivityData = activityData[activityData.length - 1];
 
-      console.log("todaysSleepData", sleepData[sleepData.length - 1]);
+      // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
       const bedtimeEnd = todaysSleepData.bedtime_end;
       // console.log("PROVIDER: ", bedtimeEnd);
