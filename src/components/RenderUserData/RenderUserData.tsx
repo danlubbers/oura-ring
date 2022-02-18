@@ -17,7 +17,7 @@ const RenderUserData = ({
   handleClickMobileDisplay,
 }: {
   age: number;
-  height: number;
+  height: number | string;
   weight: number;
   gender: string;
   email: string;

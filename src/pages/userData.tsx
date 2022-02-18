@@ -32,7 +32,7 @@ function UserData() {
   const gender = userData?.gender;
   const email = userData?.email;
 
-  const setUnits = (unit) => {
+  const setUnits = (unit: string) => {
     if (unit === "imperial") {
       setIsImperial(true);
     } else {
@@ -51,7 +51,6 @@ function UserData() {
         isImperial={isImperial}
         setUnits={setUnits}
         isMobileDisplay={isMobileDisplay}
-        setIsMobileDisplay={setIsMobileDisplay}
         handleClickMobileDisplay={handleClickMobileDisplay}
       />
       <NavigationFooter />
