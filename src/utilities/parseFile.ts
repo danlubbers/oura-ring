@@ -20,7 +20,6 @@ export const parseFile = (
         Relative_Humidity: string;
       }[];
     }) => {
-      console.log("results.data", results.data);
       setParsedCsvData(results.data);
     },
   });
