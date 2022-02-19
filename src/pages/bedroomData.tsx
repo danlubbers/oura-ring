@@ -11,11 +11,12 @@ const BedroomData = () => {
     todaysData: { bedtimeStart, bedtimeEnd, data },
   } = useContext(GlobalContext);
 
-  const [parsedCsvData, setParsedCsvData] = useState([]);
-  // console.log(`Bedroom: `, data);
+  const [parsedCsvData, setParsedCsvData] = useState([
+    { Timestamp: "", Temperature_Fahrenheit: "", Relative_Humidity: "" },
+  ]);
 
   useEffect(() => {
-    parseFile(thermoStr, setParsedCsvData);
+    return parseFile(thermoStr, setParsedCsvData);
   }, []);
 
   // Time Data
@@ -68,8 +69,8 @@ const BedroomData = () => {
     return Number(obj.Temperature_Fahrenheit);
   });
 
-  const minTemp = Math.min(...tempArray).toFixed(1);
-  const maxTemp = Math.max(...tempArray).toFixed(1);
+  const minTemp = parseInt(Math.min(...tempArray).toFixed(1));
+  const maxTemp = parseInt(Math.max(...tempArray).toFixed(1));
 
   const humidityArray = filteredData.map((obj) => {
     return Number(obj.Relative_Humidity);

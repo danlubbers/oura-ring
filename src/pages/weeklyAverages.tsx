@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/Provider";
 import RenderWeeklyAverages from "../components/RenderWeeklyAverages/RenderWeeklyAverages";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
@@ -15,9 +15,10 @@ const WeeklyAverages = () => {
     isMobileDisplay,
     setIsMobileDisplay,
   } = useContext(GlobalContext);
-  // console.log(`sleepData`, sleepData);
 
-  const [parsedCsvData, setParsedCsvData] = useState([]);
+  const [parsedCsvData, setParsedCsvData] = useState([
+    { Timestamp: "", Temperature_Fahrenheit: "", Relative_Humidity: "" },
+  ]);
   const [showChartData, setShowChartData] = useState({
     restingHR: true,
     maxHRV: true,
@@ -34,7 +35,7 @@ const WeeklyAverages = () => {
     setIsMobileDisplay(!isMobileDisplay);
   };
 
-  const handleShowChartData = (chosenData) => {
+  const handleShowChartData = (chosenData: string) => {
     if ("restingHR" === chosenData) {
       setShowChartData({
         restingHR: !showChartData.restingHR,
@@ -68,9 +69,6 @@ const WeeklyAverages = () => {
       });
     }
   };
-  // console.log(`showChartData`, showChartData);
-
-  // console.log(`parsedCsvData`, parsedCsvData);
 
   const weeklyAverages = sleepData.map((obj) => {
     const date = String(new Date(obj.bedtime_end)).slice(0, 15);
@@ -85,8 +83,8 @@ const WeeklyAverages = () => {
       ? `+${bodyTempFahrenheit}`
       : bodyTempFahrenheit;
 
-    const getAverage = (arr) => {
-      const reducer = (acc, val) => acc + Number(val);
+    const getAverage = (arr: string[]) => {
+      const reducer = (acc: number, val: string) => acc + Number(val);
       const sum = arr.reduce(reducer, 0);
       return sum / arr.length;
     };
@@ -101,7 +99,6 @@ const WeeklyAverages = () => {
       .map((e) => e.Temperature_Fahrenheit);
 
     const avgTemp = Number(getAverage(filteredTempAvg).toFixed(1));
-    // console.log(`avgTemp`, avgTemp);
 
     const filteredHumidityAvg = parsedCsvData
       .filter((e) => {
@@ -113,7 +110,6 @@ const WeeklyAverages = () => {
       .map((e) => e.Relative_Humidity);
 
     const avgHumidity = Number(getAverage(filteredHumidityAvg).toFixed(1));
-    // console.log(`avgHumidity`, avgHumidity);
 
     return {
       restingHR: obj.hr_lowest,
@@ -126,38 +122,28 @@ const WeeklyAverages = () => {
     };
   });
 
-  // console.log(`weeklyAverages`, weeklyAverages);
-
   const chosenDateRange = weeklyAverages.filter((obj) => {
     // Had to convert the dates to ISO standards for filtering range
-
-    // console.log("obj.fullDate", obj.fullDate);
     const ISOStartDate =
       startDate && new Date(startDate).toISOString().slice(0, 10);
-    // console.log("ISOStartDate", ISOStartDate);
+
     const ISOEndDate = endDate && new Date(endDate).toISOString();
-    // console.log("ISOEndDate", ISOEndDate);
+
     const ISODate = new Date(obj.fullDate).toISOString().slice(0, 10);
-    // console.log("ISODate", ISODate);
 
     return ISODate >= ISOStartDate && ISODate <= ISOEndDate;
   });
 
-  // console.log(`chosenDateRange`, chosenDateRange);
-
   return (
     <div>
       <RenderWeeklyAverages
-        startDate={startDate}
         setStartDate={setStartDate}
-        endDate={endDate}
         setEndDate={setEndDate}
         showChartData={showChartData}
         handleShowChartData={handleShowChartData}
         weeklyAverages={weeklyAverages}
         chosenDateRange={chosenDateRange}
         isMobileDisplay={isMobileDisplay}
-        setIsMobileDisplay={setIsMobileDisplay}
         handleClickMobileDisplay={handleClickMobileDisplay}
       />
       <NavigationFooter />

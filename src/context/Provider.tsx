@@ -3,7 +3,13 @@ import getOuraData from "../utilities/getOuraData";
 import { ReadinessProps, SleepProps, ActivityProps } from "../types/dataTypes";
 
 interface GlobalContextProps {
-  userData: {};
+  userData: {
+    age: number;
+    email: string;
+    gender: string;
+    height: number;
+    weight: number;
+  };
   readinessData: ReadinessProps[];
   sleepData: SleepProps[];
   activityData: ActivityProps[];
@@ -42,7 +48,13 @@ interface GlobalContextProps {
 }
 
 export const GlobalContext = createContext<GlobalContextProps>({
-  userData: {},
+  userData: {
+    age: 0,
+    email: "",
+    gender: "",
+    height: 0,
+    weight: 0,
+  },
   readinessData: [],
   sleepData: [],
   activityData: [],
@@ -159,7 +171,13 @@ export const GlobalContext = createContext<GlobalContextProps>({
 
 // Figure out the fix for TS children so it's not set to "any"
 const GlobalProvider = ({ children }: any) => {
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState({
+    age: 0,
+    email: "",
+    gender: "",
+    height: 0,
+    weight: 0,
+  });
   const [readinessData, setReadinessData] = useState([]);
   const [sleepData, setSleepData] = useState([]);
   const [activityData, setActivityData] = useState([]);
@@ -290,7 +308,7 @@ const GlobalProvider = ({ children }: any) => {
       const todaysReadinessData = readinessData[readinessData.length - 1];
       const todaysActivityData = activityData[activityData.length - 1];
 
-      console.log("todaysSleepData", sleepData[sleepData.length - 1]);
+      // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
       const bedtimeEnd = todaysSleepData.bedtime_end;
       // console.log("PROVIDER: ", bedtimeEnd);
