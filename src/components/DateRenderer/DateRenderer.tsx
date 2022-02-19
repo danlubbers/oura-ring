@@ -16,8 +16,8 @@ const DateRenderer = () => {
     setIsBtnPosition,
   } = useContext(GlobalContext);
 
-  const dateRendererRef = useRef();
-  const lastBtnRef = useRef();
+  const dateRendererRef = useRef<HTMLDivElement>(null);
+  const lastBtnRef = useRef<HTMLDivElement>(null);
 
   // https://stackoverflow.com/questions/65350114/useref-for-element-in-loop-in-react
   let btnRefs = useRef([]);
@@ -26,7 +26,6 @@ const DateRenderer = () => {
   });
 
   const todaysDate = todaysData?.date;
-  // console.log("todaysDate", todaysDate);
 
   useEffect(() => {
     if (isBtnPosition) {
@@ -56,12 +55,15 @@ const DateRenderer = () => {
         bedtimeEnd,
         data: combinedData,
       });
+      // @ts-ignore
       setBtnOffsetLeft(btnRefs?.current[idx]?.current.offsetLeft - 167.5);
       setIsBtnPosition(btnRefs?.current[idx] ? false : true); // conditional added because the last btn is always undefined
     };
 
     return (
+      // @ts-ignore
       <div key={`btn: ${date}`} style={{ width: "100%" }} ref={lastBtnRef}>
+        {/* @ts-ignore */}
         <Button
           btnAction={date.slice(5, 10)} // month, day
           onClick={handleBtnClick}
@@ -79,6 +81,7 @@ const DateRenderer = () => {
   });
 
   return (
+    // @ts-ignore
     <div className={styles.dateRendererContainer} ref={dateRendererRef}>
       {pickSleepDate}
     </div>

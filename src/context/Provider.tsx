@@ -2,14 +2,28 @@ import { createContext, useState, useEffect } from "react";
 import getOuraData from "../utilities/getOuraData";
 import { ReadinessProps, SleepProps, ActivityProps } from "../types/dataTypes";
 
-interface GlobalContextProps {
-  userData: {
-    age: number;
-    email: string;
-    gender: string;
-    height: number;
-    weight: number;
+type UserProps = {
+  age: number;
+  email: string;
+  gender: string;
+  height: number;
+  weight: number;
+};
+
+type TodaysProps = {
+  date: string;
+  bedtimeStart: string;
+  bedtimeEnd: string;
+
+  data: {
+    readiness: ReadinessProps;
+    sleep: SleepProps;
+    activity: ActivityProps;
   };
+};
+
+interface GlobalContextProps {
+  userData: UserProps;
   readinessData: ReadinessProps[];
   sleepData: SleepProps[];
   activityData: ActivityProps[];
@@ -17,32 +31,12 @@ interface GlobalContextProps {
   setStartDate: (date: string) => void;
   endDate: string;
   setEndDate: (date: string) => void;
-  todaysData: {
-    date: string;
-    bedtimeStart: string;
-    bedtimeEnd: string;
-
-    data: {
-      readiness: ReadinessProps;
-      sleep: SleepProps;
-      activity: ActivityProps;
-    };
-  };
-  setTodaysData: (
-    date: any,
-    bedtimeStart: string,
-    bedtimeEnd: string,
-
-    data: {
-      readiness: ReadinessProps;
-      sleep: SleepProps;
-      activity: ActivityProps;
-    }
-  ) => void;
+  todaysData: TodaysProps;
+  setTodaysData: (todaysData: TodaysProps) => void;
   isMobileDisplay: boolean;
   setIsMobileDisplay: (isMobile: boolean) => void;
-  btnOffsetLeft: boolean;
-  setBtnOffsetLeft: (offset: boolean) => void;
+  btnOffsetLeft: number;
+  setBtnOffsetLeft: (offsetLeft: number) => void;
   isBtnPosition: boolean;
   setIsBtnPosition: (isBtnPosition: boolean) => void;
 }
@@ -163,27 +157,27 @@ export const GlobalContext = createContext<GlobalContextProps>({
   setTodaysData: () => {},
   isMobileDisplay: false,
   setIsMobileDisplay: () => false,
-  btnOffsetLeft: false,
-  setBtnOffsetLeft: () => false,
+  btnOffsetLeft: 0,
+  setBtnOffsetLeft: () => 0,
   isBtnPosition: true,
   setIsBtnPosition: () => true,
 });
 
 // Figure out the fix for TS children so it's not set to "any"
 const GlobalProvider = ({ children }: any) => {
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState<UserProps>({
     age: 0,
     email: "",
     gender: "",
     height: 0,
     weight: 0,
   });
-  const [readinessData, setReadinessData] = useState([]);
-  const [sleepData, setSleepData] = useState([]);
-  const [activityData, setActivityData] = useState([]);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [todaysData, setTodaysData] = useState({
+  const [readinessData, setReadinessData] = useState<ReadinessProps[]>([]);
+  const [sleepData, setSleepData] = useState<SleepProps[]>([]);
+  const [activityData, setActivityData] = useState<ActivityProps[]>([]);
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+  const [todaysData, setTodaysData] = useState<TodaysProps>({
     date: "",
     bedtimeStart: "",
     bedtimeEnd: "",
@@ -281,9 +275,9 @@ const GlobalProvider = ({ children }: any) => {
       },
     },
   });
-  const [isMobileDisplay, setIsMobileDisplay] = useState(false);
-  const [btnOffsetLeft, setBtnOffsetLeft] = useState(false);
-  const [isBtnPosition, setIsBtnPosition] = useState(true);
+  const [isMobileDisplay, setIsMobileDisplay] = useState<boolean>(false);
+  const [btnOffsetLeft, setBtnOffsetLeft] = useState<number>(0);
+  const [isBtnPosition, setIsBtnPosition] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -299,14 +293,17 @@ const GlobalProvider = ({ children }: any) => {
         new Date(sleepData[sleepData.length - 1].bedtime_end)
       ).slice(4, 15);
 
-      const todaysSleepDate = sleepData[sleepData.length - 1].bedtime_end.slice(
-        0,
-        10
-      );
+      const todaysSleepDate: string = sleepData[
+        sleepData.length - 1
+      ].bedtime_end.slice(0, 10);
+      console.log("todaysSleepDate", typeof todaysSleepDate);
 
-      const todaysSleepData = sleepData[sleepData.length - 1];
-      const todaysReadinessData = readinessData[readinessData.length - 1];
-      const todaysActivityData = activityData[activityData.length - 1];
+      const todaysSleepData: SleepProps = sleepData[sleepData.length - 1];
+      console.log("todaysSleepData", todaysSleepData);
+      const todaysReadinessData: ReadinessProps =
+        readinessData[readinessData.length - 1];
+      const todaysActivityData: ActivityProps =
+        activityData[activityData.length - 1];
 
       // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
