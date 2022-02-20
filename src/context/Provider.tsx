@@ -296,10 +296,8 @@ const GlobalProvider = ({ children }: any) => {
       const todaysSleepDate: string = sleepData[
         sleepData.length - 1
       ].bedtime_end.slice(0, 10);
-      console.log("todaysSleepDate", typeof todaysSleepDate);
 
       const todaysSleepData: SleepProps = sleepData[sleepData.length - 1];
-      console.log("todaysSleepData", todaysSleepData);
       const todaysReadinessData: ReadinessProps =
         readinessData[readinessData.length - 1];
       const todaysActivityData: ActivityProps =

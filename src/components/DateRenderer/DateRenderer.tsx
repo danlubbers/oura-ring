@@ -20,10 +20,11 @@ const DateRenderer = () => {
   const lastBtnRef = useRef<HTMLDivElement>(null);
 
   // https://stackoverflow.com/questions/65350114/useref-for-element-in-loop-in-react
-  let btnRefs = useRef([]);
+  const btnRefs = useRef([]);
   btnRefs.current = sleepData.map((_, idx) => {
     return btnRefs.current[idx] ?? createRef();
   });
+  console.log("btnRefs.current", btnRefs.current);
 
   const todaysDate = todaysData?.date;
 
@@ -46,7 +47,6 @@ const DateRenderer = () => {
     const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
     const bedtimeStart = sleepObj.bedtime_start;
     const bedtimeEnd = sleepObj.bedtime_end;
-    // console.log("DATE bedtimeStart:", bedtimeStart);
 
     const handleBtnClick = () => {
       setTodaysData({
@@ -61,11 +61,10 @@ const DateRenderer = () => {
     };
 
     return (
-      // @ts-ignore
       <div key={`btn: ${date}`} style={{ width: "100%" }} ref={lastBtnRef}>
-        {/* @ts-ignore */}
         <Button
           btnAction={date.slice(5, 10)} // month, day
+          type="button"
           onClick={handleBtnClick}
           style={{
             width: "3.5rem",
@@ -81,7 +80,6 @@ const DateRenderer = () => {
   });
 
   return (
-    // @ts-ignore
     <div className={styles.dateRendererContainer} ref={dateRendererRef}>
       {pickSleepDate}
     </div>
