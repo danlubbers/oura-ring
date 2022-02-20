@@ -34,7 +34,7 @@ function Activity() {
   const recoveryTimeScore = todaysData.data?.activity.score_recovery_time;
 
   const activityContributorData = [
-    { name: "Stay active", score: stayActiveScore, data: inactive },
+    { name: "Stay active", score: stayActiveScore, data: parseInt(inactive) },
     {
       name: "Move every hour",
       score: moveEveryHourScore,
