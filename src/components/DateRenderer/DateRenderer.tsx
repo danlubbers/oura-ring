@@ -20,11 +20,10 @@ const DateRenderer = () => {
   const lastBtnRef = useRef<HTMLDivElement>(null);
 
   // https://stackoverflow.com/questions/65350114/useref-for-element-in-loop-in-react
-  const btnRefs = useRef([]);
+  const btnRefs = useRef<{ current: { offsetLeft: number } }[]>([]);
   btnRefs.current = sleepData.map((_, idx) => {
     return btnRefs.current[idx] ?? createRef();
   });
-  console.log("btnRefs.current", btnRefs.current);
 
   const todaysDate = todaysData?.date;
 
@@ -55,7 +54,7 @@ const DateRenderer = () => {
         bedtimeEnd,
         data: combinedData,
       });
-      // @ts-ignore
+
       setBtnOffsetLeft(btnRefs?.current[idx]?.current.offsetLeft - 167.5);
       setIsBtnPosition(btnRefs?.current[idx] ? false : true); // conditional added because the last btn is always undefined
     };
