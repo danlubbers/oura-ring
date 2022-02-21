@@ -18,9 +18,9 @@ const DateRenderer = () => {
 
   const dateRendererRef = useRef<HTMLDivElement>(null);
   const lastBtnRef = useRef<HTMLDivElement>(null);
+  const btnRefs = useRef<{ current: HTMLDivElement }[]>([]);
 
   // https://stackoverflow.com/questions/65350114/useref-for-element-in-loop-in-react
-  const btnRefs = useRef<{ current: { offsetLeft: number } }[]>([]);
   btnRefs.current = sleepData.map((_, idx) => {
     return btnRefs.current[idx] ?? createRef();
   });
