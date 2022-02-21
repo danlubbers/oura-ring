@@ -1,24 +1,17 @@
 import { forwardRef } from "react";
 import styles from "./Button.module.scss";
 
-const Button = forwardRef(
-  (
-    {
-      btnAction,
-      type,
-      onClick,
-      style,
-    }: {
-      btnAction: string;
-      type: "button" | "submit" | "reset" | undefined;
-      onClick?: () => void;
-      style?: {};
-    },
-    ref
-  ) => {
+interface ButtonProps {
+  btnAction: string;
+  type: "button" | "submit" | "reset" | undefined;
+  onClick?: () => void;
+  style?: {};
+}
+
+// Change "any" here for forwardRef
+const Button = forwardRef<any, ButtonProps>(
+  ({ btnAction, type, onClick, style }, ref) => {
     return (
-      // Figure out typescript for refs and forwardRef
-      // @ts-ignore
       <div className={styles.buttonWrapper} ref={ref}>
         <button
           type={type}
