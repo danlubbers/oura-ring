@@ -17,15 +17,24 @@ const RenderActivityData = ({
   metFiveMinArray,
   activityStagesData,
 }: {
-  score: any;
-  todaysDate: any;
-  calActive: any;
-  calTotal: any;
-  walkingEquivalency: any;
-  steps: any;
-  activityContributorData: any;
-  metFiveMinArray: any;
-  activityStagesData: any;
+  score: number;
+  todaysDate: string;
+  calActive: string;
+  calTotal: string;
+  walkingEquivalency: string;
+  steps: string;
+  activityContributorData: { name: string; score: number; data?: number }[];
+  metFiveMinArray: {
+    met: string;
+    index: number;
+  }[];
+  activityStagesData?: {
+    stage: string;
+    seconds: number;
+    percentage: number;
+    showPercentage: boolean;
+    color: string;
+  }[];
 }) => {
   if (!todaysDate) return <Loading />;
 

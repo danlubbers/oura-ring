@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, Ref } from "react";
 import styles from "./Button.module.scss";
 
 const Button = forwardRef(
@@ -14,11 +14,9 @@ const Button = forwardRef(
       onClick?: () => void;
       style?: {};
     },
-    ref
+    ref: Ref<HTMLDivElement>
   ) => {
     return (
-      // Figure out typescript for refs and forwardRef
-      // @ts-ignore
       <div className={styles.buttonWrapper} ref={ref}>
         <button
           type={type}
