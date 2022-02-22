@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { FC, createContext, useState, useEffect } from "react";
 import getOuraData from "../utilities/getOuraData";
 import { ReadinessProps, SleepProps, ActivityProps } from "../types/dataTypes";
 
@@ -163,8 +163,7 @@ export const GlobalContext = createContext<GlobalContextProps>({
   setIsBtnPosition: () => true,
 });
 
-// Figure out the fix for TS children so it's not set to "any"
-const GlobalProvider = ({ children }: any) => {
+const GlobalProvider: FC = ({ children }) => {
   const [userData, setUserData] = useState<UserProps>({
     age: 0,
     email: "",
