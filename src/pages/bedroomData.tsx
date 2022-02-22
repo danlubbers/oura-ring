@@ -4,7 +4,7 @@ import RenderBedroomData from "../components/RenderBedroomData/RenderBedroomData
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
 import { parseFile } from "../utilities/parseFile";
-import { thermoStr } from "../utilities/sampleTempData";
+import { thermoStr } from "../data/sampleTempData";
 
 const BedroomData = () => {
   const {

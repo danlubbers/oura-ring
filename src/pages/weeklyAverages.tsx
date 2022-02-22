@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/Provider";
 import RenderWeeklyAverages from "../components/RenderWeeklyAverages/RenderWeeklyAverages";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { parseFile } from "../utilities/parseFile";
-import { thermoStr } from "../utilities/sampleTempData";
+import { thermoStr } from "../data/sampleTempData";
 
 const WeeklyAverages = () => {
   const {
