@@ -1,7 +1,10 @@
+import { FC } from "react";
 import styles from "./Container.module.scss";
 
-// Figure out the fix for TS children so it's not set to "any"
-const Container = ({ children }: any, isFooter: boolean) => {
+interface ContainerProps {
+  isFooter?: boolean;
+}
+const Container: FC<ContainerProps> = ({ children }, isFooter) => {
   return (
     <div
       className={

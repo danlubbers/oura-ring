@@ -1,3 +1,23 @@
+export type UserProps = {
+  age: number;
+  email: string;
+  gender: string;
+  height: number;
+  weight: number;
+};
+
+export type TodaysProps = {
+  date: string;
+  bedtimeStart: string;
+  bedtimeEnd: string;
+
+  data: {
+    readiness: ReadinessProps;
+    sleep: SleepProps;
+    activity: ActivityProps;
+  };
+};
+
 export type ReadinessProps = {
   period_id: number;
   rest_mode_state: number;
