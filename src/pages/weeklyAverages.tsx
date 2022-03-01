@@ -114,7 +114,7 @@ const WeeklyAverages = () => {
     return {
       restingHR: obj.hr_lowest,
       maxHRV: obj.rmssd,
-      bodyTemp: bodyTempFahrenheit,
+      bodyTemp: parseFloat(bodyTempFahrenheit),
       avgBedroomTemp: avgTemp,
       avgHumidity: avgHumidity,
       fullDate: date,
