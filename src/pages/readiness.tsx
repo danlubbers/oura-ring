@@ -20,8 +20,10 @@ function Readiness() {
   const restingHR = data?.sleep?.hr_lowest;
   const bodyTempData = data?.sleep?.temperature_delta;
   const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
-  const bodyTempFahrenheit = parseInt((conversionToFahrenheit - 32).toFixed(1));
-  const respiratoryRate = parseInt(data?.sleep?.breath_average.toFixed(1));
+  const bodyTempFahrenheit = parseFloat(
+    (conversionToFahrenheit - 32).toFixed(1)
+  );
+  const respiratoryRate = parseFloat(data?.sleep?.breath_average.toFixed(1));
 
   // Quad and Chart Data
   const avgHRV = data?.sleep?.rmssd;
