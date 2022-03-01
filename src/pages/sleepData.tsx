@@ -16,7 +16,7 @@ function SleepData() {
   const bedtimeStartHourAndMin = bedtimeStart && bedtimeStart.slice(11, 16);
 
   // Quad Data
-  const totalSleep = parseInt(secondsToHm(data?.sleep?.total));
+  const totalSleep = secondsToHm(data?.sleep?.total);
   const sleepDuration = data?.sleep?.duration;
   const timeInBed = secondsToHm(sleepDuration);
   const sleepEfficiency = data?.sleep?.efficiency;

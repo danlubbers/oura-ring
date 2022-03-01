@@ -18,7 +18,7 @@ const Contributors = ({
         data?: number;
         percentage?: number;
       }[];
-  totalSleep?: number;
+  totalSleep?: string;
   activityContributorData?: { name: string; score: number; data?: number }[];
 }) => {
   let contributionLoop;
