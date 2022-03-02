@@ -8,7 +8,7 @@ const WeeklyAveragesChart = ({
   data: {
     restingHR: number;
     maxHRV: number;
-    bodyTemp: string;
+    bodyTemp: number;
     avgBedroomTemp: number;
     avgHumidity: number;
     fullDate: string;

@@ -16,7 +16,7 @@ const BarChartComponent = ({
 }: {
   isSleep?: boolean;
   isActivity?: boolean;
-  totalSleep?: number;
+  totalSleep?: string;
   timeInBed?: string;
   data:
     | {

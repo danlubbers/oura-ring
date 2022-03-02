@@ -28,7 +28,7 @@ const RenderWeeklyAverages = ({
   weeklyAverages: {
     restingHR: number;
     maxHRV: number;
-    bodyTemp: string;
+    bodyTemp: number;
     avgBedroomTemp: number;
     avgHumidity: number;
     fullDate: string;
@@ -37,7 +37,7 @@ const RenderWeeklyAverages = ({
   chosenDateRange: {
     avgBedroomTemp: number;
     avgHumidity: number;
-    bodyTemp: string;
+    bodyTemp: number;
     date: string;
     fullDate: string;
     maxHRV: number;

@@ -8,7 +8,7 @@ const PickDateRange = ({
   weeklyAverages: {
     restingHR: number;
     maxHRV: number;
-    bodyTemp: string;
+    bodyTemp: number;
     avgBedroomTemp: number;
     avgHumidity: number;
     fullDate: string;

@@ -27,7 +27,7 @@ const RenderSleepData = ({
 }: {
   score: number;
   todaysDate: string;
-  totalSleep: number;
+  totalSleep: string;
   timeInBed: string;
   sleepEfficiency: number;
   avgHRData: number;
