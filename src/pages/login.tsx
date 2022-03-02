@@ -3,7 +3,7 @@ import LoginComponent from "../components/Login/Login";
 import { loginUser } from "../utilities/loginUser";
 
 // Fix setToken which is currently set to "any"
-const Login = (setToken: any) => {
+const Login = ({ setToken }: any) => {
   const [username, setUsername] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [error, setError] = useState<{
