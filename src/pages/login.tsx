@@ -2,8 +2,11 @@ import { useState } from "react";
 import LoginComponent from "../components/Login/Login";
 import { loginUser } from "../utilities/loginUser";
 
-// Fix setToken which is currently set to "any"
-const Login = ({ setToken }: any) => {
+interface LoginProps {
+  setToken?: (userToken: { token: string }) => void;
+}
+
+const Login: React.FC<LoginProps> = ({ setToken }) => {
   const [username, setUsername] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [error, setError] = useState<{
@@ -31,7 +34,9 @@ const Login = ({ setToken }: any) => {
         username,
         password,
       });
-      await setToken(credentials);
+      if (setToken) {
+        await setToken(credentials);
+      }
     }
     if (
       username !== process.env.REACT_APP_USERNAME &&

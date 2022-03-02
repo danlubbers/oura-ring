@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function useToken() {
-  const getToken: () => string = () => {
+  const getToken = () => {
     const tokenString = localStorage.getItem("token");
     if (tokenString) {
       const userToken = JSON.parse(tokenString);
@@ -9,7 +9,7 @@ export default function useToken() {
     }
   };
 
-  const [token, setToken] = useState<string | (() => string)>(getToken());
+  const [token, setToken] = useState(getToken());
 
   const saveToken = (userToken: { token: string }) => {
     localStorage.setItem("token", JSON.stringify(userToken));
