@@ -111,3 +111,34 @@ export type ActivityProps = {
   to_target_miles: number;
   total: number;
 };
+
+export type ActivityContributorDataProps = {
+  name: string;
+  score: number;
+  data?: number;
+}[];
+
+export type MetFiveMinArrayProps = {
+  met: string;
+  index: number;
+}[];
+
+export type ActivityStagesDataProps = {
+  stage: string;
+  seconds: number;
+  percentage: number;
+  showPercentage: boolean;
+  color: string;
+}[];
+
+export interface RenderActivityDataProps {
+  score: number;
+  todaysDate: string;
+  calActive: string;
+  calTotal: string;
+  walkingEquivalency: string;
+  steps: string;
+  activityContributorData: ActivityContributorDataProps;
+  metFiveMinArray: MetFiveMinArrayProps;
+  activityStagesData?: ActivityStagesDataProps;
+}
