@@ -5,8 +5,9 @@ import QuadData from "../QuadData/QuadData";
 import DailyScore from "../DailyScore/DailyScore";
 import Contributors from "../Contributors/Contributors";
 import HeartRateAndHRVCharts from "../HeartRateAndHRVCharts/HeartRateAndHRVCharts";
+import { RenderReadinessDataProps } from "../../types/dataTypes";
 
-const RenderReadinessData = ({
+const RenderReadinessData: React.FC<RenderReadinessDataProps> = ({
   todaysDate,
   score,
   restingHR,
@@ -20,23 +21,6 @@ const RenderReadinessData = ({
   heartRateData,
   hrvData,
   readinessContributorData,
-}: {
-  todaysDate: string;
-  score: number;
-  restingHR: number;
-  avgHRV: number;
-  bodyTemp: number;
-  respiratoryRate: number;
-  avgHRData: number;
-  minHeartRate: number;
-  maxHeartRate: number;
-  maxHRV: number;
-  heartRateData: { heartRate: number; timeDuration: number }[];
-  hrvData: { HRV: number; timeDuration: number }[];
-  readinessContributorData: {
-    name: string;
-    score: number;
-  }[];
 }) => {
   if (!todaysDate) return <Loading />;
 

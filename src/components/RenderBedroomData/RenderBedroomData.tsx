@@ -3,8 +3,9 @@ import Loading from "../Loading/Loading";
 import Container from "../Container/Container";
 import QuadData from "../QuadData/QuadData";
 import Chart from "../Chart/Chart";
+import { BedroomDataProps } from "../../types/dataTypes";
 
-const RenderBedroomData = ({
+const RenderBedroomData: React.FC<BedroomDataProps> = ({
   bedroomTempAvg,
   bedroomHumidityAvg,
   restingHR,
@@ -14,20 +15,6 @@ const RenderBedroomData = ({
   minHumidity,
   maxHumidity,
   chartData,
-}: {
-  bedroomTempAvg: number;
-  bedroomHumidityAvg: number;
-  restingHR: number;
-  avgHRV: number;
-  minTemp: number;
-  maxTemp: number;
-  minHumidity: number;
-  maxHumidity: number;
-  chartData: {
-    humidity: string;
-    temp: string;
-    time: string;
-  }[];
 }) => {
   if (!bedroomTempAvg) return <Loading isBedroom />;
 

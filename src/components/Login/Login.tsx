@@ -2,17 +2,13 @@ import styles from "./Login.module.scss";
 import logo from "../../assets/logo/default_seo_image.png";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
+import { LoginProps } from "../../types/dataTypes";
 
-const Login = ({
+const Login: React.FC<LoginProps> = ({
   handleUsername,
   handlePassword,
   handleSubmit,
   error,
-}: {
-  handleUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.SyntheticEvent) => void;
-  error: { usernameError: string | null; passwordError: string | null };
 }) => {
   const { usernameError, passwordError } = error;
 

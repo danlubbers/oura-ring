@@ -1,12 +1,9 @@
 import { useState } from "react";
 import LoginComponent from "../components/Login/Login";
 import { loginUser } from "../utilities/loginUser";
+import { SetTokenProps } from "../types/dataTypes";
 
-interface LoginProps {
-  setToken?: (userToken: { token: string }) => void;
-}
-
-const Login: React.FC<LoginProps> = ({ setToken }) => {
+const Login: React.FC<SetTokenProps> = ({ setToken }) => {
   const [username, setUsername] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [error, setError] = useState<{
