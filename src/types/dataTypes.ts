@@ -241,3 +241,10 @@ export interface RenderSleepDataProps {
   hrvData: HrvDataProps[];
   sleepContributorData: SleepContributorDataProps[];
 }
+
+export interface RenderUserDataProps {
+  isImperial: boolean;
+  setUnits: (unit: string) => void;
+  isMobileDisplay: boolean;
+  handleClickMobileDisplay: () => void;
+}
