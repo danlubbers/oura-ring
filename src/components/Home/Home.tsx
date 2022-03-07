@@ -3,8 +3,9 @@ import { GlobalContext } from "../../context/Provider";
 import Container from "../Container/Container";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
+import { HomeProps } from "../../types/dataTypes";
 
-function Home({ logout }: { logout: () => void }) {
+const Home: React.FC<HomeProps> = ({ logout }) => {
   const { isMobileDisplay, setIsMobileDisplay } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -32,6 +33,6 @@ function Home({ logout }: { logout: () => void }) {
       />
     </>
   );
-}
+};
 
 export default Home;

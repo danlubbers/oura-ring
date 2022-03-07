@@ -316,3 +316,7 @@ export interface HeartRateAndHRVChartsProps {
   heartRateData: HeartDataProps[];
   hrvData: HrvDataProps[];
 }
+
+export interface HomeProps {
+  logout: () => void;
+}
