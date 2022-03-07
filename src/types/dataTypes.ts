@@ -320,3 +320,7 @@ export interface HeartRateAndHRVChartsProps {
 export interface HomeProps {
   logout: () => void;
 }
+
+export interface LoadingProps {
+  isBedroom?: boolean;
+}

@@ -1,5 +1,7 @@
 import styles from "./Loading.module.scss";
-const Loading = ({ isBedroom }: { isBedroom?: boolean }) => {
+import { LoadingProps } from "../../types/dataTypes";
+
+const Loading: React.FC<LoadingProps> = ({ isBedroom }) => {
   return (
     <div className={styles.loadingContainer}>
       {isBedroom ? (
