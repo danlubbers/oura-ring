@@ -1,8 +1,9 @@
 import styles from "./BarChart.module.scss";
 import { AreaChart, Area, XAxis, YAxis } from "recharts";
 import Stages from "../Stages/Stages";
+import { BarChartProps } from "../../types/dataTypes";
 
-const BarChartComponent = ({
+const BarChartComponent: React.FC<BarChartProps> = ({
   isSleep,
   isActivity,
   totalSleep,
@@ -13,34 +14,6 @@ const BarChartComponent = ({
   domain,
   sleepStagesData,
   activityStagesData,
-}: {
-  isSleep?: boolean;
-  isActivity?: boolean;
-  totalSleep?: string;
-  timeInBed?: string;
-  data:
-    | {
-        sleepData: { sleepStage: string; sleepLevel: string };
-        timeDuration: number;
-      }[]
-    | { met: string; index: number }[];
-  dataKey: string;
-  XAxisDataKey: string;
-  domain: number[];
-  sleepStagesData?: {
-    stage: string;
-    seconds: number;
-    percentage: number;
-    showPercentage: boolean;
-    color: string;
-  }[];
-  activityStagesData?: {
-    stage: string;
-    seconds: number;
-    percentage: number;
-    showPercentage: boolean;
-    color: string;
-  }[];
 }) => {
   return (
     <div className={styles.barChartContainer}>

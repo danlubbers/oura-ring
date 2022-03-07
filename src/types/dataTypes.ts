@@ -248,3 +248,21 @@ export interface RenderUserDataProps {
   isMobileDisplay: boolean;
   handleClickMobileDisplay: () => void;
 }
+
+export interface BarChartProps {
+  isSleep?: boolean;
+  isActivity?: boolean;
+  totalSleep?: string;
+  timeInBed?: string;
+  data:
+    | {
+        sleepData: { sleepStage: string; sleepLevel: string };
+        timeDuration: number;
+      }[]
+    | { met: string; index: number }[];
+  dataKey: string;
+  XAxisDataKey: string;
+  domain: number[];
+  sleepStagesData?: SleepStagesDataProps[];
+  activityStagesData?: ActivityStagesDataProps[];
+}
