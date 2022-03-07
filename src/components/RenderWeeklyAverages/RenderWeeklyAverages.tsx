@@ -5,8 +5,9 @@ import PickDateRange from "../PickDateRange/PickDateRange";
 import WeeklyAveragesChart from "../WeeklyAveragesChart/WeeklyAveragesChart";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
+import { RenderWeeklyAveragesProps } from "../../types/dataTypes";
 
-const RenderWeeklyAverages = ({
+const RenderWeeklyAverages: React.FC<RenderWeeklyAveragesProps> = ({
   setStartDate,
   setEndDate,
   showChartData,
@@ -15,36 +16,6 @@ const RenderWeeklyAverages = ({
   chosenDateRange,
   isMobileDisplay,
   handleClickMobileDisplay,
-}: {
-  setStartDate: (startDate: string) => void;
-  setEndDate: (emndDate: string) => void;
-  showChartData: {
-    restingHR: boolean;
-    maxHRV: boolean;
-    avgBedroomTemp: boolean;
-    avgHumidity: boolean;
-  };
-  handleShowChartData: (chosenDate: string) => void;
-  weeklyAverages: {
-    restingHR: number;
-    maxHRV: number;
-    bodyTemp: number;
-    avgBedroomTemp: number;
-    avgHumidity: number;
-    fullDate: string;
-    date: string;
-  }[];
-  chosenDateRange: {
-    avgBedroomTemp: number;
-    avgHumidity: number;
-    bodyTemp: number;
-    date: string;
-    fullDate: string;
-    maxHRV: number;
-    restingHR: number;
-  }[];
-  isMobileDisplay: boolean;
-  handleClickMobileDisplay: () => void;
 }) => {
   if (!weeklyAverages[0]) return <Loading />;
 

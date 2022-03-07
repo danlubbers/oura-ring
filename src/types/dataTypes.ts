@@ -355,3 +355,31 @@ export interface QuadDataProps {
   quadFourText: string;
   quadFourData: string | number;
 }
+
+export type ShowChartDataProps = {
+  restingHR: boolean;
+  maxHRV: boolean;
+  avgBedroomTemp: boolean;
+  avgHumidity: boolean;
+};
+
+export type chosenDateRangeProps = {
+  avgBedroomTemp: number;
+  avgHumidity: number;
+  bodyTemp: number;
+  date: string;
+  fullDate: string;
+  maxHRV: number;
+  restingHR: number;
+};
+
+export interface RenderWeeklyAveragesProps {
+  setStartDate: (startDate: string) => void;
+  setEndDate: (emndDate: string) => void;
+  showChartData: ShowChartDataProps;
+  handleShowChartData: (chosenDate: string) => void;
+  weeklyAverages: WeekAveragesProps[];
+  chosenDateRange: chosenDateRangeProps[];
+  isMobileDisplay: boolean;
+  handleClickMobileDisplay: () => void;
+}

@@ -126,7 +126,6 @@ const WeeklyAverages = () => {
     // Had to convert the dates to ISO standards for filtering range
     const ISOStartDate =
       startDate && new Date(startDate).toISOString().slice(0, 10);
-    console.log("ISOStartDate", ISOStartDate);
 
     const ISOEndDate = endDate && new Date(endDate).toISOString();
 
