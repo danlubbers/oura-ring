@@ -1,21 +1,10 @@
 import styles from "./PickDateRange.module.scss";
+import { PickDateRangeProps } from "../../types/dataTypes";
 
-const PickDateRange = ({
+const PickDateRange: React.FC<PickDateRangeProps> = ({
   weeklyAverages,
   setStartDate,
   setEndDate,
-}: {
-  weeklyAverages: {
-    restingHR: number;
-    maxHRV: number;
-    bodyTemp: number;
-    avgBedroomTemp: number;
-    avgHumidity: number;
-    fullDate: string;
-    date: string;
-  }[];
-  setStartDate: (date: string) => void;
-  setEndDate: (date: string) => void;
 }) => {
   const dates = weeklyAverages.map((obj, idx) => {
     return (

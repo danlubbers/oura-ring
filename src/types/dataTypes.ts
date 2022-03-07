@@ -324,3 +324,19 @@ export interface HomeProps {
 export interface LoadingProps {
   isBedroom?: boolean;
 }
+
+export type WeekAveragesProps = {
+  restingHR: number;
+  maxHRV: number;
+  bodyTemp: number;
+  avgBedroomTemp: number;
+  avgHumidity: number;
+  fullDate: string;
+  date: string;
+};
+
+export interface PickDateRangeProps {
+  weeklyAverages: WeekAveragesProps[];
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
+}
