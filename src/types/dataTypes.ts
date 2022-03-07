@@ -1,3 +1,5 @@
+import SideMenu from "../components/SideMenu/SideMenu";
+
 export type UserProps = {
   age: number;
   email: string;
@@ -382,4 +384,10 @@ export interface RenderWeeklyAveragesProps {
   chosenDateRange: chosenDateRangeProps[];
   isMobileDisplay: boolean;
   handleClickMobileDisplay: () => void;
+}
+
+export interface SideMenuProps {
+  handleClickMobileDisplay: () => void;
+  isMobileDisplay: boolean;
+  logout?: () => void;
 }
