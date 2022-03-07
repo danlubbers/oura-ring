@@ -1,4 +1,21 @@
-import SideMenu from "../components/SideMenu/SideMenu";
+export interface GlobalContextProps {
+  userData: UserProps;
+  readinessData: ReadinessProps[];
+  sleepData: SleepProps[];
+  activityData: ActivityProps[];
+  startDate: string;
+  setStartDate: (date: string) => void;
+  endDate: string;
+  setEndDate: (date: string) => void;
+  todaysData: TodaysProps;
+  setTodaysData: (todaysData: TodaysProps) => void;
+  isMobileDisplay: boolean;
+  setIsMobileDisplay: (isMobile: boolean) => void;
+  btnOffsetLeft: number;
+  setBtnOffsetLeft: (offsetLeft: number) => void;
+  isBtnPosition: boolean;
+  setIsBtnPosition: (isBtnPosition: boolean) => void;
+}
 
 export type UserProps = {
   age: number;

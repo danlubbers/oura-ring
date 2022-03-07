@@ -104,3 +104,22 @@ export const todaysInitialStateData = {
     },
   },
 };
+
+export const globalContextInitialState = {
+  userData: userInitialStateData,
+  readinessData: [],
+  sleepData: [],
+  activityData: [],
+  startDate: "",
+  setStartDate: () => "",
+  endDate: "",
+  setEndDate: () => "",
+  todaysData: todaysInitialStateData,
+  setTodaysData: () => {},
+  isMobileDisplay: false,
+  setIsMobileDisplay: () => false,
+  btnOffsetLeft: 0,
+  setBtnOffsetLeft: () => 0,
+  isBtnPosition: true,
+  setIsBtnPosition: () => true,
+};
