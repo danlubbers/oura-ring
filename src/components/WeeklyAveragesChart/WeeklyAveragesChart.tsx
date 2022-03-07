@@ -1,25 +1,10 @@
 import styles from "./WeeklyAveragesChart.module.scss";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
+import { RenderWeeklyAveragesChartProps } from "../../types/dataTypes";
 
-const WeeklyAveragesChart = ({
+const WeeklyAveragesChart: React.FC<RenderWeeklyAveragesChartProps> = ({
   data,
   showChartData,
-}: {
-  data: {
-    restingHR: number;
-    maxHRV: number;
-    bodyTemp: number;
-    avgBedroomTemp: number;
-    avgHumidity: number;
-    fullDate: string;
-    date: string;
-  }[];
-  showChartData: {
-    restingHR: boolean;
-    maxHRV: boolean;
-    avgBedroomTemp: boolean;
-    avgHumidity: boolean;
-  };
 }) => {
   return (
     <div className={styles.chartContainer}>

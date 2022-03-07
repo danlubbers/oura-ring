@@ -401,3 +401,16 @@ export interface StagesProps {
     color: string;
   }[];
 }
+
+export interface RenderWeeklyAveragesChartProps {
+  data: {
+    restingHR: number;
+    maxHRV: number;
+    bodyTemp: number;
+    avgBedroomTemp: number;
+    avgHumidity: number;
+    fullDate: string;
+    date: string;
+  }[];
+  showChartData: ShowChartDataProps;
+}
