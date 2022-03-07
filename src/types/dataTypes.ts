@@ -391,3 +391,13 @@ export interface SideMenuProps {
   isMobileDisplay: boolean;
   logout?: () => void;
 }
+
+export interface StagesProps {
+  stagesData?: {
+    stage: string;
+    seconds: number;
+    percentage: number;
+    showPercentage: boolean;
+    color: string;
+  }[];
+}
