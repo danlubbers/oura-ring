@@ -340,3 +340,18 @@ export interface PickDateRangeProps {
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
 }
+
+export interface QuadDataProps {
+  isReadiness?: boolean;
+  isSleep?: boolean;
+  isActivity?: boolean;
+  isBedroom?: boolean;
+  quadOneText: string;
+  quadOneData: string | number;
+  quadTwoText: string;
+  quadTwoData: string | number;
+  quadThreeText: string;
+  quadThreeData: string | number;
+  quadFourText: string;
+  quadFourData: string | number;
+}
