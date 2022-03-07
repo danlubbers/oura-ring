@@ -1,11 +1,9 @@
 import styles from "./HamburgerIcon.module.scss";
+import { HamburgerIconProps } from "../../types/dataTypes";
 
-const HamburgerIcon = ({
+const HamburgerIcon: React.FC<HamburgerIconProps> = ({
   handleClickMobileDisplay,
   isMobileDisplay,
-}: {
-  handleClickMobileDisplay: () => void;
-  isMobileDisplay: boolean;
 }) => {
   return (
     <nav className={styles.menubarWrapper}>

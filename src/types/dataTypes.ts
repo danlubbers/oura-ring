@@ -301,3 +301,8 @@ export interface DailyScoreProps {
   isActivity?: boolean;
   score: number;
 }
+
+export interface HamburgerIconProps {
+  handleClickMobileDisplay: () => void;
+  isMobileDisplay: boolean;
+}
