@@ -294,3 +294,10 @@ export interface ContributorsProps {
   sleepContributorData?: SleepContributorDataProps[];
   activityContributorData?: ActivityContributorDataProps[];
 }
+
+export interface DailyScoreProps {
+  isReadiness?: boolean;
+  isSleep?: boolean;
+  isActivity?: boolean;
+  score: number;
+}
