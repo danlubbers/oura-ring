@@ -286,3 +286,11 @@ export interface ChartProps {
 export interface ContainerProps {
   isFooter?: boolean;
 }
+
+export interface ContributorsProps {
+  restingHR?: number;
+  totalSleep?: string;
+  readinessContributorData?: readinessContributorDataProps[];
+  sleepContributorData?: SleepContributorDataProps[];
+  activityContributorData?: ActivityContributorDataProps[];
+}
