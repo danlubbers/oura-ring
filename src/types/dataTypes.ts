@@ -266,3 +266,19 @@ export interface BarChartProps {
   sleepStagesData?: SleepStagesDataProps[];
   activityStagesData?: ActivityStagesDataProps[];
 }
+
+export interface ChartProps {
+  chartTitle?: string;
+  data:
+    | { heartRate: number; timeDuration: number }[]
+    | {
+        HRV: number;
+        timeDuration: number;
+      }[]
+    | { humidity: string; temp: string; time: string }[];
+  lineDataKey: string;
+  xAxisDataKey: string;
+  yAxisDomain: number[];
+  lineColor?: string;
+  legend?: boolean;
+}

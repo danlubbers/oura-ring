@@ -1,7 +1,8 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
 import styles from "./Chart.module.scss";
+import { ChartProps } from "../../types/dataTypes";
 
-const Chart = ({
+const Chart: React.FC<ChartProps> = ({
   chartTitle,
   data,
   lineDataKey,
@@ -9,20 +10,6 @@ const Chart = ({
   yAxisDomain,
   lineColor,
   legend,
-}: {
-  chartTitle?: string;
-  data:
-    | { heartRate: number; timeDuration: number }[]
-    | {
-        HRV: number;
-        timeDuration: number;
-      }[]
-    | { humidity: string; temp: string; time: string }[];
-  lineDataKey: string;
-  xAxisDataKey: string;
-  yAxisDomain: number[];
-  lineColor?: string;
-  legend?: boolean;
 }) => {
   return (
     <div className={styles.chartContainer}>
