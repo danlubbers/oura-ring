@@ -306,3 +306,13 @@ export interface HamburgerIconProps {
   handleClickMobileDisplay: () => void;
   isMobileDisplay: boolean;
 }
+
+export interface HeartRateAndHRVChartsProps {
+  avgHRData: number;
+  minHeartRate: number;
+  maxHeartRate: number;
+  avgHRV: number;
+  maxHRV: number;
+  heartRateData: HeartDataProps[];
+  hrvData: HrvDataProps[];
+}
