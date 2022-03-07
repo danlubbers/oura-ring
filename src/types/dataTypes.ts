@@ -282,3 +282,7 @@ export interface ChartProps {
   lineColor?: string;
   legend?: boolean;
 }
+
+export interface ContainerProps {
+  isFooter?: boolean;
+}
