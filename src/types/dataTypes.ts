@@ -1,3 +1,4 @@
+// GlobalContext
 export interface GlobalContextProps {
   userData: UserProps;
   readinessData: ReadinessProps[];
@@ -17,6 +18,20 @@ export interface GlobalContextProps {
   setIsBtnPosition: (isBtnPosition: boolean) => void;
 }
 
+// Token
+export interface SetTokenProps {
+  setToken?: (userToken: { token: string }) => void;
+}
+
+// Login
+export interface LoginProps {
+  handleUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.SyntheticEvent) => void;
+  error: { usernameError: string | null; passwordError: string | null };
+}
+
+// User
 export type UserProps = {
   age: number;
   email: string;
@@ -25,6 +40,7 @@ export type UserProps = {
   weight: number;
 };
 
+// TodaysData
 export type TodaysProps = {
   date: string;
   bedtimeStart: string;
@@ -37,6 +53,7 @@ export type TodaysProps = {
   };
 };
 
+// Readiness, Sleep & Activity Props
 export type ReadinessProps = {
   period_id: number;
   rest_mode_state: number;
@@ -131,6 +148,7 @@ export type ActivityProps = {
   total: number;
 };
 
+// All Type Props for Components
 export type ActivityContributorDataProps = {
   name: string;
   score: number;
@@ -150,51 +168,6 @@ export type ActivityStagesDataProps = {
   color: string;
 };
 
-export interface RenderActivityDataProps {
-  score: number;
-  todaysDate: string;
-  calActive: string;
-  calTotal: string;
-  walkingEquivalency: string;
-  steps: string;
-  activityContributorData: ActivityContributorDataProps[];
-  metFiveMinArray: MetFiveMinArrayProps[];
-  activityStagesData?: ActivityStagesDataProps[];
-}
-
-export interface BedroomDataProps {
-  bedroomTempAvg: number;
-  bedroomHumidityAvg: number;
-  restingHR: number;
-  avgHRV: number;
-  minTemp: number;
-  maxTemp: number;
-  minHumidity: number;
-  maxHumidity: number;
-  chartData: {
-    humidity: string;
-    temp: string;
-    time: string;
-  }[];
-}
-
-export interface SetTokenProps {
-  setToken?: (userToken: { token: string }) => void;
-}
-
-export interface LoginProps {
-  handleUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.SyntheticEvent) => void;
-  error: { usernameError: string | null; passwordError: string | null };
-}
-
-export interface InputProps {
-  type: string;
-  placeholder: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
 export type HeartDataProps = {
   heartRate: number;
   timeDuration: number;
@@ -202,26 +175,10 @@ export type HeartDataProps = {
 
 export type HrvDataProps = { HRV: number; timeDuration: number };
 
-export type readinessContributorDataProps = {
+export type ReadinessContributorDataProps = {
   name: string;
   score: number;
 };
-
-export interface RenderReadinessDataProps {
-  todaysDate: string;
-  score: number;
-  restingHR: number;
-  avgHRV: number;
-  bodyTemp: number;
-  respiratoryRate: number;
-  avgHRData: number;
-  minHeartRate: number;
-  maxHeartRate: number;
-  maxHRV: number;
-  heartRateData: HeartDataProps[];
-  hrvData: HrvDataProps[];
-  readinessContributorData: readinessContributorDataProps[];
-}
 
 export type HypnogramDataProps = {
   sleepData: { sleepStage: string; sleepLevel: string };
@@ -243,24 +200,6 @@ export type SleepContributorDataProps = {
   percentage?: number;
 };
 
-export interface RenderSleepDataProps {
-  score: number;
-  todaysDate: string;
-  totalSleep: string;
-  timeInBed: string;
-  sleepEfficiency: number;
-  avgHRData: number;
-  minHeartRate: number;
-  maxHeartRate: number;
-  avgHRV: number;
-  maxHRV: number;
-  hypnogramData: HypnogramDataProps[];
-  sleepStagesData: SleepStagesDataProps[];
-  heartRateData: HeartDataProps[];
-  hrvData: HrvDataProps[];
-  sleepContributorData: SleepContributorDataProps[];
-}
-
 export interface RenderUserDataProps {
   isImperial: boolean;
   setUnits: (unit: string) => void;
@@ -268,6 +207,34 @@ export interface RenderUserDataProps {
   handleClickMobileDisplay: () => void;
 }
 
+export type ShowChartDataProps = {
+  restingHR: boolean;
+  maxHRV: boolean;
+  avgBedroomTemp: boolean;
+  avgHumidity: boolean;
+};
+
+export type chosenDateRangeProps = {
+  avgBedroomTemp: number;
+  avgHumidity: number;
+  bodyTemp: number;
+  date: string;
+  fullDate: string;
+  maxHRV: number;
+  restingHR: number;
+};
+
+export type WeekAveragesProps = {
+  restingHR: number;
+  maxHRV: number;
+  bodyTemp: number;
+  avgBedroomTemp: number;
+  avgHumidity: number;
+  fullDate: string;
+  date: string;
+};
+
+// All Component Props
 export interface BarChartProps {
   isSleep?: boolean;
   isActivity?: boolean;
@@ -309,7 +276,7 @@ export interface ContainerProps {
 export interface ContributorsProps {
   restingHR?: number;
   totalSleep?: string;
-  readinessContributorData?: readinessContributorDataProps[];
+  readinessContributorData?: ReadinessContributorDataProps[];
   sleepContributorData?: SleepContributorDataProps[];
   activityContributorData?: ActivityContributorDataProps[];
 }
@@ -340,19 +307,15 @@ export interface HomeProps {
   logout: () => void;
 }
 
+export interface InputProps {
+  type: string;
+  placeholder: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 export interface LoadingProps {
   isBedroom?: boolean;
 }
-
-export type WeekAveragesProps = {
-  restingHR: number;
-  maxHRV: number;
-  bodyTemp: number;
-  avgBedroomTemp: number;
-  avgHumidity: number;
-  fullDate: string;
-  date: string;
-};
 
 export interface PickDateRangeProps {
   weeklyAverages: WeekAveragesProps[];
@@ -375,22 +338,75 @@ export interface QuadDataProps {
   quadFourData: string | number;
 }
 
-export type ShowChartDataProps = {
-  restingHR: boolean;
-  maxHRV: boolean;
-  avgBedroomTemp: boolean;
-  avgHumidity: boolean;
-};
+// All Render Props
+export interface RenderActivityDataProps {
+  score: number;
+  todaysDate: string;
+  calActive: string;
+  calTotal: string;
+  walkingEquivalency: string;
+  steps: string;
+  activityContributorData: ActivityContributorDataProps[];
+  metFiveMinArray: MetFiveMinArrayProps[];
+  activityStagesData?: ActivityStagesDataProps[];
+}
 
-export type chosenDateRangeProps = {
-  avgBedroomTemp: number;
-  avgHumidity: number;
-  bodyTemp: number;
-  date: string;
-  fullDate: string;
-  maxHRV: number;
+export interface RenderBedroomDataProps {
+  bedroomTempAvg: number;
+  bedroomHumidityAvg: number;
   restingHR: number;
-};
+  avgHRV: number;
+  minTemp: number;
+  maxTemp: number;
+  minHumidity: number;
+  maxHumidity: number;
+  chartData: {
+    humidity: string;
+    temp: string;
+    time: string;
+  }[];
+}
+
+export interface RenderReadinessDataProps {
+  todaysDate: string;
+  score: number;
+  restingHR: number;
+  avgHRV: number;
+  bodyTemp: number;
+  respiratoryRate: number;
+  avgHRData: number;
+  minHeartRate: number;
+  maxHeartRate: number;
+  maxHRV: number;
+  heartRateData: HeartDataProps[];
+  hrvData: HrvDataProps[];
+  readinessContributorData: ReadinessContributorDataProps[];
+}
+
+export interface RenderSleepDataProps {
+  score: number;
+  todaysDate: string;
+  totalSleep: string;
+  timeInBed: string;
+  sleepEfficiency: number;
+  avgHRData: number;
+  minHeartRate: number;
+  maxHeartRate: number;
+  avgHRV: number;
+  maxHRV: number;
+  hypnogramData: HypnogramDataProps[];
+  sleepStagesData: SleepStagesDataProps[];
+  heartRateData: HeartDataProps[];
+  hrvData: HrvDataProps[];
+  sleepContributorData: SleepContributorDataProps[];
+}
+
+export interface RenderUserDataProps {
+  isImperial: boolean;
+  setUnits: (unit: string) => void;
+  isMobileDisplay: boolean;
+  handleClickMobileDisplay: () => void;
+}
 
 export interface RenderWeeklyAveragesProps {
   setStartDate: (startDate: string) => void;
@@ -403,6 +419,7 @@ export interface RenderWeeklyAveragesProps {
   handleClickMobileDisplay: () => void;
 }
 
+// Rest of Components
 export interface SideMenuProps {
   handleClickMobileDisplay: () => void;
   isMobileDisplay: boolean;
@@ -419,7 +436,7 @@ export interface StagesProps {
   }[];
 }
 
-export interface RenderWeeklyAveragesChartProps {
+export interface WeeklyAveragesChartProps {
   data: {
     restingHR: number;
     maxHRV: number;

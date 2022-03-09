@@ -3,9 +3,9 @@ import Loading from "../Loading/Loading";
 import Container from "../Container/Container";
 import QuadData from "../QuadData/QuadData";
 import Chart from "../Chart/Chart";
-import { BedroomDataProps } from "../../types/dataTypes";
+import { RenderBedroomDataProps } from "../../types/dataTypes";
 
-const RenderBedroomData: React.FC<BedroomDataProps> = ({
+const RenderBedroomData: React.FC<RenderBedroomDataProps> = ({
   bedroomTempAvg,
   bedroomHumidityAvg,
   restingHR,

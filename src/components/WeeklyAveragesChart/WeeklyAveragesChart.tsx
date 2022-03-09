@@ -1,8 +1,8 @@
 import styles from "./WeeklyAveragesChart.module.scss";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend } from "recharts";
-import { RenderWeeklyAveragesChartProps } from "../../types/dataTypes";
+import { WeeklyAveragesChartProps } from "../../types/dataTypes";
 
-const WeeklyAveragesChart: React.FC<RenderWeeklyAveragesChartProps> = ({
+const WeeklyAveragesChart: React.FC<WeeklyAveragesChartProps> = ({
   data,
   showChartData,
 }) => {
