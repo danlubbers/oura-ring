@@ -5,10 +5,10 @@ import QuadData from "../QuadData/QuadData";
 import DailyScore from "../DailyScore/DailyScore";
 import Contributors from "../Contributors/Contributors";
 import BarChart from "../BarChart/BarChart";
-
 import HeartRateAndHRVCharts from "../HeartRateAndHRVCharts/HeartRateAndHRVCharts";
+import { RenderSleepDataProps } from "../../types/dataTypes";
 
-const RenderSleepData = ({
+const RenderSleepData: React.FC<RenderSleepDataProps> = ({
   score,
   todaysDate,
   totalSleep,
@@ -24,36 +24,6 @@ const RenderSleepData = ({
   heartRateData,
   hrvData,
   sleepContributorData,
-}: {
-  score: number;
-  todaysDate: string;
-  totalSleep: string;
-  timeInBed: string;
-  sleepEfficiency: number;
-  avgHRData: number;
-  minHeartRate: number;
-  maxHeartRate: number;
-  avgHRV: number;
-  maxHRV: number;
-  hypnogramData: {
-    sleepData: { sleepStage: string; sleepLevel: string };
-    timeDuration: number;
-  }[];
-  sleepStagesData: {
-    stage: string;
-    seconds: number;
-    percentage: number;
-    showPercentage: boolean;
-    color: string;
-  }[];
-  heartRateData: { heartRate: number; timeDuration: number }[];
-  hrvData: { HRV: number; timeDuration: number }[];
-  sleepContributorData: {
-    name: string;
-    score: number;
-    data?: number;
-    percentage?: number;
-  }[];
 }) => {
   if (!todaysDate) return <Loading />;
 

@@ -5,8 +5,9 @@ import QuadData from "../QuadData/QuadData";
 import DailyScore from "../DailyScore/DailyScore";
 import Contributors from "../Contributors/Contributors";
 import BarChart from "../BarChart/BarChart";
+import { RenderActivityDataProps } from "../../types/dataTypes";
 
-const RenderActivityData = ({
+const RenderActivityData: React.FC<RenderActivityDataProps> = ({
   score,
   todaysDate,
   calActive,
@@ -16,25 +17,6 @@ const RenderActivityData = ({
   activityContributorData,
   metFiveMinArray,
   activityStagesData,
-}: {
-  score: number;
-  todaysDate: string;
-  calActive: string;
-  calTotal: string;
-  walkingEquivalency: string;
-  steps: string;
-  activityContributorData: { name: string; score: number; data?: number }[];
-  metFiveMinArray: {
-    met: string;
-    index: number;
-  }[];
-  activityStagesData?: {
-    stage: string;
-    seconds: number;
-    percentage: number;
-    showPercentage: boolean;
-    color: string;
-  }[];
 }) => {
   if (!todaysDate) return <Loading />;
 

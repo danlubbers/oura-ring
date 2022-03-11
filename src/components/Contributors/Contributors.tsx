@@ -1,25 +1,14 @@
 import styles from "./Contributors.module.scss";
 import { secondsToHm } from "../../utilities/convertTime";
 import { scoring } from "../../utilities/scoring";
+import { ContributorsProps } from "../../types/dataTypes";
 
-const Contributors = ({
+const Contributors: React.FC<ContributorsProps> = ({
   readinessContributorData,
   restingHR,
   sleepContributorData,
   totalSleep,
   activityContributorData,
-}: {
-  readinessContributorData?: { name: string; score: number }[];
-  restingHR?: number;
-  sleepContributorData?:
-    | {
-        name: string;
-        score: number;
-        data?: number;
-        percentage?: number;
-      }[];
-  totalSleep?: string;
-  activityContributorData?: { name: string; score: number; data?: number }[];
 }) => {
   let contributionLoop;
 

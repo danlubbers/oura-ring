@@ -17,18 +17,8 @@ function UserData() {
   };
 
   const age = userData?.age;
-  const height = isImperial
-    ? `${String(
-        Math.round((userData?.height + Number.EPSILON) * 0.0328084 * 100) / 100
-      )
-        .replace(".", "ft ")
-        .slice(0, 4)}${String(
-        Math.round((userData?.height + Number.EPSILON) * 0.0328084 * 100) / 100
-      ).slice(-2, -1)}in`
-    : userData?.height;
-  const weight = isImperial
-    ? Math.round(userData?.weight * 2.2046)
-    : userData?.weight;
+  const height = userData?.height;
+  const weight = userData?.weight;
   const gender = userData?.gender;
   const email = userData?.email;
 

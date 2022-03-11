@@ -1,6 +1,7 @@
 import { FC, createContext, useState, useEffect } from "react";
 import getOuraData from "../utilities/getOuraData";
 import {
+  GlobalContextProps,
   UserProps,
   TodaysProps,
   ReadinessProps,
@@ -8,47 +9,14 @@ import {
   ActivityProps,
 } from "../types/dataTypes";
 import {
+  globalContextInitialState,
   userInitialStateData,
   todaysInitialStateData,
 } from "../initialState/initialState";
 
-interface GlobalContextProps {
-  userData: UserProps;
-  readinessData: ReadinessProps[];
-  sleepData: SleepProps[];
-  activityData: ActivityProps[];
-  startDate: string;
-  setStartDate: (date: string) => void;
-  endDate: string;
-  setEndDate: (date: string) => void;
-  todaysData: TodaysProps;
-  setTodaysData: (todaysData: TodaysProps) => void;
-  isMobileDisplay: boolean;
-  setIsMobileDisplay: (isMobile: boolean) => void;
-  btnOffsetLeft: number;
-  setBtnOffsetLeft: (offsetLeft: number) => void;
-  isBtnPosition: boolean;
-  setIsBtnPosition: (isBtnPosition: boolean) => void;
-}
-
-export const GlobalContext = createContext<GlobalContextProps>({
-  userData: userInitialStateData,
-  readinessData: [],
-  sleepData: [],
-  activityData: [],
-  startDate: "",
-  setStartDate: () => "",
-  endDate: "",
-  setEndDate: () => "",
-  todaysData: todaysInitialStateData,
-  setTodaysData: () => {},
-  isMobileDisplay: false,
-  setIsMobileDisplay: () => false,
-  btnOffsetLeft: 0,
-  setBtnOffsetLeft: () => 0,
-  isBtnPosition: true,
-  setIsBtnPosition: () => true,
-});
+export const GlobalContext = createContext<GlobalContextProps>(
+  globalContextInitialState
+);
 
 const GlobalProvider: FC = ({ children }) => {
   const [userData, setUserData] = useState<UserProps>(userInitialStateData);
@@ -74,7 +42,6 @@ const GlobalProvider: FC = ({ children }) => {
       const activityData = data?.ouraActivityData.data.activity;
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
-      console.log("startDate", startDate);
       const endDate = String(
         new Date(sleepData[sleepData.length - 1].bedtime_end)
       ).slice(4, 15);

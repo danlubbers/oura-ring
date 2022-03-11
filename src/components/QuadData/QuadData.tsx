@@ -1,6 +1,7 @@
 import styles from "./QuadData.module.scss";
+import { QuadDataProps } from "../../types/dataTypes";
 
-const QuadData = ({
+const QuadData: React.FC<QuadDataProps> = ({
   isReadiness,
   isSleep,
   isActivity,
@@ -13,19 +14,6 @@ const QuadData = ({
   quadThreeData,
   quadFourText,
   quadFourData,
-}: {
-  isReadiness?: boolean;
-  isSleep?: boolean;
-  isActivity?: boolean;
-  isBedroom?: boolean;
-  quadOneText: string;
-  quadOneData: string | number;
-  quadTwoText: string;
-  quadTwoData: string | number;
-  quadThreeText: string;
-  quadThreeData: string | number;
-  quadFourText: string;
-  quadFourData: string | number;
 }) => {
   return (
     <div className={styles.quadDataWrapper}>

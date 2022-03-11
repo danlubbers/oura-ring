@@ -1,7 +1,8 @@
 import styles from "./HeartRateAndHRVCharts.module.scss";
 import Chart from "../Chart/Chart";
+import { HeartRateAndHRVChartsProps } from "../../types/dataTypes";
 
-const HeartRateAndHRVCharts = ({
+const HeartRateAndHRVCharts: React.FC<HeartRateAndHRVChartsProps> = ({
   avgHRData,
   minHeartRate,
   maxHeartRate,
@@ -9,14 +10,6 @@ const HeartRateAndHRVCharts = ({
   maxHRV,
   heartRateData,
   hrvData,
-}: {
-  avgHRData: number;
-  minHeartRate: number;
-  maxHeartRate: number;
-  avgHRV: number;
-  maxHRV: number;
-  heartRateData: { heartRate: number; timeDuration: number }[];
-  hrvData: { HRV: number; timeDuration: number }[];
 }) => {
   return (
     <>

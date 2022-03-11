@@ -1,14 +1,7 @@
 import styles from "./Input.module.scss";
+import { InputProps } from "../../types/dataTypes";
 
-const Input = ({
-  type,
-  placeholder,
-  onChange,
-}: {
-  type: string;
-  placeholder: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) => {
+const Input: React.FC<InputProps> = ({ type, placeholder, onChange }) => {
   return (
     <div className={styles.inputWrapper}>
       <input

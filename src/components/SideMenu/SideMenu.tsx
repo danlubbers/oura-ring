@@ -3,15 +3,12 @@ import Container from "../Container/Container";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import { SideMenuProps } from "../../types/dataTypes";
 
-const SideMenu = ({
+const SideMenu: React.FC<SideMenuProps> = ({
   handleClickMobileDisplay,
   isMobileDisplay,
   logout,
-}: {
-  handleClickMobileDisplay: () => void;
-  isMobileDisplay: boolean;
-  logout?: () => void;
 }) => {
   return (
     <div

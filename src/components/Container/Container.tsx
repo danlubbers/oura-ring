@@ -1,10 +1,7 @@
-import { FC } from "react";
 import styles from "./Container.module.scss";
+import { ContainerProps } from "../../types/dataTypes";
 
-interface ContainerProps {
-  isFooter?: boolean;
-}
-const Container: FC<ContainerProps> = ({ children }, isFooter) => {
+const Container: React.FC<ContainerProps> = ({ children }, isFooter) => {
   return (
     <div
       className={

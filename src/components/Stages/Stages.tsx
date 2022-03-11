@@ -1,17 +1,8 @@
 import styles from "./Stages.module.scss";
 import { secondsToHm } from "../../utilities/convertTime";
+import { StagesProps } from "../../types/dataTypes";
 
-const Stages = ({
-  stagesData,
-}: {
-  stagesData?: {
-    stage: string;
-    seconds: number;
-    percentage: number;
-    showPercentage: boolean;
-    color: string;
-  }[];
-}) => {
+const Stages: React.FC<StagesProps> = ({ stagesData }) => {
   const stages = stagesData?.map(
     ({ stage, seconds, percentage, showPercentage, color }, idx: number) => {
       return (

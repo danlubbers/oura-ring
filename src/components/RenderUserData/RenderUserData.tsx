@@ -4,8 +4,9 @@ import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
 import Button from "../Button/Button";
 import Loading from "../Loading/Loading";
+import { RenderUserDataProps, UserProps } from "../../types/dataTypes";
 
-const RenderUserData = ({
+const RenderUserData: React.FC<RenderUserDataProps & UserProps> = ({
   age,
   height,
   weight,
@@ -15,18 +16,18 @@ const RenderUserData = ({
   setUnits,
   isMobileDisplay,
   handleClickMobileDisplay,
-}: {
-  age: number;
-  height: number | string;
-  weight: number;
-  gender: string;
-  email: string;
-  isImperial: boolean;
-  setUnits: (unit: string) => void;
-  isMobileDisplay: boolean;
-  handleClickMobileDisplay: () => void;
 }) => {
   if (!age) return <Loading />;
+
+  const conversionHeight = isImperial
+    ? `${String(Math.round((height + Number.EPSILON) * 0.0328084 * 100) / 100)
+        .replace(".", "ft ")
+        .slice(0, 4)}${String(
+        Math.round((height + Number.EPSILON) * 0.0328084 * 100) / 100
+      ).slice(-2, -1)}in`
+    : height;
+
+  const conversionWeight = isImperial ? Math.round(weight * 2.2046) : weight;
 
   return (
     <>
@@ -43,12 +44,12 @@ const RenderUserData = ({
           </div>
           <div>
             <span>HEIGHT:</span>
-            <span>{height}</span>
+            <span>{conversionHeight}</span>
             {isImperial ? <span></span> : <span>cm</span>}
           </div>
           <div>
             <span>WEIGHT:</span>
-            <span>{weight}</span>
+            <span>{conversionWeight}</span>
             {isImperial ? <span>lbs</span> : <span>kg</span>}
           </div>
           <div>

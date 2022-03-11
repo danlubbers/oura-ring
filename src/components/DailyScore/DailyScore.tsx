@@ -1,16 +1,12 @@
 import styles from "./DailyScore.module.scss";
 import { scoring } from "../../utilities/scoring";
+import { DailyScoreProps } from "../../types/dataTypes";
 
-const DailyScore = ({
+const DailyScore: React.FC<DailyScoreProps> = ({
   isReadiness,
   isSleep,
   isActivity,
   score,
-}: {
-  isReadiness?: boolean;
-  isSleep?: boolean;
-  isActivity?: boolean;
-  score: number;
 }) => {
   return (
     <div className={styles.scoreWrapper}>
