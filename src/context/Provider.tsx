@@ -42,7 +42,6 @@ const GlobalProvider: FC = ({ children }) => {
       const activityData = data?.ouraActivityData.data.activity;
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
-      console.log("startDate", startDate);
       const endDate = String(
         new Date(sleepData[sleepData.length - 1].bedtime_end)
       ).slice(4, 15);
