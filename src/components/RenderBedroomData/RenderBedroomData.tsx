@@ -2,6 +2,7 @@ import styles from "./RenderBedroomData.module.scss";
 import Loading from "../Loading/Loading";
 import Container from "../Container/Container";
 import QuadData from "../QuadData/QuadData";
+import ButtonToggle from "../ButtonToggle/ButtonToggle";
 import Chart from "../Chart/Chart";
 import { RenderBedroomDataProps } from "../../types/dataTypes";
 
@@ -31,6 +32,8 @@ const RenderBedroomData: React.FC<RenderBedroomDataProps> = ({
         quadFourText="Heart rate variability"
         quadFourData={avgHRV}
       />
+
+      <ButtonToggle />
 
       <div className={styles.tempWrapper}>
         <p className={styles.maxTempText}>
