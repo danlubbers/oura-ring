@@ -34,34 +34,44 @@
     width: 1px;
   }
 
-  .toggleUncheck,
   .toggleCheck {
     position: absolute;
     width: 22px;
     height: 18px;
+    right: 15px;
     margin-top: auto;
     margin-bottom: auto;
     line-height: 0;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+
+  .toggleCheck .circleYes {
+    @extend .toggleCheck;
+
+    width: 18px;
+    top: -15px;
+    left: 4px;
+    border-radius: 50%;
+    background-color: $color-blue;
+  }
+
+  .toggleUncheck {
     opacity: 0;
     transition: opacity 0.25s ease;
   }
 
-  .toggleCheck {
-    opacity: 1;
-    right: 15px;
-  }
-
-  .toggleCheck span,
-  .toggleUncheck span {
-    position: absolute;
+  .toggleUncheck .circleNo {
+    position: relative;
+    height: 18px;
+    width: 18px;
     top: 2.5px;
     left: 4px;
     align-items: center;
     display: flex;
-    height: 18px;
     justify-content: center;
-    position: relative;
-    width: 18px;
+    border-radius: 50%;
+    background-color: $color-red;
   }
 
   .toggleContainer {
@@ -78,16 +88,6 @@
     opacity: 1;
   }
   .toggleChecked .toggleCheck {
-    opacity: 0;
-    left: 246px;
-  }
-
-  .circleNo {
-    border-radius: 50%;
-    background-color: $color-red;
-  }
-  .circleYes {
-    border-radius: 50%;
-    background-color: $color-blue;
+    position: relative; // without this the footer disappears
   }
 }
