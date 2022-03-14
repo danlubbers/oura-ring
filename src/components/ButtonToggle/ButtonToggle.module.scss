@@ -1,0 +1,93 @@
+@import "../../styles/variables.scss";
+
+.buttonToggleContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  font-size: 1.6rem;
+
+  .toggle {
+    touch-action: pan-x;
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .toggleInput {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .toggleCheck {
+    position: absolute;
+    width: 22px;
+    height: 18px;
+    right: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 0;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+
+  .toggleCheck .circleYes {
+    @extend .toggleCheck;
+
+    width: 18px;
+    top: -15px;
+    left: 4px;
+    border-radius: 50%;
+    background-color: $color-blue;
+  }
+
+  .toggleUncheck {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .toggleUncheck .circleNo {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    top: 2.5px;
+    left: 4px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $color-red;
+  }
+
+  .toggleContainer {
+    margin: 0 1rem;
+    width: 50px;
+    height: 24px;
+    padding: 0;
+    border-radius: 30px;
+    border: 0.5px solid $color-grey;
+    transition: all 0.2s ease;
+  }
+
+  .toggleChecked .toggleUncheck {
+    opacity: 1;
+  }
+  .toggleChecked .toggleCheck {
+    position: relative; // without this the footer disappears
+  }
+}

@@ -44,14 +44,18 @@ const DateRenderer = () => {
     };
 
     const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
+    // console.log("date", date);
+    // console.log("todaysDate", todaysDate);
     const bedtimeStart = sleepObj.bedtime_start;
     const bedtimeEnd = sleepObj.bedtime_end;
+    const todaysVividDreams = date === todaysDate && todaysData.hadVividDreams;
 
     const handleBtnClick = () => {
       setTodaysData({
         date,
         bedtimeStart,
         bedtimeEnd,
+        hadVividDreams: todaysVividDreams,
         data: combinedData,
       });
 

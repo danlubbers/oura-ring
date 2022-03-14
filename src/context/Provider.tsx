@@ -61,6 +61,8 @@ const GlobalProvider: FC = ({ children }) => {
       const bedtimeEnd = todaysSleepData.bedtime_end;
       // console.log("PROVIDER: ", bedtimeEnd);
 
+      const todaysVividDreams = todaysData?.hadVividDreams;
+
       setUserData(userData);
       setReadinessData(readinessData);
       setSleepData(sleepData);
@@ -73,6 +75,7 @@ const GlobalProvider: FC = ({ children }) => {
         date: todaysSleepDate,
         bedtimeStart,
         bedtimeEnd,
+        hadVividDreams: todaysVividDreams,
 
         data: {
           readiness: todaysReadinessData,
@@ -83,7 +86,7 @@ const GlobalProvider: FC = ({ children }) => {
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  // console.log(`Provider: todaysData`, todaysData);
+  console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider

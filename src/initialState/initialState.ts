@@ -10,6 +10,7 @@ export const todaysInitialStateData = {
   date: "",
   bedtimeStart: "",
   bedtimeEnd: "",
+  hadVividDreams: false,
   data: {
     readiness: {
       period_id: 0,
