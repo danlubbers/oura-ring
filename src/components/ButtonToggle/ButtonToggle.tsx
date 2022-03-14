@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styles from "./ButtonToggle.module.scss";
+import { GlobalContext } from "../../context/Provider";
 
 const ButtonToggle = () => {
-  const [isToggled, setIsToggled] = useState<boolean>(false);
+  const {
+    todaysData: { date, bedtimeStart, bedtimeEnd, hadVividDreams, data },
+    setTodaysData,
+  } = useContext(GlobalContext);
 
   const handleToggle = () => {
-    console.log("isToggled", isToggled);
-
-    setIsToggled(!isToggled);
+    setTodaysData({
+      date,
+      bedtimeStart,
+      bedtimeEnd,
+      hadVividDreams: !hadVividDreams,
+      data,
+    });
   };
   return (
     <div className={styles.buttonToggleContainer}>
       <p>Vivid Dreams:</p>
       <div
-        className={`${isToggled ? styles.toggleChecked : styles.toggle}`}
+        className={`${hadVividDreams ? styles.toggle : styles.toggleChecked}`}
         onClick={handleToggle}
       >
         <div className={styles.toggleContainer}>

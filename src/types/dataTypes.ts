@@ -45,6 +45,7 @@ export type TodaysProps = {
   date: string;
   bedtimeStart: string;
   bedtimeEnd: string;
+  hadVividDreams: boolean;
 
   data: {
     readiness: ReadinessProps;
