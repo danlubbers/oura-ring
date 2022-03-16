@@ -1,29 +1,41 @@
-import React from "react";
-import { render } from "@testing-library/react";
+import {
+  Matcher,
+  render,
+  SelectorMatcherOptions,
+} from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import LoginComponent from "./Login";
 
-const mockSubmit = jest.fn();
-const renderLogin = render(
-  <Router>
-    <LoginComponent
-      handleUsername={mockSubmit}
-      handlePassword={mockSubmit}
-      handleSubmit={mockSubmit}
-      error={{
-        usernameError: "Incorrect Username",
-        passwordError: "Incorrect Password",
-      }}
-    />
-  </Router>
-);
+let component:
+  | ((
+      text: Matcher,
+      options?: SelectorMatcherOptions | undefined,
+      waitForElementOptions?: unknown
+    ) => HTMLElement)
+  | ((arg0: RegExp) => any);
 
-const { getByText } = renderLogin;
+beforeEach(() => {
+  const mockSubmit = jest.fn();
+  const renderLogin = render(
+    <Router>
+      <LoginComponent
+        handleUsername={mockSubmit}
+        handlePassword={mockSubmit}
+        handleSubmit={mockSubmit}
+        error={{
+          usernameError: "Incorrect Username",
+          passwordError: "Incorrect Password",
+        }}
+      />
+    </Router>
+  );
+  component = renderLogin.getByText;
+});
 
 test("Enter Username & Password are displayed correctly", () => {
-  const enterUsernameEl = getByText(/Enter Username/i);
+  const enterUsernameEl = component(/Enter Username/i);
   expect(enterUsernameEl.textContent).toBe("Enter Username");
 
-  const enterPasswordEl = getByText(/Enter Password/i);
+  const enterPasswordEl = component(/Enter Password/i);
   expect(enterPasswordEl.textContent).toBe("Enter Password");
 });
