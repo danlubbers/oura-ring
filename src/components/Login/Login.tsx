@@ -22,7 +22,7 @@ const Login: React.FC<LoginProps> = ({
         )}
 
         <Input type="text" placeholder="username" onChange={handleUsername} />
-        <p className={styles.passwordText}>Enter Password </p>
+        <p className={styles.passwordText}>Enter Password</p>
         {passwordError && (
           <p className={styles.passwordErrorText}>{passwordError}</p>
         )}
