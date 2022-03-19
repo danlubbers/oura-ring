@@ -309,6 +309,7 @@ export interface HomeProps {
 
 export interface InputProps {
   type: string;
+  name: string;
   placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

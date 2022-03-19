@@ -16,21 +16,32 @@ const Login: React.FC<LoginProps> = ({
     <div className={styles.loginContainer}>
       <img className={styles.logo} src={logo} alt="logo" />
       <form className={styles.formWrapper} onSubmit={handleSubmit}>
-        <p className={styles.usernameText}>Enter Username</p>
-        {usernameError && (
-          <p className={styles.usernameErrorText}>{usernameError}</p>
-        )}
+        <label className={styles.usernameText} htmlFor="username">
+          Enter Username
+        </label>
 
-        <Input type="text" placeholder="username" onChange={handleUsername} />
-        <p className={styles.passwordText}>Enter Password</p>
-        {passwordError && (
-          <p className={styles.passwordErrorText}>{passwordError}</p>
-        )}
+        <Input
+          type="username"
+          name="username"
+          placeholder="username"
+          onChange={handleUsername}
+        />
+
+        <label className={styles.passwordText} htmlFor="password">
+          Enter Password
+        </label>
         <Input
           type="password"
+          name="password"
           placeholder="password"
           onChange={handlePassword}
         />
+        {usernameError && (
+          <p className={styles.usernameErrorText}>{usernameError}</p>
+        )}
+        {passwordError && (
+          <p className={styles.passwordErrorText}>{passwordError}</p>
+        )}
         <Button btnAction="Submit" type="submit" />
       </form>
     </div>
