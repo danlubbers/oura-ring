@@ -21,7 +21,8 @@ const Login: React.FC<LoginProps> = ({
         </label>
 
         <Input
-          type="username"
+          type="text"
+          id="username"
           name="username"
           placeholder="username"
           onChange={handleUsername}
@@ -32,6 +33,7 @@ const Login: React.FC<LoginProps> = ({
         </label>
         <Input
           type="password"
+          id="password"
           name="password"
           placeholder="password"
           onChange={handlePassword}
