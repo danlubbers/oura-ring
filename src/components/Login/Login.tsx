@@ -9,6 +9,8 @@ const Login: React.FC<LoginProps> = ({
   handlePassword,
   handleSubmit,
   error,
+  username,
+  password,
 }) => {
   const { usernameError, passwordError } = error;
 
@@ -25,6 +27,7 @@ const Login: React.FC<LoginProps> = ({
           id="username"
           name="username"
           placeholder="username"
+          value={username}
           onChange={handleUsername}
         />
 
@@ -36,6 +39,7 @@ const Login: React.FC<LoginProps> = ({
           id="password"
           name="password"
           placeholder="password"
+          value={password}
           onChange={handlePassword}
         />
         {usernameError && (

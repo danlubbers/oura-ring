@@ -28,6 +28,8 @@ export interface LoginProps {
   handleUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.SyntheticEvent) => void;
+  username: string;
+  password: string;
   error: { usernameError: string | null; passwordError: string | null };
 }
 
@@ -312,6 +314,7 @@ export interface InputProps {
   id: string;
   name: string;
   placeholder: string;
+  value?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
