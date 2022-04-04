@@ -11,7 +11,7 @@ const Button = forwardRef(
     }: {
       btnAction: string;
       type: "button" | "submit" | "reset" | undefined;
-      onClick?: () => void;
+      onClick?: (e: React.SyntheticEvent<Element, Event>) => void;
       style?: {};
     },
     ref: Ref<HTMLDivElement>
