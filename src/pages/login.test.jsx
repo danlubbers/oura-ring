@@ -32,6 +32,8 @@ const submitBtnClick = () => {
   userEvent.click(submitBtn);
 };
 
+const mockSubmit = jest.fn();
+
 beforeEach(() => {
   render(
     <Router>
