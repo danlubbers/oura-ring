@@ -14,16 +14,17 @@ beforeEach(() => {
 describe("login", () => {
   test("Enter Username & Password are displayed correctly", () => {
     const enterUsernameElement = screen.getByText(/enter username/i);
-    expect(enterUsernameElement.textContent).toBe("Enter Username");
-
     const enterPasswordElement = screen.getByText(/Enter Password/i);
+
+    expect(enterUsernameElement.textContent).toBe("Enter Username");
     expect(enterPasswordElement.textContent).toBe("Enter Password");
   });
 
   test("Inputs should be blank on initial render", () => {
     const usernameInputElement = screen.getByRole("textbox");
-    expect(usernameInputElement.value).toBe("");
     const passwordInputElement = screen.getByLabelText(/password/i);
+
+    expect(usernameInputElement.value).toBe("");
     expect(passwordInputElement.value).toBe("");
   });
 
