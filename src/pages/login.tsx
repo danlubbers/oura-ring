@@ -7,11 +7,11 @@ const Login: React.FC<SetTokenProps> = ({ setToken }) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<{
-    usernameError: string | null;
-    passwordError: string | null;
+    usernameError: string;
+    passwordError: string;
   }>({
-    usernameError: null,
-    passwordError: null,
+    usernameError: "",
+    passwordError: "",
   });
 
   const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,11 +47,11 @@ const Login: React.FC<SetTokenProps> = ({ setToken }) => {
     } else if (username !== process.env.REACT_APP_USERNAME) {
       setError({
         usernameError: "The username you have submitted is incorrect!",
-        passwordError: null,
+        passwordError: "",
       });
     } else if (password !== process.env.REACT_APP_PASSWORD) {
       setError({
-        usernameError: null,
+        usernameError: "",
         passwordError: "The password you have submitted is incorrect!",
       });
     }
