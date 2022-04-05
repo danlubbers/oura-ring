@@ -36,31 +36,32 @@ const RenderUserData: React.FC<RenderUserDataProps & UserProps> = ({
           handleClickMobileDisplay={handleClickMobileDisplay}
           isMobileDisplay={isMobileDisplay}
         />
+
         <p className={styles.userProfileText}>User Profile</p>
-        <div className={styles.renderUserDataContainer}>
-          <div>
-            <span>AGE:</span>
-            <span>{age}</span>
-          </div>
-          <div>
-            <span>HEIGHT:</span>
-            <span>{conversionHeight}</span>
+        <ul className={styles.renderUserDataContainer}>
+          <li>
+            <span data-testid="age">AGE: </span>
+            <span data-testid="age-value">{age}</span>
+          </li>
+          <li title="height">
+            <span data-testid="height">HEIGHT: </span>
+            <span data-testid="height-value">{conversionHeight}</span>
             {isImperial ? <span></span> : <span>cm</span>}
-          </div>
-          <div>
-            <span>WEIGHT:</span>
-            <span>{conversionWeight}</span>
+          </li>
+          <li title="weight">
+            <span data-testid="weight">WEIGHT: </span>
+            <span data-testid="weight-value">{conversionWeight}</span>
             {isImperial ? <span>lbs</span> : <span>kg</span>}
-          </div>
-          <div>
-            <span>GENDER:</span>
-            <span>{gender}</span>
-          </div>
-          <div>
-            <span>EMAIL:</span>
-            <span>{email}</span>
-          </div>
-        </div>
+          </li>
+          <li title="gender">
+            <span data-testid="gender">GENDER: </span>
+            <span data-testid="gender-value">{gender}</span>
+          </li>
+          <li title="email">
+            <span data-testid="email">EMAIL: </span>
+            <span data-testid="email-value">{email}</span>
+          </li>
+        </ul>
         <div className={styles.unitsBtnWrapper}>
           <Button
             btnAction="Imperial"

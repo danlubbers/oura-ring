@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter as Router } from "react-router-dom";
-import Login from "./login";
+import Login from "../login";
 
 const username = "dlubbers";
 const password = "passtest";
@@ -13,11 +13,9 @@ const typeIntoForm = ({ username, password }) => {
   const passwordInputElement = screen.getByLabelText("Enter Password");
 
   if (username) {
-    // console.log("username", username);
     userEvent.type(usernameInputElement, username);
   }
   if (password) {
-    // console.log("password", password);
     userEvent.type(passwordInputElement, password);
   }
 
@@ -31,8 +29,6 @@ const submitBtnClick = () => {
   const submitBtn = screen.getByRole("button", { type: "submit" });
   userEvent.click(submitBtn);
 };
-
-const mockSubmit = jest.fn();
 
 beforeEach(() => {
   render(
