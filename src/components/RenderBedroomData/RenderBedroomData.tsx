@@ -34,11 +34,16 @@ const RenderBedroomData: React.FC<RenderBedroomDataProps> = ({
 
       <div className={styles.tempWrapper}>
         <p className={styles.maxTempText}>
-          Max temp: <span className={styles.maxTempNum}>{maxTemp} °</span>
+          Max temp:
+          <span data-testid="max-temp" className={styles.maxTempNum}>
+            {maxTemp} °
+          </span>
         </p>
         <div className={styles.minTemp}>
           <span className={styles.minTempText}>Min temp: </span>
-          <span className={styles.minTempNum}>{minTemp} °</span>
+          <span data-testid="min-temp" className={styles.minTempNum}>
+            {minTemp} °
+          </span>
         </div>
       </div>
       <Chart
@@ -51,11 +56,15 @@ const RenderBedroomData: React.FC<RenderBedroomDataProps> = ({
       <div className={styles.humidityWrapper}>
         <p className={styles.maxHumidityText}>
           Max humidity:{" "}
-          <span className={styles.maxHumidityNum}>{maxHumidity}%</span>
+          <span data-testid="max-humidity" className={styles.maxHumidityNum}>
+            {maxHumidity}%
+          </span>
         </p>
         <div className={styles.minHumidity}>
           <span className={styles.minHumidityText}>Min humidity: </span>
-          <span className={styles.minHumidityNum}>{minHumidity}%</span>
+          <span data-testid="min-humidity" className={styles.minHumidityNum}>
+            {minHumidity}%
+          </span>
         </div>
       </div>
       <Chart

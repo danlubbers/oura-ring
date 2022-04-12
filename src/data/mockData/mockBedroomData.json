@@ -1,0 +1,11 @@
+{
+  "bedroomTempAvg": 70,
+  "bedroomHumidityAvg": 40,
+  "restingHR": 55,
+  "avgHRV": 32,
+  "minTemp": 65,
+  "maxTemp": 72,
+  "minHumidity": 38,
+  "maxHumidity": 60,
+  "chartData": []
+}
