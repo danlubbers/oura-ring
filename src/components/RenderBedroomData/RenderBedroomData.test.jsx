@@ -50,17 +50,13 @@ describe("RenderBedroomData", () => {
   test("should render the correct Maximum and Minimum Temperatures", () => {
     renderComponent(bedroomDataProps);
 
-    expect(screen.getByTestId("max-temp-data")).toHaveTextContent(maxTemp);
-    expect(screen.getByTestId("min-temp-data")).toHaveTextContent(minTemp);
+    expect(screen.getAllByTestId("max-data")[0]).toHaveTextContent(maxTemp);
+    expect(screen.getAllByTestId("min-data")[0]).toHaveTextContent(minTemp);
   });
   test("should render the correct Maximum and Minimum Humidity", () => {
     renderComponent(bedroomDataProps);
 
-    expect(screen.getByTestId("max-humidity-data")).toHaveTextContent(
-      maxHumidity
-    );
-    expect(screen.getByTestId("min-humidity-data")).toHaveTextContent(
-      minHumidity
-    );
+    expect(screen.getAllByTestId("max-data")[1]).toHaveTextContent(maxHumidity);
+    expect(screen.getAllByTestId("min-data")[1]).toHaveTextContent(minHumidity);
   });
 });

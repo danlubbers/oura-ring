@@ -15,7 +15,7 @@ const MinMaxData: React.FC<MinMaxDataProps> = ({
         <span className={styles.maxDataText}>
           Max {temperature ? "Temp:" : "Humidity:"}{" "}
         </span>
-        <span data-testid="max-temp-data" className={styles.maxDataNum}>
+        <span data-testid="max-data" className={styles.maxDataNum}>
           {temperature ? `${maxTemp}°` : `${maxHumidity}%`}
         </span>
       </div>
@@ -24,7 +24,7 @@ const MinMaxData: React.FC<MinMaxDataProps> = ({
         <span className={styles.minDataText}>
           Min {temperature ? "Temp:" : "Humidity:"}{" "}
         </span>
-        <span data-testid="min-humidity-data" className={styles.minDataNum}>
+        <span data-testid="min-data" className={styles.minDataNum}>
           {temperature ? `${minTemp}°` : `${minHumidity}%`}
         </span>
       </div>
