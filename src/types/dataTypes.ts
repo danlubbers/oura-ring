@@ -322,6 +322,15 @@ export interface LoadingProps {
   isBedroom?: boolean;
 }
 
+export interface MinMaxDataProps {
+  temperature?: boolean;
+  humidity?: boolean;
+  minTemp?: number;
+  maxTemp?: number;
+  minHumidity?: number;
+  maxHumidity?: number;
+}
+
 export interface PickDateRangeProps {
   weeklyAverages: WeekAveragesProps[];
   setStartDate: (date: string) => void;
