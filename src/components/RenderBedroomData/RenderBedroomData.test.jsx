@@ -59,10 +59,10 @@ describe("RenderBedroomData", () => {
     renderComponent(bedroomDataProps);
 
     expect(screen.getByTestId("quad-one-data")).toHaveTextContent(
-      `${bedroomTempAvg} °F`
+      `${bedroomTempAvg}°F`
     );
     expect(screen.getByTestId("quad-two-data")).toHaveTextContent(
-      `${bedroomHumidityAvg} %`
+      `${bedroomHumidityAvg}%`
     );
     expect(screen.getByTestId("quad-three-data")).toHaveTextContent(
       `${restingHR}bpm`

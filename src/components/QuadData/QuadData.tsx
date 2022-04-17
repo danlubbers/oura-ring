@@ -20,18 +20,19 @@ const QuadData: React.FC<QuadDataProps> = ({
       <div className={styles.quadOneDataWrapper}>
         <p data-testid="quad-one-text">{quadOneText}</p>
         <span data-testid="quad-one-data" className={styles.quadOneText}>
-          {quadOneData} {isBedroom && "°F"}
+          {quadOneData}
+          {isReadiness && <span>bpm</span>}
+          {isActivity && <span>Cal</span>}
+          {isBedroom && <span>°F</span>}
         </span>
-        {isReadiness && <span> bpm</span>}
-        {isActivity && <span> Cal</span>}
       </div>
       <div className={styles.quadTwoDataWrapper}>
         <p data-testid="quad-two-text">{quadTwoText}</p>
         <span data-testid="quad-two-data" className={styles.quadTwoText}>
           {quadTwoData}
-          {isReadiness && <span> ms</span>}
-          {isActivity && <span> Cal</span>}
-          {isBedroom && <span> %</span>}
+          {isReadiness && <span>ms</span>}
+          {isActivity && <span>Cal</span>}
+          {isBedroom && <span>%</span>}
         </span>
       </div>
       <div className={styles.quadThreeDataWrapper}>
@@ -48,10 +49,10 @@ const QuadData: React.FC<QuadDataProps> = ({
         <p data-testid="quad-four-text">{quadFourText}</p>
         <span data-testid="quad-four-data" className={styles.quadFourText}>
           {quadFourData}
-          {isReadiness && <span>/ min</span>}
+          {isReadiness && <span>/min</span>}
           {isSleep && <span>bpm</span>}
           {isBedroom && <span>ms</span>}
-        </span>{" "}
+        </span>
       </div>
     </section>
   );
