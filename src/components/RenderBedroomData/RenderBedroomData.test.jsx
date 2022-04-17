@@ -5,6 +5,10 @@ import RenderBedroomData from "./RenderBedroomData";
 import mockBedroomData from "../../data/mockData/mockBedroomData.json";
 
 const {
+  avgTemperatureText,
+  avgHumidityText,
+  restingHRText,
+  hrvText,
   bedroomTempAvg,
   bedroomHumidityAvg,
   restingHR,
@@ -36,15 +40,36 @@ const renderComponent = (props) => {
   );
 };
 describe("RenderBedroomData", () => {
-  test("should render the correct QuadData", () => {
+  test("should render the correct QuadText values", () => {
     renderComponent(bedroomDataProps);
 
-    expect(screen.getByTestId("quad-one")).toHaveTextContent(bedroomTempAvg);
-    expect(screen.getByTestId("quad-two")).toHaveTextContent(
-      bedroomHumidityAvg
+    expect(screen.getByTestId("quad-one-text")).toHaveTextContent(
+      avgTemperatureText
     );
-    expect(screen.getByTestId("quad-three")).toHaveTextContent(restingHR);
-    expect(screen.getByTestId("quad-four")).toHaveTextContent(avgHRV);
+    expect(screen.getByTestId("quad-two-text")).toHaveTextContent(
+      avgHumidityText
+    );
+    expect(screen.getByTestId("quad-three-text")).toHaveTextContent(
+      restingHRText
+    );
+    expect(screen.getByTestId("quad-four-text")).toHaveTextContent(hrvText);
+  });
+
+  test("should render the correct QuadData values", () => {
+    renderComponent(bedroomDataProps);
+
+    expect(screen.getByTestId("quad-one-data")).toHaveTextContent(
+      `${bedroomTempAvg} °F`
+    );
+    expect(screen.getByTestId("quad-two-data")).toHaveTextContent(
+      `${bedroomHumidityAvg} %`
+    );
+    expect(screen.getByTestId("quad-three-data")).toHaveTextContent(
+      `${restingHR}bpm`
+    );
+    expect(screen.getByTestId("quad-four-data")).toHaveTextContent(
+      `${avgHRV}ms`
+    );
   });
 
   test("should render the correct Maximum and Minimum Temperatures", () => {
@@ -53,6 +78,7 @@ describe("RenderBedroomData", () => {
     expect(screen.getAllByTestId("max-data")[0]).toHaveTextContent(maxTemp);
     expect(screen.getAllByTestId("min-data")[0]).toHaveTextContent(minTemp);
   });
+
   test("should render the correct Maximum and Minimum Humidity", () => {
     renderComponent(bedroomDataProps);
 

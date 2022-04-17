@@ -18,40 +18,40 @@ const QuadData: React.FC<QuadDataProps> = ({
   return (
     <section className={styles.quadDataWrapper}>
       <div className={styles.quadOneDataWrapper}>
-        <p>{quadOneText}</p>
-        <span data-testid="quad-one" className={styles.quadOneText}>
+        <p data-testid="quad-one-text">{quadOneText}</p>
+        <span data-testid="quad-one-data" className={styles.quadOneText}>
           {quadOneData} {isBedroom && "°F"}
         </span>
         {isReadiness && <span> bpm</span>}
         {isActivity && <span> Cal</span>}
       </div>
       <div className={styles.quadTwoDataWrapper}>
-        <p>{quadTwoText}</p>
-        <span data-testid="quad-two" className={styles.quadTwoText}>
+        <p data-testid="quad-two-text">{quadTwoText}</p>
+        <span data-testid="quad-two-data" className={styles.quadTwoText}>
           {quadTwoData}
+          {isReadiness && <span> ms</span>}
+          {isActivity && <span> Cal</span>}
+          {isBedroom && <span> %</span>}
         </span>
-        {isReadiness && <span> ms</span>}
-        {isActivity && <span> Cal</span>}
-        {isBedroom && <span> %</span>}
       </div>
       <div className={styles.quadThreeDataWrapper}>
-        <p>{quadThreeText}</p>
-        <span data-testid="quad-three" className={styles.quadThreeText}>
-          {quadThreeData}{" "}
+        <p data-testid="quad-three-text">{quadThreeText}</p>
+        <span data-testid="quad-three-data" className={styles.quadThreeText}>
+          {quadThreeData}
+          {isReadiness && <span>°F</span>}
+          {isSleep && <span>%</span>}
+          {isActivity && <span>mi</span>}
+          {isBedroom && <span>bpm</span>}
         </span>
-        {isReadiness && <span>°F</span>}
-        {isSleep && <span>%</span>}
-        {isActivity && <span> mi</span>}
-        {isBedroom && <span>bpm</span>}
       </div>
       <div className={styles.quadFourDataWrapper}>
-        <p>{quadFourText}</p>
-        <span data-testid="quad-four" className={styles.quadFourText}>
+        <p data-testid="quad-four-text">{quadFourText}</p>
+        <span data-testid="quad-four-data" className={styles.quadFourText}>
           {quadFourData}
+          {isReadiness && <span>/ min</span>}
+          {isSleep && <span>bpm</span>}
+          {isBedroom && <span>ms</span>}
         </span>{" "}
-        {isReadiness && <span>/ min</span>}
-        {isSleep && <span>bpm</span>}
-        {isBedroom && <span>ms</span>}
       </div>
     </section>
   );

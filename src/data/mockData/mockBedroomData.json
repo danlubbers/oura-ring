@@ -1,4 +1,8 @@
 {
+  "avgTemperatureText": "Avg temperature",
+  "avgHumidityText": "Avg humidity",
+  "restingHRText": "Resting heart rate",
+  "hrvText": "Heart rate variability",
   "bedroomTempAvg": 70,
   "bedroomHumidityAvg": 40,
   "restingHR": 55,
