@@ -28,6 +28,8 @@ export interface LoginProps {
   handleUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.SyntheticEvent) => void;
+  username: string;
+  password: string;
   error: { usernameError: string | null; passwordError: string | null };
 }
 
@@ -309,12 +311,24 @@ export interface HomeProps {
 
 export interface InputProps {
   type: string;
+  id: string;
+  name: string;
   placeholder: string;
+  value?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface LoadingProps {
   isBedroom?: boolean;
+}
+
+export interface MinMaxDataProps {
+  temperature?: boolean;
+  humidity?: boolean;
+  minTemp?: number;
+  maxTemp?: number;
+  minHumidity?: number;
+  maxHumidity?: number;
 }
 
 export interface PickDateRangeProps {

@@ -4,14 +4,14 @@ import { loginUser } from "../utilities/loginUser";
 import { SetTokenProps } from "../types/dataTypes";
 
 const Login: React.FC<SetTokenProps> = ({ setToken }) => {
-  const [username, setUsername] = useState<string | null>(null);
-  const [password, setPassword] = useState<string | null>(null);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<{
-    usernameError: string | null;
-    passwordError: string | null;
+    usernameError: string;
+    passwordError: string;
   }>({
-    usernameError: null,
-    passwordError: null,
+    usernameError: "",
+    passwordError: "",
   });
 
   const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +23,7 @@ const Login: React.FC<SetTokenProps> = ({ setToken }) => {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
     if (
       username === process.env.REACT_APP_USERNAME &&
       password === process.env.REACT_APP_PASSWORD
@@ -46,11 +47,11 @@ const Login: React.FC<SetTokenProps> = ({ setToken }) => {
     } else if (username !== process.env.REACT_APP_USERNAME) {
       setError({
         usernameError: "The username you have submitted is incorrect!",
-        passwordError: null,
+        passwordError: "",
       });
     } else if (password !== process.env.REACT_APP_PASSWORD) {
       setError({
-        usernameError: null,
+        usernameError: "",
         passwordError: "The password you have submitted is incorrect!",
       });
     }
@@ -62,6 +63,8 @@ const Login: React.FC<SetTokenProps> = ({ setToken }) => {
         handleUsername={handleUsername}
         handlePassword={handlePassword}
         handleSubmit={handleSubmit}
+        username={username}
+        password={password}
         error={error}
       />
     </>
