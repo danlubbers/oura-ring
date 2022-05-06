@@ -1,19 +1,31 @@
 import { useContext, useEffect, useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 import { GlobalContext } from "../../context/Provider";
 import Container from "../Container/Container";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import SideMenu from "../SideMenu/SideMenu";
 import { HomeProps } from "../../types/dataTypes";
 
+interface tagProps {
+  day: String;
+  tags: String[];
+  text: String | null;
+  timestamp: String;
+}
+
 const Home: React.FC<HomeProps> = ({ logout }) => {
   const { isMobileDisplay, setIsMobileDisplay } = useContext(GlobalContext);
-  const [tags, setTags] = useState<any>([]);
+  const [tags, setTags] = useState<tagProps>();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/tags`)
-      .then((res) => res.json())
-      .then((data) => setTags(data.tagData.data));
+    (async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:8080/tags`);
+        setTags(data.tagData.data);
+      } catch (error) {
+        console.error(`Error`, error);
+      }
+    })();
 
     setIsMobileDisplay(false);
   }, [setIsMobileDisplay]);
