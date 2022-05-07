@@ -15,6 +15,9 @@ const getOuraData = async () => {
   const ouraSleepBaseURL = `https://api.ouraring.com/v1/sleep?start=2021-12-24`;
   const ouraActivityBaseURL = `https://api.ouraring.com/v1/activity?start=2021-12-24`;
 
+  // V2 Endpoints
+  const ouraTagBaseURL = `http://localhost:8080/tags`;
+
   try {
     const ouraUserData = await axios.get(ouraUserInfoBaseURL, {
       headers: headerConfig,
@@ -28,12 +31,14 @@ const getOuraData = async () => {
     const ouraActivityData = await axios.get(ouraActivityBaseURL, {
       headers: headerConfig,
     });
+    const ouraTagData = await axios.get(ouraTagBaseURL);
 
     return {
       ouraUserData,
       ouraReadinessData,
       ouraSleepData,
       ouraActivityData,
+      ouraTagData,
     };
   } catch (error) {
     console.error(error);

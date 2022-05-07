@@ -150,6 +150,13 @@ export type ActivityProps = {
   total: number;
 };
 
+export type TagProps = {
+  day: string;
+  tags: string[];
+  text: string | null;
+  timestamp: string;
+};
+
 // All Type Props for Components
 export type ActivityContributorDataProps = {
   name: string;

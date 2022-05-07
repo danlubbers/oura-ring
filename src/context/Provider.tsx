@@ -7,6 +7,7 @@ import {
   ReadinessProps,
   SleepProps,
   ActivityProps,
+  TagProps,
 } from "../types/dataTypes";
 import {
   globalContextInitialState,
@@ -23,6 +24,7 @@ const GlobalProvider: FC = ({ children }) => {
   const [readinessData, setReadinessData] = useState<ReadinessProps[]>([]);
   const [sleepData, setSleepData] = useState<SleepProps[]>([]);
   const [activityData, setActivityData] = useState<ActivityProps[]>([]);
+  const [tagData, setTagData] = useState<TagProps[]>([]);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [todaysData, setTodaysData] = useState<TodaysProps>(
@@ -35,11 +37,13 @@ const GlobalProvider: FC = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getOuraData();
+      // console.log("data", data);
 
       const userData = data?.ouraUserData.data;
       const readinessData = data?.ouraReadinessData.data.readiness;
       const sleepData = data?.ouraSleepData.data.sleep;
       const activityData = data?.ouraActivityData.data.activity;
+      const tagData = data?.ouraTagData.data.data.data;
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -55,6 +59,8 @@ const GlobalProvider: FC = ({ children }) => {
         readinessData[readinessData.length - 1];
       const todaysActivityData: ActivityProps =
         activityData[activityData.length - 1];
+      // const todaysTagData: TagProps = tagData[tagData.length - 1];
+      // console.log("todaysTagData", todaysTagData);
 
       // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
@@ -65,6 +71,7 @@ const GlobalProvider: FC = ({ children }) => {
       setReadinessData(readinessData);
       setSleepData(sleepData);
       setActivityData(activityData);
+      setTagData(tagData);
 
       setStartDate(startDate);
       setEndDate(endDate);

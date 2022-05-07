@@ -20,13 +20,13 @@ const ouraTagsV2BaseURL = `${baseURLV2}tag?start_date=2022-04-01`;
 
 app.get("/tags", async (req, res) => {
   try {
-    const tags = await axios
+    const data = await axios
       .get(ouraTagsV2BaseURL, {
         headers: headerConfig,
       })
       .then((res) => res.data);
     res.status(200).json({
-      tagData: tags,
+      data,
     });
   } catch (error) {
     res.status(400).json({ message: `Error Occured`, error });
