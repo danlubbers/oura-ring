@@ -16,43 +16,41 @@ const getOuraData = async () => {
   const ouraActivityBaseURL = `https://api.ouraring.com/v1/activity?start=2021-12-24`;
 
   // V2 Endpoints
+  const ouraHeartRateBaseURL = `http://localhost:8080/heartrate`;
+  const ouraPersonalInfoBaseURL = `http://localhost:8080/personal_info`;
+  const ouraSessionsBaseURL = `http://localhost:8080/sessions`;
   const ouraTagBaseURL = `http://localhost:8080/tags`;
-
-  // const getEndpoints = async (
-  //   baseURL: string,
-  //   headerConfig: {
-  //     Accept: string;
-  //     "Content-Type": string;
-  //     Authorization: string;
-  //   }
-  // ) => {
-  //   await axios.get(baseURL, { headers: headerConfig });
-  // };
+  const ouraWorkoutsBaseURL = `http://localhost:8080/workouts`;
 
   try {
     const ouraUserData = await axios.get(ouraUserInfoBaseURL, {
       headers: headerConfig,
     });
-
     const ouraReadinessData = await axios.get(ouraReadinessBaseURL, {
       headers: headerConfig,
     });
     const ouraSleepData = await axios.get(ouraSleepBaseURL, {
       headers: headerConfig,
     });
-    console.log("ouraSleepData", ouraSleepData);
     const ouraActivityData = await axios.get(ouraActivityBaseURL, {
       headers: headerConfig,
     });
-    // const ouraTagData = await axios.get(ouraTagBaseURL);
-    // console.log("ouraTagData", ouraTagData);
+    const ouraHeartRateData_V2 = await axios.get(ouraHeartRateBaseURL);
+    const ouraPersonalInfoData_V2 = await axios.get(ouraPersonalInfoBaseURL);
+    const ouraSessionsData_V2 = await axios.get(ouraSessionsBaseURL);
+    const ouraTagData_V2 = await axios.get(ouraTagBaseURL);
+    const ouraWorkoutsData_V2 = await axios.get(ouraWorkoutsBaseURL);
 
     return {
       ouraUserData,
       ouraReadinessData,
       ouraSleepData,
       ouraActivityData,
-      // ouraTagData,
+      ouraHeartRateData_V2,
+      ouraPersonalInfoData_V2,
+      ouraSessionsData_V2,
+      ouraTagData_V2,
+      ouraWorkoutsData_V2,
     };
   } catch (error) {
     console.error(error);

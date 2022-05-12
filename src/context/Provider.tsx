@@ -43,7 +43,7 @@ const GlobalProvider: FC = ({ children }) => {
       const readinessData = data?.ouraReadinessData.data.readiness;
       const sleepData = data?.ouraSleepData.data.sleep;
       const activityData = data?.ouraActivityData.data.activity;
-      // const tagData = data?.ouraTagData.data.data.data;
+      const tagData = data?.ouraTagData_V2.data.tags;
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -59,8 +59,8 @@ const GlobalProvider: FC = ({ children }) => {
         readinessData[readinessData.length - 1];
       const todaysActivityData: ActivityProps =
         activityData[activityData.length - 1];
-      // const todaysTagData: TagProps = tagData[tagData.length - 1];
-      // console.log("todaysTagData", todaysTagData);
+      const todaysTagData: TagProps = tagData[tagData.length - 1];
+      console.log("todaysTagData", todaysTagData);
 
       // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
