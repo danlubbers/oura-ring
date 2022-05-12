@@ -18,27 +18,41 @@ const getOuraData = async () => {
   // V2 Endpoints
   const ouraTagBaseURL = `http://localhost:8080/tags`;
 
+  // const getEndpoints = async (
+  //   baseURL: string,
+  //   headerConfig: {
+  //     Accept: string;
+  //     "Content-Type": string;
+  //     Authorization: string;
+  //   }
+  // ) => {
+  //   await axios.get(baseURL, { headers: headerConfig });
+  // };
+
   try {
     const ouraUserData = await axios.get(ouraUserInfoBaseURL, {
       headers: headerConfig,
     });
+
     const ouraReadinessData = await axios.get(ouraReadinessBaseURL, {
       headers: headerConfig,
     });
     const ouraSleepData = await axios.get(ouraSleepBaseURL, {
       headers: headerConfig,
     });
+    console.log("ouraSleepData", ouraSleepData);
     const ouraActivityData = await axios.get(ouraActivityBaseURL, {
       headers: headerConfig,
     });
-    const ouraTagData = await axios.get(ouraTagBaseURL);
+    // const ouraTagData = await axios.get(ouraTagBaseURL);
+    // console.log("ouraTagData", ouraTagData);
 
     return {
       ouraUserData,
       ouraReadinessData,
       ouraSleepData,
       ouraActivityData,
-      ouraTagData,
+      // ouraTagData,
     };
   } catch (error) {
     console.error(error);

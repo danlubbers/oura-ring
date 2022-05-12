@@ -37,13 +37,13 @@ const GlobalProvider: FC = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getOuraData();
-      // console.log("data", data);
+      console.log("data", data);
 
       const userData = data?.ouraUserData.data;
       const readinessData = data?.ouraReadinessData.data.readiness;
       const sleepData = data?.ouraSleepData.data.sleep;
       const activityData = data?.ouraActivityData.data.activity;
-      const tagData = data?.ouraTagData.data.data.data;
+      // const tagData = data?.ouraTagData.data.data.data;
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
