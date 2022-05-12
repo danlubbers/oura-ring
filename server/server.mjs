@@ -23,7 +23,7 @@ const ouraSessionsV2BaseURL = `${baseURLV2}session?start_date=2021-12-24`;
 const ouraTagsV2BaseURL = `${baseURLV2}tag?start_date=2021-12-24`;
 const ouraWorkoutssV2BaseURL = `${baseURLV2}workout?start_date=2021-12-24`;
 
-const getEndpoint = (route, baseURL) => {
+const getEndpoint = (route, baseURL, keyName) => {
   app.get(route, async (req, res) => {
     try {
       const { data } = await axios
@@ -33,7 +33,7 @@ const getEndpoint = (route, baseURL) => {
         .then((res) => res.data);
       console.log("data", data);
       res.status(200).json({
-        data,
+        [keyName]: data,
       });
     } catch (error) {
       res.status(400).json({ message: `*** Error Occured ***`, error });
@@ -41,11 +41,11 @@ const getEndpoint = (route, baseURL) => {
   });
 };
 
-getEndpoint("/heartrate", ouraHeartRateV2BaseURL);
-getEndpoint("/personal_info", ouraPersonalInfoV2BaseURL);
-getEndpoint("/sessions", ouraSessionsV2BaseURL);
-getEndpoint("/tags", ouraTagsV2BaseURL);
-getEndpoint("/workouts", ouraWorkoutssV2BaseURL);
+getEndpoint("/heartrate", ouraHeartRateV2BaseURL, "heartRate");
+getEndpoint("/personal_info", ouraPersonalInfoV2BaseURL, "personalInfo");
+getEndpoint("/sessions", ouraSessionsV2BaseURL, "sessions");
+getEndpoint("/tags", ouraTagsV2BaseURL, "tags");
+getEndpoint("/workouts", ouraWorkoutssV2BaseURL, "workouts");
 
 app.use("/login", (req, res) => {
   res.send({ token: "test456" });
