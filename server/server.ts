@@ -39,7 +39,7 @@ const getEndpoint = async (route: string, baseURL: string) => {
       }
     ) => {
       try {
-        const data = await axios
+        const { data } = await axios
           .get(baseURL, {
             headers: headerConfig,
           })
