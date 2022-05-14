@@ -35,7 +35,6 @@ const getEndpoint = (route, baseURL, keyName, personalInfo) => {
         res.status(200).json({
           [keyName]: data,
         });
-        console.log("personal_info", data);
       } else {
         const { data } = await axios
           .get(baseURL, {
@@ -45,7 +44,6 @@ const getEndpoint = (route, baseURL, keyName, personalInfo) => {
         res.status(200).json({
           [keyName]: data,
         });
-        console.log("data", data);
       }
     } catch (error) {
       res.status(400).json({ message: `*** Error Occured ***`, error });

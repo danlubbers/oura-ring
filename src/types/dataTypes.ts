@@ -157,6 +157,23 @@ export type TagProps = {
   timestamp: string;
 };
 
+export type SessionArrayDataProps = {
+  interval: number;
+  items: number[] | null[];
+  timestamp: string;
+};
+
+export type SessionProps = {
+  day: string;
+  start_datetime: string;
+  end_datetime: string;
+  mood: string;
+  type: string;
+  heart_rate: SessionArrayDataProps[];
+  heart_rate_variability: SessionArrayDataProps[];
+  motion_count: SessionArrayDataProps[];
+};
+
 // All Type Props for Components
 export type ActivityContributorDataProps = {
   name: string;

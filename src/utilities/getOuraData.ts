@@ -10,7 +10,6 @@ const getOuraData = async () => {
   };
 
   // V1 Endpoints
-  const ouraUserInfoBaseURL = `https://api.ouraring.com/v1/userinfo`;
   const ouraReadinessBaseURL = `https://api.ouraring.com/v1/readiness?start=2021-12-24`;
   const ouraSleepBaseURL = `https://api.ouraring.com/v1/sleep?start=2021-12-24`;
   const ouraActivityBaseURL = `https://api.ouraring.com/v1/activity?start=2021-12-24`;
@@ -23,9 +22,6 @@ const getOuraData = async () => {
   const ouraWorkoutsBaseURL = `http://localhost:8080/workouts`;
 
   try {
-    const ouraUserData = await axios.get(ouraUserInfoBaseURL, {
-      headers: headerConfig,
-    });
     const ouraReadinessData = await axios.get(ouraReadinessBaseURL, {
       headers: headerConfig,
     });
@@ -42,7 +38,6 @@ const getOuraData = async () => {
     const ouraWorkoutsData_V2 = await axios.get(ouraWorkoutsBaseURL);
 
     return {
-      ouraUserData,
       ouraReadinessData,
       ouraSleepData,
       ouraActivityData,

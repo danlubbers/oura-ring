@@ -8,6 +8,7 @@ import {
   SleepProps,
   ActivityProps,
   TagProps,
+  SessionProps,
 } from "../types/dataTypes";
 import {
   globalContextInitialState,
@@ -25,6 +26,7 @@ const GlobalProvider: FC = ({ children }) => {
   const [sleepData, setSleepData] = useState<SleepProps[]>([]);
   const [activityData, setActivityData] = useState<ActivityProps[]>([]);
   const [tagData, setTagData] = useState<TagProps[]>([]);
+  const [sessionData, setSessionData] = useState<SessionProps[]>([]);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [todaysData, setTodaysData] = useState<TodaysProps>(
@@ -33,6 +35,8 @@ const GlobalProvider: FC = ({ children }) => {
   const [isMobileDisplay, setIsMobileDisplay] = useState<boolean>(false);
   const [btnOffsetLeft, setBtnOffsetLeft] = useState<number>(0);
   const [isBtnPosition, setIsBtnPosition] = useState<boolean>(true);
+
+  // console.log("tagData", tagData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +48,7 @@ const GlobalProvider: FC = ({ children }) => {
       const sleepData = data?.ouraSleepData.data.sleep;
       const activityData = data?.ouraActivityData.data.activity;
       const tagData = data?.ouraTagData_V2.data.tags;
+      const sessionData = data?.ouraSessionsData_V2.data.sessions;
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -60,7 +65,9 @@ const GlobalProvider: FC = ({ children }) => {
       const todaysActivityData: ActivityProps =
         activityData[activityData.length - 1];
       const todaysTagData: TagProps = tagData[tagData.length - 1];
-      console.log("todaysTagData", todaysTagData);
+      const todaysSessionData: SessionProps =
+        sessionData[sessionData.length - 1];
+      console.log("todaysSessionData", todaysSessionData);
 
       // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
