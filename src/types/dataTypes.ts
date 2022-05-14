@@ -37,7 +37,7 @@ export interface LoginProps {
 export type UserProps = {
   age: number;
   email: string;
-  gender: string;
+  biological_sex: string;
   height: number;
   weight: number;
 };

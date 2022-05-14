@@ -19,7 +19,7 @@ function UserData() {
   const age = userData?.age;
   const height = userData?.height;
   const weight = userData?.weight;
-  const gender = userData?.gender;
+  const biological_sex = userData?.biological_sex;
   const email = userData?.email;
 
   const setUnits = (unit: string) => {
@@ -36,7 +36,7 @@ function UserData() {
         age={age}
         height={height}
         weight={weight}
-        gender={gender}
+        biological_sex={biological_sex}
         email={email}
         isImperial={isImperial}
         setUnits={setUnits}

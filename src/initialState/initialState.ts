@@ -1,7 +1,7 @@
 export const userInitialStateData = {
   age: 0,
   email: "",
-  gender: "",
+  biological_sex: "",
   height: 0,
   weight: 0,
 };

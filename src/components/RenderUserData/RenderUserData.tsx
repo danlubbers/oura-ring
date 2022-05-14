@@ -10,7 +10,7 @@ const RenderUserData: React.FC<RenderUserDataProps & UserProps> = ({
   age,
   height,
   weight,
-  gender,
+  biological_sex,
   email,
   isImperial,
   setUnits,
@@ -48,7 +48,7 @@ const RenderUserData: React.FC<RenderUserDataProps & UserProps> = ({
           </li>
           <li title="gender">
             <span data-testid="gender">GENDER: </span>
-            <span data-testid="gender-value">{gender}</span>
+            <span data-testid="gender-value">{biological_sex}</span>
           </li>
           <li title="email">
             <span data-testid="email">EMAIL: </span>
