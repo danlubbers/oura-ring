@@ -39,7 +39,7 @@ const GlobalProvider: FC = ({ children }) => {
       const data = await getOuraData();
       console.log("data", data);
 
-      const userData = data?.ouraUserData.data;
+      const userData = data?.ouraPersonalInfoData_V2.data.personalInfo;
       const readinessData = data?.ouraReadinessData.data.readiness;
       const sleepData = data?.ouraSleepData.data.sleep;
       const activityData = data?.ouraActivityData.data.activity;

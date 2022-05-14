@@ -9,9 +9,7 @@ app.use(cors());
 
 const ouraToken = process.env.REACT_APP_OURA_TOKEN;
 const port = 8080;
-// https://api.ouraring.com/v2/usercollection/personal_info
 const baseURLV2 = `https://api.ouraring.com/v2/usercollection/`;
-
 const headerConfig = {
   Accept: "application/json",
   "Content-Type": "application/json",
@@ -37,7 +35,7 @@ const getEndpoint = (route, baseURL, keyName, personalInfo) => {
         res.status(200).json({
           [keyName]: data,
         });
-        console.log("data", data);
+        console.log("personal_info", data);
       } else {
         const { data } = await axios
           .get(baseURL, {
