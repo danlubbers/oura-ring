@@ -55,7 +55,7 @@ export type TodaysProps = {
   };
 };
 
-// Readiness, Sleep & Activity Props
+// Readiness, Sleep, Activity, Tags & Sessions Props
 export type ReadinessProps = {
   period_id: number;
   rest_mode_state: number;
@@ -148,6 +148,12 @@ export type ActivityProps = {
   to_target_km: number;
   to_target_miles: number;
   total: number;
+};
+
+export type HeartRateProps = {
+  bpm: number;
+  source: string;
+  timestamp: string;
 };
 
 export type TagProps = {

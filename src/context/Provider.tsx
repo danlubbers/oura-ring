@@ -7,6 +7,7 @@ import {
   ReadinessProps,
   SleepProps,
   ActivityProps,
+  HeartRateProps,
   TagProps,
   SessionProps,
 } from "../types/dataTypes";
@@ -25,6 +26,7 @@ const GlobalProvider: FC = ({ children }) => {
   const [readinessData, setReadinessData] = useState<ReadinessProps[]>([]);
   const [sleepData, setSleepData] = useState<SleepProps[]>([]);
   const [activityData, setActivityData] = useState<ActivityProps[]>([]);
+  const [heartRateData, setHeartRateData] = useState<HeartRateProps[]>([]);
   const [tagData, setTagData] = useState<TagProps[]>([]);
   const [sessionData, setSessionData] = useState<SessionProps[]>([]);
   const [startDate, setStartDate] = useState<string>("");
@@ -36,7 +38,7 @@ const GlobalProvider: FC = ({ children }) => {
   const [btnOffsetLeft, setBtnOffsetLeft] = useState<number>(0);
   const [isBtnPosition, setIsBtnPosition] = useState<boolean>(true);
 
-  // console.log("tagData", tagData);
+  console.log("STATE: sessionData", sessionData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,8 +49,11 @@ const GlobalProvider: FC = ({ children }) => {
       const readinessData = data?.ouraReadinessData.data.readiness;
       const sleepData = data?.ouraSleepData.data.sleep;
       const activityData = data?.ouraActivityData.data.activity;
+      const heartRateData = data?.ouraHeartRateData_V2.data.heartRate;
       const tagData = data?.ouraTagData_V2.data.tags;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
+
+      console.log("PROVIDER: heartRateData", heartRateData);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -64,10 +69,12 @@ const GlobalProvider: FC = ({ children }) => {
         readinessData[readinessData.length - 1];
       const todaysActivityData: ActivityProps =
         activityData[activityData.length - 1];
-      const todaysTagData: TagProps = tagData[tagData.length - 1];
-      const todaysSessionData: SessionProps =
-        sessionData[sessionData.length - 1];
-      console.log("todaysSessionData", todaysSessionData);
+      // const todaysTagData: TagProps = tagData[tagData.length - 1];
+      // const todaysSessionData: SessionProps =
+      //   sessionData[sessionData.length - 1];
+      // const todaysHeartRateData: HeartRateProps =
+      //   heartRateData[heartRateData.length - 1];
+      // console.log("todaysHeartRateData", todaysHeartRateData);
 
       // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
@@ -78,7 +85,9 @@ const GlobalProvider: FC = ({ children }) => {
       setReadinessData(readinessData);
       setSleepData(sleepData);
       setActivityData(activityData);
+      setHeartRateData(heartRateData);
       setTagData(tagData);
+      setSessionData(sessionData);
 
       setStartDate(startDate);
       setEndDate(endDate);
