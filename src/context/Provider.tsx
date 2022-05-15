@@ -82,7 +82,7 @@ const GlobalProvider: FC = ({ children }) => {
       //   sessionData[sessionData.length - 1];
       // const todaysHeartRateData: HeartRateProps =
       //   heartRateData[heartRateData.length - 1];
-      console.log("todaysTagData", todaysTagData);
+      // console.log("todaysTagData", todaysTagData);
 
       // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
@@ -109,12 +109,13 @@ const GlobalProvider: FC = ({ children }) => {
           readiness: todaysReadinessData,
           sleep: todaysSleepData,
           activity: todaysActivityData,
+          tags: todaysTagData,
         },
       });
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  // console.log(`Provider: todaysData`, todaysData);
+  console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider
@@ -123,6 +124,7 @@ const GlobalProvider: FC = ({ children }) => {
         readinessData,
         sleepData,
         activityData,
+        tagData,
         startDate,
         setStartDate,
         endDate,

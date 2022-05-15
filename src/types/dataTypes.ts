@@ -4,6 +4,7 @@ export interface GlobalContextProps {
   readinessData: ReadinessProps[];
   sleepData: SleepProps[];
   activityData: ActivityProps[];
+  tagData: TagProps[];
   startDate: string;
   setStartDate: (date: string) => void;
   endDate: string;
@@ -52,6 +53,7 @@ export type TodaysProps = {
     readiness: ReadinessProps;
     sleep: SleepProps;
     activity: ActivityProps;
+    tags: TagProps | TagProps[];
   };
 };
 

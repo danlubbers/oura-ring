@@ -102,6 +102,12 @@ export const todaysInitialStateData = {
       to_target_miles: 0,
       total: 0,
     },
+    tags: {
+      day: "",
+      tags: [],
+      text: "",
+      timestamp: "",
+    },
   },
 };
 
@@ -110,6 +116,7 @@ export const globalContextInitialState = {
   readinessData: [],
   sleepData: [],
   activityData: [],
+  tagData: [],
   startDate: "",
   setStartDate: () => "",
   endDate: "",
