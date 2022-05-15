@@ -38,12 +38,12 @@ const GlobalProvider: FC = ({ children }) => {
   const [btnOffsetLeft, setBtnOffsetLeft] = useState<number>(0);
   const [isBtnPosition, setIsBtnPosition] = useState<boolean>(true);
 
-  console.log("STATE: sessionData", sessionData);
+  // console.log("STATE: tagData", tagData);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getOuraData();
-      console.log("data", data);
+      // console.log("data", data);
 
       const userData = data?.ouraPersonalInfoData_V2.data.personalInfo;
       const readinessData = data?.ouraReadinessData.data.readiness;
@@ -53,7 +53,7 @@ const GlobalProvider: FC = ({ children }) => {
       const tagData = data?.ouraTagData_V2.data.tags;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
 
-      console.log("PROVIDER: heartRateData", heartRateData);
+      // console.log("PROVIDER: heartRateData", heartRateData);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -69,12 +69,20 @@ const GlobalProvider: FC = ({ children }) => {
         readinessData[readinessData.length - 1];
       const todaysActivityData: ActivityProps =
         activityData[activityData.length - 1];
-      // const todaysTagData: TagProps = tagData[tagData.length - 1];
+
+      /*** V2 data - Need to filter for day instead of V1 getting last in array ***/
+      const todaysTagData: TagProps = tagData.filter(
+        ({ day }: { day: string }) => {
+          return (
+            day === sleepData[sleepData.length - 1].bedtime_end.slice(0, 10)
+          );
+        }
+      );
       // const todaysSessionData: SessionProps =
       //   sessionData[sessionData.length - 1];
       // const todaysHeartRateData: HeartRateProps =
       //   heartRateData[heartRateData.length - 1];
-      // console.log("todaysHeartRateData", todaysHeartRateData);
+      console.log("todaysTagData", todaysTagData);
 
       // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
