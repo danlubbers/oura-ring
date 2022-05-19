@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { RefObject, useContext, useEffect, useState } from "react";
 import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
 
@@ -6,8 +6,8 @@ const PickSleepDate = ({
   btnRefs,
   lastBtnRef,
 }: {
-  btnRefs: any;
-  lastBtnRef: any;
+  btnRefs: { current: { current: HTMLDivElement }[] };
+  lastBtnRef: RefObject<HTMLDivElement>;
 }) => {
   const {
     readinessData,
@@ -19,6 +19,8 @@ const PickSleepDate = ({
     setBtnOffsetLeft,
     setIsBtnPosition,
   } = useContext(GlobalContext);
+
+  console.log("lastBtnRef", lastBtnRef);
 
   const [filteredTags, setFilteredTags] = useState<any>([]);
   console.log("State: filteredtags", filteredTags);
