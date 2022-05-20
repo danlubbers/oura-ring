@@ -53,7 +53,27 @@ const GlobalProvider: FC = ({ children }) => {
       const tagData = data?.ouraTagData_V2.data.tags;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
 
-      // console.log("PROVIDER: heartRateData", heartRateData);
+      // console.log("fetchData: tagData", tagData);
+
+      const mergedTagDataByDate = Object.values(
+        tagData.reduce((acc: any, curVal: any) => {
+          (
+            acc[curVal.day] ||
+            (acc[curVal.day] = {
+              day: curVal.day,
+              tagData: [],
+            })
+          ).tagData.push({
+            text: curVal.text,
+            tags: curVal.tags,
+            timestamp: curVal.timestamp,
+          });
+
+          return acc;
+        }, [])
+      );
+
+      console.log("mergedTagDataByDate", mergedTagDataByDate);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -78,6 +98,8 @@ const GlobalProvider: FC = ({ children }) => {
           );
         }
       );
+
+      // console.log("todaysTagData", todaysTagData);
       // const todaysSessionData: SessionProps =
       //   sessionData[sessionData.length - 1];
       // const todaysHeartRateData: HeartRateProps =
@@ -115,7 +137,7 @@ const GlobalProvider: FC = ({ children }) => {
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  console.log(`Provider: todaysData`, todaysData);
+  // console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider
