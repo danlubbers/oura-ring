@@ -37,16 +37,16 @@ const DateRenderer = () => {
     }
   }, [todaysDate, btnOffsetLeft, isBtnPosition]);
 
-  const filterTags = tagData.filter(({ day }: { day: string }) => {
-    return day === todaysDate;
-  });
+  // const filterTags = tagData.filter(({ day }: { day: string }) => {
+  //   return day === todaysDate;
+  // });
 
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
     const combinedData = {
       readiness: readinessData[idx],
       sleep: sleepData[idx],
       activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
-      tags: filterTags,
+      tags: tagData[idx],
     };
 
     const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day

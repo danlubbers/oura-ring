@@ -27,7 +27,7 @@ const GlobalProvider: FC = ({ children }) => {
   const [sleepData, setSleepData] = useState<SleepProps[]>([]);
   const [activityData, setActivityData] = useState<ActivityProps[]>([]);
   const [heartRateData, setHeartRateData] = useState<HeartRateProps[]>([]);
-  const [tagData, setTagData] = useState<TagProps[]>([]);
+  const [mergedTagData, setMergedTagData] = useState<TagProps[]>([]);
   const [sessionData, setSessionData] = useState<SessionProps[]>([]);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
@@ -38,7 +38,7 @@ const GlobalProvider: FC = ({ children }) => {
   const [btnOffsetLeft, setBtnOffsetLeft] = useState<number>(0);
   const [isBtnPosition, setIsBtnPosition] = useState<boolean>(true);
 
-  // console.log("STATE: tagData", tagData);
+  // console.log("STATE: mergedTagData", mergedTagData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +55,7 @@ const GlobalProvider: FC = ({ children }) => {
 
       // console.log("fetchData: tagData", tagData);
 
-      const mergedTagDataByDate = Object.values(
+      const mergedTagDataByDate: any = Object.values(
         tagData.reduce((acc: any, curVal: any) => {
           (
             acc[curVal.day] ||
@@ -73,7 +73,7 @@ const GlobalProvider: FC = ({ children }) => {
         }, [])
       );
 
-      console.log("mergedTagDataByDate", mergedTagDataByDate);
+      // console.log("mergedTagDataByDate", mergedTagDataByDate);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -89,15 +89,17 @@ const GlobalProvider: FC = ({ children }) => {
         readinessData[readinessData.length - 1];
       const todaysActivityData: ActivityProps =
         activityData[activityData.length - 1];
+      const todaysTagData: TagProps = mergedTagData[mergedTagData.length - 1];
+      // console.log("todaysTagData", mergedTagData);
 
       /*** V2 data - Need to filter for day instead of V1 getting last in array ***/
-      const todaysTagData: TagProps = tagData.filter(
-        ({ day }: { day: string }) => {
-          return (
-            day === sleepData[sleepData.length - 1].bedtime_end.slice(0, 10)
-          );
-        }
-      );
+      // const todaysTagData: TagProps = tagData.filter(
+      //   ({ day }: { day: string }) => {
+      //     return (
+      //       day === sleepData[sleepData.length - 1].bedtime_end.slice(0, 10)
+      //     );
+      //   }
+      // );
 
       // console.log("todaysTagData", todaysTagData);
       // const todaysSessionData: SessionProps =
@@ -116,7 +118,7 @@ const GlobalProvider: FC = ({ children }) => {
       setSleepData(sleepData);
       setActivityData(activityData);
       setHeartRateData(heartRateData);
-      setTagData(tagData);
+      setMergedTagData(mergedTagDataByDate);
       setSessionData(sessionData);
 
       setStartDate(startDate);
@@ -137,7 +139,7 @@ const GlobalProvider: FC = ({ children }) => {
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  // console.log(`Provider: todaysData`, todaysData);
+  console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider
@@ -146,7 +148,7 @@ const GlobalProvider: FC = ({ children }) => {
         readinessData,
         sleepData,
         activityData,
-        tagData,
+        tagData: mergedTagData,
         startDate,
         setStartDate,
         endDate,

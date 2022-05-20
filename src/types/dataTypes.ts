@@ -165,6 +165,15 @@ export type TagProps = {
   timestamp: string;
 };
 
+// export type MergedTagProps = {
+//   day: string;
+//   tagData: {
+//     tags: string[];
+//     text: string | null;
+//     timestamp: string;
+//   }[];
+// };
+
 export type SessionArrayDataProps = {
   interval: number;
   items: number[] | null[];
