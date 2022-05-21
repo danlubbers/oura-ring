@@ -158,13 +158,19 @@ export type HeartRateProps = {
   timestamp: string;
 };
 
+export type TagProps = {
+  day: string;
+  tags: string[];
+  text: string;
+  timestamp: string;
+};
 export type MergedTagProps = {
   day: string;
   tagData: {
     tags: string[];
     text: string;
     timestamp: string;
-  };
+  }[];
 };
 
 export type SessionArrayDataProps = {

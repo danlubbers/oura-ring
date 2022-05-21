@@ -104,11 +104,7 @@ export const todaysInitialStateData = {
     },
     tags: {
       day: "",
-      tagData: {
-        tags: [],
-        text: "",
-        timestamp: "",
-      },
+      tagData: [],
     },
   },
 };

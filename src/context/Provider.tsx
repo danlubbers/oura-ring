@@ -16,6 +16,7 @@ import {
   userInitialStateData,
   todaysInitialStateData,
 } from "../initialState/initialState";
+import { mergedTagDataByDate } from "../utilities/mergeData";
 
 export const GlobalContext = createContext<GlobalContextProps>(
   globalContextInitialState
@@ -55,55 +56,9 @@ const GlobalProvider: FC = ({ children }) => {
 
       // console.log("fetchData: tagData", tagData);
 
-      const mergedTagDataByDate: MergedTagProps[] = Object.values(
-        tagData.reduce(
-          (
-            acc:
-              | {
-                  [key: string]: {
-                    tagData: {
-                      text: string;
-                      tags: string[];
-                      timestamp: string;
-                    }[];
-                  };
-                }
-              | {
-                  [key: string]: {
-                    day: string;
-                    tagData: {
-                      text: string;
-                      tags: string[];
-                      timestamp: string;
-                    }[];
-                  };
-                },
-            curVal: {
-              day: string;
-              text: string;
-              tags: string[];
-              timestamp: string;
-            }
-          ) => {
-            (
-              acc[curVal.day] ||
-              (acc[curVal.day] = {
-                day: curVal.day,
-                tagData: [],
-              })
-            ).tagData.push({
-              text: curVal.text,
-              tags: curVal.tags,
-              timestamp: curVal.timestamp,
-            });
+      const mergedTagDataTest = mergedTagDataByDate(tagData);
 
-            return acc;
-          },
-          []
-        )
-      );
-
-      console.log("mergedTagDataByDate", mergedTagDataByDate);
+      console.log("mergedTagDataByDate", mergedTagDataTest);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -149,7 +104,7 @@ const GlobalProvider: FC = ({ children }) => {
       setSleepData(sleepData);
       setActivityData(activityData);
       setHeartRateData(heartRateData);
-      setMergedTagData(mergedTagDataByDate);
+      setMergedTagData(mergedTagDataTest);
       setSessionData(sessionData);
 
       setStartDate(startDate);
