@@ -8,7 +8,7 @@ const DateRenderer = () => {
     readinessData,
     sleepData,
     activityData,
-    tagData,
+    mergedTagData,
     todaysData,
     setTodaysData,
     btnOffsetLeft,
@@ -46,7 +46,7 @@ const DateRenderer = () => {
       readiness: readinessData[idx],
       sleep: sleepData[idx],
       activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
-      tags: tagData[idx],
+      tags: mergedTagData[idx],
     };
 
     const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day

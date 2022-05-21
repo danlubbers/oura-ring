@@ -11,6 +11,8 @@ const BedroomData = () => {
     todaysData: { bedtimeStart, bedtimeEnd, data },
   } = useContext(GlobalContext);
 
+  // console.log("Bedroom data:", data?.tags);
+
   const [parsedCsvData, setParsedCsvData] = useState([
     { Timestamp: "", Temperature_Fahrenheit: "", Relative_Humidity: "" },
   ]);

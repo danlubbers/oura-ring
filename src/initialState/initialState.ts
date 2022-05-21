@@ -104,9 +104,11 @@ export const todaysInitialStateData = {
     },
     tags: {
       day: "",
-      tags: [],
-      text: "",
-      timestamp: "",
+      tagData: {
+        tags: [],
+        text: "",
+        timestamp: "",
+      },
     },
   },
 };
@@ -116,7 +118,7 @@ export const globalContextInitialState = {
   readinessData: [],
   sleepData: [],
   activityData: [],
-  tagData: [],
+  mergedTagData: [],
   startDate: "",
   setStartDate: () => "",
   endDate: "",
