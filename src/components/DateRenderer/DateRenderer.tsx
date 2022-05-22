@@ -37,10 +37,6 @@ const DateRenderer = () => {
     }
   }, [todaysDate, btnOffsetLeft, isBtnPosition]);
 
-  // const filterTags = tagData.filter(({ day }: { day: string }) => {
-  //   return day === todaysDate;
-  // });
-
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
     const combinedData = {
       readiness: readinessData[idx],

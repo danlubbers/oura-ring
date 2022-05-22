@@ -54,11 +54,11 @@ const GlobalProvider: FC = ({ children }) => {
       const tagData = data?.ouraTagData_V2.data.tags;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
 
-      // console.log("fetchData: tagData", tagData);
+      console.log("fetchData: sessionData", sessionData);
 
       const mergedTagDataTest = mergedTagDataByDate(tagData);
 
-      console.log("mergedTagDataByDate", mergedTagDataTest);
+      // console.log("mergedTagDataByDate", mergedTagDataTest);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
