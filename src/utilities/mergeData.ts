@@ -1,4 +1,9 @@
-import { TagProps, MergedTagProps } from "../types/dataTypes";
+import {
+  TagProps,
+  MergedTagProps,
+  SessionProps,
+  MergedSessionProps,
+} from "../types/dataTypes";
 
 // https://stackoverflow.com/questions/49414589/loop-over-array-of-objects-and-combine-them-if-they-have-similar-keys/49414652#49414652
 export const mergedTagDataByDate = (tagData: TagProps[]): MergedTagProps[] => {
@@ -18,5 +23,30 @@ export const mergedTagDataByDate = (tagData: TagProps[]): MergedTagProps[] => {
 
       return acc;
     }, [] as MergedTagProps[])
+  );
+};
+
+export const mergedSessionDataByDate = (
+  sessionData: SessionProps[]
+): MergedSessionProps[] => {
+  return Object.values(
+    sessionData.reduce((acc: any, curVal) => {
+      (
+        acc[curVal.day] ||
+        (acc[curVal.day] = {
+          day: curVal.day,
+          sessionData: [],
+        })
+      ).sessionData.push({
+        start_datetime: curVal.start_datetime,
+        end_datetime: curVal.end_datetime,
+        type: curVal.type,
+        mood: curVal.mood,
+        motion_count: curVal.motion_count,
+        heart_rate: curVal.heart_rate,
+        heart_rate_variability: curVal.heart_rate_variability,
+      });
+      return acc;
+    }, [] as MergedSessionProps[])
   );
 };

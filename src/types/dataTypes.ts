@@ -164,6 +164,7 @@ export type TagProps = {
   text: string;
   timestamp: string;
 };
+
 export type MergedTagProps = {
   day: string;
   tagData: {
@@ -183,11 +184,24 @@ export type SessionProps = {
   day: string;
   start_datetime: string;
   end_datetime: string;
-  mood: string;
+  mood: string | null;
   type: string;
   heart_rate: SessionArrayDataProps[];
   heart_rate_variability: SessionArrayDataProps[];
   motion_count: SessionArrayDataProps[];
+};
+
+export type MergedSessionProps = {
+  day: string;
+  sessionData: {
+    start_datetime: string;
+    end_datetime: string;
+    mood: string | null;
+    type: string;
+    heart_rate: SessionArrayDataProps[];
+    heart_rate_variability: SessionArrayDataProps[];
+    motion_count: SessionArrayDataProps[];
+  }[];
 };
 
 // All Type Props for Components

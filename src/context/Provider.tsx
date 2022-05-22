@@ -9,14 +9,17 @@ import {
   ActivityProps,
   HeartRateProps,
   MergedTagProps,
-  SessionProps,
+  MergedSessionProps,
 } from "../types/dataTypes";
 import {
   globalContextInitialState,
   userInitialStateData,
   todaysInitialStateData,
 } from "../initialState/initialState";
-import { mergedTagDataByDate } from "../utilities/mergeData";
+import {
+  mergedTagDataByDate,
+  mergedSessionDataByDate,
+} from "../utilities/mergeData";
 
 export const GlobalContext = createContext<GlobalContextProps>(
   globalContextInitialState
@@ -29,7 +32,9 @@ const GlobalProvider: FC = ({ children }) => {
   const [activityData, setActivityData] = useState<ActivityProps[]>([]);
   const [heartRateData, setHeartRateData] = useState<HeartRateProps[]>([]);
   const [mergedTagData, setMergedTagData] = useState<MergedTagProps[]>([]);
-  const [sessionData, setSessionData] = useState<SessionProps[]>([]);
+  const [mergedSessionData, setMergedSessionData] = useState<
+    MergedSessionProps[]
+  >([]);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [todaysData, setTodaysData] = useState<TodaysProps>(
@@ -39,7 +44,7 @@ const GlobalProvider: FC = ({ children }) => {
   const [btnOffsetLeft, setBtnOffsetLeft] = useState<number>(0);
   const [isBtnPosition, setIsBtnPosition] = useState<boolean>(true);
 
-  // console.log("STATE: mergedTagData", mergedTagData);
+  console.log("STATE: mergedSessionData", mergedSessionData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,11 +59,12 @@ const GlobalProvider: FC = ({ children }) => {
       const tagData = data?.ouraTagData_V2.data.tags;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
 
-      console.log("fetchData: sessionData", sessionData);
+      // console.log("fetchData: sessionData", sessionData);
 
       const mergedTagDataTest = mergedTagDataByDate(tagData);
-
       // console.log("mergedTagDataByDate", mergedTagDataTest);
+      const mergedSessionDataTest = mergedSessionDataByDate(sessionData);
+      console.log("mergedSessionDataTest", mergedSessionDataTest);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -76,7 +82,7 @@ const GlobalProvider: FC = ({ children }) => {
         activityData[activityData.length - 1];
       const todaysTagData: MergedTagProps =
         mergedTagData[mergedTagData.length - 1];
-      console.log("todaysTagData", mergedTagData);
+      // console.log("todaysTagData", mergedTagData);
 
       /*** V2 data - Need to filter for day instead of V1 getting last in array ***/
       // const todaysTagData: TagProps = tagData.filter(
@@ -105,7 +111,7 @@ const GlobalProvider: FC = ({ children }) => {
       setActivityData(activityData);
       setHeartRateData(heartRateData);
       setMergedTagData(mergedTagDataTest);
-      setSessionData(sessionData);
+      setMergedSessionData(mergedSessionDataTest);
 
       setStartDate(startDate);
       setEndDate(endDate);
