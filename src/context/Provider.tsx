@@ -7,7 +7,7 @@ import {
   ReadinessProps,
   SleepProps,
   ActivityProps,
-  HeartRateProps,
+  MergedHeartRateProps,
   MergedTagProps,
   MergedSessionProps,
 } from "../types/dataTypes";
@@ -17,6 +17,7 @@ import {
   todaysInitialStateData,
 } from "../initialState/initialState";
 import {
+  mergedHeartRateDataByDate,
   mergedTagDataByDate,
   mergedSessionDataByDate,
 } from "../utilities/mergeData";
@@ -30,7 +31,9 @@ const GlobalProvider: FC = ({ children }) => {
   const [readinessData, setReadinessData] = useState<ReadinessProps[]>([]);
   const [sleepData, setSleepData] = useState<SleepProps[]>([]);
   const [activityData, setActivityData] = useState<ActivityProps[]>([]);
-  const [heartRateData, setHeartRateData] = useState<HeartRateProps[]>([]);
+  const [mergedHeartRateData, setMergedHeartRateData] = useState<
+    MergedHeartRateProps[]
+  >([]);
   const [mergedTagData, setMergedTagData] = useState<MergedTagProps[]>([]);
   const [mergedSessionData, setMergedSessionData] = useState<
     MergedSessionProps[]
@@ -59,9 +62,10 @@ const GlobalProvider: FC = ({ children }) => {
       const tagData = data?.ouraTagData_V2.data.tags;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
 
-      const mergedTagDataTest = mergedTagDataByDate(tagData);
-      const mergedSessionDataTest = mergedSessionDataByDate(sessionData);
-      // console.log("mergedSessionDataTest", mergedSessionDataTest);
+      const heartRateDataByDate = mergedHeartRateDataByDate(heartRateData); // Oura API only gives HR data for today and yesterday...
+      const tagDataByDate = mergedTagDataByDate(tagData);
+      const sessionDataByDate = mergedSessionDataByDate(sessionData);
+      console.log("heartRateDataByDate", heartRateDataByDate);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -95,9 +99,9 @@ const GlobalProvider: FC = ({ children }) => {
       setReadinessData(readinessData);
       setSleepData(sleepData);
       setActivityData(activityData);
-      setHeartRateData(heartRateData);
-      setMergedTagData(mergedTagDataTest);
-      setMergedSessionData(mergedSessionDataTest);
+      setMergedHeartRateData(heartRateDataByDate);
+      setMergedTagData(tagDataByDate);
+      setMergedSessionData(sessionDataByDate);
 
       setStartDate(startDate);
       setEndDate(endDate);
@@ -118,7 +122,7 @@ const GlobalProvider: FC = ({ children }) => {
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  console.log(`Provider: todaysData`, todaysData);
+  // console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider

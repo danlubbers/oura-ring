@@ -159,6 +159,14 @@ export type HeartRateProps = {
   source: string;
   timestamp: string;
 };
+export type MergedHeartRateProps = {
+  day: string;
+  heartRateData: {
+    bpm: number;
+    source: string;
+    timestamp: string;
+  }[];
+};
 
 export type TagProps = {
   day: string;

@@ -1,4 +1,6 @@
 import {
+  HeartRateProps,
+  MergedHeartRateProps,
   TagProps,
   MergedTagProps,
   SessionProps,
@@ -6,6 +8,29 @@ import {
 } from "../types/dataTypes";
 
 // https://stackoverflow.com/questions/49414589/loop-over-array-of-objects-and-combine-them-if-they-have-similar-keys/49414652#49414652
+export const mergedHeartRateDataByDate = (
+  heartRateData: HeartRateProps[]
+): MergedHeartRateProps[] => {
+  return Object.values(
+    heartRateData.reduce((acc: { [key: string]: any }, curVal) => {
+      const day = curVal.timestamp.slice(0, 10);
+      (
+        acc[day] ||
+        (acc[day] = {
+          day,
+          heartRateData: [],
+        })
+      ).heartRateData.push({
+        bpm: curVal.bpm,
+        source: curVal.source,
+        timestamp: curVal.timestamp,
+      });
+
+      return acc;
+    }, [] as MergedHeartRateProps[])
+  );
+};
+
 export const mergedTagDataByDate = (tagData: TagProps[]): MergedTagProps[] => {
   return Object.values(
     tagData.reduce((acc: { [key: string]: any }, curVal) => {
