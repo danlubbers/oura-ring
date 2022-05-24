@@ -54,7 +54,7 @@ export type TodaysProps = {
     readiness: ReadinessProps;
     sleep: SleepProps;
     activity: ActivityProps;
-    tags: MergedTagProps;
+    tags: MergedTagProps | undefined;
     sessions: MergedSessionProps | undefined;
   };
 };
