@@ -5,6 +5,7 @@ export interface GlobalContextProps {
   sleepData: SleepProps[];
   activityData: ActivityProps[];
   mergedTagData: MergedTagProps[];
+  mergedSessionData: MergedSessionProps[];
   startDate: string;
   setStartDate: (date: string) => void;
   endDate: string;
@@ -54,6 +55,7 @@ export type TodaysProps = {
     sleep: SleepProps;
     activity: ActivityProps;
     tags: MergedTagProps;
+    sessions: MergedSessionProps;
   };
 };
 

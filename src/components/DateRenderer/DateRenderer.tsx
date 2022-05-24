@@ -9,6 +9,7 @@ const DateRenderer = () => {
     sleepData,
     activityData,
     mergedTagData,
+    mergedSessionData,
     todaysData,
     setTodaysData,
     btnOffsetLeft,
@@ -43,6 +44,7 @@ const DateRenderer = () => {
       sleep: sleepData[idx],
       activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
       tags: mergedTagData[idx],
+      sessions: mergedSessionData[idx], // This is not working properly because the array does not contain every single day making the length shorter than the rest.
     };
 
     const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day

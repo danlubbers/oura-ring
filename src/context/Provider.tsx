@@ -44,7 +44,7 @@ const GlobalProvider: FC = ({ children }) => {
   const [btnOffsetLeft, setBtnOffsetLeft] = useState<number>(0);
   const [isBtnPosition, setIsBtnPosition] = useState<boolean>(true);
 
-  console.log("STATE: mergedSessionData", mergedSessionData);
+  // console.log("STATE: mergedSessionData", mergedSessionData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,12 +59,9 @@ const GlobalProvider: FC = ({ children }) => {
       const tagData = data?.ouraTagData_V2.data.tags;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
 
-      // console.log("fetchData: sessionData", sessionData);
-
       const mergedTagDataTest = mergedTagDataByDate(tagData);
-      // console.log("mergedTagDataByDate", mergedTagDataTest);
       const mergedSessionDataTest = mergedSessionDataByDate(sessionData);
-      console.log("mergedSessionDataTest", mergedSessionDataTest);
+      // console.log("mergedSessionDataTest", mergedSessionDataTest);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(
@@ -82,23 +79,22 @@ const GlobalProvider: FC = ({ children }) => {
         activityData[activityData.length - 1];
       const todaysTagData: MergedTagProps =
         mergedTagData[mergedTagData.length - 1];
-      // console.log("todaysTagData", mergedTagData);
 
       /*** V2 data - Need to filter for day instead of V1 getting last in array ***/
-      // const todaysTagData: TagProps = tagData.filter(
-      //   ({ day }: { day: string }) => {
-      //     return (
-      //       day === sleepData[sleepData.length - 1].bedtime_end.slice(0, 10)
-      //     );
-      //   }
-      // );
+      const todaysSessionDataFilter: MergedSessionProps[] =
+        mergedSessionData.filter((data) => {
+          console.log("data", data);
+          return data;
+          // day === sleepData[sleepData.length - 1].bedtime_end.slice(0, 10)
+        });
 
-      // console.log("todaysTagData", todaysTagData);
-      // const todaysSessionData: SessionProps =
-      //   sessionData[sessionData.length - 1];
+      // console.log("todaysSessionDataFilter", todaysSessionDataFilter);
+
+      const todaysSessionData: MergedSessionProps =
+        mergedSessionData[mergedSessionData.length - 1];
+
       // const todaysHeartRateData: HeartRateProps =
       //   heartRateData[heartRateData.length - 1];
-      // console.log("todaysTagData", todaysTagData);
 
       // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
@@ -126,6 +122,7 @@ const GlobalProvider: FC = ({ children }) => {
           sleep: todaysSleepData,
           activity: todaysActivityData,
           tags: todaysTagData,
+          sessions: todaysSessionData,
         },
       });
     };
@@ -141,6 +138,7 @@ const GlobalProvider: FC = ({ children }) => {
         sleepData,
         activityData,
         mergedTagData,
+        mergedSessionData,
         startDate,
         setStartDate,
         endDate,
