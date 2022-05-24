@@ -1,4 +1,4 @@
-import { useContext, useRef, createRef, useEffect } from "react";
+import { useContext, useRef, createRef, useEffect, useState } from "react";
 import styles from "./DateRenderer.module.scss";
 import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
@@ -39,19 +39,26 @@ const DateRenderer = () => {
   }, [todaysDate, btnOffsetLeft, isBtnPosition]);
 
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
+    const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
+    const bedtimeStart = sleepObj.bedtime_start;
+    const bedtimeEnd = sleepObj.bedtime_end;
+
+    const sessionsFiltered = mergedSessionData.find(
+      ({ day }: { day: string }) => {
+        return day === date;
+      }
+    );
+
     const combinedData = {
       readiness: readinessData[idx],
       sleep: sleepData[idx],
       activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
       tags: mergedTagData[idx],
-      sessions: mergedSessionData[idx], // This is not working properly because the array does not contain every single day making the length shorter than the rest.
+      sessions: sessionsFiltered,
     };
 
-    const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
-    const bedtimeStart = sleepObj.bedtime_start;
-    const bedtimeEnd = sleepObj.bedtime_end;
-
     const handleBtnClick = () => {
+      console.log("sessionsFiltered", sessionsFiltered);
       setTodaysData({
         date,
         bedtimeStart,

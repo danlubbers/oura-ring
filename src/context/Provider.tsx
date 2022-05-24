@@ -80,16 +80,6 @@ const GlobalProvider: FC = ({ children }) => {
       const todaysTagData: MergedTagProps =
         mergedTagData[mergedTagData.length - 1];
 
-      /*** V2 data - Need to filter for day instead of V1 getting last in array ***/
-      const todaysSessionDataFilter: MergedSessionProps[] =
-        mergedSessionData.filter((data) => {
-          console.log("data", data);
-          return data;
-          // day === sleepData[sleepData.length - 1].bedtime_end.slice(0, 10)
-        });
-
-      // console.log("todaysSessionDataFilter", todaysSessionDataFilter);
-
       const todaysSessionData: MergedSessionProps =
         mergedSessionData[mergedSessionData.length - 1];
 
@@ -128,7 +118,7 @@ const GlobalProvider: FC = ({ children }) => {
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  // console.log(`Provider: todaysData`, todaysData);
+  console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider
