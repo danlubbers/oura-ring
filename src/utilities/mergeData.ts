@@ -5,6 +5,8 @@ import {
   MergedTagProps,
   SessionProps,
   MergedSessionProps,
+  WorkoutProps,
+  MergedWorkoutProps,
 } from "../types/dataTypes";
 
 // https://stackoverflow.com/questions/49414589/loop-over-array-of-objects-and-combine-them-if-they-have-similar-keys/49414652#49414652
@@ -73,5 +75,32 @@ export const mergedSessionDataByDate = (
       });
       return acc;
     }, [] as MergedSessionProps[])
+  );
+};
+
+export const mergedWorkoutDataByDate = (
+  sessionData: WorkoutProps[]
+): MergedWorkoutProps[] => {
+  return Object.values(
+    sessionData.reduce((acc: any, curVal) => {
+      (
+        acc[curVal.day] ||
+        (acc[curVal.day] = {
+          day: curVal.day,
+          workoutData: [],
+        })
+      ).workoutData.push({
+        activity: curVal.activity,
+        calories: curVal.calories,
+        day: curVal.day,
+        distance: curVal.distance,
+        end_datetime: curVal.end_datetime,
+        intensity: curVal.intensity,
+        label: curVal.label,
+        source: curVal.source,
+        start_datetime: curVal.start_datetime,
+      });
+      return acc;
+    }, [] as MergedWorkoutProps[])
   );
 };

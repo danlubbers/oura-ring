@@ -10,6 +10,7 @@ import {
   MergedHeartRateProps,
   MergedTagProps,
   MergedSessionProps,
+  MergedWorkoutProps,
 } from "../types/dataTypes";
 import {
   globalContextInitialState,
@@ -20,6 +21,7 @@ import {
   mergedHeartRateDataByDate,
   mergedTagDataByDate,
   mergedSessionDataByDate,
+  mergedWorkoutDataByDate,
 } from "../utilities/mergeData";
 
 export const GlobalContext = createContext<GlobalContextProps>(
@@ -37,6 +39,9 @@ const GlobalProvider: FC = ({ children }) => {
   const [mergedTagData, setMergedTagData] = useState<MergedTagProps[]>([]);
   const [mergedSessionData, setMergedSessionData] = useState<
     MergedSessionProps[]
+  >([]);
+  const [mergedWorkoutData, setMergedWorkoutData] = useState<
+    MergedWorkoutProps[]
   >([]);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
@@ -59,10 +64,12 @@ const GlobalProvider: FC = ({ children }) => {
       const heartRateData = data?.ouraHeartRateData_V2.data.heartRate;
       const tagData = data?.ouraTagData_V2.data.tags;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
+      const workoutData = data?.ouraWorkoutsData_V2.data.workouts;
 
       const heartRateDataByDate = mergedHeartRateDataByDate(heartRateData); // Oura API only gives HR data for today and yesterday...
       const tagDataByDate = mergedTagDataByDate(tagData);
       const sessionDataByDate = mergedSessionDataByDate(sessionData);
+      const workoutDataByDate = mergedWorkoutDataByDate(workoutData);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
       const endDate = String(new Date(sleepData.at(-1).bedtime_end)).slice(
@@ -79,6 +86,8 @@ const GlobalProvider: FC = ({ children }) => {
       // Array of objects
       const todaysHeartRateData: MergedHeartRateProps =
         heartRateDataByDate[heartRateDataByDate.length - 1];
+      const todaysWorkoutData: MergedWorkoutProps =
+        mergedWorkoutData[mergedWorkoutData.length - 1];
 
       const bedtimeStart = todaysSleepData.bedtime_start;
       const bedtimeEnd = todaysSleepData.bedtime_end;
@@ -91,6 +100,7 @@ const GlobalProvider: FC = ({ children }) => {
       setMergedHeartRateData(heartRateDataByDate);
       setMergedTagData(tagDataByDate);
       setMergedSessionData(sessionDataByDate);
+      setMergedWorkoutData(workoutDataByDate);
 
       setStartDate(startDate);
       setEndDate(endDate);
@@ -107,12 +117,13 @@ const GlobalProvider: FC = ({ children }) => {
           heartRate: todaysHeartRateData,
           tags: undefined, // No data to retrieve from Oura Api for same day
           sessions: undefined, // No data to retrieve from Oura Api for same day
+          workouts: todaysWorkoutData,
         },
       });
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  // console.log(`Provider: todaysData`, todaysData);
+  console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider
@@ -124,6 +135,7 @@ const GlobalProvider: FC = ({ children }) => {
         mergedHeartRateData,
         mergedTagData,
         mergedSessionData,
+        mergedWorkoutData,
         startDate,
         setStartDate,
         endDate,

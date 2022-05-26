@@ -7,6 +7,7 @@ export interface GlobalContextProps {
   mergedHeartRateData: MergedHeartRateProps[];
   mergedTagData: MergedTagProps[];
   mergedSessionData: MergedSessionProps[];
+  mergedWorkoutData: MergedWorkoutProps[];
   startDate: string;
   setStartDate: (date: string) => void;
   endDate: string;
@@ -58,6 +59,7 @@ export type TodaysProps = {
     heartRate: MergedHeartRateProps | undefined;
     tags: MergedTagProps | undefined;
     sessions: MergedSessionProps | undefined;
+    workouts: MergedWorkoutProps | undefined;
   };
 };
 
@@ -214,6 +216,23 @@ export type MergedSessionProps = {
     heart_rate_variability: SessionArrayDataProps[];
     motion_count: SessionArrayDataProps[];
   }[];
+};
+
+export type WorkoutProps = {
+  activity: string;
+  calories: number;
+  day: string;
+  distance: number;
+  end_datetime: string;
+  intensity: string;
+  label: null;
+  source: string;
+  start_datetime: string;
+};
+
+export type MergedWorkoutProps = {
+  day: string;
+  workoutData: WorkoutProps[];
 };
 
 // All Type Props for Components

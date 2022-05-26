@@ -114,6 +114,10 @@ export const todaysInitialStateData = {
       day: "",
       sessionData: [],
     },
+    workouts: {
+      day: "",
+      workoutData: [],
+    },
   },
 };
 
@@ -125,6 +129,7 @@ export const globalContextInitialState = {
   mergedHeartRateData: [],
   mergedTagData: [],
   mergedSessionData: [],
+  mergedWorkoutData: [],
   startDate: "",
   setStartDate: () => "",
   endDate: "",

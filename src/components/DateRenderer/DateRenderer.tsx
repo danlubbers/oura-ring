@@ -12,6 +12,7 @@ const DateRenderer = () => {
     mergedHeartRateData,
     mergedTagData,
     mergedSessionData,
+    mergedWorkoutData,
     todaysData,
     setTodaysData,
     btnOffsetLeft,
@@ -52,6 +53,7 @@ const DateRenderer = () => {
       heartRate: findDataByDate(mergedHeartRateData, date),
       tags: findDataByDate(mergedTagData, date),
       sessions: findDataByDate(mergedSessionData, date),
+      workouts: findDataByDate(mergedWorkoutData, date),
     };
 
     const handleBtnClick = () => {
