@@ -47,8 +47,6 @@ const GlobalProvider: FC = ({ children }) => {
   const [btnOffsetLeft, setBtnOffsetLeft] = useState<number>(0);
   const [isBtnPosition, setIsBtnPosition] = useState<boolean>(true);
 
-  // console.log("STATE: mergedSessionData", mergedSessionData);
-
   useEffect(() => {
     const fetchData = async () => {
       const data = await getOuraData();
@@ -65,32 +63,19 @@ const GlobalProvider: FC = ({ children }) => {
       const heartRateDataByDate = mergedHeartRateDataByDate(heartRateData); // Oura API only gives HR data for today and yesterday...
       const tagDataByDate = mergedTagDataByDate(tagData);
       const sessionDataByDate = mergedSessionDataByDate(sessionData);
-      console.log("heartRateDataByDate", heartRateDataByDate);
 
       const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
-      const endDate = String(
-        new Date(sleepData[sleepData.length - 1].bedtime_end)
-      ).slice(4, 15);
+      const endDate = String(new Date(sleepData.at(-1).bedtime_end)).slice(
+        4,
+        15
+      );
 
-      const todaysSleepDate: string = sleepData[
-        sleepData.length - 1
-      ].bedtime_end.slice(0, 10);
+      const todaysSleepDate: string = sleepData.at(-1).bedtime_end.slice(0, 10);
 
-      const todaysSleepData: SleepProps = sleepData[sleepData.length - 1];
-      const todaysReadinessData: ReadinessProps =
-        readinessData[readinessData.length - 1];
-      const todaysActivityData: ActivityProps =
-        activityData[activityData.length - 1];
-      const todaysTagData: MergedTagProps =
-        mergedTagData[mergedTagData.length - 1];
+      const todaysSleepData: SleepProps = sleepData.at(-1);
+      const todaysReadinessData: ReadinessProps = readinessData.at(-1);
+      const todaysActivityData: ActivityProps = activityData.at(-1);
 
-      const todaysSessionData: MergedSessionProps =
-        mergedSessionData[mergedSessionData.length - 1];
-
-      // const todaysHeartRateData: HeartRateProps =
-      //   heartRateData[heartRateData.length - 1];
-
-      // console.log("todaysSleepData", sleepData[sleepData.length - 1]);
       const bedtimeStart = todaysSleepData.bedtime_start;
       const bedtimeEnd = todaysSleepData.bedtime_end;
       // console.log("PROVIDER: ", bedtimeEnd);
@@ -115,8 +100,8 @@ const GlobalProvider: FC = ({ children }) => {
           readiness: todaysReadinessData,
           sleep: todaysSleepData,
           activity: todaysActivityData,
-          tags: todaysTagData,
-          sessions: todaysSessionData,
+          tags: null, // No data to retrieve from Oura Api for same day
+          sessions: null, // No data to retrieve from Oura Api for same day
         },
       });
     };

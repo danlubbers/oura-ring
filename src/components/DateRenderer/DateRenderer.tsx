@@ -1,8 +1,7 @@
-import { useContext, useRef, createRef, useEffect, useState } from "react";
+import { useContext, useRef, createRef, useEffect } from "react";
 import styles from "./DateRenderer.module.scss";
 import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
-import { MergedSessionProps, MergedTagProps } from "../../types/dataTypes";
 
 const DateRenderer = () => {
   const {

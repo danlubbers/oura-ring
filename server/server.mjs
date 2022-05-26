@@ -17,7 +17,7 @@ const headerConfig = {
 };
 
 // V2 Endpoints
-const ouraHeartRateV2BaseURL = `${baseURLV2}heartrate?start_date=2021-12-24`;
+const ouraHeartRateV2BaseURL = `${baseURLV2}heartrate`; // Oura API limits this endpoint to 30 day intervals
 const ouraPersonalInfoV2BaseURL = `${baseURLV2}personal_info`;
 const ouraSessionsV2BaseURL = `${baseURLV2}session?start_date=2021-12-24`;
 const ouraTagsV2BaseURL = `${baseURLV2}tag?start_date=2021-12-24`;
