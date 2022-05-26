@@ -72,9 +72,13 @@ const GlobalProvider: FC = ({ children }) => {
 
       const todaysSleepDate: string = sleepData.at(-1).bedtime_end.slice(0, 10);
 
+      // Array of arrays
       const todaysSleepData: SleepProps = sleepData.at(-1);
       const todaysReadinessData: ReadinessProps = readinessData.at(-1);
       const todaysActivityData: ActivityProps = activityData.at(-1);
+      // Array of objects
+      const todaysHeartRateData: MergedHeartRateProps =
+        heartRateDataByDate[heartRateDataByDate.length - 1];
 
       const bedtimeStart = todaysSleepData.bedtime_start;
       const bedtimeEnd = todaysSleepData.bedtime_end;
@@ -100,6 +104,7 @@ const GlobalProvider: FC = ({ children }) => {
           readiness: todaysReadinessData,
           sleep: todaysSleepData,
           activity: todaysActivityData,
+          heartRate: todaysHeartRateData,
           tags: undefined, // No data to retrieve from Oura Api for same day
           sessions: undefined, // No data to retrieve from Oura Api for same day
         },
@@ -116,6 +121,7 @@ const GlobalProvider: FC = ({ children }) => {
         readinessData,
         sleepData,
         activityData,
+        mergedHeartRateData,
         mergedTagData,
         mergedSessionData,
         startDate,

@@ -4,6 +4,7 @@ export interface GlobalContextProps {
   readinessData: ReadinessProps[];
   sleepData: SleepProps[];
   activityData: ActivityProps[];
+  mergedHeartRateData: MergedHeartRateProps[];
   mergedTagData: MergedTagProps[];
   mergedSessionData: MergedSessionProps[];
   startDate: string;
@@ -54,6 +55,7 @@ export type TodaysProps = {
     readiness: ReadinessProps;
     sleep: SleepProps;
     activity: ActivityProps;
+    heartRate: MergedHeartRateProps | undefined;
     tags: MergedTagProps | undefined;
     sessions: MergedSessionProps | undefined;
   };

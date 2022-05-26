@@ -9,6 +9,7 @@ const DateRenderer = () => {
     readinessData,
     sleepData,
     activityData,
+    mergedHeartRateData,
     mergedTagData,
     mergedSessionData,
     todaysData,
@@ -48,6 +49,7 @@ const DateRenderer = () => {
       readiness: readinessData[idx],
       sleep: sleepData[idx],
       activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
+      heartRate: findDataByDate(mergedHeartRateData, date),
       tags: findDataByDate(mergedTagData, date),
       sessions: findDataByDate(mergedSessionData, date),
     };

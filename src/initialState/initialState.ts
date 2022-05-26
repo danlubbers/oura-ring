@@ -102,6 +102,10 @@ export const todaysInitialStateData = {
       to_target_miles: 0,
       total: 0,
     },
+    heartRate: {
+      day: "",
+      heartRateData: [],
+    },
     tags: {
       day: "",
       tagData: [],
@@ -118,6 +122,7 @@ export const globalContextInitialState = {
   readinessData: [],
   sleepData: [],
   activityData: [],
+  mergedHeartRateData: [],
   mergedTagData: [],
   mergedSessionData: [],
   startDate: "",
