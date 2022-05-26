@@ -100,8 +100,8 @@ const GlobalProvider: FC = ({ children }) => {
           readiness: todaysReadinessData,
           sleep: todaysSleepData,
           activity: todaysActivityData,
-          tags: null, // No data to retrieve from Oura Api for same day
-          sessions: null, // No data to retrieve from Oura Api for same day
+          tags: undefined, // No data to retrieve from Oura Api for same day
+          sessions: undefined, // No data to retrieve from Oura Api for same day
         },
       });
     };

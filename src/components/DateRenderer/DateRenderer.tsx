@@ -2,6 +2,7 @@ import { useContext, useRef, createRef, useEffect } from "react";
 import styles from "./DateRenderer.module.scss";
 import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
+import { findDataByDate } from "../../utilities/findDatabyDate";
 
 const DateRenderer = () => {
   const {
@@ -43,16 +44,12 @@ const DateRenderer = () => {
     const bedtimeStart = sleepObj.bedtime_start;
     const bedtimeEnd = sleepObj.bedtime_end;
 
-    const findByDayData = (data: any) => {
-      return data.find(({ day }: { day: string }) => day === date);
-    };
-
     const combinedData = {
       readiness: readinessData[idx],
       sleep: sleepData[idx],
       activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
-      tags: findByDayData(mergedTagData),
-      sessions: findByDayData(mergedSessionData),
+      tags: findDataByDate(mergedTagData, date),
+      sessions: findDataByDate(mergedSessionData, date),
     };
 
     const handleBtnClick = () => {
