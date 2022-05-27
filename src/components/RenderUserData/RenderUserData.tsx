@@ -10,7 +10,7 @@ const RenderUserData: React.FC<RenderUserDataProps & UserProps> = ({
   age,
   height,
   weight,
-  gender,
+  biological_sex,
   email,
   isImperial,
   setUnits,
@@ -19,14 +19,7 @@ const RenderUserData: React.FC<RenderUserDataProps & UserProps> = ({
 }) => {
   if (!age) return <Loading />;
 
-  const conversionHeight = isImperial
-    ? `${String(Math.round((height + Number.EPSILON) * 0.0328084 * 100) / 100)
-        .replace(".", "ft ")
-        .slice(0, 4)}${String(
-        Math.round((height + Number.EPSILON) * 0.0328084 * 100) / 100
-      ).slice(-2, -1)}in`
-    : height;
-
+  const conversionHeight = isImperial ? (height * 3.2808).toFixed(2) : height;
   const conversionWeight = isImperial ? Math.round(weight * 2.2046) : weight;
 
   return (
@@ -46,7 +39,7 @@ const RenderUserData: React.FC<RenderUserDataProps & UserProps> = ({
           <li title="height">
             <span data-testid="height">HEIGHT: </span>
             <span data-testid="height-value">{conversionHeight}</span>
-            {isImperial ? <span></span> : <span>cm</span>}
+            {isImperial ? <span>ft</span> : <span>m</span>}
           </li>
           <li title="weight">
             <span data-testid="weight">WEIGHT: </span>
@@ -55,7 +48,7 @@ const RenderUserData: React.FC<RenderUserDataProps & UserProps> = ({
           </li>
           <li title="gender">
             <span data-testid="gender">GENDER: </span>
-            <span data-testid="gender-value">{gender}</span>
+            <span data-testid="gender-value">{biological_sex}</span>
           </li>
           <li title="email">
             <span data-testid="email">EMAIL: </span>

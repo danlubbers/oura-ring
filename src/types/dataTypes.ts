@@ -4,6 +4,10 @@ export interface GlobalContextProps {
   readinessData: ReadinessProps[];
   sleepData: SleepProps[];
   activityData: ActivityProps[];
+  mergedHeartRateData: MergedHeartRateProps[];
+  mergedTagData: MergedTagProps[];
+  mergedSessionData: MergedSessionProps[];
+  mergedWorkoutData: MergedWorkoutProps[];
   startDate: string;
   setStartDate: (date: string) => void;
   endDate: string;
@@ -37,7 +41,7 @@ export interface LoginProps {
 export type UserProps = {
   age: number;
   email: string;
-  gender: string;
+  biological_sex: string;
   height: number;
   weight: number;
 };
@@ -52,10 +56,14 @@ export type TodaysProps = {
     readiness: ReadinessProps;
     sleep: SleepProps;
     activity: ActivityProps;
+    heartRate: MergedHeartRateProps | undefined;
+    tags: MergedTagProps | undefined;
+    sessions: MergedSessionProps | undefined;
+    workouts: MergedWorkoutProps | undefined;
   };
 };
 
-// Readiness, Sleep & Activity Props
+// Readiness, Sleep, Activity, Tags & Sessions Props
 export type ReadinessProps = {
   period_id: number;
   rest_mode_state: number;
@@ -148,6 +156,83 @@ export type ActivityProps = {
   to_target_km: number;
   to_target_miles: number;
   total: number;
+};
+
+export type HeartRateProps = {
+  bpm: number;
+  source: string;
+  timestamp: string;
+};
+export type MergedHeartRateProps = {
+  day: string;
+  heartRateData: {
+    bpm: number;
+    source: string;
+    timestamp: string;
+  }[];
+};
+
+export type TagProps = {
+  day: string;
+  tags: string[];
+  text: string;
+  timestamp: string;
+};
+
+export type MergedTagProps = {
+  day: string;
+  tagData: {
+    tags: string[];
+    text: string;
+    timestamp: string;
+  }[];
+};
+
+export type SessionArrayDataProps = {
+  interval: number;
+  items: number[] | null[];
+  timestamp: string;
+};
+
+export type SessionProps = {
+  day: string;
+  start_datetime: string;
+  end_datetime: string;
+  mood: string | null;
+  type: string;
+  heart_rate: SessionArrayDataProps[];
+  heart_rate_variability: SessionArrayDataProps[];
+  motion_count: SessionArrayDataProps[];
+};
+
+export type MergedSessionProps = {
+  day: string;
+  sessionData: {
+    start_datetime: string;
+    end_datetime: string;
+    mood: string | null;
+    type: string;
+    heart_rate: SessionArrayDataProps[];
+    heart_rate_variability: SessionArrayDataProps[];
+    motion_count: SessionArrayDataProps[];
+  }[];
+};
+
+export type WorkoutProps = {
+  activity: string;
+  calories: number;
+  day: string;
+  distance: number | null;
+  end_datetime: string;
+  intensity: string;
+  label: null;
+  source: string;
+  start_datetime: string;
+};
+
+export type MergedWorkoutProps = {
+  day: string;
+  workoutData: WorkoutProps[];
 };
 
 // All Type Props for Components

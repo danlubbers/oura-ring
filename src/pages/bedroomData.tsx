@@ -19,8 +19,6 @@ const BedroomData = () => {
     return parseFile(thermoStr, setParsedCsvData);
   }, []);
 
-  // Time Data
-
   /*** Filtered to get last nights data between sleeping hours */
   const filteredData = parsedCsvData.filter((obj) => {
     const date = obj.Timestamp.slice(0, 10);
@@ -39,8 +37,6 @@ const BedroomData = () => {
     }
     return date === bedtimeEndDate && hour <= bedtimeEndTime;
   });
-
-  // console.log(`filteredData`, filteredData);
 
   /*** Average Filtered Temp Data */
   const nightlyTempAvg =

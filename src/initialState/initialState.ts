@@ -1,7 +1,7 @@
 export const userInitialStateData = {
   age: 0,
   email: "",
-  gender: "",
+  biological_sex: "",
   height: 0,
   weight: 0,
 };
@@ -102,6 +102,22 @@ export const todaysInitialStateData = {
       to_target_miles: 0,
       total: 0,
     },
+    heartRate: {
+      day: "",
+      heartRateData: [],
+    },
+    tags: {
+      day: "",
+      tagData: [],
+    },
+    sessions: {
+      day: "",
+      sessionData: [],
+    },
+    workouts: {
+      day: "",
+      workoutData: [],
+    },
   },
 };
 
@@ -110,6 +126,10 @@ export const globalContextInitialState = {
   readinessData: [],
   sleepData: [],
   activityData: [],
+  mergedHeartRateData: [],
+  mergedTagData: [],
+  mergedSessionData: [],
+  mergedWorkoutData: [],
   startDate: "",
   setStartDate: () => "",
   endDate: "",

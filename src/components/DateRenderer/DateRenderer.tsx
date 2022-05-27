@@ -2,12 +2,17 @@ import { useContext, useRef, createRef, useEffect } from "react";
 import styles from "./DateRenderer.module.scss";
 import Button from "../Button/Button";
 import { GlobalContext } from "../../context/Provider";
+import { findDataByDate } from "../../utilities/findDatabyDate";
 
 const DateRenderer = () => {
   const {
     readinessData,
     sleepData,
     activityData,
+    mergedHeartRateData,
+    mergedTagData,
+    mergedSessionData,
+    mergedWorkoutData,
     todaysData,
     setTodaysData,
     btnOffsetLeft,
@@ -37,15 +42,19 @@ const DateRenderer = () => {
   }, [todaysDate, btnOffsetLeft, isBtnPosition]);
 
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
+    const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
+    const bedtimeStart = sleepObj.bedtime_start;
+    const bedtimeEnd = sleepObj.bedtime_end;
+
     const combinedData = {
       readiness: readinessData[idx],
       sleep: sleepData[idx],
       activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
+      heartRate: findDataByDate(mergedHeartRateData, date),
+      tags: findDataByDate(mergedTagData, date),
+      sessions: findDataByDate(mergedSessionData, date),
+      workouts: findDataByDate(mergedWorkoutData, date),
     };
-
-    const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
-    const bedtimeStart = sleepObj.bedtime_start;
-    const bedtimeEnd = sleepObj.bedtime_end;
 
     const handleBtnClick = () => {
       setTodaysData({
