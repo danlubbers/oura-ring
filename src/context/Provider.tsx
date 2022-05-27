@@ -23,6 +23,7 @@ import {
   mergedSessionDataByDate,
   mergedWorkoutDataByDate,
 } from "../utilities/mergeData";
+import { findDataByDate } from "../utilities/findDatabyDate";
 
 export const GlobalContext = createContext<GlobalContextProps>(
   globalContextInitialState
@@ -55,7 +56,6 @@ const GlobalProvider: FC = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getOuraData();
-      // console.log("data", data);
 
       const userData = data?.ouraPersonalInfoData_V2.data.personalInfo;
       const readinessData = data?.ouraReadinessData.data.readiness;
@@ -79,19 +79,20 @@ const GlobalProvider: FC = ({ children }) => {
 
       const todaysSleepDate: string = sleepData.at(-1).bedtime_end.slice(0, 10);
 
-      // Array of arrays
+      // V1 API: Array of arrays
       const todaysSleepData: SleepProps = sleepData.at(-1);
       const todaysReadinessData: ReadinessProps = readinessData.at(-1);
       const todaysActivityData: ActivityProps = activityData.at(-1);
-      // Array of objects
+      // V2 API: Array of objects
       const todaysHeartRateData: MergedHeartRateProps =
         heartRateDataByDate[heartRateDataByDate.length - 1];
-      const todaysWorkoutData: MergedWorkoutProps =
-        mergedWorkoutData[mergedWorkoutData.length - 1];
+      const todaysWorkoutData: MergedWorkoutProps = findDataByDate(
+        workoutData,
+        todaysSleepDate
+      );
 
       const bedtimeStart = todaysSleepData.bedtime_start;
       const bedtimeEnd = todaysSleepData.bedtime_end;
-      // console.log("PROVIDER: ", bedtimeEnd);
 
       setUserData(userData);
       setReadinessData(readinessData);
@@ -117,7 +118,7 @@ const GlobalProvider: FC = ({ children }) => {
           heartRate: todaysHeartRateData,
           tags: undefined, // No data to retrieve from Oura Api for same day
           sessions: undefined, // No data to retrieve from Oura Api for same day
-          workouts: todaysWorkoutData,
+          workouts: todaysWorkoutData ? todaysWorkoutData : undefined, // There's not always data for todays workout
         },
       });
     };

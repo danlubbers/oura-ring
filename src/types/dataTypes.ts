@@ -222,7 +222,7 @@ export type WorkoutProps = {
   activity: string;
   calories: number;
   day: string;
-  distance: number;
+  distance: number | null;
   end_datetime: string;
   intensity: string;
   label: null;

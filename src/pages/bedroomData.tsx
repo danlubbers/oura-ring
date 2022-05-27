@@ -11,8 +11,6 @@ const BedroomData = () => {
     todaysData: { bedtimeStart, bedtimeEnd, data },
   } = useContext(GlobalContext);
 
-  // console.log("Bedroom data:", data.tags?.tagData[0]?.timestamp);
-
   const [parsedCsvData, setParsedCsvData] = useState([
     { Timestamp: "", Temperature_Fahrenheit: "", Relative_Humidity: "" },
   ]);
@@ -20,8 +18,6 @@ const BedroomData = () => {
   useEffect(() => {
     return parseFile(thermoStr, setParsedCsvData);
   }, []);
-
-  // Time Data
 
   /*** Filtered to get last nights data between sleeping hours */
   const filteredData = parsedCsvData.filter((obj) => {
@@ -41,8 +37,6 @@ const BedroomData = () => {
     }
     return date === bedtimeEndDate && hour <= bedtimeEndTime;
   });
-
-  // console.log(`filteredData`, filteredData);
 
   /*** Average Filtered Temp Data */
   const nightlyTempAvg =
