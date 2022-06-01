@@ -30,14 +30,15 @@ function Index() {
   };
 
   return (
-    <Container>
-      <div style={{ display: "flex", margin: 0 }}>
+    <>
+      <div style={{ padding: "2rem 0 0 2rem" }}>
         <HamburgerIcon
           handleClickMobileDisplay={handleClickMobileDisplay}
           isMobileDisplay={isMobileDisplay}
         />
-        {/* <DateRenderer /> */}
       </div>
+      <DateRenderer />
+
       <Home date={date} heartRate={heartRate} tags={tags} />
       <NavigationFooter />
       <SideMenu
@@ -45,7 +46,7 @@ function Index() {
         isMobileDisplay={isMobileDisplay}
         logout={logout}
       />
-    </Container>
+    </>
   );
 }
 

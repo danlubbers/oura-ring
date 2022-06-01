@@ -11,14 +11,14 @@ const Home: React.FC<HomeProps> = ({ date, heartRate, tags }) => {
       const time = timestamp.slice(11, 16);
       // console.log("typeof tags", tags);
       const tagArr = tags.map((tag) => {
-        console.log("tag", tag);
+        // console.log("tag", tag);
         return (
           <span className={styles.genericTags}>
             {tag.replace("tag_generic_", "")}{" "}
           </span>
         );
       });
-      console.log("tagArr", tagArr);
+      // console.log("tagArr", tagArr);
       return (
         <ul className={styles.tagsContainer} key={idx}>
           <li className={styles.tagList}>

@@ -1,9 +1,11 @@
 @import "../../styles/variables.scss";
 
 .homeContainer {
+  padding: 2rem;
   .dateHeadline {
   }
   .tagsHeadline {
+    margin: 0.5rem 0;
   }
 
   ul,
@@ -16,12 +18,12 @@
       justify-content: space-between;
       font-weight: 600;
       .tagText {
-        margin: 0.5rem 0;
+        margin: 0.7rem 0;
         .genericTags {
           color: #fff;
           margin-right: 1rem;
           font-weight: 300;
-          padding: 0.3rem 0.5rem;
+          padding: 0.2rem 0.5rem;
           border-radius: 5px;
           background-color: $color-blue;
         }
