@@ -1,14 +1,33 @@
-.sidebarContainer {
-  position: absolute;
-  width: 80%;
-  height: 100%;
-  top: 0;
-  left: -300px;
-  background-color: #0e0e0e;
-  z-index: 100;
-  transition: 0.25s ease-in-out;
-}
+@import "../../styles/variables.scss";
 
-.active {
-  left: 0;
+.homeContainer {
+  .dateHeadline {
+  }
+  .tagsHeadline {
+  }
+
+  ul,
+  .tagsContainer {
+    font-size: 1.4rem;
+
+    li,
+    .tagList {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      .tagText {
+        margin: 0.5rem 0;
+        .genericTags {
+          color: #fff;
+          margin-right: 1rem;
+          font-weight: 300;
+          padding: 0.3rem 0.5rem;
+          border-radius: 5px;
+          background-color: $color-blue;
+        }
+      }
+      .tagTime {
+      }
+    }
+  }
 }

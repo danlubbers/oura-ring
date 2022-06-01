@@ -391,7 +391,9 @@ export interface HeartRateAndHRVChartsProps {
 }
 
 export interface HomeProps {
-  logout: () => void;
+  date: string;
+  heartRate: MergedHeartRateProps | undefined;
+  tags: MergedTagProps | undefined;
 }
 
 export interface InputProps {
