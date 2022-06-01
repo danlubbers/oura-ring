@@ -1,7 +1,14 @@
-import { HomeProps } from "../../types/dataTypes";
-import styles from "./Home.module.scss";
+import { useContext } from "react";
+import styles from "./RenderTagData.module.scss";
+import { GlobalContext } from "../../context/Provider";
 
-const Home: React.FC<HomeProps> = ({ tags }) => {
+const RenderTagData = () => {
+  const {
+    todaysData: {
+      data: { tags },
+    },
+  } = useContext(GlobalContext);
+
   console.log("tags", tags?.tagData);
 
   const tagText = tags?.tagData.map(({ text, timestamp, tags }, idx) => {
@@ -35,4 +42,4 @@ const Home: React.FC<HomeProps> = ({ tags }) => {
   );
 };
 
-export default Home;
+export default RenderTagData;

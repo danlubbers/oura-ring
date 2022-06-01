@@ -3,19 +3,13 @@ import { GlobalContext } from "../context/Provider";
 import useToken from "../hooks/useToken";
 import HamburgerIcon from "../components/HamburgerIcon/HamburgerIcon";
 import DateRenderer from "../components/DateRenderer/DateRenderer";
-import Home from "../components/Home/Home";
+import RenderTagData from "../components/RenderTagData/RenderTagData";
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import SideMenu from "../components/SideMenu/SideMenu";
 
 function Index() {
   const { logout } = useToken();
-  const {
-    isMobileDisplay,
-    setIsMobileDisplay,
-    todaysData: {
-      data: { heartRate, tags, sessions, workouts },
-    },
-  } = useContext(GlobalContext);
+  const { isMobileDisplay, setIsMobileDisplay } = useContext(GlobalContext);
 
   useEffect(() => {
     setIsMobileDisplay(false);
@@ -34,8 +28,7 @@ function Index() {
         />
       </div>
       <DateRenderer />
-
-      <Home tags={tags} />
+      <RenderTagData />
       <NavigationFooter />
       <SideMenu
         handleClickMobileDisplay={handleClickMobileDisplay}

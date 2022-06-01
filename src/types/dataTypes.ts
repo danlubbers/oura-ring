@@ -390,10 +390,6 @@ export interface HeartRateAndHRVChartsProps {
   hrvData: HrvDataProps[];
 }
 
-export interface HomeProps {
-  tags: MergedTagProps | undefined;
-}
-
 export interface InputProps {
   type: string;
   id: string;
