@@ -391,8 +391,6 @@ export interface HeartRateAndHRVChartsProps {
 }
 
 export interface HomeProps {
-  date: string;
-  heartRate: MergedHeartRateProps | undefined;
   tags: MergedTagProps | undefined;
 }
 

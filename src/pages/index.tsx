@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/Provider";
 import useToken from "../hooks/useToken";
-import Container from "../components/Container/Container";
 import HamburgerIcon from "../components/HamburgerIcon/HamburgerIcon";
 import DateRenderer from "../components/DateRenderer/DateRenderer";
 import Home from "../components/Home/Home";
@@ -14,12 +13,9 @@ function Index() {
     isMobileDisplay,
     setIsMobileDisplay,
     todaysData: {
-      date,
       data: { heartRate, tags, sessions, workouts },
     },
   } = useContext(GlobalContext);
-
-  console.log("Index data", heartRate);
 
   useEffect(() => {
     setIsMobileDisplay(false);
@@ -39,7 +35,7 @@ function Index() {
       </div>
       <DateRenderer />
 
-      <Home date={date} heartRate={heartRate} tags={tags} />
+      <Home tags={tags} />
       <NavigationFooter />
       <SideMenu
         handleClickMobileDisplay={handleClickMobileDisplay}
