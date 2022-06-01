@@ -9,21 +9,19 @@ const RenderTagData = () => {
     },
   } = useContext(GlobalContext);
 
-  console.log("tags", tags?.tagData);
-
   const tagText = tags?.tagData.map(({ text, timestamp, tags }, idx) => {
     const time = timestamp.slice(11, 16);
 
-    const tagArr = tags.map((tag) => {
+    const tagArr = tags.map((tag, idx) => {
       return (
-        <span className={styles.genericTags}>
+        <span className={styles.genericTags} key={idx}>
           {tag.replace("tag_generic_", "")}{" "}
         </span>
       );
     });
 
     return (
-      <ul className={styles.tagsContainer} key={idx}>
+      <ul className={styles.tagsWrapper} key={idx}>
         <li className={styles.tagList}>
           <p className={styles.tagText}>
             {text} {tagArr}
@@ -35,7 +33,7 @@ const RenderTagData = () => {
   });
 
   return (
-    <div className={styles.homeContainer}>
+    <div className={styles.tagsContainer}>
       <h2 className={styles.tagsHeadline}>Tags:</h2>
       {tagText}
     </div>
