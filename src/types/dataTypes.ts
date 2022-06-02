@@ -181,16 +181,12 @@ export type TagProps = {
 
 export type MergedTagProps = {
   day: string;
-  tagData: {
-    tags: string[];
-    text: string;
-    timestamp: string;
-  }[];
+  tagData: TagProps[];
 };
 
 export type SessionArrayDataProps = {
   interval: number;
-  items: number[] | null[];
+  items: number[];
   timestamp: string;
 };
 
@@ -200,22 +196,14 @@ export type SessionProps = {
   end_datetime: string;
   mood: string | null;
   type: string;
-  heart_rate: SessionArrayDataProps[];
-  heart_rate_variability: SessionArrayDataProps[];
-  motion_count: SessionArrayDataProps[];
+  heart_rate: SessionArrayDataProps;
+  heart_rate_variability: SessionArrayDataProps;
+  motion_count: SessionArrayDataProps;
 };
 
 export type MergedSessionProps = {
   day: string;
-  sessionData: {
-    start_datetime: string;
-    end_datetime: string;
-    mood: string | null;
-    type: string;
-    heart_rate: SessionArrayDataProps[];
-    heart_rate_variability: SessionArrayDataProps[];
-    motion_count: SessionArrayDataProps[];
-  }[];
+  sessionData: SessionProps[];
 };
 
 export type WorkoutProps = {
