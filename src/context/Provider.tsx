@@ -124,7 +124,7 @@ const GlobalProvider: FC = ({ children }) => {
     };
     fetchData();
   }, [setUserData, setSleepData]);
-  console.log(`Provider: todaysData`, todaysData);
+  // console.log(`Provider: todaysData`, todaysData);
 
   return (
     <GlobalContext.Provider

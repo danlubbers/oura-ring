@@ -1,0 +1,21 @@
+@import "../../styles/variables.scss";
+
+.sessionsContainer {
+  padding: 2rem;
+
+  .sessionsHeadline {
+    margin: 0.5rem 0;
+  }
+
+  .sessionsWrapper {
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    font-size: 1.4rem;
+    font-weight: 400;
+
+    .startTime {
+      //   margin-right: 2rem;
+    }
+  }
+}
