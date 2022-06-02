@@ -35,7 +35,14 @@ const RenderTagData = () => {
   return (
     <div className={styles.tagsContainer}>
       <h2 className={styles.tagsHeadline}>Tags:</h2>
-      {tagText}
+      {tagText ? (
+        tagText
+      ) : (
+        <p className={styles.noTagText}>
+          Nothing has been tagged or the tags have not yet been fetched from the
+          server!
+        </p>
+      )}
     </div>
   );
 };
