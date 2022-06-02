@@ -4,6 +4,7 @@ import RenderWeeklyAverages from "../components/RenderWeeklyAverages/RenderWeekl
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { parseFile } from "../utilities/parseFile";
 import { thermoStr } from "../data/sampleTempData";
+import { getAverages } from "../utilities/getAverages";
 
 const WeeklyAverages = () => {
   const {
@@ -83,12 +84,6 @@ const WeeklyAverages = () => {
       ? `+${bodyTempFahrenheit}`
       : bodyTempFahrenheit;
 
-    const getAverage = (arr: string[]) => {
-      const reducer = (acc: number, val: string) => acc + Number(val);
-      const sum = arr.reduce(reducer, 0);
-      return sum / arr.length;
-    };
-
     const filteredTempAvg = parsedCsvData
       .filter((e) => {
         const hour = Number(e.Timestamp.slice(11, 13));
@@ -96,9 +91,9 @@ const WeeklyAverages = () => {
           date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
         );
       })
-      .map((e) => e.Temperature_Fahrenheit);
+      .map((e) => parseInt(e.Temperature_Fahrenheit));
 
-    const avgTemp = Number(getAverage(filteredTempAvg).toFixed(1));
+    const avgTemp = Number(getAverages(filteredTempAvg).toFixed(1));
 
     const filteredHumidityAvg = parsedCsvData
       .filter((e) => {
@@ -107,9 +102,9 @@ const WeeklyAverages = () => {
           date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
         );
       })
-      .map((e) => e.Relative_Humidity);
+      .map((e) => parseInt(e.Relative_Humidity));
 
-    const avgHumidity = Number(getAverage(filteredHumidityAvg).toFixed(1));
+    const avgHumidity = Number(getAverages(filteredHumidityAvg).toFixed(1));
 
     return {
       restingHR: obj.hr_lowest,
