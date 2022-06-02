@@ -38,7 +38,14 @@ const RenderSessionsData = () => {
   return (
     <div className={styles.sessionsContainer}>
       <h2 className={styles.sessionsHeadline}>Meditation Sessions:</h2>
-      {sessionsText}
+      {sessionsText ? (
+        sessionsText
+      ) : (
+        <p className={styles.noSessionText}>
+          A session has not been logged today or the sessions are not yet
+          available to be fetched from the server!
+        </p>
+      )}
     </div>
   );
 };

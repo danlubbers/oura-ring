@@ -39,8 +39,8 @@ const RenderTagData = () => {
         tagText
       ) : (
         <p className={styles.noTagText}>
-          Nothing has been tagged or the tags have not yet been fetched from the
-          server!
+          Nothing has been tagged today or the tags are not yet available to be
+          fetched from the server!
         </p>
       )}
     </div>
