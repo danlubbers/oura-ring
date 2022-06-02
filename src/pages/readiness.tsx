@@ -4,6 +4,7 @@ import RenderReadinessData from "../components/RenderReadinessData/RenderReadine
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
 import { timeIncrement } from "../utilities/incrementTime";
+import { getAverages } from "../utilities/getAverages";
 
 function Readiness() {
   const {
@@ -78,9 +79,7 @@ function Readiness() {
     })
     .filter((obj) => obj.HRV !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
-  const avgHRData = data?.sleep?.hr_5min.reduce((avg, value, _, { length }) => {
-    return avg + value / length;
-  }, 0);
+  const avgHRData = getAverages(data?.sleep?.hr_5min);
 
   return (
     <div>
