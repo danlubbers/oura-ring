@@ -5,6 +5,7 @@ import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { parseFile } from "../utilities/parseFile";
 import { thermoStr } from "../data/sampleTempData";
 import { getAverages } from "../utilities/getAverages";
+import { filterAverages } from "../utilities/filterAverages";
 
 const WeeklyAverages = () => {
   const {
@@ -84,26 +85,10 @@ const WeeklyAverages = () => {
       ? `+${bodyTempFahrenheit}`
       : bodyTempFahrenheit;
 
-    const filteredTempAvg = parsedCsvData
-      .filter((e) => {
-        const hour = Number(e.Timestamp.slice(11, 13));
-        return (
-          date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
-        );
-      })
-      .map((e) => parseInt(e.Temperature_Fahrenheit));
-
+    const filteredTempAvg = filterAverages(parsedCsvData, date, "temperature");
     const avgTemp = Number(getAverages(filteredTempAvg).toFixed(1));
 
-    const filteredHumidityAvg = parsedCsvData
-      .filter((e) => {
-        const hour = Number(e.Timestamp.slice(11, 13));
-        return (
-          date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
-        );
-      })
-      .map((e) => parseInt(e.Relative_Humidity));
-
+    const filteredHumidityAvg = filterAverages(parsedCsvData, date, "humidity");
     const avgHumidity = Number(getAverages(filteredHumidityAvg).toFixed(1));
 
     return {
