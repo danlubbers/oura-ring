@@ -284,7 +284,7 @@ export interface RenderUserDataProps {
 
 export type ShowChartDataProps = {
   restingHR: boolean;
-  maxHRV: boolean;
+  avgHRV: boolean;
   avgBedroomTemp: boolean;
   avgHumidity: boolean;
 };
@@ -295,13 +295,13 @@ export type chosenDateRangeProps = {
   bodyTemp: number;
   date: string;
   fullDate: string;
-  maxHRV: number;
+  avgHRV: number;
   restingHR: number;
 };
 
 export type WeekAveragesProps = {
   restingHR: number;
-  maxHRV: number;
+  avgHRV: number;
   bodyTemp: number;
   avgBedroomTemp: number;
   avgHumidity: number;
@@ -522,7 +522,7 @@ export interface StagesProps {
 export interface WeeklyAveragesChartProps {
   data: {
     restingHR: number;
-    maxHRV: number;
+    avgHRV: number;
     bodyTemp: number;
     avgBedroomTemp: number;
     avgHumidity: number;

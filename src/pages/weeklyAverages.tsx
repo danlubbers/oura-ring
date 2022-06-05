@@ -23,7 +23,7 @@ const WeeklyAverages = () => {
   ]);
   const [showChartData, setShowChartData] = useState({
     restingHR: true,
-    maxHRV: true,
+    avgHRV: true,
     avgBedroomTemp: true,
     avgHumidity: true,
   });
@@ -41,15 +41,15 @@ const WeeklyAverages = () => {
     if ("restingHR" === chosenData) {
       setShowChartData({
         restingHR: !showChartData.restingHR,
-        maxHRV: showChartData.maxHRV,
+        avgHRV: showChartData.avgHRV,
         avgBedroomTemp: showChartData.avgBedroomTemp,
         avgHumidity: showChartData.avgHumidity,
       });
     }
-    if ("maxHRV" === chosenData) {
+    if ("avgHRV" === chosenData) {
       setShowChartData({
         restingHR: showChartData.restingHR,
-        maxHRV: !showChartData.maxHRV,
+        avgHRV: !showChartData.avgHRV,
         avgBedroomTemp: showChartData.avgBedroomTemp,
         avgHumidity: showChartData.avgHumidity,
       });
@@ -57,7 +57,7 @@ const WeeklyAverages = () => {
     if ("avgBedroomTemp" === chosenData) {
       setShowChartData({
         restingHR: showChartData.restingHR,
-        maxHRV: showChartData.maxHRV,
+        avgHRV: showChartData.avgHRV,
         avgBedroomTemp: !showChartData.avgBedroomTemp,
         avgHumidity: showChartData.avgHumidity,
       });
@@ -65,7 +65,7 @@ const WeeklyAverages = () => {
     if ("avgHumidity" === chosenData) {
       setShowChartData({
         restingHR: showChartData.restingHR,
-        maxHRV: showChartData.maxHRV,
+        avgHRV: showChartData.avgHRV,
         avgBedroomTemp: showChartData.avgBedroomTemp,
         avgHumidity: !showChartData.avgHumidity,
       });
@@ -93,7 +93,7 @@ const WeeklyAverages = () => {
 
     return {
       restingHR: obj.hr_lowest,
-      maxHRV: obj.rmssd,
+      avgHRV: obj.rmssd,
       bodyTemp: parseFloat(bodyTempFahrenheit),
       avgBedroomTemp: avgTemp,
       avgHumidity: avgHumidity,

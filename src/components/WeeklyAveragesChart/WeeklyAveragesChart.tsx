@@ -28,8 +28,8 @@ const WeeklyAveragesChart: React.FC<WeeklyAveragesChartProps> = ({
           />
         )}
 
-        {showChartData.maxHRV && (
-          <Line type="monotone" dataKey="maxHRV" stroke="#808080" dot={false} />
+        {showChartData.avgHRV && (
+          <Line type="monotone" dataKey="avgHRV" stroke="#808080" dot={false} />
         )}
 
         {showChartData.avgBedroomTemp && (
