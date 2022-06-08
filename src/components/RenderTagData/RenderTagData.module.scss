@@ -24,14 +24,15 @@
       font-weight: 600;
       .tagText {
         margin: 0.7rem 0;
-        .genericTags {
-          color: #fff;
-          margin-right: 1rem;
-          font-weight: 300;
-          padding: 0.2rem 0.5rem;
-          border-radius: 5px;
-          background-color: $color-blue;
-        }
+        text-align: start;
+      }
+      .genericTags {
+        color: #fff;
+        margin-right: 1rem;
+        font-weight: 300;
+        padding: 0.2rem 0.5rem;
+        border-radius: 5px;
+        background-color: $color-blue;
       }
       .tagTime {
       }
