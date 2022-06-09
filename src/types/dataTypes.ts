@@ -181,16 +181,12 @@ export type TagProps = {
 
 export type MergedTagProps = {
   day: string;
-  tagData: {
-    tags: string[];
-    text: string;
-    timestamp: string;
-  }[];
+  tagData: TagProps[];
 };
 
 export type SessionArrayDataProps = {
   interval: number;
-  items: number[] | null[];
+  items: number[];
   timestamp: string;
 };
 
@@ -200,22 +196,14 @@ export type SessionProps = {
   end_datetime: string;
   mood: string | null;
   type: string;
-  heart_rate: SessionArrayDataProps[];
-  heart_rate_variability: SessionArrayDataProps[];
-  motion_count: SessionArrayDataProps[];
+  heart_rate: SessionArrayDataProps;
+  heart_rate_variability: SessionArrayDataProps;
+  motion_count: SessionArrayDataProps;
 };
 
 export type MergedSessionProps = {
   day: string;
-  sessionData: {
-    start_datetime: string;
-    end_datetime: string;
-    mood: string | null;
-    type: string;
-    heart_rate: SessionArrayDataProps[];
-    heart_rate_variability: SessionArrayDataProps[];
-    motion_count: SessionArrayDataProps[];
-  }[];
+  sessionData: SessionProps[];
 };
 
 export type WorkoutProps = {
@@ -296,7 +284,7 @@ export interface RenderUserDataProps {
 
 export type ShowChartDataProps = {
   restingHR: boolean;
-  maxHRV: boolean;
+  avgHRV: boolean;
   avgBedroomTemp: boolean;
   avgHumidity: boolean;
 };
@@ -307,13 +295,13 @@ export type chosenDateRangeProps = {
   bodyTemp: number;
   date: string;
   fullDate: string;
-  maxHRV: number;
+  avgHRV: number;
   restingHR: number;
 };
 
 export type WeekAveragesProps = {
   restingHR: number;
-  maxHRV: number;
+  avgHRV: number;
   bodyTemp: number;
   avgBedroomTemp: number;
   avgHumidity: number;
@@ -388,10 +376,6 @@ export interface HeartRateAndHRVChartsProps {
   maxHRV: number;
   heartRateData: HeartDataProps[];
   hrvData: HrvDataProps[];
-}
-
-export interface HomeProps {
-  logout: () => void;
 }
 
 export interface InputProps {
@@ -538,7 +522,7 @@ export interface StagesProps {
 export interface WeeklyAveragesChartProps {
   data: {
     restingHR: number;
-    maxHRV: number;
+    avgHRV: number;
     bodyTemp: number;
     avgBedroomTemp: number;
     avgHumidity: number;

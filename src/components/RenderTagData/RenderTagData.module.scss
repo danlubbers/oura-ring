@@ -1,0 +1,41 @@
+@import "../../styles/variables.scss";
+
+.tagsContainer {
+  margin-top: -1.5rem;
+  padding: 2rem;
+
+  .tagsHeadline {
+    margin: 0.5rem 0;
+  }
+  .noTagText {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    font-weight: 300;
+  }
+
+  ul,
+  .tagsWrapper {
+    font-size: 1.4rem;
+
+    li,
+    .tagList {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      .tagText {
+        margin: 0.7rem 0;
+        text-align: start;
+      }
+      .genericTags {
+        color: #fff;
+        margin-right: 1rem;
+        font-weight: 300;
+        padding: 0.2rem 0.5rem;
+        border-radius: 5px;
+        background-color: $color-blue;
+      }
+      .tagTime {
+      }
+    }
+  }
+}

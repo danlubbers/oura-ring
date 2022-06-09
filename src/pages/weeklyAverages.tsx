@@ -4,6 +4,8 @@ import RenderWeeklyAverages from "../components/RenderWeeklyAverages/RenderWeekl
 import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { parseFile } from "../utilities/parseFile";
 import { thermoStr } from "../data/sampleTempData";
+import { getAverages } from "../utilities/getAverages";
+import { filterAverages } from "../utilities/filterAverages";
 
 const WeeklyAverages = () => {
   const {
@@ -21,7 +23,7 @@ const WeeklyAverages = () => {
   ]);
   const [showChartData, setShowChartData] = useState({
     restingHR: true,
-    maxHRV: true,
+    avgHRV: true,
     avgBedroomTemp: true,
     avgHumidity: true,
   });
@@ -39,15 +41,15 @@ const WeeklyAverages = () => {
     if ("restingHR" === chosenData) {
       setShowChartData({
         restingHR: !showChartData.restingHR,
-        maxHRV: showChartData.maxHRV,
+        avgHRV: showChartData.avgHRV,
         avgBedroomTemp: showChartData.avgBedroomTemp,
         avgHumidity: showChartData.avgHumidity,
       });
     }
-    if ("maxHRV" === chosenData) {
+    if ("avgHRV" === chosenData) {
       setShowChartData({
         restingHR: showChartData.restingHR,
-        maxHRV: !showChartData.maxHRV,
+        avgHRV: !showChartData.avgHRV,
         avgBedroomTemp: showChartData.avgBedroomTemp,
         avgHumidity: showChartData.avgHumidity,
       });
@@ -55,7 +57,7 @@ const WeeklyAverages = () => {
     if ("avgBedroomTemp" === chosenData) {
       setShowChartData({
         restingHR: showChartData.restingHR,
-        maxHRV: showChartData.maxHRV,
+        avgHRV: showChartData.avgHRV,
         avgBedroomTemp: !showChartData.avgBedroomTemp,
         avgHumidity: showChartData.avgHumidity,
       });
@@ -63,7 +65,7 @@ const WeeklyAverages = () => {
     if ("avgHumidity" === chosenData) {
       setShowChartData({
         restingHR: showChartData.restingHR,
-        maxHRV: showChartData.maxHRV,
+        avgHRV: showChartData.avgHRV,
         avgBedroomTemp: showChartData.avgBedroomTemp,
         avgHumidity: !showChartData.avgHumidity,
       });
@@ -83,37 +85,15 @@ const WeeklyAverages = () => {
       ? `+${bodyTempFahrenheit}`
       : bodyTempFahrenheit;
 
-    const getAverage = (arr: string[]) => {
-      const reducer = (acc: number, val: string) => acc + Number(val);
-      const sum = arr.reduce(reducer, 0);
-      return sum / arr.length;
-    };
+    const filteredTempAvg = filterAverages(parsedCsvData, date, "temperature");
+    const avgTemp = Number(getAverages(filteredTempAvg).toFixed(1));
 
-    const filteredTempAvg = parsedCsvData
-      .filter((e) => {
-        const hour = Number(e.Timestamp.slice(11, 13));
-        return (
-          date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
-        );
-      })
-      .map((e) => e.Temperature_Fahrenheit);
-
-    const avgTemp = Number(getAverage(filteredTempAvg).toFixed(1));
-
-    const filteredHumidityAvg = parsedCsvData
-      .filter((e) => {
-        const hour = Number(e.Timestamp.slice(11, 13));
-        return (
-          date === String(new Date(e.Timestamp)).slice(0, 15) && hour <= 10
-        );
-      })
-      .map((e) => e.Relative_Humidity);
-
-    const avgHumidity = Number(getAverage(filteredHumidityAvg).toFixed(1));
+    const filteredHumidityAvg = filterAverages(parsedCsvData, date, "humidity");
+    const avgHumidity = Number(getAverages(filteredHumidityAvg).toFixed(1));
 
     return {
       restingHR: obj.hr_lowest,
-      maxHRV: obj.rmssd,
+      avgHRV: obj.rmssd,
       bodyTemp: parseFloat(bodyTempFahrenheit),
       avgBedroomTemp: avgTemp,
       avgHumidity: avgHumidity,

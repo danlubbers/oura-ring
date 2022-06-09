@@ -5,12 +5,13 @@ import NavigationFooter from "../components/NavigationFooter/NavigationFooter";
 import { GlobalContext } from "../context/Provider";
 import { timeIncrement } from "../utilities/incrementTime";
 import { secondsToHm } from "../utilities/convertTime";
+import { getAverages } from "../utilities/getAverages";
 
 function SleepData() {
   const {
     todaysData: { date, bedtimeStart, data },
   } = useContext(GlobalContext);
-  // console.log(`Sleep: todaysData`, todaysData);
+  console.log(`Sleep: todaysData`, data);
 
   // Time Data
   const bedtimeStartHourAndMin = bedtimeStart && bedtimeStart.slice(11, 16);
@@ -158,9 +159,7 @@ function SleepData() {
     })
     .filter((obj) => obj.HRV !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
-  const avgHRData = data?.sleep?.hr_5min.reduce((avg, value, _, { length }) => {
-    return avg + value / length;
-  }, 0);
+  const avgHRData = getAverages(data?.sleep?.hr_5min);
 
   return (
     <div>

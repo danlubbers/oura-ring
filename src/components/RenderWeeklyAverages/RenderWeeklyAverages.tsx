@@ -30,9 +30,9 @@ const RenderWeeklyAverages: React.FC<RenderWeeklyAveragesProps> = ({
           </span>
         </div>
         <div className={styles.averagesWrapper}>
-          <span>Max HRV: </span>
+          <span>AVG HRV: </span>
           <span className={`${styles.renderedData} ${styles.maxHRVData}`}>
-            {obj.maxHRV} ms
+            {obj.avgHRV} ms
           </span>
         </div>
         <div className={styles.averagesWrapper}>
@@ -89,14 +89,14 @@ const RenderWeeklyAverages: React.FC<RenderWeeklyAveragesProps> = ({
           </button>
           <button
             className={
-              showChartData.maxHRV
+              showChartData.avgHRV
                 ? `${styles.xAxisData} ${styles.maxHRVBtnActive}`
                 : `${styles.xAxisData} ${styles.maxHRVBtnInactive}`
             }
             type="button"
-            onClick={() => handleShowChartData("maxHRV")}
+            onClick={() => handleShowChartData("avgHRV")}
           >
-            Max HRV
+            AVG HRV
           </button>
           <button
             className={
