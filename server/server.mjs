@@ -17,7 +17,9 @@ const headerConfig = {
 };
 
 // V2 Endpoints
+const ouraActivityV2BaseURL = `${baseURLV2}daily_activity?start_date=2021-12-24`;
 const ouraReadinessV2BaseURL = `${baseURLV2}daily_readiness?start_date=2021-12-24`;
+const ouraSleepV2BaseURL = `${baseURLV2}daily_sleep?start_date=2021-12-24`;
 const ouraHeartRateV2BaseURL = `${baseURLV2}heartrate`; // Oura API limits this endpoint to 30 day intervals
 const ouraPersonalInfoV2BaseURL = `${baseURLV2}personal_info`;
 const ouraSessionsV2BaseURL = `${baseURLV2}session?start_date=2021-12-24`;
@@ -52,7 +54,9 @@ const getEndpoint = (route, baseURL, keyName, personalInfo) => {
   });
 };
 
+getEndpoint("/activity", ouraActivityV2BaseURL, "activity");
 getEndpoint("/readiness", ouraReadinessV2BaseURL, "readiness");
+getEndpoint("/sleep", ouraSleepV2BaseURL, "sleep");
 getEndpoint("/heartrate", ouraHeartRateV2BaseURL, "heartRate");
 getEndpoint("/personal_info", ouraPersonalInfoV2BaseURL, "personalInfo", true);
 getEndpoint("/sessions", ouraSessionsV2BaseURL, "sessions");
