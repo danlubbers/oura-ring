@@ -2,11 +2,12 @@
 export interface GlobalContextProps {
   userData: UserProps;
   readinessData: ReadinessProps[];
-  sleepData: SleepProps[];
+  dailySleepData: DailySleepProps[];
   activityData: ActivityProps[];
   mergedHeartRateData: MergedHeartRateProps[];
   mergedTagData: MergedTagProps[];
   mergedSessionData: MergedSessionProps[];
+  sleepPeriodData: SleepPeriodProps[];
   mergedWorkoutData: MergedWorkoutProps[];
   startDate: string;
   setStartDate: (date: string) => void;
@@ -54,11 +55,12 @@ export type TodaysProps = {
 
   data: {
     readiness: ReadinessProps;
-    sleep: SleepProps;
+    dailySleep: DailySleepProps;
     activity: ActivityProps;
     heartRate: MergedHeartRateProps | undefined;
     tags: MergedTagProps | undefined;
     sessions: MergedSessionProps | undefined;
+    sleepPeriod: SleepPeriodProps;
     workouts: MergedWorkoutProps | undefined;
   };
 };
@@ -80,58 +82,21 @@ export type ReadinessProps = {
   temperature_deviation: number;
   temperature_trend_deviation: number;
   timestamp: string;
-  // period_id: number;
-  // rest_mode_state: number;
-  // score: number;
-  // score_activity_balance: number;
-  // score_hrv_balance: number;
-  // score_previous_day: number;
-  // score_previous_night: number;
-  // score_recovery_index: number;
-  // score_resting_hr: number;
-  // score_sleep_balance: number;
-  // score_temperature: number;
-  // summary_date: string;
 };
 
-export type SleepProps = {
-  awake: number;
-  bedtime_end: string;
-  bedtime_end_delta: number;
-  bedtime_start: string;
-  bedtime_start_delta: number;
-  breath_average: number;
-  deep: number;
-  duration: number;
-  efficiency: number;
-  hr_5min: number[];
-  hr_average: number;
-  hr_lowest: number;
-  hypnogram_5min: string;
-  is_longest: number;
-  light: number;
-  midpoint_at_delta: number;
-  midpoint_time: number;
-  onset_latency: number;
-  period_id: number;
-  rem: number;
-  restless: number;
-  rmssd: number;
-  rmssd_5min: number[];
+export type DailySleepProps = {
+  contributors: {
+    deep_sleep: number;
+    efficiency: number;
+    latency: number;
+    rem_sleep: number;
+    restfulness: number;
+    timing: number;
+    total_sleep: number;
+  };
+  day: string;
   score: number;
-  score_alignment: number;
-  score_deep: number;
-  score_disturbances: number;
-  score_efficiency: number;
-  score_latency: number;
-  score_rem: number;
-  score_total: number;
-  summary_date: string;
-  temperature_delta: number;
-  temperature_deviation: number;
-  temperature_trend_deviation: number;
-  timezone: number;
-  total: number;
+  timestamp: string;
 };
 
 export type ActivityProps = {
@@ -219,6 +184,42 @@ export type SessionProps = {
 export type MergedSessionProps = {
   day: string;
   sessionData: SessionProps[];
+};
+
+export type SleepPeriodProps = {
+  average_breath: number;
+  average_heart_rate: number;
+  average_hrv: number;
+  awake_time: number;
+  bedtime_end: string;
+  bedtime_start: string;
+  day: string;
+  deep_sleep_duration: number;
+  efficiency: number;
+  heart_rate: {
+    interval: number;
+    items: number[];
+    timestamp: string;
+  };
+  hrv: {
+    interval: number;
+    items: number[];
+    timestamp: string;
+  };
+  latency: number;
+  light_sleep_duration: number;
+  low_battery_alert: boolean;
+  lowest_heart_rate: number;
+  movement_30_sec: string;
+  period: number;
+  readiness_score_delta: number;
+  rem_sleep_duration: number;
+  restless_periods: number;
+  sleep_phase_5_min: string;
+  sleep_score_delta: number;
+  time_in_bed: number;
+  total_sleep_duration: number;
+  type: string;
 };
 
 export type WorkoutProps = {

@@ -5,11 +5,12 @@ import {
   UserProps,
   TodaysProps,
   ReadinessProps,
-  SleepProps,
+  DailySleepProps,
   ActivityProps,
   MergedHeartRateProps,
   MergedTagProps,
   MergedSessionProps,
+  SleepPeriodProps,
   MergedWorkoutProps,
 } from "../types/dataTypes";
 import {
@@ -32,7 +33,7 @@ export const GlobalContext = createContext<GlobalContextProps>(
 const GlobalProvider: FC = ({ children }) => {
   const [userData, setUserData] = useState<UserProps>(userInitialStateData);
   const [readinessData, setReadinessData] = useState<ReadinessProps[]>([]);
-  const [sleepData, setSleepData] = useState<SleepProps[]>([]);
+  const [dailySleepData, setdailySleepData] = useState<DailySleepProps[]>([]);
   const [activityData, setActivityData] = useState<ActivityProps[]>([]);
   const [mergedHeartRateData, setMergedHeartRateData] = useState<
     MergedHeartRateProps[]
@@ -41,6 +42,10 @@ const GlobalProvider: FC = ({ children }) => {
   const [mergedSessionData, setMergedSessionData] = useState<
     MergedSessionProps[]
   >([]);
+  const [sleepPeriodData, setSleepPeriodData] = useState<SleepPeriodProps[]>(
+    []
+  );
+
   const [mergedWorkoutData, setMergedWorkoutData] = useState<
     MergedWorkoutProps[]
   >([]);
@@ -56,13 +61,15 @@ const GlobalProvider: FC = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getOuraData();
+      console.log("data", data);
 
       const activityData = data?.ouraActivityData_V2.data.activity;
       const readinessData = data?.ouraReadinessData_V2.data.readiness;
-      const sleepData = data?.ouraSleepData_V2.data.sleep;
+      const dailySleepData = data?.ouraSleepData_V2.data.daily_sleep;
       const heartRateData = data?.ouraHeartRateData_V2.data.heartRate;
       const userData = data?.ouraPersonalInfoData_V2.data.personalInfo;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
+      const sleepPeriodData = data?.ouraSleepData_V2.data.sleep_periods;
       const tagData = data?.ouraTagData_V2.data.tags;
       const workoutData = data?.ouraWorkoutsData_V2.data.workouts;
 
@@ -71,16 +78,20 @@ const GlobalProvider: FC = ({ children }) => {
       const sessionDataByDate = mergedSessionDataByDate(sessionData);
       const workoutDataByDate = mergedWorkoutDataByDate(workoutData);
 
-      const startDate = String(new Date(sleepData[0].bedtime_end)).slice(0, 15);
-      const endDate = String(new Date(sleepData.at(-1).bedtime_end)).slice(
-        4,
+      const startDate = String(new Date(sleepPeriodData[0].bedtime_end)).slice(
+        0,
         15
       );
+      const endDate = String(
+        new Date(sleepPeriodData.at(-1).bedtime_end)
+      ).slice(4, 15);
 
-      const todaysSleepDate: string = sleepData.at(-1).day;
+      const todaysSleepDate: string = dailySleepData.at(-1).day;
 
       // V1 API: Array of arrays
-      const todaysSleepData: SleepProps = sleepData.at(-1);
+      const todaysDailySleepsData: DailySleepProps = dailySleepData.at(-1);
+      const todaysSleepPeriodData: SleepPeriodProps = sleepPeriodData.at(-1);
+      console.log("todaysSleepPeriodData", todaysSleepPeriodData);
       const todaysReadinessData: ReadinessProps = readinessData.at(-1);
       const todaysActivityData: ActivityProps = activityData.at(-1);
 
@@ -92,15 +103,16 @@ const GlobalProvider: FC = ({ children }) => {
         todaysSleepDate
       );
 
-      const bedtimeStart = todaysSleepData.bedtime_start;
-      const bedtimeEnd = todaysSleepData.bedtime_end;
+      const bedtimeStart = todaysSleepPeriodData.bedtime_start;
+      const bedtimeEnd = todaysSleepPeriodData.bedtime_end;
 
       setActivityData(activityData);
       setReadinessData(readinessData);
-      setSleepData(sleepData);
+      setdailySleepData(dailySleepData);
       setMergedHeartRateData(heartRateDataByDate);
       setUserData(userData);
       setMergedSessionData(sessionDataByDate);
+      setSleepPeriodData(sleepPeriodData);
       setMergedTagData(tagDataByDate);
       setMergedWorkoutData(workoutDataByDate);
 
@@ -115,16 +127,17 @@ const GlobalProvider: FC = ({ children }) => {
         data: {
           activity: todaysActivityData,
           readiness: todaysReadinessData,
-          sleep: todaysSleepData,
+          dailySleep: todaysDailySleepsData,
           heartRate: todaysHeartRateData,
           sessions: undefined, // No data to retrieve from Oura Api for same day
+          sleepPeriod: todaysSleepPeriodData,
           tags: undefined, // No data to retrieve from Oura Api for same day
           workouts: todaysWorkoutData ? todaysWorkoutData : undefined, // There's not always data for todays workout
         },
       });
     };
     fetchData();
-  }, [setUserData, setSleepData]);
+  }, [setUserData, setSleepPeriodData]);
   // console.log(`Provider: todaysData`, todaysData);
 
   return (
@@ -132,10 +145,11 @@ const GlobalProvider: FC = ({ children }) => {
       value={{
         activityData,
         readinessData,
-        sleepData,
+        dailySleepData,
         mergedHeartRateData,
         userData,
         mergedSessionData,
+        sleepPeriodData,
         mergedTagData,
         mergedWorkoutData,
         startDate,

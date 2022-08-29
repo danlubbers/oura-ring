@@ -7,7 +7,7 @@ import { findDataByDate } from "../../utilities/findDatabyDate";
 const DateRenderer = () => {
   const {
     readinessData,
-    sleepData,
+    // dailySleepData,
     activityData,
     mergedHeartRateData,
     mergedTagData,
@@ -20,6 +20,8 @@ const DateRenderer = () => {
     isBtnPosition,
     setIsBtnPosition,
   } = useContext(GlobalContext);
+
+  console.log("mergedSessionData", mergedSessionData);
 
   const dateRendererRef = useRef<HTMLDivElement>(null);
   const lastBtnRef = useRef<HTMLDivElement>(null);
@@ -42,9 +44,10 @@ const DateRenderer = () => {
   }, [todaysDate, btnOffsetLeft, isBtnPosition]);
 
   const pickSleepDate = sleepData.map((sleepObj, idx) => {
-    const date = sleepObj.bedtime_end.slice(0, 10); // year, month, day
-    const bedtimeStart = sleepObj.bedtime_start;
-    const bedtimeEnd = sleepObj.bedtime_end;
+    console.log("sleepObj", sleepObj);
+    const date = sleepObj.day;
+    // const bedtimeStart = sleepObj.bedtime_start;
+    // const bedtimeEnd = sleepObj.bedtime_end;
 
     const combinedData = {
       readiness: readinessData[idx],

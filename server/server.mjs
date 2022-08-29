@@ -61,7 +61,7 @@ getEndpoint("/daily_sleep", ouraDailySleepV2BaseURL, "daily_sleep");
 getEndpoint("/heartrate", ouraHeartRateV2BaseURL, "heartRate");
 getEndpoint("/personal_info", ouraPersonalInfoV2BaseURL, "personalInfo", true);
 getEndpoint("/sessions", ouraSessionsV2BaseURL, "sessions");
-getEndpoint("/sleep", ouraSleepV2BaseURL, "daily_sleep");
+getEndpoint("/sleep_periods", ouraSleepV2BaseURL, "sleep_periods");
 getEndpoint("/tags", ouraTagsV2BaseURL, "tags");
 getEndpoint("/workouts", ouraWorkoutssV2BaseURL, "workouts");
 
