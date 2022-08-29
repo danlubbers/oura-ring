@@ -65,18 +65,33 @@ export type TodaysProps = {
 
 // Readiness, Sleep, Activity, Tags & Sessions Props
 export type ReadinessProps = {
-  period_id: number;
-  rest_mode_state: number;
+  contributors: {
+    activity_balance: number;
+    body_temperature: number;
+    hrv_balance: number;
+    previous_day_activity: number;
+    previous_night: number;
+    recovery_index: number;
+    resting_heart_rate: number;
+    sleep_balance: number;
+  };
+  day: string;
   score: number;
-  score_activity_balance: number;
-  score_hrv_balance: number;
-  score_previous_day: number;
-  score_previous_night: number;
-  score_recovery_index: number;
-  score_resting_hr: number;
-  score_sleep_balance: number;
-  score_temperature: number;
-  summary_date: string;
+  temperature_deviation: number;
+  temperature_trend_deviation: number;
+  timestamp: string;
+  // period_id: number;
+  // rest_mode_state: number;
+  // score: number;
+  // score_activity_balance: number;
+  // score_hrv_balance: number;
+  // score_previous_day: number;
+  // score_previous_night: number;
+  // score_recovery_index: number;
+  // score_resting_hr: number;
+  // score_sleep_balance: number;
+  // score_temperature: number;
+  // summary_date: string;
 };
 
 export type SleepProps = {

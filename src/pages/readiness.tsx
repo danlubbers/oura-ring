@@ -10,7 +10,7 @@ function Readiness() {
   const {
     todaysData: { date, bedtimeStart, data },
   } = useContext(GlobalContext);
-  // console.log(`Readiness: todaysData`, todaysData);
+  console.log(`Readiness: todaysData`, data);
 
   // Time Data
   const sleepDuration = data?.sleep?.duration;
@@ -34,14 +34,15 @@ function Readiness() {
   const score = data?.readiness?.score;
 
   // Contributors
-  const restingHRScore = data?.readiness?.score_resting_hr;
-  const HRVScore = data?.readiness?.score_hrv_balance;
-  const bodyTempScore = data?.readiness?.score_temperature;
-  const recoveryScore = data?.readiness?.score_recovery_index;
-  const sleepScore = data?.readiness?.score_previous_night;
-  const sleepBalanceScore = data?.readiness?.score_sleep_balance;
-  const previousDayActivityScore = data?.readiness?.score_previous_day;
-  const activityBalanceScore = data?.readiness?.score_activity_balance;
+  const restingHRScore = data?.readiness?.contributors?.resting_heart_rate;
+  const HRVScore = data?.readiness?.contributors?.hrv_balance;
+  const bodyTempScore = data?.readiness?.temperature_deviation;
+  const recoveryScore = data?.readiness?.contributors?.recovery_index;
+  const sleepScore = data?.readiness?.contributors?.previous_night;
+  const sleepBalanceScore = data?.readiness?.contributors?.sleep_balance;
+  const previousDayActivityScore =
+    data?.readiness?.contributors?.previous_day_activity;
+  const activityBalanceScore = data?.readiness?.contributors?.activity_balance;
 
   const readinessContributorData = [
     { name: "Resting heart rate", score: restingHRScore },
