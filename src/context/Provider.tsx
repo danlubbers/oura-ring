@@ -57,13 +57,13 @@ const GlobalProvider: FC = ({ children }) => {
     const fetchData = async () => {
       const data = await getOuraData();
 
-      const userData = data?.ouraPersonalInfoData_V2.data.personalInfo;
-      const readinessData = data?.ouraReadinessData.data.readiness;
-      const sleepData = data?.ouraSleepData.data.sleep;
-      const activityData = data?.ouraActivityData.data.activity;
+      const activityData = data?.ouraActivityData_V2.data.activity;
+      const readinessData = data?.ouraReadinessData_V2.data.readiness;
+      const sleepData = data?.ouraSleepData_V2.data.sleep;
       const heartRateData = data?.ouraHeartRateData_V2.data.heartRate;
-      const tagData = data?.ouraTagData_V2.data.tags;
+      const userData = data?.ouraPersonalInfoData_V2.data.personalInfo;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
+      const tagData = data?.ouraTagData_V2.data.tags;
       const workoutData = data?.ouraWorkoutsData_V2.data.workouts;
 
       const heartRateDataByDate = mergedHeartRateDataByDate(heartRateData); // Oura API only gives HR data for today and yesterday...
@@ -77,12 +77,13 @@ const GlobalProvider: FC = ({ children }) => {
         15
       );
 
-      const todaysSleepDate: string = sleepData.at(-1).bedtime_end.slice(0, 10);
+      const todaysSleepDate: string = sleepData.at(-1).day;
 
       // V1 API: Array of arrays
       const todaysSleepData: SleepProps = sleepData.at(-1);
       const todaysReadinessData: ReadinessProps = readinessData.at(-1);
       const todaysActivityData: ActivityProps = activityData.at(-1);
+
       // V2 API: Array of objects
       const todaysHeartRateData: MergedHeartRateProps =
         heartRateDataByDate[heartRateDataByDate.length - 1];
@@ -94,13 +95,13 @@ const GlobalProvider: FC = ({ children }) => {
       const bedtimeStart = todaysSleepData.bedtime_start;
       const bedtimeEnd = todaysSleepData.bedtime_end;
 
-      setUserData(userData);
+      setActivityData(activityData);
       setReadinessData(readinessData);
       setSleepData(sleepData);
-      setActivityData(activityData);
       setMergedHeartRateData(heartRateDataByDate);
-      setMergedTagData(tagDataByDate);
+      setUserData(userData);
       setMergedSessionData(sessionDataByDate);
+      setMergedTagData(tagDataByDate);
       setMergedWorkoutData(workoutDataByDate);
 
       setStartDate(startDate);
@@ -112,12 +113,12 @@ const GlobalProvider: FC = ({ children }) => {
         bedtimeEnd,
 
         data: {
+          activity: todaysActivityData,
           readiness: todaysReadinessData,
           sleep: todaysSleepData,
-          activity: todaysActivityData,
           heartRate: todaysHeartRateData,
-          tags: undefined, // No data to retrieve from Oura Api for same day
           sessions: undefined, // No data to retrieve from Oura Api for same day
+          tags: undefined, // No data to retrieve from Oura Api for same day
           workouts: todaysWorkoutData ? todaysWorkoutData : undefined, // There's not always data for todays workout
         },
       });
@@ -129,13 +130,13 @@ const GlobalProvider: FC = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        userData,
+        activityData,
         readinessData,
         sleepData,
-        activityData,
         mergedHeartRateData,
-        mergedTagData,
+        userData,
         mergedSessionData,
+        mergedTagData,
         mergedWorkoutData,
         startDate,
         setStartDate,
