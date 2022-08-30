@@ -23,7 +23,7 @@ const ouraDailySleepV2BaseURL = `${baseURLV2}daily_sleep?start_date=2021-12-24`;
 const ouraHeartRateV2BaseURL = `${baseURLV2}heartrate`; // Oura API limits this endpoint to 30 day intervals
 const ouraPersonalInfoV2BaseURL = `${baseURLV2}personal_info`;
 const ouraSessionsV2BaseURL = `${baseURLV2}session?start_date=2021-12-24`;
-const ouraSleepV2BaseURL = `${baseURLV2}sleep?start_date=2021-12-24`;
+const ouraSleepPeriodV2BaseURL = `${baseURLV2}sleep?start_date=2021-12-24`;
 const ouraTagsV2BaseURL = `${baseURLV2}tag?start_date=2021-12-24`;
 const ouraWorkoutssV2BaseURL = `${baseURLV2}workout?start_date=2021-12-24`;
 
@@ -61,7 +61,7 @@ getEndpoint("/daily_sleep", ouraDailySleepV2BaseURL, "daily_sleep");
 getEndpoint("/heartrate", ouraHeartRateV2BaseURL, "heartRate");
 getEndpoint("/personal_info", ouraPersonalInfoV2BaseURL, "personalInfo", true);
 getEndpoint("/sessions", ouraSessionsV2BaseURL, "sessions");
-getEndpoint("/sleep_periods", ouraSleepV2BaseURL, "sleep_periods");
+getEndpoint("/sleep_period", ouraSleepPeriodV2BaseURL, "sleep_period");
 getEndpoint("/tags", ouraTagsV2BaseURL, "tags");
 getEndpoint("/workouts", ouraWorkoutssV2BaseURL, "workouts");
 

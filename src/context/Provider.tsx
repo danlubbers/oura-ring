@@ -65,13 +65,15 @@ const GlobalProvider: FC = ({ children }) => {
 
       const activityData = data?.ouraActivityData_V2.data.activity;
       const readinessData = data?.ouraReadinessData_V2.data.readiness;
-      const dailySleepData = data?.ouraSleepData_V2.data.daily_sleep;
+      const dailySleepData = data?.ouraDailySleepData_V2.data.daily_sleep;
       const heartRateData = data?.ouraHeartRateData_V2.data.heartRate;
       const userData = data?.ouraPersonalInfoData_V2.data.personalInfo;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
-      const sleepPeriodData = data?.ouraSleepData_V2.data.sleep_periods;
+      const sleepPeriodData = data?.ouraSleepPeriodData_V2.data.sleep_periods;
       const tagData = data?.ouraTagData_V2.data.tags;
       const workoutData = data?.ouraWorkoutsData_V2.data.workouts;
+
+      // console.log("heartRateData", heartRateData);
 
       const heartRateDataByDate = mergedHeartRateDataByDate(heartRateData); // Oura API only gives HR data for today and yesterday...
       const tagDataByDate = mergedTagDataByDate(tagData);
@@ -88,10 +90,9 @@ const GlobalProvider: FC = ({ children }) => {
 
       const todaysSleepDate: string = dailySleepData.at(-1).day;
 
-      // V1 API: Array of arrays
+      // V2 API: Array of arrays
       const todaysDailySleepsData: DailySleepProps = dailySleepData.at(-1);
       const todaysSleepPeriodData: SleepPeriodProps = sleepPeriodData.at(-1);
-      console.log("todaysSleepPeriodData", todaysSleepPeriodData);
       const todaysReadinessData: ReadinessProps = readinessData.at(-1);
       const todaysActivityData: ActivityProps = activityData.at(-1);
 
