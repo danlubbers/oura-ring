@@ -54,8 +54,8 @@ const BedroomData = () => {
   // Quad Data
   const bedroomTempAvg = Number(nightlyTempAvg.toFixed(1));
   const bedroomHumidityAvg = Number(humidityAvg.toFixed(0));
-  const restingHR = data?.sleep?.hr_lowest;
-  const avgHRV = data?.sleep?.rmssd;
+  const restingHR = data?.sleepPeriod?.lowest_heart_rate;
+  const avgHRV = data?.sleepPeriod?.average_hrv;
   // Not using Body Temp now - Keep in case for future usage
   // const bodyTempData = data?.sleep?.temperature_delta;
   // const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;

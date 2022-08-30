@@ -13,22 +13,25 @@ function Readiness() {
   console.log(`Readiness: todaysData`, data);
 
   // Time Data
-  const sleepDuration = data?.sleep?.duration;
+  const sleepDuration = data?.sleepPeriod?.total_sleep_duration;
   const bedtimeStartHourAndMin = bedtimeStart && bedtimeStart.slice(11, 16);
   // const bedtimeEndHourAndMin = bedtimeEnd && bedtimeEnd.slice(11, 16);
 
   // Quad Data
-  const restingHR = data?.sleep?.hr_lowest;
-  const bodyTempData = data?.sleep?.temperature_delta;
+  const restingHR = data?.sleepPeriod?.average_heart_rate;
+  const bodyTempData = data?.readiness?.temperature_deviation;
   const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
   const bodyTempFahrenheit = parseFloat(
     (conversionToFahrenheit - 32).toFixed(1)
   );
-  const respiratoryRate = parseFloat(data?.sleep?.breath_average.toFixed(1));
+  const respiratoryRate = parseFloat(
+    data?.sleepPeriod?.average_breath.toFixed(1)
+  );
 
   // Quad and Chart Data
-  const avgHRV = data?.sleep?.rmssd;
-  const maxHRV = data?.sleep && Math.max(...data?.sleep?.rmssd_5min);
+  const avgHRV = data?.sleepPeriod?.average_hrv;
+  const maxHRV =
+    data?.sleepPeriod && Math.max(...data?.sleepPeriod?.hrv?.items);
 
   // Overall Score
   const score = data?.readiness?.score;
@@ -55,10 +58,11 @@ function Readiness() {
     { name: "Activity balance", score: activityBalanceScore },
   ];
 
-  const minHeartRate = data?.sleep?.hr_lowest;
-  const maxHeartRate = data?.sleep && Math.max(...data?.sleep?.hr_5min);
+  const minHeartRate = data?.sleepPeriod?.lowest_heart_rate;
+  const maxHeartRate =
+    data?.sleepPeriod && Math.max(...data?.sleepPeriod?.heart_rate?.items);
 
-  const heartRateData = data?.sleep?.hr_5min
+  const heartRateData = data?.sleepPeriod?.heart_rate?.items
     ?.map((heartRate, idx) => {
       const time = timeIncrement(bedtimeStartHourAndMin, sleepDuration)[idx];
 
@@ -69,7 +73,7 @@ function Readiness() {
     })
     .filter((obj) => obj.heartRate !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
-  const hrvData = data?.sleep?.rmssd_5min
+  const hrvData = data?.sleepPeriod?.hrv?.items
     ?.map((hrv, idx) => {
       const time = timeIncrement(bedtimeStartHourAndMin, sleepDuration)[idx];
 
@@ -80,7 +84,7 @@ function Readiness() {
     })
     .filter((obj) => obj.HRV !== 0); // Filter out bad data due to ring logging 0's due to a bad connection
 
-  const avgHRData = getAverages(data?.sleep?.hr_5min);
+  const avgHRData = getAverages(data?.sleepPeriod?.heart_rate?.items);
 
   return (
     <div>

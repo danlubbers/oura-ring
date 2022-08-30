@@ -69,7 +69,7 @@ const GlobalProvider: FC = ({ children }) => {
       const heartRateData = data?.ouraHeartRateData_V2.data.heartRate;
       const userData = data?.ouraPersonalInfoData_V2.data.personalInfo;
       const sessionData = data?.ouraSessionsData_V2.data.sessions;
-      const sleepPeriodData = data?.ouraSleepPeriodData_V2.data.sleep_periods;
+      const sleepPeriodData = data?.ouraSleepPeriodData_V2.data.sleep_period;
       const tagData = data?.ouraTagData_V2.data.tags;
       const workoutData = data?.ouraWorkoutsData_V2.data.workouts;
 
@@ -79,6 +79,8 @@ const GlobalProvider: FC = ({ children }) => {
       const tagDataByDate = mergedTagDataByDate(tagData);
       const sessionDataByDate = mergedSessionDataByDate(sessionData);
       const workoutDataByDate = mergedWorkoutDataByDate(workoutData);
+
+      console.log("sleepPeriodData", sleepPeriodData);
 
       const startDate = String(new Date(sleepPeriodData[0].bedtime_end)).slice(
         0,

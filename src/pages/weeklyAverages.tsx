@@ -9,7 +9,8 @@ import { filterAverages } from "../utilities/filterAverages";
 
 const WeeklyAverages = () => {
   const {
-    sleepData,
+    sleepPeriodData,
+    dailySleepData,
     startDate,
     setStartDate,
     endDate,
@@ -72,12 +73,12 @@ const WeeklyAverages = () => {
     }
   };
 
-  const weeklyAverages = sleepData.map((obj) => {
+  const weeklyAverages = sleepPeriodData.map((obj) => {
     const date = String(new Date(obj.bedtime_end)).slice(0, 15);
 
     const monthDayDate = obj.bedtime_end.slice(5, 10);
 
-    const bodyTempData = obj.temperature_delta;
+    const bodyTempData = 89; /*** THIS IS DUMMY DATA - FIGURE OUT HOW TO GET bodyTEMP back in here since V2 broke it */
     const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
     let bodyTempFahrenheit = (conversionToFahrenheit - 32).toFixed(1);
     // Add a '+' to indicate higher temp since there is a '-' natively in the api
@@ -92,8 +93,8 @@ const WeeklyAverages = () => {
     const avgHumidity = Number(getAverages(filteredHumidityAvg).toFixed(1));
 
     return {
-      restingHR: obj.hr_lowest,
-      avgHRV: obj.rmssd,
+      restingHR: obj.lowest_heart_rate,
+      avgHRV: obj.average_hrv,
       bodyTemp: parseFloat(bodyTempFahrenheit),
       avgBedroomTemp: avgTemp,
       avgHumidity: avgHumidity,

@@ -7,11 +7,12 @@ import { findDataByDate } from "../../utilities/findDatabyDate";
 const DateRenderer = () => {
   const {
     readinessData,
-    // dailySleepData,
+    dailySleepData,
     activityData,
     mergedHeartRateData,
     mergedTagData,
     mergedSessionData,
+    sleepPeriodData,
     mergedWorkoutData,
     todaysData,
     setTodaysData,
@@ -21,14 +22,12 @@ const DateRenderer = () => {
     setIsBtnPosition,
   } = useContext(GlobalContext);
 
-  console.log("mergedSessionData", mergedSessionData);
-
   const dateRendererRef = useRef<HTMLDivElement>(null);
   const lastBtnRef = useRef<HTMLDivElement>(null);
   const btnRefs = useRef<{ current: HTMLDivElement }[]>([]);
 
   // https://stackoverflow.com/questions/65350114/useref-for-element-in-loop-in-react
-  btnRefs.current = sleepData.map((_, idx) => {
+  btnRefs.current = sleepPeriodData.map((_, idx) => {
     return btnRefs.current[idx] ?? createRef();
   });
 
@@ -43,19 +42,19 @@ const DateRenderer = () => {
     }
   }, [todaysDate, btnOffsetLeft, isBtnPosition]);
 
-  const pickSleepDate = sleepData.map((sleepObj, idx) => {
-    console.log("sleepObj", sleepObj);
+  const pickSleepDate = sleepPeriodData.map((sleepObj, idx) => {
     const date = sleepObj.day;
-    // const bedtimeStart = sleepObj.bedtime_start;
-    // const bedtimeEnd = sleepObj.bedtime_end;
+    const bedtimeStart = sleepObj.bedtime_start;
+    const bedtimeEnd = sleepObj.bedtime_end;
 
     const combinedData = {
       readiness: readinessData[idx],
-      sleep: sleepData[idx],
+      dailySleep: dailySleepData[idx],
       activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
       heartRate: findDataByDate(mergedHeartRateData, date),
       tags: findDataByDate(mergedTagData, date),
       sessions: findDataByDate(mergedSessionData, date),
+      sleepPeriod: sleepPeriodData[idx],
       workouts: findDataByDate(mergedWorkoutData, date),
     };
 
@@ -72,7 +71,11 @@ const DateRenderer = () => {
     };
 
     return (
-      <div key={`btn: ${date}`} style={{ width: "100%" }} ref={lastBtnRef}>
+      <div
+        key={`btn${idx}: ${date}`}
+        style={{ width: "100%" }}
+        ref={lastBtnRef}
+      >
         <Button
           btnAction={date.slice(5, 10)} // month, day
           type="button"
