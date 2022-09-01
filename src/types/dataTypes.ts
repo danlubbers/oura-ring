@@ -100,42 +100,42 @@ export type DailySleepProps = {
 };
 
 export type ActivityProps = {
-  average_met: number;
-  cal_active: number;
-  cal_total: number;
-  class_5min: string;
-  daily_movement: number;
-  day_end: string;
-  day_start: string;
-  high: number;
-  inactive: number;
-  inactivity_alerts: number;
-  low: number;
-  medium: number;
-  met_1min: number[];
-  met_min_high: number;
-  met_min_inactive: number;
-  met_min_low: number;
-  met_min_medium: number;
-  non_wear: number;
-  rest: number;
-  rest_mode_state: number;
+  class_5_min: string;
   score: number;
-  score_meet_daily_targets: number;
-  score_move_every_hour: number;
-  score_recovery_time: number;
-  score_stay_active: number;
-  score_training_frequency: number;
-  score_training_volume: number;
+  active_calories: number;
+  average_met_minutes: number;
+  contributors: {
+    meet_daily_targets: number;
+    move_every_hour: number;
+    recovery_time: number;
+    stay_active: number;
+    training_frequency: number;
+    training_volume: number;
+  };
+  equivalent_walking_distance: number;
+  high_activity_met_minutes: number;
+  high_activity_time: number;
+  inactivity_alerts: number;
+  low_activity_met_minutes: number;
+  low_activity_time: number;
+  medium_activity_met_minutes: number;
+  medium_activity_time: number;
+  met: {
+    interval: number;
+    items: number[];
+    timestamp: string;
+  };
+  meters_to_target: number;
+  non_wear_time: number;
+  resting_time: number;
+  sedentary_met_minutes: number;
+  sedentary_time: number;
   steps: number;
-  summary_date: string;
   target_calories: number;
-  target_km: number;
-  target_miles: number;
-  timezone: number;
-  to_target_km: number;
-  to_target_miles: number;
-  total: number;
+  target_meters: number;
+  total_calories: number;
+  day: string;
+  timestamp: string;
 };
 
 export type HeartRateProps = {

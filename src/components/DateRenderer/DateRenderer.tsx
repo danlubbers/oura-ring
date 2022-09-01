@@ -48,9 +48,9 @@ const DateRenderer = () => {
     const bedtimeEnd = sleepObj.bedtime_end;
 
     const combinedData = {
-      readiness: readinessData[idx],
-      dailySleep: dailySleepData[idx],
-      activity: activityData[++idx], // ++ increment 1 due to needing todays activity, not previous like readiness and sleep data
+      readiness: findDataByDate(readinessData, date),
+      dailySleep: findDataByDate(dailySleepData, date),
+      activity: findDataByDate(activityData, date),
       heartRate: findDataByDate(mergedHeartRateData, date),
       tags: findDataByDate(mergedTagData, date),
       sessions: findDataByDate(mergedSessionData, date),

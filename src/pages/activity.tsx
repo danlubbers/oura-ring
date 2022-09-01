@@ -7,31 +7,38 @@ import { secondsToHm } from "../utilities/convertTime";
 
 function Activity() {
   const { todaysData } = useContext(GlobalContext);
-  // console.log(`Activity: todaysData`, todaysData.data?.activity);
+  console.log(`Activity: todaysData`, todaysData);
 
   // Quad Data
   const calActive =
-    todaysData.data?.activity.cal_active.toLocaleString("en-US");
-  const calTotal = todaysData.data?.activity.cal_total.toLocaleString("en-US");
+    todaysData.data?.activity?.active_calories.toLocaleString("en-US");
+  console.log("calActive PAGE", calActive);
+  const calTotal =
+    todaysData.data?.activity?.total_calories.toLocaleString("en-US");
   const walkingEquivalency = (
-    todaysData.data?.activity.daily_movement / 1609.344
+    todaysData.data?.activity?.equivalent_walking_distance / 1609.344
   ).toFixed(1); // convert meters to miles
-  const steps = todaysData.data?.activity.steps.toLocaleString("en-US");
+  const steps = todaysData.data?.activity?.steps.toLocaleString("en-US");
 
   // Overall Score
-  const score = todaysData.data?.activity.score;
+  const score = todaysData.data?.activity?.score;
 
   // Contributors
-  const inactive = secondsToHm(todaysData.data?.activity.inactive * 60); // this score is in minutes so multiply by 60 to convert to seconds for the function parameter
-  const stayActiveScore = todaysData.data?.activity.score_stay_active;
-  const moveEveryHourScore = todaysData.data?.activity.score_move_every_hour;
-  const inactivityAlerts = todaysData.data?.activity.inactivity_alerts;
+  const inactive = secondsToHm(
+    todaysData.data?.activity?.inactivity_alerts * 60
+  ); // this score is in minutes so multiply by 60 to convert to seconds for the function parameter
+  const stayActiveScore = todaysData.data?.activity?.score;
+  const moveEveryHourScore =
+    todaysData.data?.activity?.contributors?.move_every_hour;
+  const inactivityAlerts = todaysData.data?.activity?.inactivity_alerts;
   const meetDailyGoalsScore =
-    todaysData.data?.activity.score_meet_daily_targets;
+    todaysData.data?.activity?.contributors?.meet_daily_targets;
   const trainingFrequencyScore =
-    todaysData.data?.activity.score_training_frequency;
-  const trainingVolumeScore = todaysData.data?.activity.score_training_volume;
-  const recoveryTimeScore = todaysData.data?.activity.score_recovery_time;
+    todaysData.data?.activity?.contributors?.training_frequency;
+  const trainingVolumeScore =
+    todaysData.data?.activity?.contributors?.training_volume;
+  const recoveryTimeScore =
+    todaysData.data?.activity?.contributors?.recovery_time;
 
   const activityContributorData = [
     { name: "Stay active", score: stayActiveScore, data: parseInt(inactive) },
@@ -46,7 +53,7 @@ function Activity() {
     { name: "Recovery Time", score: recoveryTimeScore },
   ];
 
-  const metFiveMinArray = todaysData.data?.activity.class_5min
+  const metFiveMinArray = todaysData.data?.activity?.class_5_min
     .split("")
     .map((met, idx) => {
       // start at 4am and add 5min to each index
@@ -59,14 +66,14 @@ function Activity() {
   // console.log(`metFiveMinArray`, metFiveMinArray);
 
   // Move Stages
-  const total = todaysData?.data?.activity?.total * 60; // Convert to seconds from minutes
-  const highSeconds = todaysData?.data?.activity?.high * 60;
+  const total = todaysData?.data?.activity?.score * 60; // Convert to seconds from minutes
+  const highSeconds = todaysData?.data?.activity?.high_activity_time * 60;
   const highPercentage = Math.round(((highSeconds - total) / total + 1) * 100);
-  const mediumSeconds = todaysData?.data?.activity?.medium * 60;
+  const mediumSeconds = todaysData?.data?.activity?.medium_activity_time * 60;
   const mediumPercentage = Math.round(
     ((mediumSeconds - total) / total + 1) * 100
   );
-  const lowSeconds = todaysData?.data?.activity?.low * 60;
+  const lowSeconds = todaysData?.data?.activity?.low_activity_time * 60;
   const lowPercentage = Math.round(((lowSeconds - total) / total + 1) * 100);
 
   const activityStagesData = [
