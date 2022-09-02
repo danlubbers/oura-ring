@@ -17,8 +17,8 @@ function SleepData() {
   const bedtimeStartHourAndMin = bedtimeStart && bedtimeStart.slice(11, 16);
 
   // Quad Data
-  const totalSleep = secondsToHm(data?.dailySleep?.contributors?.total_sleep);
-  const sleepDuration = data?.sleepPeriod?.total_sleep_duration;
+  const totalSleep = secondsToHm(data?.sleepPeriod?.total_sleep_duration);
+  const sleepDuration = data?.sleepPeriod?.time_in_bed;
   const timeInBed = secondsToHm(sleepDuration);
   const sleepEfficiency = data?.sleepPeriod?.efficiency;
 
@@ -35,7 +35,7 @@ function SleepData() {
   const totalScore = data?.dailySleep?.score;
   const efficiency = data?.sleepPeriod?.efficiency;
   const efficiencyScore = data?.dailySleep?.contributors?.efficiency;
-  const restfulnessScore = data?.sleepPeriod?.restless_periods;
+  const restfulnessScore = data?.dailySleep?.contributors?.restfulness;
   const remSleep = data?.sleepPeriod?.rem_sleep_duration;
   const remScore = data?.dailySleep?.contributors?.rem_sleep;
   // rem seconds - total sleep seconds divided by the total sleep seconds then convert that to the percentage and round to nearest integer
