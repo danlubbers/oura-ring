@@ -18,12 +18,14 @@ function Readiness() {
   // const bedtimeEndHourAndMin = bedtimeEnd && bedtimeEnd.slice(11, 16);
 
   // Quad Data
-  const restingHR = data?.sleepPeriod?.average_heart_rate;
+  const restingHR = data?.sleepPeriod?.lowest_heart_rate;
   const bodyTempData = data?.readiness?.temperature_deviation;
+  console.log("bodyTempData", bodyTempData);
   const conversionToFahrenheit = (bodyTempData * 9) / 5 + 32;
   const bodyTempFahrenheit = parseFloat(
     (conversionToFahrenheit - 32).toFixed(1)
   );
+  console.log("bodyTempFahrenheit", bodyTempFahrenheit);
   const respiratoryRate = parseFloat(
     data?.sleepPeriod?.average_breath.toFixed(1)
   );
@@ -39,7 +41,7 @@ function Readiness() {
   // Contributors
   const restingHRScore = data?.readiness?.contributors?.resting_heart_rate;
   const HRVScore = data?.readiness?.contributors?.hrv_balance;
-  const bodyTempScore = data?.readiness?.temperature_deviation;
+  const bodyTempScore = data?.readiness?.contributors?.body_temperature;
   const recoveryScore = data?.readiness?.contributors?.recovery_index;
   const sleepScore = data?.readiness?.contributors?.previous_night;
   const sleepBalanceScore = data?.readiness?.contributors?.sleep_balance;
